@@ -1,0 +1,313 @@
+/* Reset body mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif,Tahoma;
+    line-height: 1.6; /*Khoảng cách dòng*/
+}
+
+.container {
+    max-width: 1400px;
+    margin: -4px auto;
+    padding: 0 20px;
+    display: flex; /*sắp xếp phần tử cùng hàng*/
+    justify-content: space-between; /*căn đều hai bên*/
+    align-items: center; /*căn giữa theo chiều dọc*/
+    flex-wrap: wrap; /*tự xuống hàng khi màn hình nhỏ*/
+}
+
+
+/* Thanh thông tin trên cùng */
+.top-info-bar {
+    background: #a46b2c;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center; /*căn giữa nd*/
+}
+
+.top-info-bar .contact-info a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;/*bỏ dấu gạch chân màu trắng*/
+}
+
+
+
+/* Header chính */
+.main-header {
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 2px solid #D4A017;
+}
+
+.logo img {
+    height: 93px;
+    margin-left: -30px;
+    margin-bottom: -5px;
+    width: auto;
+    vertical-align: middle; /*căn giữa logo với phần tử khác*/
+}
+
+
+
+/*  Drop menu */
+.menu-sp {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px 0;
+    min-width: 250px;
+    /*tạo hiệu ứng trượt xuống di di chuột vào*/
+    opacity: 0;
+    transform: translateY(8px);
+    transition:  transform 0.25s ease;
+    z-index: 100;
+}
+
+/* Hiển thị khi hover */
+.menu-sp:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Các item con */
+.dropdown-item {
+    padding: 7px 20px; /*kích thước các hàng*/
+    color: #333;
+    cursor: pointer;
+}
+.dropdown-item:hover {
+    background: #f7f7f7;
+    color: #4CAF50;
+}
+
+
+
+
+
+/*Thanh tìm kiếm */
+.search-bar {
+    position: relative; /* Đặt vị trí tương đối để căn chỉnh icon */
+    display: flex;
+    align-items: center;
+}
+
+/*phần input*/
+.search-bar input {
+    padding: 10px 49px 11px 10px; /*  chiều rộng trên,  độ dài ô tìm phải, chiều rộng dưới, độ dài ô tìm trái  */
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px; /* Đặt nút bên phải input */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.search-bar .icon_timkiem img {
+    height: 20px;
+    vertical-align: middle;
+}
+
+/*menu chính*/
+.main-nav ul {
+    list-style: none;/*xóa dấu chấm*/
+    /*các mục nằm ngang, cách 20px*/
+    display: flex;
+    gap: 20px;
+}
+
+
+.main-nav a {
+    text-decoration: none; /*bỏ gạch chân*/
+    color: #333;
+    font-size: 16px;
+}
+
+/* User action*/
+.user-actions a {
+    margin-left: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+.user-actions svg {
+    width: 25px;
+    height: 25px;
+    background-color: antiquewhite;
+    border-radius: 34%;
+    padding: 8px;
+    box-sizing: content-box;
+    vertical-align: middle;
+}
+
+
+
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background: none;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 350px; /* Tăng chiều rộng ô  */
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: absolute;
+}
+
+#cart-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px; /* Tăng chiều cao để chứa nội dung */
+    justify-content: space-between; /* Phân bố đều nội dung từ trên xuống dưới */
+    padding: 25px; /* Tăng padding để không gian thoáng hơn */
+}
+
+#cart-modal svg {
+    height: 60px; /* Tăng kích thước icon */
+    width: 60px;
+    margin: 10px 0;
+    color: #4CAF50; /* Màu xanh lá cho icon */
+    stroke: #4CAF50; /* Đảm bảo viền icon cũng đúng màu */
+}
+
+#cart-modal p {
+    margin: 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+#cart-modal .modal-buttons {
+    display: flex;
+    justify-content: center; /* Căn giữa hai nút */
+    gap: 15px; /* Khoảng cách giữa hai nút */
+    width: 100%;
+    margin-top: 20px;
+}
+
+#cart-modal .view-cart-btn {
+    background: #a46b2c; /* Màu nâu giống giao diện Ngũ cốc Ngon */
+    color: #fff;
+    border: none;
+    padding: 10px 25px; /* Tăng padding cho nút to hơn */
+    cursor: pointer;
+    border-radius: 5px; /* Bo góc nút */
+    flex: 1;
+    max-width: 150px; /* Giới hạn chiều rộng nút */
+}
+
+#cart-modal .checkout-btn {
+    background: #4CAF50; /* Màu xanh lá */
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 150px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+
+
+/*thanh toán*/
+.checkout-btn {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    flex: 1;
+}
+
+#account-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#account-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#account-modal input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#account-modal button {
+    background: #6D4C41;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#account-modal a {
+    color: #a46b2c;
+    text-decoration: none;
+
+}
+
+#account-modal p {
+    font-size: 14px;
+    color: #757575;
+
+}
+
+
+
+
+
+
+
+
