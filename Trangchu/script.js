@@ -1,5 +1,5 @@
 
-
+//Add các class, id vào document, tạo biến gọi
 document.addEventListener('DOMContentLoaded', () => {
     const cartBtn = document.querySelector('.cart-btn');
     const accountBtn = document.querySelector('.account-btn');
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = button.getBoundingClientRect();
         modal.style.display = 'block';
         modal.style.top = `${rect.bottom + window.scrollY}px`;
+        // có thể đổi giá trị px để điều chỉnh phần xuất hiện của cửa sổ
         modal.style.left = `${rect.left + window.scrollX - 300}px`;
         modal.style.position = 'absolute';
     }
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Đóng khi click ngoài
+    // Đóng modal khi click ngoài vùng
     window.addEventListener('click', (event) => {
         if (!cartModal.contains(event.target) && !cartBtn.contains(event.target)) {
             cartModal.style.display = 'none';
@@ -52,3 +53,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+/////////////////////////////////////////////////////////////

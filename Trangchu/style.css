@@ -180,6 +180,7 @@ body {
     background: none;
 }
 
+/*nồi dung trong modal*/
 .modal-content {
     background: #fff;
     padding: 20px;
@@ -190,6 +191,7 @@ body {
     position: absolute;
 }
 
+/*modal giỏ hàng*/
 #cart-modal .modal-content {
     display: flex;
     flex-direction: column;
@@ -199,20 +201,24 @@ body {
     padding: 25px; /* Tăng padding để không gian thoáng hơn */
 }
 
+/*định dạng icon svg trong giỏ hàng*/
 #cart-modal svg {
-    height: 60px; /* Tăng kích thước icon */
+    height: 60px;
     width: 60px;
     margin: 10px 0;
-    color: #4CAF50; /* Màu xanh lá cho icon */
+    color: #4CAF50;
     stroke: #4CAF50; /* Đảm bảo viền icon cũng đúng màu */
 }
 
+/*định dạng đoạn văn trong modal giỏ hàng*/
 #cart-modal p {
     margin: 10px 0;
     color: #333;
     font-size: 16px;
 }
 
+
+/* Modal giỏ hàng: bố trí phần nút xem giỏ hàng và thanh toán*/
 #cart-modal .modal-buttons {
     display: flex;
     justify-content: center; /* Căn giữa hai nút */
@@ -221,8 +227,10 @@ body {
     margin-top: 20px;
 }
 
+
+/*định dạng nút hàng động*/
 #cart-modal .view-cart-btn {
-    background: #a46b2c; /* Màu nâu giống giao diện Ngũ cốc Ngon */
+    background: #a46b2c;
     color: #fff;
     border: none;
     padding: 10px 25px; /* Tăng padding cho nút to hơn */
@@ -243,6 +251,7 @@ body {
     max-width: 150px;
 }
 
+/*đóng modal*/
 .close-btn {
     position: absolute;
     top: 10px;
@@ -254,7 +263,7 @@ body {
 
 
 
-/*thanh toán*/
+/*định dạng nút thanh toán màu xanh lá */
 .checkout-btn {
     background: #4CAF50;
     color: #fff;
@@ -264,19 +273,20 @@ body {
     flex: 1;
 }
 
+
+/*đăng nhập */
 #account-modal .modal-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /*xắp xếp phần tử từ trên xuống theo chiều dọc*/
 }
 
-
-
+/*định dang form bên trong: email, mật khẩu, nút đăng nhập*/
 #account-modal form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
+/*giao diện cho ô input*/
 #account-modal input {
     padding: 10px;
     margin-bottom: 10px;
@@ -284,6 +294,7 @@ body {
     border-radius: 5px;
 }
 
+/*định dạng nút đăng nhập*/
 #account-modal button {
     background: #6D4C41;
     color: #fff;
@@ -291,20 +302,20 @@ body {
     padding: 10px;
     cursor: pointer;
 }
-
+/*định dạng phần liên kết (các chữ màu tím)*/
 #account-modal a {
     color: #a46b2c;
     text-decoration: none;
 
 }
-
+/*phần mô tả (chữ màu xám)*/
 #account-modal p {
     font-size: 14px;
     color: #757575;
 
 }
 
-
+/*---------------------------------------------------------------------------*/
 
 
 
