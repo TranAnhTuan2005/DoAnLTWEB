@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="82b8699d-ffc7-4b12-ad52-4e6b75bfe2db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trangchu/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/Trangchu/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trangchu/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Trangchu/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "branch__Tuan",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Users/User/OneDrive/Documents/GitHub/DoAnLTWEB/Trangchu/image/Header",
     "node.js.detected.package.eslint": "true",
@@ -93,8 +95,7 @@
       <updated>1761393494622</updated>
       <workItem from="1761393496654" duration="309000" />
       <workItem from="1761447098763" duration="23240000" />
-      <workItem from="1761482997636" duration="2566000" />
-      <workItem from="1761491075596" duration="40000" />
+      <workItem from="1761482997636" duration="2039000" />
     </task>
     <servers />
   </component>
