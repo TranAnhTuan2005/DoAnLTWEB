@@ -10,8 +10,8 @@ body {
     line-height: 1.6; /*Khoảng cách dòng*/
 }
 
-.container {
-    max-width: 1400px;
+.header-container {
+    max-width: 1450px;
     margin: -4px auto;
     padding: 0 20px;
     display: flex; /*sắp xếp phần tử cùng hàng*/
@@ -180,6 +180,14 @@ body {
     background: none;
 }
 
+#cart-modal,
+#account-modal {
+    max-width: 500px;
+    width: auto;
+    z-index: 9999;
+}
+
+
 /*nồi dung trong modal*/
 .modal-content {
     background: #fff;
@@ -315,7 +323,9 @@ body {
 
 }
 
+
 /*---------------------------------------------------------------------------*/
+
 
 /*SẢN PHẨM MỚI NHẤT*/
 .new-products{
@@ -432,6 +442,127 @@ body {
     font-weight: bold;
     font-size: 16px;
 }
+
+
+
+/*---------------------------------------------------------------------------*/
+
+/* HEAD*/
+.main-footer-new {
+    background-color: #f8f8f8;
+    color: #333;
+    padding-top: 40px;
+}
+
+.section-for-email {
+    background-color: #a46b2c;
+    color: #fff;
+    padding: 30px 0;
+}
+
+.section-for-email .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.section-for-email .content {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-newsletter .form-group {
+    display: flex;
+    gap: 10px;
+}
+
+.form-newsletter input.newsletter-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-newsletter .submitNewsletter {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-middle {
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+}
+
+.footer-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #a46b2c;
+}
+
+.footer-middle ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-middle ul li {
+    margin-bottom: 10px;
+}
+
+.footer-middle ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-middle ul li a:hover {
+    color: #a46b2c;
+}
+
+.shop_social li a {
+    color: #a46b2c;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.shop_social li a:hover {
+    color: #4CAF50;
+}
+
+.footer-copyright {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.footer-copyright a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-copyright a:hover {
+    color: #a46b2c;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+    .ft-col {
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
