@@ -323,8 +323,138 @@ body {
 
 }
 
+
 /*---------------------------------------------------------------------------*/
 
+
+/*SẢN PHẨM MỚI NHẤT*/
+.new-products{
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.new-products h2{
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 5px;
+}
+.new-products .subtitle{
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #777;
+    font-size: 15px;
+}
+/*Tạo lưới sản phẩm fixed 220px mỗi sản phẩm*/
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/*Quy định riêng từng sản phẩm*/
+.product-item{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1);
+    padding: 10px 10px 20px;
+    overflow: hidden;
+}
+.product-item:hover{/*hiệu ứng dịch lên trên theo trục đứng, kèm đổ bóng nhẹ */
+    transform: translateY(-5px);
+    box-shadow: 0 4px 14px rgb(0, 0, 0, 0.2);
+}
+
+/*Quy định hình ảnh*/
+.product-image{
+    position: relative;
+    overflow: hidden;/*thừa ảnh*/
+    border-radius: 8px;
+}
+
+.product-image img{
+    width: 100%;
+    overflow: hidden;
+    height: 200px;
+    object-fit: cover; /*ko nén hình ảnh lại theo px quy định*/
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover img{
+    transform: scale(1.05);/*scale hình ảnh ra tạo hiệu ứng vui mắt*/
+}
+
+/*quy định về gh và e*/
+.overlay{
+    position: absolute; /*mất gh và e*/
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    background-color: rgb(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-item:hover .overlay{
+    opacity: 1; /* cho hiện gh và e lên khi hover*/
+}
+
+/*chung về btn*/
+.overlay button{
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.add-to-cart{
+    background-color: #bb7412;
+}
+.add-to-cart:hover{
+    background-color: #c52314;
+}
+.view-btn{
+    background-color: #bb7412;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/*Thông tin sản phẩm*/
+.product-item h3{
+    text-align: left;
+    font-size: 15px;
+    color: #333;
+    font-weight: normal;
+}
+.product-item .price{
+    text-align: left;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*/
+
+/* HEAD*/
 .main-footer-new {
     background-color: #f8f8f8;
     color: #333;
@@ -430,6 +560,18 @@ body {
         margin-bottom: 20px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
