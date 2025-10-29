@@ -111,4 +111,21 @@ document.addEventListener("DOMContentLoaded", function () {
     showSlide(0);
 });
 
+<!--Modal chi tiết sản phẩm-->
+/*gọi các thẻ trong chi tiết sản phẩm ra để gán giá trị đầu vào cho nó*/
+function openModal(imgSrc, name, price) {
+    document.getElementById('modal-img').src = imgSrc;
+    document.getElementById('modal-name').innerText = name;
+    document.getElementById('modal-price').innerText = price;
+    document.getElementById('productModal').style.display = 'flex';
+}
+/*đóng thông tin chi tiết*/
+function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+}
+window.onclick = function (e) {
+    const modal = document.getElementById('productModal');
+    if (e.target === modal) closeModal();
+}
+
 /////////////////////////////////////////////////////////////

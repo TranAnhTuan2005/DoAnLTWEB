@@ -529,7 +529,92 @@ body {
     font-size: 16px;
 }
 
+/*---------------------------------------------------------------------------*/
+/*Modal chi tiết sản phẩm*/
+/*Chung*/
+.product-modal{
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items:center ;
+    font-family: 'Quicksand', sans-serif;
+}
+.product-modal-content{
+    position: relative;
+    background: #fff;
+    width: 70%;
+    max-width: 750px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgb(0,0,0,0.4);
+}
+/*Hình bên trái*/
+.product-modal-content img{
+    width: 250px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+/*Căn chỉnh cho thông tin bên phải*/
+.product-modal-content .info{
+    flex: 1;
+    text-align: left;
+}
 
+.product-modal-content .info h3{
+    font-size: 22px;
+    margin-bottom: 10px;
+
+}
+
+.product-modal-content .info .price{
+    color: #b22a00;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product-modal-content .infor button{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    background: #3b5c2f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.product-modal-content .infor button:hover{
+    background-color: #2d471f;
+}
+/*link xem chi tiết sản phẩm*/
+.product-modal-content .infor a{
+    text-decoration: none;
+    margin-top: 15px;
+    color: #333;
+}
+/*Quy dinh cho nút thoát*/
+.close-modal{
+    position: absolute;
+    top: 0px;/*dua dau x ve vi tri goc tren ben phai*/
+    right: 0px;
+    font-size: 28px;
+    color: black;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 5px;
+}
+.close-modal:hover{
+    background: red;
+    color: white;
+}
 
 /*---------------------------------------------------------------------------*/
 
