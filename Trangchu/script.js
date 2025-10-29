@@ -77,3 +77,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /////////////////////////////////////////////////////////////
+// Trình chiếu ảnh
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.querySelector(".dots");
+    let current = 0;
+
+    // Tạo dấu chấm tương ứng với từng slide
+    slides.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.addEventListener("click", () => showSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dots span");
+
+    // Hiển thị slide theo index
+    function showSlide(index) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+    }
+
+    // Sự kiện click cho nút điều hướng
+    document.querySelector(".next-btn").addEventListener("click", () => showSlide(current + 1));
+    document.querySelector(".prev-btn").addEventListener("click", () => showSlide(current - 1));
+
+    // Khởi tạo slide đầu tiên
+    showSlide(0);
+});
+
+/////////////////////////////////////////////////////////////
