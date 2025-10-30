@@ -83,24 +83,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const dotsContainer = document.querySelector(".dots");
     let current = 0;
 
-    // Tạo dấu chấm tương ứng với từng slide
+    // Tạo ul
+    const ul = document.createElement('ul');
+    ul.classList.add('slick-dots');
+    dotsContainer.appendChild(ul);
+
+    // Tạo <li> cho từng slide
     slides.forEach((_, index) => {
-        const dot = document.createElement("span");
-        dot.addEventListener("click", () => showSlide(index));
-        dotsContainer.appendChild(dot);
+        const li = document.createElement('li');
+        li.setAttribute('role', 'presentation');
+        li.addEventListener('click', () => showSlide(index));
+        ul.appendChild(li);
     });
 
-    const dots = document.querySelectorAll(".dots span");
+    const dots = ul.querySelectorAll('li');
 
     // Hiển thị slide theo index
     function showSlide(index) {
-        slides[current].classList.remove("active");
-        dots[current].classList.remove("active");
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('slick-active');
 
         current = (index + slides.length) % slides.length;
 
-        slides[current].classList.add("active");
-        dots[current].classList.add("active");
+        slides[current].classList.add('active');
+        dots[current].classList.add('slick-active');
     }
 
     // Sự kiện click cho nút điều hướng
