@@ -373,6 +373,8 @@ body {
 .home-slider {
     position: relative;
     width: 100%;
+    height: 550px;
+    overflow: hidden; /* Ẩn phần hình ảnh tràn ra ngoài */
     height: 500px;
     overflow: hidden;
     /* Ẩn phần hình ảnh tràn ra ngoài */
@@ -475,7 +477,7 @@ body {
 }
 
 /*---------------------------------------------------------------------------*/
-/* GỢI Ý QUAN TÂM */
+/* CÓ THỂ BẠN QUAN TÂM */
 .suggest-interest {
     text-align: center;
     padding: 40px 0;
@@ -489,6 +491,9 @@ body {
 
 .si-heading h2 {
     font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px; /* Khoảng cách giữa các ký tự là 1px */
+    color: black;
     font-weight: 700;
     letter-spacing: 1px;
     /* Khoảng cách giữa các ký tự là 1px */
@@ -554,6 +559,68 @@ body {
     transform: scale(1.05);
     /* Phóng to 5% */
     background-color: #f7e0c3;
+}
+
+/*---------------------------------------------------------------------------*/
+/* DANH MỤC SẢN PHẨM */
+.product-section {
+    text-align: center;
+    padding: 40px 10px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section-title .icon {
+    width: 32px;
+    height: 32px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    justify-items: center;
+}
+
+.product-card {
+    background: white;
+    border-radius: 18px;
+    transition: transform 0.3s ease;
+    width: 260px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.product-img {
+    width: 100%;
+    height: 240px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.product-title {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #5c3d04;
+    text-align: center;
 }
 
 /*---------------------------------------------------------------------------*/
