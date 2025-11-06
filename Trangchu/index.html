@@ -525,15 +525,14 @@
         <div class="footer-middle">
             <div class="container-fluid">
                 <div class="footer-middle-container">
-                    <div class="back-to-top">
-                        <a href="javascript:;" title="Trở về đầu trang" aria-label="Trở về đầu trang">
-                            <span class="btt-icon-back">↑</span>
-                        </a>
-                    </div>
+
+
+
                     <div class="row">
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
+
                                 <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px" alt="Ngũ cốc Ngon" >
                                 </a>
@@ -612,10 +611,32 @@
                 <p>Copyright © 2025 <a href="#">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank" rel="noreferrer">Team 18</a></p>
             </div>
         </div>
+
+        <!--back to top bootstrap-->
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                id="btn-back-to-top"
+                class="btn btn-success btn-lg">
+            ↑
+        </button>
+
     </footer>
 
-
 </div>
+
+
+<!--back to top (bootstrap) js-->
+<script>
+    const backToTopBtn = document.getElementById("btn-back-to-top");
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+</script>
+
 
 </body>
 

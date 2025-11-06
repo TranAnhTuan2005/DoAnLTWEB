@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 /////////////////////////////////////////////////////////////
 // Trình chiếu ảnh
 document.addEventListener("DOMContentLoaded", function () {
