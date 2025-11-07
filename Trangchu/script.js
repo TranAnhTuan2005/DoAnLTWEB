@@ -110,7 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
     showSlide(0);
 });
 
-<!--Modal chi tiết sản phẩm-->
+/*Modal chi tiết sản phẩm*/
+
 /*gọi các thẻ trong chi tiết sản phẩm ra để gán giá trị đầu vào cho nó*/
 function openModal(imgSrc, name, price) {
     document.getElementById('modal-img').src = imgSrc;
