@@ -1,5 +1,4 @@
 //Add các class, id vào document, tạo biến gọi
-
 document.addEventListener('DOMContentLoaded', () => {
     const cartBtn = document.querySelector('.cart-btn');
     const accountBtn = document.querySelector('.account-btn');
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
 
 
 /////////////////////////////////////////////////////////////

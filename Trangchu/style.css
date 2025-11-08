@@ -1033,3 +1033,28 @@ body {
         margin-bottom: 20px;
     }
 }
+
+/*back to top*/
+#btn-back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    background-color: #a46b2c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 29px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+#btn-back-to-top:hover {
+    background-color: #4CAF50;
+}
+
