@@ -4,7 +4,184 @@
     <meta charset="UTF-8">
     <title>Giới thiệu - Về Ngon</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<style>
+    /* ==== Trang Về Ngon ==== */
+    .about-page {
+        font-family: 'Tahoma', Arial, sans-serif;
+        color: #444;
+        background-color: #fff;
+    }
+
+    /* --- Breadcrumb --- */
+    .breadcrumb-section {
+        background-color: #faf7f5;
+    }
+    .breadcrumb a {
+        color: #a46b2c;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .breadcrumb a:hover {
+        color: #6d4c41;
+    }
+    .breadcrumb {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .about-title {
+        font-size: 28px;
+        color: #6d4c41;
+        font-weight: 700;
+    }
+
+    /* --- Giới thiệu mở đầu --- */
+    .about-intro .lead {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #555;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    /* --- Các phần nội dung --- */
+    .about-page h2 {
+        color: #6d4c41;
+        font-weight: 600;
+    }
+    .about-page p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* --- Ảnh trong nội dung --- */
+    .about-page img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    /* --- Section sáng và tối xen kẽ --- */
+    .about-story,
+    .about-growth {
+        background-color: #faf7f5;
+    }
+
+    /* --- Người sáng lập --- */
+    .about-founder {
+        background-color: #fff;
+    }
+    .about-founder h3 {
+        color: #6d4c41;
+        font-weight: 600;
+    }
+    .about-founder p {
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    /* --- Phần kết --- */
+    .about-ending {
+        background-color: #faf7f5;
+    }
+    .about-ending h2 {
+        color: #6d4c41;
+        font-weight: 700;
+    }
+    .about-ending p {
+        max-width: 750px;
+        margin: 0 auto 20px auto;
+        line-height: 1.7;
+    }
+
+    /* --- Nút CTA --- */
+    .about-ending .btn {
+        background-color: #a46b2c;
+        border: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .about-ending .btn:hover {
+        background-color: #6d4c41;
+        transform: translateY(-2px);
+    }
+
+    /* --- Hiệu ứng ảnh nhẹ --- */
+    .about-page img.shadow-sm:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        transition: all 0.3s ease;
+    }
+
+
+
+
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .category-list .category-item {
+        padding: 10px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
+        text-decoration: none;
+        padding: 4px 6px;
+    }
+
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
+    }
+
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
+        }
+    }
+
+
+</style>
+
+
 <body>
 
 <!-- Thanh thông tin trên cùng -->
@@ -124,16 +301,348 @@
     </div>
 </div>
 
+<!------------------------------------------------------------------------------------>
+<!--Body-->
+<main class="about-page">
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section text-center py-4">
+        <div class="container">
+            <p class="breadcrumb">
+                <a href="TrangChu.html">Trang chủ </a> / <span> Về Ngon</span>
+            </p>
+            <h1 class="about-title">Trao an lành, nhận yêu thương cùng Ngũ cốc Ngon</h1>
+        </div>
+    </section>
+
+
+    <section class="about-intro py-5">
+        <div class="container">
+            <div class="row align-items-start">
+
+
+                <!-- SIDEBAR DANH MỤC TRANG-->
+                <aside class="col-md-4 mb-4 mb-md-0">
+                    <div class="category-sidebar p-3 bg-white rounded shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0">Danh mục trang</h4>
+
+
+                            <!-- nút chỉ hiện trên mobile, dùng bootstrap collapse -->
+                            <button class="btn btn-outline-secondary d-md-none btn-sm"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#categoryList"
+                                    aria-expanded="false"
+                                    aria-controls="categoryList">
+                                Danh mục ▾
+                            </button>
+                        </div>
+
+                        <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
+                            <li class="category-item"><a href="/pages/ve-ngon">Giới thiệu</a></li>
+                            <li class="category-item"><a href="/pages/chinh-sach-bao-mat">Chính sách bảo mật</a></li>
+                            <li class="category-item"><a href="/pages/dieu-khoan-dich-vu">Điều khoản dịch vụ</a></li>
+                            <li class="category-item"><a href="/pages/phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
+                            <li class="category-item"><a href="/pages/phuong-thuc-van-chuyen">Phương thức vận chuyển</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- NỘI DUNG GIỚI THIỆU -->
+                <div class="col-md-8">
+                    <p class="lead text-start">
+                        Ngũ cốc Ngon được hình thành từ mong muốn mang lại sản phẩm thuần tự nhiên, lành mạnh và tốt cho sức khỏe.
+                        Chúng tôi tin rằng sự an lành bắt đầu từ những điều giản dị nhất – từ từng hạt ngũ cốc quê hương.
+
+                    </p>
+                    <br>
+
+                    <!--  có thể thêm 1-2 link nhanh hoặc featured ở đây -->
+                    <div class="mt-3">
+                        <a href="/collections/all" class="btn btn-outline-success me-2">Xem tất cả sản phẩm</a>
+                        <a href="/pages/chinh-sach-doi-tra" class="btn btn-outline-secondary">Chính sách đổi trả</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Câu chuyện thương hiệu -->
+    <section class="about-story py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="image/Image_VeNgon/donglua.jpg" alt="Câu chuyện thương hiệu" class="img-fluid rounded-3 shadow-sm"><img>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Sinh ra từ làng, nuôi dưỡng dự định dang dở</h2>
+                    <p>
+                        Ngũ cốc Ngon được khởi đầu từ một người con sinh ra ở làng quê miền Trung, mang trong mình khát vọng
+                        đem đến sản phẩm sạch, an toàn và tốt cho sức khỏe cộng đồng. Từ những hạt gạo, hạt đậu bình dị,
+                        Ngon bắt đầu hành trình tạo nên những gói ngũ cốc mang giá trị thật sự.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
 
 
 
+    <!-- Cơ duyên với ngũ cốc -->
+
+    <section class="about-journey py-5">
+        <div class="container">
+            <div class="row align-items-center flex-md-row-reverse">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="image/about/story2.jpg" alt="Cơ duyên với ngũ cốc" class="img-fluid rounded-3 shadow-sm">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Cơ duyên đến với ngũ cốc</h2>
+                    <p>
+                        Từ một dự định nhỏ, Ngon dần trở thành niềm đam mê lớn khi nhận ra sức mạnh của những hạt ngũ cốc thuần Việt.
+                        Sản phẩm được nghiên cứu, thử nghiệm và hoàn thiện với mong muốn mang lại sự an lành cho từng gia đình Việt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hành trình phát triển -->
+
+    <section class="about-growth py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="image/about/story3.jpg" alt="Hành trình phát triển" class="img-fluid rounded-3 shadow-sm">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Từ Ngũ cốc Phong An đến Ngũ cốc Ngon</h2>
+                    <p>
+                        Trải qua hành trình phát triển và cải tiến, thương hiệu Ngon không chỉ là sản phẩm dinh dưỡng mà còn là
+                        lời tri ân đến quê hương, đến những giá trị truyền thống được gìn giữ và lan tỏa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Người sáng lập -->
+
+    <section class="about-founder py-5 text-center">
+        <div class="container">
+            <img src="image/about/founder.jpg" alt="Người sáng lập" class="img-fluid rounded-circle mb-3 shadow-sm"
+                 style="width:180px; height:180px; object-fit:cover;">
+            <h3 class="mb-1">Người sáng lập</h3>
+            <p class="fw-bold">ABCD</p>
+            <p class="fst-italic">
+                “Mỗi sản phẩm là một lời gửi gắm yêu thương, một món quà từ thiên nhiên cho sức khỏe cộng đồng.”
+            </p>
+        </div>
+    </section>
+
+    <!-- Kết thúc trang -->
+
+    <section class="about-ending py-5 bg-light text-center">
+        <div class="container">
+            <h2 class="mb-3">Ngũ cốc Ngon – Trao an lành, nhận yêu thương</h2>
+            <p class="mb-4">
+                Chúng tôi tin rằng sức khỏe là nền tảng của hạnh phúc, và hạnh phúc bắt đầu từ những điều giản dị nhất – từ bữa sáng lành mạnh mỗi ngày.
+            </p>
+            <a href="/collections/all" class="btn btn-success px-4 py-2 rounded-pill">Khám phá sản phẩm</a>
+        </div>
+    </section>
+
+</main>
 
 
 
 
+<!------------------------------------------------------------------------------>
+<!--Footer-->
+
+<div class="main-footer-new">
+    <!--section đăng kí nhận tin-->
+    <section id="send-for-gmail" class="section section-for-email">
+        <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <div class="container-fluid">
+            <div class="row flexAlignCenter flexJustiCenter">
+                <div class="col-md-6 col-sm-12">
+                    <h3 class="title">Đăng kí nhận tin</h3>
+                    <p class="content">
+                        Đăng ký Email để theo dõi những sản phẩm được giảm giá của chúng tôi.
+                        <br>
+                        Theo dõi fanpage Ngũ cốc Ngon để cập nhật thông tin mới nhất.
+                    </p>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-newsletter">
+                        <form accept-charset="UTF-8" action="/account/contact" class="contact-form" method="post">
+                            <input name="form_type" type="hidden" value="customer">
+                            <input name="utf8" type="hidden" value="✓">
+                            <div class="form-group">
+                                <input type="hidden" id="newsletter_tags" name="contact[tags]"
+                                       value="khách hàng tiềm năng, bản tin">
+                                <input required="" type="email" value="" placeholder="Nhập email của bạn"
+                                       name="contact[email]" aria-label="Email Address"
+                                       class="inputNew form-control grey newsletter-input">
+                                <button type="submit" class="button dark submitNewsletter"><span>Gửi</span></button>
+                            </div>
+                            <div class="sitebox-recaptcha hidden">
+                                This site is protected by reCAPTCHA and the Google
+                                <a href="https://policies.google.com/privacy" target="_blank"
+                                   rel="noreferrer">Privacy Policy</a>
+                                and <a href="https://policies.google.com/terms" target="_blank"
+                                       rel="noreferrer">Terms of Service</a> apply.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Footer chính -->
+    <footer class="main-footer footer">
+        <div class="footer-middle">
+            <div class="container-fluid">
+                <div class="footer-middle-container">
+
+
+
+                    <div class="row">
+                        <!-- Cột 1: Giới thiệu -->
+                        <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
+                            <div class="logo-footer">
+
+                                <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
+                                         alt="Ngũ cốc Ngon">
+                                </a>
+                            </div>
+                            <p>Công ty TNHH Phát triển Nông nghiệp Xanh Ngon<br>
+                                ĐC: Dĩ An, TP.HCM<br>
+                                ĐT: 0357250466<br>
+                                Email: ngucocNgon@gmail.com<br>
+                                Giấy CNĐKKD: 34472346746(23/2/2025)</p>
+                            <div class="logo-footer-bct">
+                                <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
+                                   rel="noreferrer" aria-label="logo bct">
+                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                         height="70px" width="150px" alt="Bộ Công Thương">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Cột 2: Hỗ trợ khách hàng -->
+                        <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
+                            <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
+                            <ul>
+                                <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
+                                    trả</a></li>
+                                <li><a href="/pages/chinh-sach-bao-mat" title="Chính sách bảo mật">Chính sách bảo
+                                    mật</a></li>
+                                <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
+                                    vụ</a></li>
+                                <li><a href="/pages/quy-dinh-va-hinh-thuc-thanh-toan"
+                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                <li><a href="/pages/phuong-thuc-van-chuyen" title="Phương thức vận chuyển">Phương
+                                    thức vận chuyển</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Cột 3: Kết nối nhanh -->
+                        <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
+                            <h3 class="footer-title">KẾT NỐI NHANH</h3>
+                            <ul>
+                                <li><a href="/" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="/pages/ngon" title="Ngon">Ngon</a></li>
+                                <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
+                                <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
+                                <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="/pages/lien-he" title="Liên hệ">Liên hệ</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Cột 4: Liên hệ và mạng xã hội -->
+                        <div class="boxphone ft-col col-md-3 col-sm-6 col-xs-12">
+                            <h3 class="footer-title">CHĂM SÓC KHÁCH HÀNG</h3>
+                            <p class="fter-hotline">
+                                <a href="tel:0357250466" rel="nofollow">0357 250 466</a>
+                            </p>
+                            <h3 class="footer-title">THEO DÕI CHÚNG TÔI</h3>
+                            <ul class="shop_social">
+                                <li class="facebook_social">
+                                    <a href="#" target="_blank" rel="noreferrer" title="Facebook"
+                                       aria-label="Facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="instagram_social">
+                                    <a href="#" target="_blank" rel="noreferrer" title="Instagram"
+                                       aria-label="Instagram">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li class="youtube_social">
+                                    <a href="#" target="_blank" rel="noreferrer" title="Youtube"
+                                       aria-label="Youtube">
+                                        <i class="fa fa-youtube-play"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--back to top bootstrap-->
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                id="btn-back-to-top"
+                class="btn btn-success btn-lg">
+            ↑
+        </button>
+
+        <div class="footer-copyright text-center">
+            <div class="container-fluid">
+                <p>Copyright © 2025 <a href="#">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                rel="noreferrer">Team 18</a></p>
+            </div>
+        </div>
+
+
+
+    </footer>
+
+</div>
+
+
+<!--back to top (bootstrap) js-->
+<script>
+    const backToTopBtn = document.getElementById("btn-back-to-top");
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+</script>
+
+
+
+<script src="script.js"></script>
 
 
 </body>
