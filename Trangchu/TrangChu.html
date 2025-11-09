@@ -9,19 +9,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-
 </head>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <body>
 
-    <!-- Thanh thông tin trên cùng -->
-    <div class="top-info-bar">
-        <div class="header-container">
-            <span>Ngũ cốc Ngon xin chào!</span>
-            <div class="contact-info">
-                <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
-                <a href="tel:0357250466">Hotline: 0357 250 466</a>
-            </div>
+
+
+
+
+<!-- Thanh thông tin trên cùng -->
+<div class="top-info-bar">
+    <div class="header-container">
+        <span>Ngũ cốc Ngon xin chào!</span>
+        <div class="contact-info">
+            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
+            <a href="tel:0357250466">Hotline: 0357 250 466</a>
         </div>
     </div>
 
@@ -44,14 +48,14 @@
                 </button>
             </div>
 
-            <!-- Menu điều hướng -->
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="/">Trang chủ</a></li>
-                    <li><a href="/Ngon">Về Ngon</a></li>
-                    <li class="menu-sp">
-                        <a href="/collections/all">Sản phẩm <span class="arrow">▾</span></a>
+        <!-- Menu điều hướng -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="VeNgon.html">Về Ngon</a></li>
 
+                <li class="menu-sp">
+                    <a href="/collections/all">Sản phẩm <span class="arrow">▾</span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">Ngũ cốc</li>
                             <li class="dropdown-item">Hạt dinh dưỡng</li>
@@ -61,12 +65,12 @@
 
                     </li>
 
-                    <li><a href="/thuong-hieu">Thương hiệu</a></li>
-                    <li><a href="/tin-tuc">Tin tức</a></li>
-                    <li><a href="/cong-tac-vien">Công tác viên</a></li>
-                    <li><a href="/lien-he">Liên hệ</a></li>
-                </ul>
-            </nav>
+                <li><a href="/thuong-hieu">Thương hiệu</a></li>
+                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="/cong-tac-vien">Công tác viên</a></li>
+                <li><a href="/lien-he">Liên hệ</a></li>
+            </ul>
+        </nav>
 
 
 
@@ -538,36 +542,34 @@
     </section>
 
 
-    <!-- Modal hiển thị chi tiết sản phẩm-->
-    <div class="product-modal" id="productModal">
-        <div class="product-modal-content">
-            <button class="close-modal" onclick="closeModal()">&times;</button>
-            <img id="modal-img" src="" alt="">
-            <div class="infor">
-                <h3 id="modal-name"></h3>
-                <p class="price" id="modal-price"></p>
-                <button>🛒 THÊM VÀO GIỎ</button>
-                <p><a href="#">Xem chi tiết sản phẩm</a></p>
-            </div>
-        </div>
-    </div>
+    <!-- Footer chính -->
+    <footer class="main-footer footer">
+        <div class="footer-middle">
+            <div class="container-fluid">
+                <div class="footer-middle-container">
+                    <div class="row">
+                        <!-- Cột 1: Giới thiệu -->
+                        <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
+                            <div class="logo-footer">
 
-    <!------------------------------SẢN PHẨM ĐƯỢC YÊU THÍCH NHẤT-------------------------------------------------->
-    <section class="favorite-products">
-        <div class="favorite-container">
-            <h2>SẢN PHẨM ĐƯỢC ƯA THÍCH</h2>
-            <p class="subtitle">Luôn luôn tươi, sạch</p>
-
-            <div class="favorite-grid">
-                <!-- Cột 1 -->
-                <div class="favorite-column">
-                    <div class="fav-item">
-                        <a href=""><img src="image/favouriteProduct/banhhat.jpg" alt="Bánh hạt"></a>
-                        <div class="fav-info">
-                            <a href="">Bánh hạt dinh dưỡng 30 x 15 g</a>
-                            <p class="price">219,000₫</p>
+                                <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
+                                         alt="Ngũ cốc Ngon">
+                                </a>
+                            </div>
+                            <p>Công ty TNHH Phát triển Nông nghiệp Xanh Ngon<br>
+                                ĐC: Dĩ An, TP.HCM<br>
+                                ĐT: 0357250466<br>
+                                Email: ngucocNgon@gmail.com<br>
+                                Giấy CNĐKKD: 34472346746(23/2/2025)</p>
+                            <div class="logo-footer-bct">
+                                <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
+                                   rel="noreferrer" aria-label="logo bct">
+                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                         height="70px" width="150px" alt="Bộ Công Thương">
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
                     <div class="fav-item">
                         <a href=""><img src="image/favouriteProduct/botgaolut.png" alt="Bột gạo lứt"></a>
@@ -641,16 +643,15 @@
                 </div>
             </div>
         </div>
-    </section>
 
+        <!--back to top bootstrap-->
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                id="btn-back-to-top"
+                class="btn btn-success btn-lg">
+            ↑
+        </button>
 
-    <!------------------------------------------------------------------------------>
-    <!--Footer-->
-
-    <div class="main-footer-new">
-        <!--section đăng kí nhận tin-->
-        <section id="send-for-gmail" class="section section-for-email">
-            <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <div class="footer-copyright text-center">
             <div class="container-fluid">
                 <div class="row flexAlignCenter flexJustiCenter">
                     <div class="col-md-6 col-sm-12">
@@ -690,118 +691,27 @@
                 </div>
 
             </div>
-        </section>
+        </div>
 
 
-        <!-- Footer chính -->
-        <footer class="main-footer footer">
-            <div class="footer-middle">
-                <div class="container-fluid">
-                    <div class="footer-middle-container">
-                        <div class="back-to-top">
-                            <a href="javascript:;" title="Trở về đầu trang" aria-label="Trở về đầu trang">
-                                <span class="btt-icon-back">↑</span>
-                            </a>
-                        </div>
-                        <div class="row">
-                            <!-- Cột 1: Giới thiệu -->
-                            <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
-                                <div class="logo-footer">
-                                    <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
-                                        <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
-                                            alt="Ngũ cốc Ngon">
-                                    </a>
-                                </div>
-                                <p>Công ty TNHH Phát triển Nông nghiệp Xanh Ngon<br>
-                                    ĐC: Dĩ An, TP.HCM<br>
-                                    ĐT: 0357250466<br>
-                                    Email: ngucocNgon@gmail.com<br>
-                                    Giấy CNĐKKD: 34472346746(23/2/2025)</p>
-                                <div class="logo-footer-bct">
-                                    <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
-                                        rel="noreferrer" aria-label="logo bct">
-                                        <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                            height="70px" width="150px" alt="Bộ Công Thương">
-                                    </a>
-                                </div>
-                            </div>
 
-                            <!-- Cột 2: Hỗ trợ khách hàng -->
-                            <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
-                                <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
-                                <ul>
-                                    <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
-                                    <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
-                                            trả</a></li>
-                                    <li><a href="/pages/chinh-sach-bao-mat" title="Chính sách bảo mật">Chính sách bảo
-                                            mật</a></li>
-                                    <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
-                                            vụ</a></li>
-                                    <li><a href="/pages/quy-dinh-va-hinh-thuc-thanh-toan"
-                                            title="Phương thức thanh toán">Phương thức thanh toán</a></li>
-                                    <li><a href="/pages/phuong-thuc-van-chuyen" title="Phương thức vận chuyển">Phương
-                                            thức vận chuyển</a></li>
-                                </ul>
-                            </div>
+    </footer>
 
-                            <!-- Cột 3: Kết nối nhanh -->
-                            <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
-                                <h3 class="footer-title">KẾT NỐI NHANH</h3>
-                                <ul>
-                                    <li><a href="/" title="Trang chủ">Trang chủ</a></li>
-                                    <li><a href="/pages/ngon" title="Ngon">Ngon</a></li>
-                                    <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
-                                    <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
-                                    <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
-                                    <li><a href="/pages/lien-he" title="Liên hệ">Liên hệ</a></li>
-                                </ul>
-                            </div>
-
-                            <!-- Cột 4: Liên hệ và mạng xã hội -->
-                            <div class="boxphone ft-col col-md-3 col-sm-6 col-xs-12">
-                                <h3 class="footer-title">CHĂM SÓC KHÁCH HÀNG</h3>
-                                <p class="fter-hotline">
-                                    <a href="tel:0357250466" rel="nofollow">0357 250 466</a>
-                                </p>
-                                <h3 class="footer-title">THEO DÕI CHÚNG TÔI</h3>
-                                <ul class="shop_social">
-                                    <li class="facebook_social">
-                                        <a href="#" target="_blank" rel="noreferrer" title="Facebook"
-                                            aria-label="Facebook">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li class="instagram_social">
-                                        <a href="#" target="_blank" rel="noreferrer" title="Instagram"
-                                            aria-label="Instagram">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li class="youtube_social">
-                                        <a href="#" target="_blank" rel="noreferrer" title="Youtube"
-                                            aria-label="Youtube">
-                                            <i class="fa fa-youtube-play"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright text-center">
-                <div class="container-fluid">
-                    <p>Copyright © 2025 <a href="#">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                            rel="noreferrer">Team 18</a></p>
-                </div>
-            </div>
-        </footer>
+</div>
+>>>>>>> main:Trangchu/TrangChu.html
 
 
-    </div>
+<!--back to top (bootstrap) js-->
+<script>
+    const backToTopBtn = document.getElementById("btn-back-to-top");
 
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+</script>
 </body>
-
-
 </html>
