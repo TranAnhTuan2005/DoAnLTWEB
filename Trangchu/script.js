@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dotsContainer = document.querySelector(".dots");
     let current = 0;
 
-    // Tạo ul
+    // Tạo ul mới
     const ul = document.createElement('ul');
     ul.classList.add('slick-dots');
     dotsContainer.appendChild(ul);
