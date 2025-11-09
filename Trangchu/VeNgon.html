@@ -17,26 +17,48 @@
         background-color: #fff;
     }
 
-    /* --- Breadcrumb --- */
-    .breadcrumb-section {
-        background-color: #faf7f5;
+    /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
+    .breadcrumb-bar {
+        padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
+        padding-bottom: 5px;
+        background: linear-gradient(180deg,#fbf7f3,#f6efe3);
+        border-bottom: 1px solid rgba(0,0,0,0.04);
     }
-    .breadcrumb a {
-        color: #a46b2c;
+
+
+
+    /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
+    .breadcrumb-bar .breadcrumb .breadcrumb-item {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Dấu phân cách (nếu muốn điều chỉnh kích thước/màu) */
+    .breadcrumb-bar .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+        content: "/";             /* đảm bảo ký tự phân cách luôn là / */
+        margin: 0 6px;
+        color: #8a7354;
+        font-weight: 600;
+    }
+
+    /* Text các link và active */
+    .breadcrumb-bar .breadcrumb a {
+        color: #6d4c41;
         text-decoration: none;
-        transition: color 0.3s ease;
+        font-weight: 500;
     }
-    .breadcrumb a:hover {
-        color: #6d4c41;
+    .breadcrumb-bar .breadcrumb .active {
+        color: #3b2d22;
+        font-weight: 600;
     }
-    .breadcrumb {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    .about-title {
-        font-size: 28px;
-        color: #6d4c41;
-        font-weight: 700;
+
+    /* Responsive: nếu màn quá nhỏ, cho phép wrap để tránh overflow */
+    @media (max-width: 420px) {
+        .breadcrumb-bar .breadcrumb.p-2.rounded-3 {
+            white-space: normal; /* cho phép xuống dòng trên màn nhỏ */
+            padding: 8px;
+            gap: 6px;
+        }
     }
 
     /* --- Giới thiệu mở đầu --- */
@@ -304,13 +326,22 @@
 <!--Body-->
 <main class="about-page">
 
-    <!-- Breadcrumb -->
-    <section class="breadcrumb-section text-center py-4">
+    <!-- Breadcrumb bar: để riêng 1 div có màu nền khác -->
+    <section class="breadcrumb-bar py-2">
         <div class="container">
-            <p class="breadcrumb">
-                <a href="TrangChu.html">Trang chủ </a> / <span> Về Ngon</span>
-            </p>
-            <h1 class="about-title">Trao an lành, nhận yêu thương cùng Ngũ cốc Ngon</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-2 rounded-3">
+                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Về Ngon</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Tiêu đề trang để ở section riêng -->
+    <section class="page-hero text-center py-4">
+        <div class="container">
+            <h1 class="about-title mb-0">Trao an lành, nhận yêu thương cùng Ngũ cốc Ngon</h1>
         </div>
     </section>
 
@@ -321,13 +352,16 @@
 
 
                 <!-- SIDEBAR DANH MỤC TRANG-->
+
+                <!--thẻ div gồm các class sử dụng bootstrap chia làm 2 cột 1 ảnh và 1 nội dung xen kẽ nhau-->
+
                 <aside class="col-md-4 mb-4 mb-md-0">
                     <div class="category-sidebar p-3 bg-white rounded shadow-sm">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="mb-0">Danh mục trang</h4>
 
-
-                            <!-- nút chỉ hiện trên mobile, dùng bootstrap collapse -->
+                            <!--dùng bootstrap tạo danh mục trang-->
+                            <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
                             <button class="btn btn-outline-secondary d-md-none btn-sm"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#categoryList"
@@ -386,17 +420,13 @@
     </section>
 
 
-
-
-
-
     <!-- Cơ duyên với ngũ cốc -->
 
     <section class="about-journey py-5">
         <div class="container">
             <div class="row align-items-center flex-md-row-reverse">
                 <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="image/about/story2.jpg" alt="Cơ duyên với ngũ cốc" class="img-fluid rounded-3 shadow-sm">
+                    <img src="image/Image_VeNgon/ngucoc1.jpg" alt="Cơ duyên với ngũ cốc" class="img-fluid rounded-3 shadow-sm">
                 </div>
                 <div class="col-md-6">
                     <h2 class="mb-3">Cơ duyên đến với ngũ cốc</h2>
@@ -415,10 +445,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="image/about/story3.jpg" alt="Hành trình phát triển" class="img-fluid rounded-3 shadow-sm">
+                    <img src="image/Image_VeNgon/ngucoc2.jpg" alt="Hành trình phát triển" class="img-fluid rounded-3 shadow-sm">
                 </div>
                 <div class="col-md-6">
-                    <h2 class="mb-3">Từ Ngũ cốc Phong An đến Ngũ cốc Ngon</h2>
+                    <h2 class="mb-3">Từ Ngũ cốc XYZ đến Ngũ cốc Ngon</h2>
                     <p>
                         Trải qua hành trình phát triển và cải tiến, thương hiệu Ngon không chỉ là sản phẩm dinh dưỡng mà còn là
                         lời tri ân đến quê hương, đến những giá trị truyền thống được gìn giữ và lan tỏa.
@@ -432,7 +462,7 @@
 
     <section class="about-founder py-5 text-center">
         <div class="container">
-            <img src="image/about/founder.jpg" alt="Người sáng lập" class="img-fluid rounded-circle mb-3 shadow-sm"
+            <img src="image/Image_VeNgon/nguoisanglap.jpg" alt="Người sáng lập" class="img-fluid rounded-circle mb-3 shadow-sm"
                  style="width:180px; height:180px; object-fit:cover;">
             <h3 class="mb-1">Người sáng lập</h3>
             <p class="fw-bold">ABCD</p>
@@ -465,7 +495,9 @@
 <div class="main-footer-new">
     <!--section đăng kí nhận tin-->
     <section id="send-for-gmail" class="section section-for-email">
+
         <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <!--thẻ div gồm các class sử dụng bootstrap chia 4 cột-->
         <div class="container-fluid">
             <div class="row flexAlignCenter flexJustiCenter">
                 <div class="col-md-6 col-sm-12">
@@ -633,6 +665,10 @@
         }
     });
 </script>
+
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
