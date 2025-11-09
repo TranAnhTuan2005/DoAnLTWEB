@@ -809,7 +809,7 @@ body {
     font-weight: bold;
 }
 
-.product-modal-content .infor button {
+.product-modal-content .infor .add {
     margin-top: 10px;
     margin-bottom: 15px;
     background: #3b5c2f;
@@ -821,7 +821,7 @@ body {
     cursor: pointer;
 }
 
-.product-modal-content .infor button:hover {
+.product-modal-content .infor .add:hover {
     background-color: #2d471f;
 }
 
@@ -830,6 +830,43 @@ body {
     text-decoration: none;
     margin-top: 15px;
     color: #333;
+}
+
+.product-modal-content .infor a:hover {
+    text-decoration: underline;
+    color: #bb7412;
+}
+
+
+.quantity-box {
+    display: inline;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 10px;
+}
+
+.quantity-box input {
+    width: 50px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border: 1px solid #aaa;
+    background: #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.qty-btn:hover {
+    background: #d6d6d6;
 }
 
 /*Quy dinh cho nút thoát*/
@@ -1053,10 +1090,9 @@ body {
     line-height: 29px;
     cursor: pointer;
     display: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 #btn-back-to-top:hover {
     background-color: #4CAF50;
 }
-
