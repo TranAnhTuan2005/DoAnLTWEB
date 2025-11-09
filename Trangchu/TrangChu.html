@@ -8,12 +8,10 @@
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
-
 </head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <body>
-
     <!-- Thanh thông tin trên cùng -->
     <div class="top-info-bar">
         <div class="header-container">
@@ -47,8 +45,8 @@
             <!-- Menu điều hướng -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/">Trang chủ</a></li>
-                    <li><a href="/Ngon">Về Ngon</a></li>
+                    <li><a href="TrangChu.html">Trang chủ</a></li>
+                    <li><a href="VeNgon.html">Về Ngon</a></li>
                     <li class="menu-sp">
                         <a href="/collections/all">Sản phẩm <span class="arrow">▾</span></a>
 
@@ -139,16 +137,16 @@
         <div class="slider-container">
 
             <div class="slide active"> <!-- Hình ảnh hiển thị đầu tiên -->
-                <img src="./image/home-slider/slideshow_1.png" alt="Ngũ cốc">
+                <img src="./image/home-slider/slide1.jpg" alt="Ngũ cốc">
             </div>
             <div class="slide">
-                <img src="./image/home-slider/slideshow_2.png" alt="Ngũ cốc">
+                <img src="./image/home-slider/slide2.jpg" alt="Ngũ cốc">
             </div>
             <div class="slide">
-                <img src="./image/home-slider/slideshow_3.png" alt="Ngũ cốc">
+                <img src="./image/home-slider/slide3.jpg" alt="Ngũ cốc">
             </div>
             <div class="slide">
-                <img src="./image/home-slider/slideshow_4.png" alt="Ngũ cốc">
+                <img src="./image/home-slider/slide4.jpg" alt="Ngũ cốc">
             </div>
 
             <button class="prev-btn">&#10094;</button> <!-- Nút qua ảnh trước -->
@@ -795,6 +793,14 @@
                     </div>
                 </div>
             </div>
+
+            <!--back to top bootstrap-->
+            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                    id="btn-back-to-top"
+                    class="btn btn-success btn-lg">
+                ↑
+            </button>
+
             <div class="footer-copyright text-center">
                 <div class="container-fluid">
                     <p>Copyright © 2025 <a href="#">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
@@ -802,11 +808,21 @@
                 </div>
             </div>
         </footer>
-
-
     </div>
 
+    <!--back to top (bootstrap) js-->
+    <script>
+        const backToTopBtn = document.getElementById("btn-back-to-top");
+
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        });
+    </script>
+
+<!--    <script src="script.js"></script>-->
 </body>
-
-
 </html>
