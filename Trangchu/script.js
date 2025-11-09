@@ -128,10 +128,16 @@ window.onclick = function (e) {
     if (e.target === modal) closeModal();
 }
 
+//bao no lai de dam bao doan code chay duoc.
+document.addEventListener('DOMContentLoaded', () => {
+    const qtyInput = document.getElementById('product-qty');
+    document.getElementById('qty-increase').onclick = () => {
+        qtyInput.value = Number(qtyInput.value) + 1;
+    };
+    document.getElementById('qty-decrease').onclick = () => {
+        if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
+    };
+
+});
+
 /////////////////////////////////////////////////////////////
-
-
-
-
-
-
