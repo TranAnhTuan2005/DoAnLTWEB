@@ -964,6 +964,97 @@ body {
 
 
 /*---------------------------------------------------------------------------*/
+/*--------------------------TIN TỨC--------------------*/
+.news-section {
+    padding: 50px;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.news-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.news-section .subtitle {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.news-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.news-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.news-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.news-item{
+    display: inline-block;
+    text-align: left;
+}
+
+.news-item .title {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.news-item .title:hover {
+    color: #bb7412;
+}
+
+.news-item .sub-paragraph {
+    color: #777;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.news-item .more {
+    color: #777;
+    margin-left: 5px;
+}
+
+.news-item .more:hover {
+    color: #bb7412;
+}
+
+
+.news-section .container {
+    display: block;
+    min-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/*---------------------------------------------------------------------------*/
 
 /* HEAD*/
 .main-footer-new {
