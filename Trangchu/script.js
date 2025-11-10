@@ -141,3 +141,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /////////////////////////////////////////////////////////////
+
+
+// Tự động đánh dấu menu active theo URL hiện tại
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPath = window.location.pathname.replace(/\/+$/, ''); // loại bỏ trailing slash
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        try {
+            // Tạo URL đầy đủ từ href (để so sánh chính xác)
+            const linkPath = new URL(link.getAttribute('href'), window.location.href).pathname.replace(/\/+$/, '');
+            if (linkPath === currentPath || (linkPath === '' && currentPath === '/')) {
+                // Đánh dấu active
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page'); // accessibility
+
+
+                // Nếu  muốn đánh dấu <li> thay vì <a>:
+                if (link.parentElement) link.parentElement.classList.add('active');
+            }
+        } catch (e) {
+            // bỏ qua các hrefs không hợp lệ (mailto:, tel:, javascript:,...)
+        }
+    });
+});
