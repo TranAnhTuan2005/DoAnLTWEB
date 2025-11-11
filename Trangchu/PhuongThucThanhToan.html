@@ -49,41 +49,68 @@
             color: #5c93db;
         }
 
-        /*Phần đăng nhập ?*/
         .shipping-form h2 {
-            font-size: 20px;
-            margin-bottom: 5px;
+            font-weight: normal;
+            font-size: 18px;
         }
 
-        .shipping-form p a {
-            color: #1a73e8;
-            text-decoration: none;
+        .shipping-method {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
         }
 
-        /*Giãn các phần tử đều ra*/
-        .form-group,
-        .form-row {
-            margin-bottom: 15px;
-        }
 
-        /*Giãn ngang theo gap*/
-        .form-row {
+        .method-item {
             display: flex;
+            justify-content: space-between;
             gap: 10px;
         }
-
-        /*chỉnh các input*/
-        input,
-        select {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
+        .method-item span{
+            flex-grow: 1;
         }
 
-        .form-footer {
+
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .pay-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .pay-card:last-child {
+            border-bottom: none;
+        }
+
+        .pay-card:hover {
+            background: #f6f9ff;
+        }
+
+        .pay-card input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .pay-card .icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .pay-card input:checked~span,
+        .pay-card input:checked~img {
+            filter: brightness(0.85);
+        }
+
+          .form-footer {
             display: flex;
             justify-content: space-between;
             /* cắt đôi*/
@@ -234,7 +261,7 @@
             .order-summary {
                 width: 100%;
             }
-        } 
+        }
     </style>
 
 </head>
@@ -246,42 +273,39 @@
             <h1>Ngũ cốc Ngon</h1>
             <nav>
                 <a href="GioHangTrong.html">Giỏ hàng</a> >
-                <a href="#">Thông tin giao hàng</a> >
+                <a href="ThongTinGiaoHang.html">Thông tin giao hàng</a> >
                 <span>Phương thức thanh toán</span>
             </nav> <!--Đường dẫn hiện tại-->
 
-            <h2>Thông tin giao hàng</h2>
-            <p>Bạn đã có tài khoản? <a href="#">Đăng nhập</a></p>
-            <form action="#" method="post"><!--Form thông tin đơn hàng-->
+            <h2>Phương thức vận chuyển</h2>
+            <div class="shipping-method">
+                <label class="method-item">
+                    <input type="radio" name="ship" checked>
+                    <span>Giao hàng tận nơi</span>
+                    <strong id="delivery-price">20,000đ</strong>
+                </label>
+            </div>
 
-                <div class="form-group"><!--Họ và tên-->
-                    <input type="text" placeholder="Họ và tên" name="fullname" required>
-                </div>
+            <h2>Phương thức thanh toán</h2>
 
-                <div class="form-row"><!--Email và số điện thoại-->
-                    <input type="email" name="Email" placeholder="Email" id="mail" required>
-                    <input type="tel" name="sdt" placeholder="Số điện thoại" required>
-                </div>
+            <div class="payment-method">
+                <label class="pay-card">
+                    <input type="radio" name="payment" checked>
+                    <img src="image/paymentMethod/cod.svg" class="icon">
+                    <span>Thanh toán khi giao hàng (COD)</span>
+                </label>
 
-                <div class="form-group"><!--địa chỉ khách hàng-->
-                    <input type="text" placeholder="Địa chỉ" name="dc" required>
-                </div>
+                <label class="pay-card">
+                    <input type="radio" name="payment">
+                    <img src="image/paymentMethod/cash.svg" class="icon">
+                    <span>Chuyển khoản qua ngân hàng</span>
+                </label>
+            </div>
 
-                <div class="form-row"> <!--Thông tin quận/ huyện/ thành phố-->
-                    <select name="province" id="province" required>
-                        <option value="">Tỉnh/ thành phố</option>
-                    </select>
-
-                    <select name="district" id="district">
-                        <option value="">Quận/ huyện</option>
-                    </select>
-                </div>
-
-                <div class="form-footer">
-                    <a href="GioHangTrong.html" class="cart-link">Giỏ hàng</a>
-                    <button type="submit" class="submit-btn" onclick="window.location.href='PhuongThucThanhToan.html'">Tiếp tục đến phương thức thanh toán</button>
-                </div>
-            </form>
+            <div class="form-footer">
+                <a href="GioHangTrong.html" class="cart-link">Giỏ hàng</a>
+                <button class="submit-btn">Hoàn tất đơn hàng</button>
+            </div>
         </div>
 
         <!--Đường ngăn cách-->
@@ -313,7 +337,7 @@
 
             <div class="summary-line">
                 <span>Phí vận chuyển</span>
-                <span>—</span>
+                <span>20.000đ</span>
             </div>
 
             <hr>
@@ -323,7 +347,7 @@
                     <strong>Tổng cộng</strong>
                     <small>VND</small>
                 </div>
-                <strong class="total-price">219.000đ</strong>
+                <strong class="total-price">239.000đ</strong>
             </div>
 
         </div>
