@@ -118,25 +118,49 @@
     }
 
     .detail-product-quantity {
-        display: flex;
+        display: inline;
         align-items: center;
         gap: 15px;
         margin-bottom: 20px;
     }
 
+    .detail-product-quantity input {
+        width: 50px;
+        text-align: center;
+        padding-top: 5px;
+        font-size: 16px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+    }
+
     .detail-product-btn {
-        width: 32px;
-        height: 32px;
-        border: none;
-        background: #839b4c;
-        color: white;
-        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        border: 1px solid #aaa;
+        background: #eee;
+        border-radius: 4px;
         cursor: pointer;
-        border-radius: 6px;
+        transition: 0.15s;
     }
 
     .detail-product-btn:hover {
-        background: #5a6c2e;
+        background: #d6d6d6;
+    }
+
+    .detail-product-add-cart {
+        margin-bottom: 15px;
+        background: #3b5c2f;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .detail-product-add-cart:hover {
+        background-color: #2d471f;
     }
 
     .detail-product-action-row {
@@ -144,23 +168,6 @@
         align-items: center;
         gap: 20px; /* khoảng cách giữa số lượng và nút giỏ */
         margin-bottom: 20px;
-    }
-
-    .detail-product-add-cart {
-        width: 100%;
-        background: #6e8b3a;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        margin-bottom: 17px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .detail-product-add-cart:hover {
-        background: #5a6c2e;
     }
 
     .detail-product-policy {
@@ -393,7 +400,7 @@
             <div class="detail-product-action-row">
                 <div class="detail-product-quantity">
                     <button id="detail-product-minus" class="detail-product-btn">-</button>
-                    <span id="detail-product-qty">1</span>
+                    <input type="text" id="detail-product-qty" value="1" min="1">
                     <button id="detail-product-plus" class="detail-product-btn">+</button>
                 </div>
 
@@ -633,19 +640,15 @@
 
 <!-- Tăng giảm số lượng js -->
 <script>
-    let detailProductQty = 1;
-    const detailProductQtyDisplay = document.getElementById('detail-product-qty');
-    const detailProductPlus = document.getElementById('detail-product-plus');
-    const detailProductMinus = document.getElementById('detail-product-minus');
+    document.addEventListener('DOMContentLoaded', () => {
+        const qtyInput = document.getElementById('detail-product-qty');
+        document.getElementById('detail-product-plus').onclick = () => {
+            qtyInput.value = Number(qtyInput.value) + 1;
+        };
+        document.getElementById('detail-product-minus').onclick = () => {
+            if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
+        };
 
-    detailProductPlus.addEventListener('click', () => {
-        detailProductQty++;
-        detailProductQtyDisplay.textContent = detailProductQty;
-    });
-
-    detailProductMinus.addEventListener('click', () => {
-        if (detailProductQty > 1) detailProductQty--;
-        detailProductQtyDisplay.textContent = detailProductQty;
     });
 
 </script>
