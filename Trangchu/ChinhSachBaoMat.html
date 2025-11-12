@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Tất cả sản phẩm</title>
+    <title>Chính sách bảo mật</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,14 +11,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    /* ==== Trang danh mục sản phẩm ==== */
-    .main-collection {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
-
-    /* --- Breadcrumb --- */
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
@@ -61,265 +53,137 @@
         }
     }
 
-    /* ==== Banner ==== */
-    .banner-collection {
-        width: 100%;
-        height: 350px;
-        overflow: hidden;
-        position: relative;
+    /*----------NỘI DUNG CHÍNH---------- */
+    .main-privacy {
+        font-family: 'Tahoma', Arial, sans-serif;
+        color: #444;
+        background-color: #fff;
     }
-
-    .banner-collection img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* ==== Khung chính ==== */
-    .collection-container {
+    /* Dàn 2 cột: nội dung bên trái, sidebar bên phải */
+    .privacy-container {
         display: flex;
         justify-content: space-between;
-        padding: 40px 80px;
-        gap: 40px;
+        align-items: flex-start;
+        gap: 30px;
+        max-width: 1200px;
+        margin-left: 60px;
     }
 
-    /* ==== Sidebar (Danh mục sản phẩm + Giá) ==== */
-    .sidebar {
-        flex: 0 0 250px;
-    }
-
-    .sidebar h2 {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        border-bottom: 1px solid #eee;
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-    }
-
-    .sidebar ul {
-        list-style: none;
-        padding-left: 0;
-        margin-bottom: 40px;
-    }
-
-    .sidebar ul li {
-        margin: 8px 0;
-    }
-
-    .sidebar a {
-        text-decoration: none;
+    /* Nội dung chính bên trái */
+    .privacy-content {
+        flex: 1 1 68%;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        font-size: 15px;
+        line-height: 1.7;
         color: #333;
-        font-weight: 500;
     }
 
-    .sidebar a:hover {
-        color: #8b5e34;
-    }
-
-    .price-list input[type="radio"] {
-        margin-right: 8px;
-    }
-
-    /* ==== Khu vực sản phẩm ==== */
-    .collection-product-section {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* ==== Header sản phẩm ==== */
-    .product-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-
-    .product-header h2 {
+    /* Tiêu đề chính */
+    .privacy-title {
         font-size: 26px;
         font-weight: 700;
+        margin-bottom: 20px;
+        color: #6d4c41;
     }
 
-    #sort {
-        padding: 8px 12px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        background-color: #fff;
-        font-size: 14px;
-        cursor: pointer;
-    }
-
-    /* ==== Lưới sản phẩm ==== */
-    /* Lưới sản phẩm: 4 cột, mỗi dòng 4 sản phẩm */
-    .collection-product-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
-    }
-
-    /* ==== Khung sản phẩm ==== */
-    .collection-product-item {
-        background-color: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 6px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        text-align: center;
-        padding-bottom: 20px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .collection-product-item:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    /* ==== Hình ảnh sản phẩm ==== */
-    .collection-product-image {
-        position: relative;
-        width: 100%;
-        height: 220px; /* chiều cao cố định theo ảnh sản phẩm đầu tiên */
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-    }
-
-    .collection-product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* cắt ảnh đều khung */
-        transition: transform 0.4s ease;
-    }
-    
-    .collection-product-item:hover .collection-product-image img {
-        transform: scale(1.05);
-    }
-
-    /* ==== overlay khi hover ==== */
-    .collection-overlay {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 60px;
-        background-color: rgb(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .collection-product-item:hover .collection-overlay {
-        opacity: 1;
-    }
-
-    .collection-overlay button {
-        border: none;
-        color: #fff;
-        font-size: 13px;
-        padding: 8px 15px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-    
-    .collection-add-to-cart {
-        background-color: #bb7412;
-    }
-
-    .collection-add-to-cart:hover {
-        background-color: #c52314;
-    }
-
-    .collection-view-btn {
-        background-color: #bb7412;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .collection-view-btn:hover {
-        background-color: #c52314;
-    }
-
-    /* ==== Tên và giá sản phẩm ==== */
-    .collection-product-item h3 {
-        font-size: 15px;
-        font-weight: 600;
-        margin-top: 15px;
-        margin-bottom: 6px;
-        color: #333;
-    }
-
-    /*Modal chi tiết sản phẩm*/
-    /*Hình bên trái*/
-    .product-modal-content img {
-        width: 250px;
-        border-radius: 8px;
-        object-fit: cover;
-    }
-
-    /*Căn chỉnh cho thông tin bên phải*/
-    .product-modal-content .info {
-        flex: 1;
-        text-align: left;
-    }
-
-    .product-modal-content .info h3 {
-        font-size: 22px;
+    /* Tiêu đề mục */
+    .section-privacy-title {
+        font-size: 18px;
+        margin-top: 25px;
         margin-bottom: 10px;
-
+        color: #a46b2c;
+        border-left: 4px solid #a46b2c;
+        padding-left: 10px;
     }
 
-    .product-modal-content .info .price {
-        color: #b22a00;
-        font-size: 20px;
-        font-weight: bold;
+    /* Văn bản */
+    .privacy-content p {
+        font-size: 14px;
     }
 
-    .product-modal-content .infor .add {
-        margin-top: 10px;
-        margin-bottom: 15px;
-        background: #3b5c2f;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 15px;
-        border-radius: 5px;
-        cursor: pointer;
+    /* Sidebar bên phải */
+    aside {
+        flex: 1 1 28%;
+        margin-top: 28px;
+        margin-right: -120px;
     }
 
-    .product-modal-content .infor .add:hover {
-        background-color: #2d471f;
+    /* Đặt sidebar cố định khi cuộn */
+    .category-sidebar {
+        position: sticky;
+        top: 100px;
     }
 
-    /*link xem chi tiết sản phẩm*/
-    .product-modal-content .infor a {
+    /* RESPONSIVE: Khi màn nhỏ, xếp dọc */
+    @media (max-width: 992px) {
+        .privacy-container {
+            flex-direction: column;
+        }
+
+        .privacy-content,
+        aside {
+            flex: 1 1 100%;
+        }
+    }
+
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .category-list .category-item {
+        padding: 10px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
         text-decoration: none;
-        margin-top: 15px;
-        color: #333;
+        padding: 4px 6px;
     }
 
-    .product-modal-content .infor a:hover {
-        text-decoration: underline;
-        color: #bb7412;
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
     }
 
-    .quantity-box input {
-        width: 50px;
-        text-align: center;
-        padding-top: 5px;
-        font-size: 16px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
+        }
     }
 
 </style>
@@ -453,119 +317,84 @@
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
-<main class="main-collection">
+<main class="main-privacy">
     <!-- Breadcrumb -->
     <section class="breadcrumb-bar py-2">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="SanPham-TatCa.html">Danh mục</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Bánh dinh dưỡng</li>
+                    <li class="breadcrumb-item active" aria-current="page">Chính sách bảo mật</li>
                 </ol>
             </nav>
         </div>
     </section>
 
-    <!-- Collection -->
-    <div class="banner-collection">
-        <img src="./image/collection/banner.jpg" alt="Ngũ cốc">
-    </div>
+    <!-- Nội dung chính sách -->
+    <div class="privacy-container">
+        <section class="privacy-content">
+            <h1 class="privacy-title">Chính sách bảo mật</h1>
 
-    <div class="collection-container">
-        <!-- Cột danh mục bên trái -->
-        <aside class="sidebar">
-            <h2>DANH MỤC SẢN PHẨM</h2>
-            <ul class="category-list">
-                <li><a href="SanPham-TatCa.html">Tất cả sản phẩm</a></li>
-                <li><a href="SanPham-NguCoc.html">Ngũ cốc</a></li>
-                <li><a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a></li>
-                <li><a href="SanPham-BanhDinhDuong.html"><b>Bánh dinh dưỡng</b></a></li>
-                <li><a href="SanPham-TraGaoLut.html">Trà gạo lứt</a></li>
-            </ul>
+            <p>Công ty TNHH phát triển nông nghiệp xanh Ngũ cốc Ngon (hoặc “Chúng tôi”, hoặc “Ngũ cốc Ngon”) cam kết bảo vệ quyền riêng tư của khách hàng và đảm bảo rằng thông tin thành viên của khách hàng (như được quy định dưới đây) và các thông tin khác mà có thể dẫn đến việc nhận dạng ra khách hàng (gọi chung là “thông tin cá nhân”) đều được bảo vệ.</p>
+            <p>Chính sách bảo mật này giải thích những loại thông tin cá nhân và cách thức sử dụng, tiết lộ, chuyển giao và bảo vệ thông tin đó. Chính sách về quyền riêng tư này áp dụng đối với bất kỳ thông tin cá nhân nào mà Ngũ cốc Ngon thu thập được thông qua website ngucocngon.com.</p>
+            <p>Chính sách này có thể thay đổi vào thời điểm bằng cách đăng phiên bản được cập nhật trên website hoặc gửi thư điện tử cho các thành viên trực tuyến của Ngũ cốc Ngon.</p>
+            <p>Việc khách hàng tiếp tục truy cập và sử dụng website được xem là khách hàng đã đồng ý và chấp thuận với bất kỳ thay đổi nào của Ngũ cốc Ngon về chính sách quyền riêng tư.</p>
 
-            <h2>GIÁ SẢN PHẨM</h2>
-            <ul class="price-list">
-                <li><label><input type="radio" name="price"> Dưới 100,000₫</label></li>
-                <li><label><input type="radio" name="price"> 100,000₫ - 199,000₫</label></li>
-                <li><label><input type="radio" name="price"> 200,000₫ - 299,000₫</label></li>
-                <li><label><input type="radio" name="price"> 300,000₫ - 399,000₫</label></li>
-                <li><label><input type="radio" name="price"> Trên 400,000₫</label></li>
-            </ul>
-        </aside>
+            <h2 class="section-privacy-title">1. Thông tin chung</h2>
+            <p>Khách hàng có thể ghé thăm website mà không cần tiết lộ thông tin cá nhân.</p>
+            <p>Chúng tôi không thu thập, sử dụng, chuyển giao hoặc tiết lộ bất kỳ thông tin nào của khách hàng mà không được sự đồng ý của khách hàng.</p>
+            <p>Website này cho phép khách hàng đưa các ý kiến hoặc nhận xét của khách hàng lên mục đánh giá sản phẩm, blog, và các chức năng khác.</p>
+            <p>Bất kỳ thông tin nào mà khách hàng tiết lộ đều trở thành thông tin công cộng và khách hàng nên thận trọng khi quyết định tiết lộ thông tin cá nhân, thông tin tài chính hoặc các thông tin khác.</p>
+            <p>Ngũ cốc Ngon không thể ngăn chặn việc sử dụng những thông tin đó theo cách thức mà có thể vi phạm chính sách bảo mật này, luật pháp hoặc quyền riêng tư và sự an toàn của cá nhân khách hàng và không chịu trách nhiệm đối với các kết quả xảy ra từ việc đăng tải thông tin đó.</p>
+            <p>Khách hàng có trách nhiệm thông báo kịp thời cho website về những hành vi sử dụng trái phép, lạm dụng, vi phạm bảo mật của bên thứ ba để có biện pháp giải quyết phù hợp.</p>
 
-        <!-- Danh sách sản phẩm -->
-        <section class="collection-product-section">
-            <div class="product-header">
-                <h2>Bánh dinh dưỡng</h2>
-                <select id="sort">
-                    <option value="price-ascending">Giá: Tăng dần</option>
-                    <option value="price-descending">Giá: Giảm dần</option>
-                    <option value="name-az">Tên: A-Z</option>
-                    <option value="name-za">Tên: Z-A</option>
-                    <option value="oldest">Cũ nhất</option>
-                    <option value="newest">Mới nhất</option>
-                    <option value="best-seller">Bán chạy nhất</option>
-                    <option value="inventory-descending">Tồn kho: Giảm dần</option>
-                </select>
-            </div>
+            <h2 class="section-privacy-title">2. Phạm vi sử dụng thông tin</h2>
+            <p>Các thông tin thu thập thông qua website sẽ giúp chúng tôi: (1) Hỗ trợ khách hàng khi mua sản phẩm; (2) Tư vấn, giải đáp các thắc mắc của khách hàng một cách tốt nhất.</p>
+            <p>Trong trường hợp hợp có yêu cầu của cơ quan có thẩm quyền, chúng tôi có trách nhiệm hợp tác cung cấp thông tin cá nhân khách hàng khi có yêu cầu từ: Viện kiểm sát, tòa án, cơ quan công an điều tra liên quan đến hành vi vi phạm pháp luật nào đó của khách hàng. Ngoài ra, không ai có quyền xâm phạm vào thông tin cá nhân của khách hàng.</p>
 
-            <div class="collection-product-grid">
-                <!-- Sản phẩm -->
-                <div class="collection-product-item">
-                    <div class="collection-product-image">
-                        <img src="./image/collection/banh-hat-dinh-duong-20x15g.jpg"
-                             alt="Bánh hạt dinh dưỡng 20 x 15g"><!-- Hình ảnh minh họa-->
-                        <div class="collection-overlay"><!-- Hover để hiển thị-->
-                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                            <button class="collection-view-btn"
-                                    onclick="openModal('./image/collection/banh-hat-dinh-duong-20x15g.jpg', 'Bánh hạt dinh dưỡng 20 x 15g', '159,000đ')">👁
-                                XEM NHANH</button>
-                        </div>
-                    </div>
-                    <h3>Bánh hạt dinh dưỡng 20 x 15g</h3>
-                    <p class="price">159,000đ</p>
-                </div>
+            <h2 class="section-privacy-title">3. Thời gian lưu trữ thông tin</h2>
+            <p>Chúng tôi sẽ lưu trữ thông tin của khách hàng trong 5 năm kể từ ngày đăng ký hoặc nếu có phản hồi gì về việc lưu trữ thông tin, quý khách có thể gửi liên hệ tới chúng tôi.</p>
+            <p>Ngoại trừ các trường hợp về sử dụng thông tin cá nhân như đã nêu trong chính sách này, chúng tôi cam kết sẽ không tiết lộ thông tin cá nhân của khách hàng cho bất cứ trường hợp nào khác.</p>
 
-                <!-- Sản phẩm -->
-                <div class="collection-product-item">
-                    <div class="collection-product-image">
-                        <img src="./image/collection/banh-hat-dinh-duong-30x15g.jpg"
-                             alt="Bánh hạt dinh dưỡng 30 x 15g"><!-- Hình ảnh minh họa-->
-                        <div class="collection-overlay"><!-- Hover để hiển thị-->
-                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                            <button class="collection-view-btn"
-                                    onclick="openModal('./image/collection/banh-hat-dinh-duong-30x15g.jpg', 'Bánh hạt dinh dưỡng 30 x 15g', '219,000đ')">👁
-                                XEM NHANH</button>
-                        </div>
-                    </div>
-                    <h3>Bánh hạt dinh dưỡng 30 x 15g</h3>
-                    <p class="price">219,000đ</p>
-                </div>
+            <h2 class="section-privacy-title">4. Phương tiện và công cụ để người dùng tiếp cận và chỉnh sửa dữ liệu cá nhân của mình</h2>
+            <p>Tại mục “Thành viên website” khách hàng đã đăng ký có thể truy cập để chỉnh sửa hoặc cập nhật thông tin cá nhân. Nếu không muốn tiết lộ thông tin, khách hàng có thể chấm dứt tư cách thành viên trực tuyến.</p>
+            <p>Khách hàng có quyền gửi khiếu nại đến chúng tôi. Khi tiếp nhận những phản hồi này, chúng tôi sẽ xác nhận lại thông tin, trường hợp đúng như phản ánh của thành viên, tùy theo mức độ, chúng tôi sẽ có những biện pháp xử lý kịp thời theo hướng bảo vệ quyền lợi chính đáng của khách hàng trong khả năng tốt nhất của Ngũ cốc Ngon.</p>
 
-            </div>
-
+            <h2 class="section-privacy-title">5. Địa chỉ của đơn vị thu thập và quản lý thông tin cá nhân</h2>
+            <p>Công ty TNHH phát triển nông nghiệp xanh Ngũ cốc Ngon</p>
+            <p>Địa chỉ: Hiền Sỹ, Phong Sơn, Phong Điền, Thừa Thiên Huế.</p>
         </section>
 
-        <!-- Modal hiển thị chi tiết sản phẩm-->
-        <div class="product-modal" id="productModal">
-            <div class="product-modal-content">
-                <button class="close-modal" onclick="closeModal()">&times;</button>
-                <img id="modal-img" src="" alt="">
-                <div class="infor">
-                    <h3 id="modal-name"></h3>
-                    <p class="price" id="modal-price"></p>
-                    <div class="quantity-box">
-                        <button class="qty-btn" id="qty-decrease">-</button>
-                        <input type="text" id="product-qty" value="1" min="1">
-                        <button class="qty-btn" id="qty-increase">+</button>
-                    </div>
-                    <button class="add">🛒 THÊM VÀO GIỎ</button>
-                    <p><a href="#">Xem chi tiết sản phẩm</a></p>
+        <!-- SIDEBAR DANH MỤC TRANG-->
+
+        <aside class="col-md-4 mb-4 mb-md-0">
+            <div class="category-sidebar p-3 bg-white rounded shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Danh mục trang</h4>
+
+                    <!--dùng bootstrap tạo danh mục trang-->
+                    <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
+                    <button class="btn btn-outline-secondary d-md-none btn-sm"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#categoryList"
+                            aria-expanded="false"
+                            aria-controls="categoryList">
+                        Danh mục ▾
+                    </button>
                 </div>
+
+                <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
+                    <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
+                    <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
+                    <li class="category-item"><a href="/pages/dieu-khoan-dich-vu">Điều khoản dịch vụ</a></li>
+                    <li class="category-item"><a href="/pages/phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
+                    <li class="category-item"><a href="/pages/phuong-thuc-van-chuyen">Phương thức vận chuyển</a></li>
+                </ul>
             </div>
-        </div>
+        </aside>
     </div>
+
+
 
 </main>
 
@@ -657,7 +486,7 @@
                                 <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
                                 <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="/pages/chinh-sach-bao-mat" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
                                 <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
@@ -673,8 +502,8 @@
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
                                 <li><a href="/" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="/pages/ngon" title="Ngon">Ngon</a></li>
-                                <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
                                 <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
                                 <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
@@ -730,25 +559,6 @@
         </div>
     </footer>
 </div>
-
-<!-- Bỏ chọn input radio sau khi chọn -->
-<script>
-    const radios = document.querySelectorAll('input[name="price"]');
-
-    radios.forEach(radio => {
-        radio.addEventListener('click', function() {
-            // Nếu radio này đang được chọn lần trước
-            if (this.checked && this.dataset.wasChecked === "true") {
-                this.checked = false;          // bỏ chọn
-                this.dataset.wasChecked = "false";
-            } else {
-                // đặt trạng thái cho tất cả radio khác
-                radios.forEach(r => r.dataset.wasChecked = "false");
-                this.dataset.wasChecked = "true";
-            }
-        });
-    });
-</script>
 
 <!--back to top (bootstrap) js-->
 <script>
