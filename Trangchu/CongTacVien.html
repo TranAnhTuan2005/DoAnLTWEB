@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Tất cả sản phẩm</title>
+    <title>Cộng tác viên</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,14 +10,9 @@
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-    .main-detailProduct {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
+<body>
 
-    /* --- Breadcrumb --- */
+<style>
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
@@ -25,6 +20,8 @@
         background: linear-gradient(180deg,#fbf7f3,#f6efe3);
         border-bottom: 1px solid rgba(0,0,0,0.04);
     }
+
+
 
     /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
     .breadcrumb-bar .breadcrumb .breadcrumb-item {
@@ -60,190 +57,204 @@
         }
     }
 
-    /* ===== Layout chính ===== */
-    .detail-product-page {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: start;
-        justify-content: center;
-        max-width: 1300px;
-        margin: 60px auto;
-        padding: 0 40px;
-    }
 
-    /* ===== Hình ảnh sản phẩm ===== */
-    .detail-product-gallery {
-        max-width: 480px;
-    }
-
-    .detail-product-image {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* ===== Thông tin sản phẩm ===== */
-    .detail-product-info {
-        max-width: 1200px;
-        margin-left: -100px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .detail-product-title {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        position: relative;
-        display: inline-block;
-        padding-bottom: 8px;
-    }
-
-    .detail-product-title::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: #839b4c;
-        margin-top: 6px;
-    }
-
-    .detail-product-price {
-        font-size: 22px;
-        color: #e63946;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-
-    .detail-product-quantity {
-        display: inline;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-
-    .detail-product-quantity input {
-        width: 50px;
-        text-align: center;
-        padding-top: 5px;
-        font-size: 16px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-    }
-
-    .detail-product-btn {
-        width: 30px;
-        height: 30px;
+    /* Styles cho trang Cộng tác viên */
+    html{
         font-size: 20px;
-        border: 1px solid #aaa;
-        background: #eee;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.15s;
+    }
+    .
+
+    .congtacvien-section .content h3 {
+        font-size: 20px; /* tiêu đề mục */
     }
 
-    .detail-product-btn:hover {
-        background: #d6d6d6;
+    .congtacvien-section .content p {
+        font-size: 20px; /* chữ nội dung */
+        line-height: 1.9;
     }
 
-    .detail-product-add-cart {
-        margin-bottom: 15px;
-        background: #3b5c2f;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 15px;
-        border-radius: 5px;
-        cursor: pointer;
+    /* Sidebar */
+    .sidebar-box h4 {
+        font-size: 20px;
     }
 
-    .detail-product-add-cart:hover {
-        background-color: #2d471f;
+
+    .congtacvien-section {
+        padding: 48px 0;
+        color: #222;
+    }
+    .congtacvien-section .container {
+        max-width: 1200px;
     }
 
-    .detail-product-action-row {
-        display: flex;
-        align-items: center;
-        gap: 20px; /* khoảng cách giữa số lượng và nút giỏ */
-        margin-bottom: 20px;
+    /* Tiêu đề trang */
+    .congtacvien-section .page-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #2c1c12;
+        margin-bottom: 18px;
     }
 
-    .detail-product-policy {
+    /* Nội dung chính */
+    .congtacvien-section .content {
+        font-size: 16px;
+        line-height: 1.9;
+        color: #333;
+    }
+    .congtacvien-section .content h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        color: #222;
+    }
+    .congtacvien-section .content p {
+        margin: 10px 0;
+        text-align: justify;
+    }
+
+    /* Liệt kê (nếu muốn dùng bullet) */
+    .congtacvien-section .content ul {
+        margin-left: 0;
+        padding-left: 18px;
+    }
+    .congtacvien-section .content ul li {
+        margin-bottom: 10px;
+    }
+
+    /* Sidebar */
+    .congtacvien-section .sidebar {
+        padding-left: 50px;
+    }
+    .sidebar-box {
+        border: 1px solid #e6e6e6;
+        background: #fff;
+        padding: 18px 20px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    }
+    .sidebar-box h4 {
+        margin: 0 0 12px 0;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+    }
+    .sidebar-box .divider {
+        height: 2px;
+        width: 80%;
+        margin: 14px auto;
+        background: #111;
+        opacity: 0.15;
+    }
+    .sidebar-box ul {
         list-style: none;
-        margin-left: -34px;
+        padding: 0;
+        margin: 0;
+    }
+    .sidebar-box ul li {
+        padding: 8px 0;
+        border-bottom: none;
+    }
+    .sidebar-box ul li a {
+        color: #555;
+        text-decoration: none;
+    }
+    .sidebar-box ul li a:hover {
+        color: #222;
     }
 
-    .detail-product-policy img {
-        width: 6%;
-    }
 
-    .detail-product-policy li {
-        margin-bottom: 8px;
-        display: flex;
-    }
-
-    .detail-product-policy li p{
-        margin-top: 10px;
-        margin-left: 10px;
-    }
-
-    /* ===== Mô tả chi tiết ===== */
-    .detail-product-description {
-        max-width: 1300px;
-        margin: 40px auto;
-        padding: 0 40px;
-    }
-
-    .detail-product-section-title {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        position: relative;
-        padding-bottom: 6px;
-    }
-
-    .detail-product-section-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 1250px;
-        height: 3px;
-        background-color: #839b4c;
-    }
-
-    .detail-product-subtitle {
-        color: #c76d00;
+    /* Liên hệ (phần cuối nội dung) */
+    .congtacvien-section .contact-list {
         margin-top: 20px;
-        margin-bottom: 8px;
+    }
+    .congtacvien-section .contact-list p {
+        margin: 6px 0;
+        color: #4b2c14;
+        font-weight: 600;
     }
 
-    .detail-product-list {
-        margin-left: 20px;
-        margin-bottom: 15px;
-    }
-
-    .detail-product-text {
-        margin-bottom: 10px;
-    }
-
-    @media (max-width: 768px) {
-        .detail-product-page {
-            flex-direction: column;
-            align-items: center;
+    /* Responsive */
+    @media (max-width: 1000px) {
+        .congtacvien-section .sidebar {
+            padding-left: 0;
+            margin-top: 24px;
         }
-        .detail-product-gallery,
-        .detail-product-info {
-            max-width: 100%;
+        .sidebar-video iframe { height: 180px; }
+    }
+    @media (max-width: 576px) {
+        .congtacvien-section { padding: 24px 0; }
+        .congtacvien-section .page-title { font-size: 24px; text-align: center; }
+    }
+
+
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .category-list .category-item {
+        padding: 7px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
+        text-decoration: none;
+        padding: 4px 6px;
+    }
+
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
+    }
+
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
         }
+    }
+
+    .congtacvien-section .contact-list {
+        margin-left: -48px; /* đẩy phần Liên hệ ra ngoài trái */
+    }
+    .congtacvien-section .page-title {
+        margin-left: -48px;
     }
 
 </style>
 
 
-<body>
+
 
 <!-- Thanh thông tin trên cùng -->
 <div class="top-info-bar">
@@ -272,7 +283,7 @@
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
                 <i class="icon_timkiem">
-                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
                 </i>
             </button>
         </div>
@@ -302,11 +313,9 @@
 
                 </li>
 
-
-
                 <li><a href="/thuong-hieu">Thương hiệu</a></li>
                 <li><a href="/tin-tuc">Tin tức</a></li>
-                <li><a href="CongTacVien.html">Công tác viên</a></li>
+                <li><a href="/cong-tac-vien">Công tác viên</a></li>
                 <li><a href="/lien-he">Liên hệ</a></li>
             </ul>
         </nav>
@@ -317,11 +326,14 @@
         <div class="user-actions">
             <a href="#" class="account-btn" aria-label="Tài khoản">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
+                    <path
+                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
+                            fill="#333" />
                 </svg>
             </a>
             <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
@@ -340,7 +352,8 @@
         <h2>Giỏ Hàng</h2>
         <p>Hiện chưa có sản phẩm</p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
@@ -363,120 +376,104 @@
         <form>
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+            <p>This site is protected by reCAPTCHA and the Google <a
+                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
+                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
 
-<!------------------------------------------------------------------------------------>
-<!--Body-->
-<main class="main-detailProduct">
-    <!-- Breadcrumb -->
-    <section class="breadcrumb-bar py-2">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Ngũ cốc trẻ em</li>
-                </ol>
-            </nav>
-        </div>
-    </section>
+<!--Body cộng tác viên-->
 
-    <!-- Detail product -->
-    <section class="detail-product-page">
 
-        <!-- Hình ảnh sản phẩm -->
-        <div class="detail-product-gallery">
-            <img id="detail-product-image" src="./image/collection/ngu-coc-tre-em.png" alt="Ngũ cốc trẻ em" class="detail-product-image">
-        </div>
+<section class="breadcrumb-bar py-2">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-2 rounded-3">
+                <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cộng tác viên</li>
+            </ol>
+        </nav>
+    </div>
+</section>
 
-        <!-- Thông tin sản phẩm -->
-        <div class="detail-product-info">
-            <h1 class="detail-product-title">Ngũ cốc trẻ em</h1>
-            <p class="detail-product-price">239,000₫</p>
 
-            <div class="detail-product-action-row">
-                <div class="detail-product-quantity">
-                    <button id="detail-product-minus" class="detail-product-btn">-</button>
-                    <input type="text" id="detail-product-qty" value="1" min="1">
-                    <button id="detail-product-plus" class="detail-product-btn">+</button>
+<section class="congtacvien-section">
+    <div class="container">
+        <div class="row">
+            <!-- Nội dung chính (cột trái) -->
+            <main class="col-12 col-md-8">
+                <h1 class="page-title">Cộng tác viên</h1>
+
+                <div class="content">
+                    <h3>Quy định</h3>
+                    <p>Thành viên tham gia bán hàng có tuổi từ 20 trở lên, mang Quốc tịch Việt Nam, đủ năng lực hành vi dân sự.</p>
+                    <p>Sử dụng hình ảnh, nội dung Shop cung cấp đúng mục đích kinh doanh.</p>
+                    <p>CTV chỉ được bán các sản phẩm thuộc lĩnh vực của Shop.</p>
+                    <p>Không có thái độ khiếm nhã với khách hàng gây ảnh hưởng tới hình ảnh, thương hiệu của Shop.</p>
+
+                    <h3>Quyền lợi của cộng tác viên</h3>
+                    <p>CTV không mất tiền đầu tư ban đầu, lợi nhuận nhận được theo quy định của Shop.</p>
+                    <p>Được sử dụng hồ sơ Shop, tài liệu quảng bá, Catalog sản phẩm, kỹ thuật, giải pháp để phục vụ công tác bán hàng.</p>
+                    <p>Được thông tin về giá cả, chính sách, chương trình khuyến mãi có liên quan.</p>
+
+                    <h3>Nghĩa vụ của cộng tác viên</h3>
+                    <p>Chủ động quảng bá thương hiệu, tiếp thị sản phẩm, tìm kiếm và khai thác nguồn khách hàng tiềm năng.</p>
+                    <p>Sử dụng đúng thông tin Shop cung cấp để tư vấn cho khách hàng.</p>
+                    <p>Nghiêm cấm CTV lợi dụng danh nghĩa Shop để thực hiện các hành vi vi phạm pháp luật hoặc gây ảnh hưởng xấu đến uy tín Shop.</p>
                 </div>
 
-                <button class="detail-product-add-cart">Thêm vào giỏ</button>
-            </div>
+                <div class="contact-list">
+                    <h3>Liên hệ</h3>
+                    <p>- Địa chỉ: Dĩ An, TP.HCM</p>
+                    <p>- Email: ngucocNgon@gmail.com</p>
+                    <p>- Điện thoại: 0357 250 466</p>
+                    <p>- Fanpage: <a href="#" target="_blank">Ngũ cốc Ngon</a></p>
+                </div>
+            </main>
 
-            <ul class="detail-product-policy">
-                <li>
-                    <img src="./image/icon-detail-product/cam-ket.png" alt="Cam kết">
-                    <p>Cam kết chất lượng sản phẩm 100%</p>
-                </li>
-                <li>
-                    <img src="./image/icon-detail-product/kiem-tra.png" alt="Kiểm tra">
-                    <p>Kiểm tra hàng hóa khi nhận hàng</p>
-                </li>
-                <li>
-                    <img src="./image/icon-detail-product/doi-tra.png" alt="Đổi trả">
-                    <p>Đổi trả trong 30 ngày nếu sản phẩm hết hạn</p>
-                </li>
-            </ul>
+
+            <!-- SIDEBAR DANH MỤC TRANG-->
+
+            <!--thẻ div gồm các class sử dụng bootstrap chia làm 2 cột 1 ảnh và 1 nội dung xen kẽ nhau-->
+
+            <aside class="col-12 col-md-4 sidebar">
+                <div class="category-sidebar p-3 bg-white rounded shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">Danh mục trang</h4>
+
+                        <!--dùng bootstrap tạo danh mục trang-->
+                        <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
+                        <button class="btn btn-outline-secondary d-md-none btn-sm"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#categoryList"
+                                aria-expanded="false"
+                                aria-controls="categoryList">
+                            Danh mục ▾
+                        </button>
+                    </div>
+
+                    <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
+                        <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
+                        <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
+                        <li class="category-item"><a href="#">Điều khoản dịch vụ</a></li>
+                        <li class="category-item"><a href="PhuongThucThanhToan.html">Phương thức thanh toán</a></li>
+                        <li class="category-item"><a href="#">Phương thức vận chuyển</a></li>
+                        <li class="category-item"><a href="#">Chính sách đổi trả</a></li>
+
+                    </ul>
+                </div>
+            </aside>
+
+
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Mô tả sản phẩm -->
-    <section class="detail-product-description">
-        <h2 class="detail-product-section-title">Thông tin bạn cần biết</h2>
-
-        <p class="detail-product-text">
-            Ngũ cốc trẻ em được nghiên cứu và phát triển dựa trên nguyên lý khoa học về sinh lý và quá trình hấp thu dinh dưỡng đặc thù của trẻ nhỏ.
-        </p>
-
-        <h3 class="detail-product-subtitle">Thành phần:</h3>
-        <p class="detail-product-text">
-            Ngũ cốc trẻ em chứa hơn 30 loại hạt giàu dưỡng chất gồm: yến mạch, hạt sen, diêm mạch, đậu gà, đậu lăng, hạnh nhân, óc chó, hạt chia, hạt điều...
-        </p>
-        <ul class="detail-product-list">
-            <li>Yến mạch, hạt sen, diêm mạch, đậu gà, đậu lăng, đậu Hà Lan, hạnh nhân, óc chó đỏ, óc chó vàng, mắc ca, hạt chia, hạt điều, bí xanh.</li>
-            <li>Đậu xanh, đậu huyết, đậu đen xanh lòng, đậu tây trắng, đậu tây đỏ, đậu ngự, gạo lứt đỏ, nếp cẩm, mè đen, đậu nành thuần chủng, bắp nếp, bột khoai lang, bột bí ngô...</li>
-        </ul>
-
-        <h3 class="detail-product-subtitle">Công dụng:</h3>
-        <ul class="detail-product-list">
-            <li>Bổ sung canxi, chất xơ, omega-3, vitamin giúp trẻ phát triển thể chất và trí não.</li>
-            <li>Kích thích trẻ ăn ngon miệng.</li>
-            <li>Hỗ trợ tiêu hóa tốt hơn.</li>
-        </ul>
-
-        <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>Cho 2 thìa ngũ cốc (20g) vào ly.</li>
-            <li>Thêm 50ml nước sôi nguội, đánh tan để không vón cục.</li>
-            <li>Thêm 100ml nước sôi nóng, khuấy đều và thưởng thức.</li>
-            <li>Uống ngon hơn khi thêm sữa hoặc đường.</li>
-        </ul>
-        <p class="detail-product-text">Trẻ em từ 6 tháng đến 1 tuổi:</p>
-        <ul class="detail-product-list">
-            <li>Cho 1,5 thìa ngũ cốc (khoảng 15g) với 100ml nước sôi nguội, đánh tan để bột không bị vón cục.</li>
-            <li>Đặt lên bếp khuấy đều tay trong khoảng 2 phút.</li>
-            <li>Cho ra chén, để nguội trước khi sử dụng.</li>
-        </ul>
-
-        <h3 class="detail-product-subtitle">Lưu ý:</h3>
-        <p class="detail-product-text">Khi pha bột, cần pha từ loãng sang đặc dần.</p>
-
-        <h3 class="detail-product-subtitle">Hạn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>8 tháng, kể từ ngày sản xuất.</li>
-            <li>Dùng tốt nhất trong vòng 02 tháng sau khi mở bao bì.</li>
-            <li>Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp. Nhớ đóng kín bao bì sau khi sử dụng.</li>
-            <li>Không dùng sản phẩm khi hết hạn sử dụng.</li>
-        </ul>
-    </section>
-
-</main>
 
 <!------------------------------------------------------------------------------>
 <!--Footer-->
@@ -484,7 +481,9 @@
 <div class="main-footer-new">
     <!--section đăng kí nhận tin-->
     <section id="send-for-gmail" class="section section-for-email">
+
         <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <!--thẻ div gồm các class sử dụng bootstrap chia 4 cột-->
         <div class="container-fluid">
             <div class="row flexAlignCenter flexJustiCenter">
                 <div class="col-md-6 col-sm-12">
@@ -528,18 +527,16 @@
 
 
     <!-- Footer chính -->
+
     <footer class="main-footer footer">
         <div class="footer-middle">
             <div class="container-fluid">
                 <div class="footer-middle-container">
 
-
-
                     <div class="row">
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-
                                 <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
@@ -639,21 +636,6 @@
     </footer>
 </div>
 
-<!-- Tăng giảm số lượng js -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const qtyInput = document.getElementById('detail-product-qty');
-        document.getElementById('detail-product-plus').onclick = () => {
-            qtyInput.value = Number(qtyInput.value) + 1;
-        };
-        document.getElementById('detail-product-minus').onclick = () => {
-            if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
-        };
-
-    });
-
-</script>
-
 <!--back to top (bootstrap) js-->
 <script>
     const backToTopBtn = document.getElementById("btn-back-to-top");
@@ -666,6 +648,5 @@
         }
     });
 </script>
-
 </body>
 </html>
