@@ -54,13 +54,13 @@
     }
 
     /*----------NỘI DUNG CHÍNH---------- */
-    .main-termsOfService {
+    .main-paymentPolicy {
         font-family: 'Tahoma', Arial, sans-serif;
         color: #444;
         background-color: #fff;
     }
     /* Dàn 2 cột: nội dung bên trái, sidebar bên phải */
-    .termsOfService-container {
+    .paymentPolicy-container {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -70,7 +70,7 @@
     }
 
     /* Nội dung chính bên trái */
-    .termsOfService-content {
+    .paymentPolicy-content {
         flex: 1 1 68%;
         background-color: #fff;
         padding: 30px;
@@ -82,7 +82,7 @@
     }
 
     /* Tiêu đề chính */
-    .termsOfService-title {
+    .paymentPolicy-title {
         font-size: 26px;
         font-weight: 700;
         margin-bottom: 20px;
@@ -90,7 +90,7 @@
     }
 
     /* Tiêu đề mục */
-    .section-termsOfService-title{
+    .section-paymentPolicy-title b{
         font-size: 18px;
         margin-top: 25px;
         margin-bottom: 10px;
@@ -100,8 +100,12 @@
     }
 
     /* Văn bản */
-    .termsOfService-content p {
+    .paymentPolicy-content p {
         font-size: 14px;
+    }
+
+    .bank-content p {
+        color: #4CAF50;
     }
 
     /* Sidebar bên phải */
@@ -119,11 +123,11 @@
 
     /* RESPONSIVE: Khi màn nhỏ, xếp dọc */
     @media (max-width: 992px) {
-        .termsOfService-container {
+        .paymentPolicy-container {
             flex-direction: column;
         }
 
-        .termsOfService-content,
+        .paymentPolicy-content,
         aside {
             flex: 1 1 100%;
         }
@@ -317,40 +321,43 @@
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
-<main class="main-termsOfService">
+<main class="main-paymentPolicy">
     <!-- Breadcrumb -->
     <section class="breadcrumb-bar py-2">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Điều khoản dịch vụ</li>
+                    <li class="breadcrumb-item active" aria-current="page">Phương thức thanh toán</li>
                 </ol>
             </nav>
         </div>
     </section>
 
     <!-- Nội dung chính sách -->
-    <div class="termsOfService-container">
-        <section class="termsOfService-content">
-            <h1 class="termsOfService-title">Điều khoản dịch vụ</h1>
-
-            <h2 class="section-termsOfService-title">1. Giới thiệu</h2>
-            <p>Chào mừng quý khách hàng đến với website của Mộc An. Khi quý khách hàng truy cập vào trang website này nghĩa là quý khách đồng ý với các điều khoản. Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản mua bán hàng hóa này, vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay khi được đăng trên trang web mà không cần thông báo trước. Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Điều khoản này được đăng tải, có nghĩa là quý khách chấp nhận với những thay đổi đó.</p>
-
-            <h2 class="section-termsOfService-title">2. Hướng dẫn sử dụng website</h2>
-            <p>Khi vào web của chúng tôi, khách hàng phải đảm bảo đủ 18 tuổi, hoặc truy cập dưới sự giám sát của cha mẹ hay người giám hộ hợp pháp. Khách hàng đảm bảo có đầy đủ hành vi dân sự để thực hiện các giao dịch mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.</p>
-            <p>Trong suốt quá trình đăng ký, quý khách đồng ý nhận email quảng cáo từ website. Nếu không muốn tiếp tục nhận mail, quý khách có thể từ chối bằng cách nhấp vào đường link ở dưới cùng trong mọi email quảng cáo.</p>
-
-            <h2 class="section-termsOfService-title">3. Thanh toán an toàn và tiện lợi</h2>
-            <p>Khách hàng có thể chọn một trong hai phương thức thanh toán sau đây:</p>
+    <div class="paymentPolicy-container">
+        <section class="paymentPolicy-content">
+            <h1 class="paymentPolicy-title">Phương thức thanh toán</h1>
+            <p class="section-paymentPolicy-title"> <b>Bước 1.</b> Chọn mặt hàng, số lượng cần mua và cung cấp thông tin của người mua</p>
+            <p class="section-paymentPolicy-title"> <b>Bước 2.</b> Chọn phương thức thanh toán</p>
+            <p>Khách hàng vui lòng chọn một trong hai phương thức thanh toán sau:</p>
             <p>(1) Thanh toán tiền mặt khi giao hàng (COD), hoặc</p>
-            <p>(2) Thanh toán chuyển khoản qua ngân hàng theo thông tin sau: </p>
-            <p>STK: <b>1407906666, ngân hàng ACB - Chi nhánh Phú Bài</b></p>
-            <p>Chủ TK: <b>Hoàng Thị Cẩm Nhung</b></p>
-            <p>Nội dung chuyển khoản: <b>Họ và tên người mua-loại sản phẩm-số lượng</b></p>
-            <p>Ví dụ: <b>Hoang Thi Cam Nhung-ngu coc loi sua-3</b></p>
+            <p>(2) Thanh toán chuyển khoản qua ngân hàng theo thông tin sau:</p>
+            <div class="bank-content">
+                <p>STK: 1407906666, ngân hàng ACB - Chi nhánh Phú Bài</p>
+                <p>Chủ TK: Hoàng Thị Cẩm Nhung</p>
+                <p>Nội dung chuyển khoản: Họ và tên người mua - loại sản phẩm - số lượng</p>
+                <p>Ví dụ: Hoang Thi Cam Nhung - ngu coc loi sua - 3</p>
+            </div>
             <p>Ghi chú: Quý khách vui lòng kiểm tra kĩ thông tin khi chuyển khoản để tránh sai sót.</p>
+            <p class="section-paymentPolicy-title"> <b>Bước 3.</b> Mộc An liên hệ để xác nhận đơn hàng (mặt hàng, số lượng, thông tin người mua hàng)</p>
+            <p class="section-paymentPolicy-title"> <b>Bước 4.</b> Mộc An lên đơn hàng và chuyển hàng qua đối tác vận chuyển</p>
+            <hr>
+            <p>Mọi thắc mắc vui lòng liên hệ: CÔNG TY TNHH PHÁT TRIỂN NÔNG NGHIỆP XANH MỘC AN</p>
+            <p>Địa chỉ: Hiền Sỹ, Phong Sơn, Phong Điền, Thừa Thiên Huế</p>
+            <p>Hotline: 0974 685 645</p>
+            <p>E-mail: ngucocmocan@gmail.com</p>
+
 
         </section>
 
