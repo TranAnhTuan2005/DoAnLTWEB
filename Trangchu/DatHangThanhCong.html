@@ -22,125 +22,106 @@
             margin: 0 auto;
         }
 
-        /** căn form thông tin rộng hơn*/
-        .shipping-form {
-            flex: 1;
-            /*Chia đều mỗi phần tử đều 1 bên*/
-            max-width: 700px;
+        /* Giao diện trang đặt hàng thành công */
+        .success-page {
+            width: 700px;
+            padding: 20px;
         }
 
-        .shipping-form h1 {
+        .success-page h1 {
             font-size: 26px;
+            margin-bottom: 25px;
         }
 
-        .shipping-form nav {
-            font-size: 14px;
+        .order-success {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .success-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: white;
+            font-size: 30px;
+            line-height: 50px;
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .order-success h2 {
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .order-success .order-id {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .order-success .thank-you {
             color: #777;
-            margin-bottom: 20px;
+            margin-top: 5px;
         }
 
-        .shipping-form nav a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-
-        .shipping-form nav a:hover {
-            cursor: pointer;
-            color: #5c93db;
-        }
-
-        .shipping-form h2 {
-            font-weight: normal;
-            font-size: 18px;
-        }
-
-        .shipping-method {
+        .order-info-box {
             border: 1px solid #ddd;
             border-radius: 6px;
             padding: 15px;
             margin-bottom: 25px;
+            background: #fff;
         }
 
+        .order-info-box h3 {
+            margin-top: 0;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-        .method-item {
+        .order-section {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .footer-actions {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
-        }
-        .method-item span{
-            flex-grow: 1;
-        }
-
-
-        .payment-method {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .pay-card {
-            display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
         }
 
-        .pay-card:last-child {
-            border-bottom: none;
+        .help {
+            color: #777;
+            font-size: 14px;
         }
 
-        .pay-card:hover {
-            background: #f6f9ff;
-        }
-
-        .pay-card input[type="radio"] {
-            width: 18px;
-            height: 18px;
-        }
-
-        .pay-card .icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        .pay-card input:checked~span,
-        .pay-card input:checked~img {
-            filter: brightness(0.85);
-        }
-
-          .form-footer {
-            display: flex;
-            justify-content: space-between;
-            /* cắt đôi*/
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .cart-link {
+        .help a {
             color: #1a73e8;
             text-decoration: none;
         }
 
-        .cart-link:hover {
-            cursor: pointer;
-            color: #5c93db;
+        .help a:hover {
+            text-decoration: underline;
         }
 
-        .submit-btn {
-            background-color: #1a73e8;
-            color: #fff;
+        .continue-btn {
+            background: #1a73e8;
+            color: white;
             border: none;
-            padding: 15px;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
         }
 
-        .submit-btn:hover {
-            background-color: #155bb5;
+        .continue-btn:hover {
+            background: #155bb5;
         }
+
 
         /*Đường ngăn*/
         .divider {
@@ -213,27 +194,6 @@
             font-weight: lighter;
         }
 
-        .discount {
-            display: flex;
-            margin: 15px 0;
-        }
-
-        .discount input {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-        }
-
-        .discount button {
-            background: #1a73e8;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-
         .summary-line,
         .total-line {
             display: flex;
@@ -268,45 +228,44 @@
 
 <body>
     <div class="checkout-container">
-        <!--Cột form bên trái-->
-        <div class="shipping-form">
+        <!-- Cột bên trái mới -->
+        <div class="shipping-form success-page">
             <h1>Ngũ cốc Ngon</h1>
-            <nav>
-                <a href="GioHangTrong.html">Giỏ hàng</a> >
-                <a href="ThongTinGiaoHang.html">Thông tin giao hàng</a> >
-                <span>Phương thức thanh toán</span>
-            </nav> <!--Đường dẫn hiện tại-->
 
-            <h2>Phương thức vận chuyển</h2>
-            <div class="shipping-method">
-                <label class="method-item">
-                    <input type="radio" name="ship" checked>
-                    <span>Giao hàng tận nơi</span>
-                    <strong id="delivery-price">20,000đ</strong>
-                </label>
+            <div class="order-success">
+                <div class="success-icon">✔</div>
+                <h2>Đặt hàng thành công</h2>
+                <p class="order-id">Mã đơn hàng <strong>#103642</strong></p>
+                <p class="thank-you">Cảm ơn bạn đã mua hàng!</p>
             </div>
 
-            <h2>Phương thức thanh toán</h2>
+            <div class="order-info-box">
+                <h3>Thông tin đơn hàng</h3>
 
-            <div class="payment-method">
-                <label class="pay-card">
-                    <input type="radio" name="payment" checked>
-                    <img src="image/paymentMethod/cod.svg" class="icon">
-                    <span>Thanh toán khi giao hàng (COD)</span>
-                </label>
+                <div class="order-section">
+                    <p class="section-title">Thông tin giao hàng</p>
+                    <p>Nhóm 18</p>
+                    <p>09261302541</p>
+                    <p>Thành phố Thủ Đức</p>
+                    <p>Khu phố 6, phường Linh Trung</p>
+                    <p>Thành phố Thủ Đức</p>
+                    <p>Việt Nam</p>
+                </div>
 
-                <label class="pay-card">
-                    <input type="radio" name="payment">
-                    <img src="image/paymentMethod/cash.svg" class="icon">
-                    <span>Chuyển khoản qua ngân hàng</span>
-                </label>
+                <div class="order-section">
+                    <p class="section-title">Phương thức thanh toán</p>
+                    <p>Thanh toán khi giao hàng (COD)</p>
+                </div>
             </div>
 
-            <div class="form-footer">
-                <a href="GioHangTrong.html" class="cart-link">Giỏ hàng</a>
-                <button class="submit-btn" onclick="window.location.href='DatHangThanhCong.html'">Hoàn tất đơn hàng</button>
+            <div class="footer-actions">
+                <p class="help">
+                    Cần hỗ trợ? <a href="LienHe.html">Liên hệ chúng tôi</a>
+                </p>
+                <button class="continue-btn" onclick="window.location.href='SanPham-TatCa.html'">Tiếp tục mua hàng</button>
             </div>
         </div>
+
 
         <!--Đường ngăn cách-->
         <div class="divider"></div>
@@ -325,11 +284,6 @@
                 </div>
                 <div class="product-price">219.000đ</div>
             </div>
-            <div class="discount">
-                <input type="text" placeholder="Mã giảm giá" name="discount">
-                <button>Sử dụng</button>
-            </div>
-
             <div class="summary-line">
                 <span>Tạm tính</span>
                 <span>219.000đ</span>
