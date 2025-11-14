@@ -1168,15 +1168,7 @@ body {
     color: #a46b2c;
 }
 
-@media (max-width: 768px) {
-    .row {
-        flex-direction: column;
-    }
 
-    .ft-col {
-        margin-bottom: 20px;
-    }
-}
 
 /*back to top*/
 #btn-back-to-top {
