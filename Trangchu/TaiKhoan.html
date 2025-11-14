@@ -2,180 +2,212 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chính sách bảo mật</title>
+    <title>Tài khoản của bạn</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
-    .breadcrumb-bar {
-        padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
-        padding-bottom: 5px;
-        background: #f6efe3;
-        border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
 
-    /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
-    .breadcrumb-bar .breadcrumb .breadcrumb-item {
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Dấu phân cách (nếu muốn điều chỉnh kích thước/màu) */
-    .breadcrumb-bar .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-        content: "/";             /* đảm bảo ký tự phân cách luôn là / */
-        margin: 0 6px;
-        color: #8a7354;
-        font-weight: 600;
-    }
-
-    /* Text các link và active */
-    .breadcrumb-bar .breadcrumb a {
-        color: #6d4c41;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    .breadcrumb-bar .breadcrumb .active {
-        color: #3b2d22;
-        font-weight: 600;
-    }
+    /* ====== Styles for Account page ====== */
 
 
-
-    /*----------NỘI DUNG CHÍNH---------- */
-    .main-termsOfService {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
-    /* Dàn 2 cột: nội dung bên trái, sidebar bên phải */
-    .termsOfService-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 30px;
-        max-width: 1200px;
-        margin-left: 60px;
+    /* Khối bao của trang phần body */
+    .mainContainer-theme {
+        font-family: Tahoma, Arial, sans-serif;
+        color: #222;
+        background: #fff;
+        padding: 40px 0 80px;
+        box-sizing: border-box;
     }
 
-    /* Nội dung chính bên trái */
-    .termsOfService-content {
-        flex: 1 1 68%;
-        background-color: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        font-size: 15px;
-        line-height: 1.7;
-        color: #333;
+    /* tiêu đề*/
+    .layout-infor-account h1 {
+        font-size: 40px;
+        font-weight: 800;
+        margin: 6px 0 18px;
+        text-align: center;
+        letter-spacing: 0.5px;
     }
 
-    /* Tiêu đề chính */
-    .termsOfService-title {
-        font-size: 26px;
+    /*Thanh gạch nhỏ dưới tiêu đề */
+    .layout-infor-account::after{
+        content:"";
+        display:block;
+        width:60px;
+        height:4px;
+        background:#2f2f2f;
+        margin: 10px auto 0;
+        border-radius:2px;
+        opacity:0.9;
+    }
+
+    /* Sidebar */
+    .sidebar-account {
+        width: 22%;
+        float: left;
+        padding-left: 60px;
+        box-sizing: border-box;
+    }
+    .AccountSidebar {
+        position: sticky;
+        top: 120px; /* khoảng cách từ mép trên*/
+    }
+
+    /*Kc phía trên với AccountSidebar*/
+    .AccountTitle.titleSidebar {
+        font-size: 17px;
+        letter-spacing: 1px;
         font-weight: 700;
-        margin-bottom: 20px;
-        color: #6d4c41;
+        text-transform: uppercase;
+        margin-bottom: 18px;
     }
 
-    /* Tiêu đề mục */
-    .section-termsOfService-title{
-        font-size: 18px;
-        margin-top: 25px;
-        margin-bottom: 10px;
-        color: #a46b2c;
-        border-left: 4px solid #a46b2c;
-        padding-left: 10px;
+    /* danh sách liên kết */
+    .AccountList ul {
+        padding-left: 0;
+        margin: 0;
     }
 
-    /* Văn bản */
-    .termsOfService-content p {
+    .AccountList li {
+        list-style: none;
+        margin: 8px 0;
+        padding-left: 8px;
+        position: relative;
+        color: #666;
+        font-size: 15px;
+    }
+    .AccountList li::before{
+        content: "◦";
+        color: #c9b29b;
+        position: absolute;
+        left: -16px;
+        top: 0;
         font-size: 14px;
     }
-
-    /* Sidebar bên phải */
-    aside {
-        flex: 1 1 28%;
-        margin-top: 28px;
-        margin-right: -120px;
+    .AccountList li a {
+        color: #6d6d6d;
+        text-decoration: none; /*không hiện gạch chân*/
+    }
+    /*mục đang chọn*/
+    .AccountList li.current a {
+        color: #2c1c12;
+        font-weight: 600;
     }
 
-    /* Đặt sidebar cố định khi cuộn */
-    .category-sidebar {
-        position: sticky;
-        top: 100px;
+    /* nội dung chính bên phải */
+    .col-xs-12.col-sm-9 {
+        margin-left: 22%;
+        padding: 0 60px; /* giống khoảng cách mẫu (ngăn không cho sát vào mép)*/
+        box-sizing: border-box;
     }
 
-    /* RESPONSIVE: Khi màn nhỏ, xếp dọc */
-    @media (max-width: 992px) {
-        .termsOfService-container {
-            flex-direction: column;
-        }
-
-        .termsOfService-content,
-        aside {
-            flex: 1 1 100%;
-        }
-    }
-
-
-    /* ===== DANH MỤC SIDEBAR ===== */
-    .category-sidebar {
-        border: 1px solid #f0e7df;
-        background: linear-gradient(180deg, #fff, #fff);
-    }
-
-    .category-sidebar h4 {
-        color: #6d4c41;
+    /* tiêu đề từng khu bên trong nd */
+    .title-detail {
+        font-size: 16px;
         font-weight: 700;
-        font-size: 18px;
+        border-bottom: 1px solid ;
+        padding-bottom: 14px;
+        margin-bottom: 18px;
     }
 
-    .category-list .category-item {
-        padding: 10px 8px;
-        border-radius: 6px;
-        transition: background 0.18s ease, transform 0.12s ease;
+    /* dòng thông tin */
+    #customer_sidebar p {
+        margin: 12px 0;
+        color: #444;
+        font-size: 17px;
+    }
+
+    /*nhãn thông tin*/
+    #customer_sidebar p span {
+        display: inline-block;
+        min-width: 110px; /* căn nhãn trước nội dung */
+        font-weight: 700;
+        color: #2c1c12;
+    }
+
+
+
+
+    /* box thông báo / đơn hàng*/
+    .customer-table-wrap {
+        margin-top: 22px;
+    }
+    /*nội dung bên trong box*/
+    .customer-table-bg {
+        border: 6px solid #f4f4f4; /* tạo khung sáng */
+        padding: 18px 20px;
+        background: #fff;
+        color: #666;
+        font-size: 15px;
+    }
+
+
+    /* ===== BOX ĐỊA CHỈ TRANG TÀI KHOẢN ===== */
+    .account-address-box {
+        margin-top: 16px;
+        max-width: 600px;
+    }
+
+    .address-label {
+        font-weight: 700;
+        font-size: 15px;
+        color: #2c1c12;
         margin-bottom: 6px;
-    }
-
-    .category-list .category-item a {
         display: block;
-        color: #4b4b4b;
-        text-decoration: none;
-        padding: 4px 6px;
     }
 
-    .category-list .category-item:hover {
-        background-color: #faf0e5;
-        transform: translateX(4px);
+    /* Hàng chứa input + nút lưu */
+    .address-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
     }
 
-    .category-list .category-item a .badge {
-        font-size: 0.8rem;
-        opacity: 0.9;
+    /* Ô nhập địa chỉ */
+    .address-input {
+        flex: 1;
+        padding: 12px 14px;
+        font-size: 15px;
+        border: 1px solid #e1e1e1;
+        border-radius: 6px;
+        background: #fff;
+        transition: border-color .15s ease, box-shadow .15s ease;
     }
 
-    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
-    .category-list .category-item.active,
-    .category-list .category-item a.active {
-        background-color: #a46b2c;
+    .address-input:focus {
+        outline: none;
+        border-color: #a46b2c;
+        box-shadow: 0 0 0 3px rgba(164, 107, 44, 0.15);
+    }
+
+    /* Nút Lưu */
+    .address-save-btn {
+        padding: 12px 18px;
+        background: #2c1c12;
         color: #fff;
-    }
-    .category-list .category-item.active a,
-    .category-list .category-item a.active {
-        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: opacity .15s ease, transform .15s ease;
     }
 
-
+    .address-save-btn:hover {
+        opacity: .95;
+        transform: translateY(-1px);
+    }
 
 </style>
 
-
 <body>
+
+
 
 <!-- Thanh thông tin trên cùng -->
 <div class="top-info-bar">
@@ -194,7 +226,9 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <img src="image/Header/logongucocNgon.png"  alt="Ngũ cốc Ngon"><img/>
+            <a href="TrangChu.html">
+                <img src="image/Header/logongucocNgon.png"  alt="Ngũ cốc Ngon"><img/>
+            </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
@@ -202,7 +236,7 @@
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
                 <i class="icon_timkiem">
-                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
                 </i>
             </button>
         </div>
@@ -213,30 +247,20 @@
                 <li><a href="TrangChu.html">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="/collections/all">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
-                        </li>
+                        <li class="dropdown-item">Ngũ cốc</li>
+                        <li class="dropdown-item">Hạt dinh dưỡng</li>
+                        <li class="dropdown-item">Bánh dinh dưỡng</li>
+                        <li class="dropdown-item">Trà gạo lứt</li>
                     </ul>
 
                 </li>
 
-
-
                 <li><a href="/thuong-hieu">Thương hiệu</a></li>
                 <li><a href="/tin-tuc">Tin tức</a></li>
-                <li><a href="/cong-tac-vien">Cộng tác viên</a></li>
+                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
                 <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
         </nav>
@@ -247,11 +271,14 @@
         <div class="user-actions">
             <a href="#" class="account-btn" aria-label="Tài khoản">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
+                    <path
+                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
+                            fill="#333" />
                 </svg>
             </a>
             <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
@@ -270,7 +297,8 @@
         <h2>Giỏ Hàng</h2>
         <p>Hiện chưa có sản phẩm</p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
@@ -278,8 +306,8 @@
 
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
+            <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
+            <button class="checkout-btn">Thanh Toán</button>
         </div>
     </div>
 </div>
@@ -293,93 +321,96 @@
         <form>
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+            <p>This site is protected by reCAPTCHA and the Google <a
+                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
+                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
 
-<!------------------------------------------------------------------------------------>
-<!--Body-->
-<main class="main-termsOfService">
-    <!-- Breadcrumb -->
-    <section class="breadcrumb-bar py-2">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Điều khoản dịch vụ</li>
-                </ol>
-            </nav>
-        </div>
-    </section>
 
-    <!-- Nội dung chính sách -->
-    <div class="termsOfService-container">
-        <section class="termsOfService-content">
-            <h1 class="termsOfService-title">Điều khoản dịch vụ</h1>
+<!--Body trang tài khoản của banj-->
 
-            <h2 class="section-termsOfService-title">1. Giới thiệu</h2>
-            <p>Chào mừng quý khách hàng đến với website của Mộc An. Khi quý khách hàng truy cập vào trang website này nghĩa là quý khách đồng ý với các điều khoản. Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản mua bán hàng hóa này, vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay khi được đăng trên trang web mà không cần thông báo trước. Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Điều khoản này được đăng tải, có nghĩa là quý khách chấp nhận với những thay đổi đó.</p>
+<main class="mainContainer-theme">
+    <div class="layout-infor-account text-center">
+        <h1>Tài khoản của bạn</h1>
+    </div>
 
-            <h2 class="section-termsOfService-title">2. Hướng dẫn sử dụng website</h2>
-            <p>Khi vào web của chúng tôi, khách hàng phải đảm bảo đủ 18 tuổi, hoặc truy cập dưới sự giám sát của cha mẹ hay người giám hộ hợp pháp. Khách hàng đảm bảo có đầy đủ hành vi dân sự để thực hiện các giao dịch mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.</p>
-            <p>Trong suốt quá trình đăng ký, quý khách đồng ý nhận email quảng cáo từ website. Nếu không muốn tiếp tục nhận mail, quý khách có thể từ chối bằng cách nhấp vào đường link ở dưới cùng trong mọi email quảng cáo.</p>
-
-            <h2 class="section-termsOfService-title">3. Thanh toán an toàn và tiện lợi</h2>
-            <p>Khách hàng có thể chọn một trong hai phương thức thanh toán sau đây:</p>
-            <p>(1) Thanh toán tiền mặt khi giao hàng (COD), hoặc</p>
-            <p>(2) Thanh toán chuyển khoản qua ngân hàng theo thông tin sau: </p>
-            <p>STK: <b>1407906666, ngân hàng ACB - Chi nhánh Phú Bài</b></p>
-            <p>Chủ TK: <b>Hoàng Thị Cẩm Nhung</b></p>
-            <p>Nội dung chuyển khoản: <b>Họ và tên người mua-loại sản phẩm-số lượng</b></p>
-            <p>Ví dụ: <b>Hoang Thi Cam Nhung-ngu coc loi sua-3</b></p>
-            <p>Ghi chú: Quý khách vui lòng kiểm tra kĩ thông tin khi chuyển khoản để tránh sai sót.</p>
-
-        </section>
-
-        <!-- SIDEBAR DANH MỤC TRANG-->
-
-        <aside class="col-md-4 mb-4 mb-md-0">
-            <div class="category-sidebar p-3 bg-white rounded shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Danh mục trang</h4>
-
-                    <!--dùng bootstrap tạo danh mục trang-->
-                    <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
-                    <button class="btn btn-outline-secondary d-md-none btn-sm"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#categoryList"
-                            aria-expanded="false"
-                            aria-controls="categoryList">
-                        Danh mục ▾
-                    </button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-xs-3 sidebar-account">
+                <div class="AccountSidebar">
+                    <h3 class="AccountTitle titleSidebar">Tài khoản</h3>
+                    <div class="AccountContent">
+                        <div class="AccountList">
+                            <ul class="list-unstyled">
+                                <li class="current"><a href="TaiKhoan.html">Thông tin tài khoản</a></li>
+                                <li class="last"><a href="TrangChu.html">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-
-                <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
-                    <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
-                    <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
-                    <li class="category-item"><a href="/pages/dieu-khoan-dich-vu">Điều khoản dịch vụ</a></li>
-                    <li class="category-item"><a href="/pages/phuong-thuc-thanh-toan">Phương thức thanh toán</a></li>
-                    <li class="category-item"><a href="/pages/phuong-thuc-van-chuyen">Phương thức vận chuyển</a></li>
-                </ul>
             </div>
-        </aside>
+        </div>
     </div>
 
 
+    <div class="col-xs-12 col-sm-9">
+        <div class="row">
+            <div class="col-xs-12" id="customer_sidebar">
+                <p class="title-detail">Thông tin tài khoản</p>
 
+                <p class="name_account"><span>Họ tên: </span>Nguyễn Văn C</p>
+
+                <p class="email "><span>Email: </span>abcd@gmail.com</p>
+                <div class="address ">
+
+                    <p><span>Địa chỉ: </span></p>
+
+                    <p><span>SĐT: </span></p>
+
+                    <div class="account-address-box">
+                        <label for="account-address" class="address-label">Địa chỉ giao hàng</label>
+
+                        <div class="address-row">
+                            <input type="text" id="account-address" class="address-input"
+                                   placeholder="Nhập địa chỉ: số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố">
+
+                            <button class="address-save-btn">Lưu</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-12" id="customer_orders">
+                <div class="customer-table-wrap">
+                    <div class="customer_order customer-table-bg">
+
+                        <p>Bạn chưa đặt mua sản phẩm.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </main>
 
-<!------------------------------------------------------------------------------>
+
+
+
 <!--Footer-->
 
 <div class="main-footer-new">
     <!--section đăng kí nhận tin-->
     <section id="send-for-gmail" class="section section-for-email">
+
         <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <!--thẻ div gồm các class sử dụng bootstrap chia 4 cột-->
         <div class="container-fluid">
             <div class="row flexAlignCenter flexJustiCenter">
                 <div class="col-md-6 col-sm-12">
@@ -422,20 +453,19 @@
     </section>
 
 
+
     <!-- Footer chính -->
+
     <footer class="main-footer footer">
         <div class="footer-middle">
             <div class="container-fluid">
                 <div class="footer-middle-container">
 
-
-
                     <div class="row">
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-
-                                <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -446,11 +476,10 @@
                                 Email: ngucocNgon@gmail.com<br>
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
-                                <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
-                                   rel="noreferrer" aria-label="logo bct">
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                         height="70px" width="150px" alt="Bộ Công Thương">
-                                </a>
+
+                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                     height="70px" width="150px" alt="Bộ Công Thương">
+
                             </div>
                         </div>
 
@@ -461,7 +490,7 @@
                                 <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
                                 <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="/pages/chinh-sach-bao-mat" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
                                 <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
@@ -477,8 +506,8 @@
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
                                 <li><a href="/" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
-                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="/pages/ngon" title="Ngon">Ngon</a></li>
+                                <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
                                 <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
                                 <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
