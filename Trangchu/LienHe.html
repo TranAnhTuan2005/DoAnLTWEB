@@ -58,6 +58,65 @@
 
 
 
+    /* ====== Contact cards ====== */
+    .contact-cards-section { padding: 36px 0; }
+    .contact-card {
+        background: #F5F5F5;
+        border-radius: 6px;
+        padding: 28px 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        transition: transform .18s ease, box-shadow .18s ease;
+        border: 1px solid rgba(0,0,0,0.03);
+    }
+    .contact-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .contact-icon {
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .contact-icon svg { display:block; }
+
+    /* Title  */
+    .contact-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2c1c12;
+        margin: 8px 0 6px;
+    }
+    .contact-sub {
+        font-size: 14px;
+        color: #9b8f88;
+        margin: 0;
+        line-height: 1.6;
+        word-break: break-word;
+    }
+
+    /* Links */
+    .contact-sub a {
+        color: #9b8f88;
+        text-decoration: none;
+    }
+    .contact-sub a:hover {
+        text-decoration: underline; color: #7a5a36; }
+
+    /* responesive */
+    @media (max-width: 767.98px) {
+        .contact-card { padding: 20px 12px; }
+        .contact-title { font-size: 18px; }
+        .contact-sub { font-size: 13px; }
+    }
+
+
+
 </style>
 
 <body>
@@ -202,6 +261,59 @@
         </nav>
     </div>
 </section>
+
+
+
+<section class="contact-cards-section">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <!-- icon location (SVG) -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#a46b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h4 class="contact-title">Địa chỉ chúng tôi</h4>
+                    <p class="contact-sub">Dĩ An, TP HCM</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <!-- icon email -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#a46b2c" stroke-width="1.5"/><path d="M3 7l9 6 9-6" stroke="#a46b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h4 class="contact-title">Email chúng tôi</h4>
+                    <p class="contact-sub"><a href="mailto:ngucocNgon@gmail.com">ngucocNgon@gmail.com</a></p>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <!-- icon phone -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12 1.05.36 2.07.72 3.03a2 2 0 0 1-.45 2.11L8.91 10.91a16 16 0 0 0 6 6l1.05-1.05a2 2 0 0 1 2.11-.45c.96.36 1.98.6 3.03.72A2 2 0 0 1 22 16.92z" stroke="#a46b2c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h4 class="contact-title">Điện thoại</h4>
+                    <p class="contact-sub"><a href="tel:0357250466">0357 250 466</a></p>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <!-- icon facebook -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 12.07C22 6.59 17.52 2 12 2S2 6.59 2 12.07C2 17.11 5.66 21.25 10.44 22v-7.03H8.08V12h2.36V9.79c0-2.33 1.39-3.61 3.52-3.61 1.02 0 2.09.18 2.09.18v2.3h-1.17c-1.16 0-1.52.72-1.52 1.46V12h2.6l-.42 2.97h-2.18V22C18.34 21.25 22 17.11 22 12.07z" stroke="#a46b2c" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h4 class="contact-title">Fanpage</h4>
+                    <p class="contact-sub"><a href="#" target="_blank" rel="noreferrer">facebook.com/NgucocNgon</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 
