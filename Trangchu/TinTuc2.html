@@ -3,29 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ hàng</title>
+    <title>Chính sách bảo mật</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    .main-detailProduct {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
-
-    /* --- Breadcrumb --- */
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;
         /* giảm khoảng cách trên/dưới của thanh */
         padding-bottom: 5px;
-        background: #f6efe3;
+        background: linear-gradient(180deg, #fbf7f3, #f6efe3);
         border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     }
 
@@ -56,222 +48,268 @@
         font-weight: 600;
     }
 
-
-
-    /*--------------------Giỏ hàng-------------------------*/
-
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #fff;
-        margin: 0;
-        padding: 0;
-        color: #333;
+    /* Responsive: nếu màn quá nhỏ, cho phép wrap để tránh overflow */
+    @media (max-width: 420px) {
+        .breadcrumb-bar .breadcrumb.p-2.rounded-3 {
+            white-space: normal;
+            /* cho phép xuống dòng trên màn nhỏ */
+            padding: 8px;
+            gap: 6px;
+        }
     }
 
-    .cart-container {
+    /* Bố cục 2 cột */
+    .news-wrapper {
+        display: flex;
+        justify-content: space-between;
         max-width: 1200px;
-        margin: 50px auto;
-        text-align: center;
+        margin: 40px auto;
+        font-family: 'Quicksand', sans-serif;
+        padding: 0 20px;
+        column-gap: 40px;
     }
 
-    h1 {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 40px;
-        border-bottom: 3px solid #000;
-        display: inline-block;
-        padding-bottom: 5px;
+    /* ========================== */
+    /* CỘT TRÁI — TIN TỨC */
+    /* ========================== */
+
+    .news-section {
+        width: 70%;
     }
 
-    .cart-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 30px;
-    }
-
-    .cart-productlist {
-        width: 700px;
-    }
-
-    .quantity-box {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .quantity-box input {
-        width: 50px;
-        text-align: center;
-        font-size: 14px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-    }
-
-    .qty-btn {
-        width: 25px;
-        height: 25px;
-        font-size: 15px;
-        background: #eee;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.15s;
-
-    }
-
-    .qty-btn:hover {
-        background: #d6d6d6;
-    }
-
-    .cart-title-qty {
+    .news-section h2 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
         text-align: left;
-        background-color: rgb(237, 237, 237);
-    }
-
-    .cart-title-qty p {
-        padding: 10px;
-    }
-
-    .cart-title-qty p {
-        margin-left: 10px;
-    }
-
-    .cart-items {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 5px;
-    }
-
-    .right-infor {
-        position: relative;
-        /* cho phép định vị icon bên trong */
-    }
-
-    .right-infor i {
-        position: absolute;
-        /* đặt icon thùng rác ở góc phải */
-        right: 10px;
-        /* sát mép phải vùng chứa */
-        top: 5px;
-        /* nằm ở phía trên */
-        cursor: pointer;
-        font-size: 18px;
-    }
-
-    .right-infor .total {
-        margin-top: 40px;
-        /* tạo khoảng cách để dòng “Thành tiền” không bị icon che */
     }
 
 
-    .item {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        text-align: left;
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .news-item {
         background: #fff;
-        border-radius: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding-bottom: 10px;
+        transition: 0.2s;
     }
 
-    .item img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
+    .news-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
     }
 
-    .item-infor h3 {
-        font-weight: bold;
-        font-size: 15px;
-        color: #333;
-        margin: 0;
-    }
-
-    .order-note {
-        margin-top: 30px;
-        background-color: rgb(237, 237, 237);
-        display: block;
-        justify-items: left;
-    }
-
-    .order-note p {
-        font-weight: bold;
-        margin-left: 10px;
-    }
-
-    .order-note textarea {
-        width: 500px;
-        height: 150px;
-    }
-
-    .order-note textarea:focus {
-        border: 1px solid #a46b2c;
-    }
-
-    .order-info {
-        flex: 1;
-        border: 1px solid #ddd;
-        padding: 25px;
-        border-radius: 5px;
-        background-color: #fafafa;
-        text-align: left;
-    }
-
-    .order-info h2 {
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .order-total {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-
-    .order-total strong {
-        color: red;
-        font-size: 20px;
-    }
-
-    .note {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 25px;
-    }
-
-    .checkout-btn {
+    .news-img img {
         width: 100%;
-        padding: 12px 0;
-        background-color: red;
-        color: #fff;
-        border: none;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 3px;
-        transition: 0.3s;
+        border-radius: 8px 8px 0 0;
+        display: block;
     }
 
-    .checkout-btn:hover {
-        background-color: #cc0000;
+    .news-item .title h3 {
+        font-size: 17px;
+        padding: 10px;
+        color: #000;
     }
 
-    .continue {
-        margin-top: 15px;
+    .news-item .title {
+        text-decoration: none;
+    }
+
+    .news-item .title:hover h3 {
+        color: #bb7412;
+    }
+
+    .news-date {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .sub-paragraph,
+    .more {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .more:hover {
+        color: #bb7412;
+    }
+
+    /* ========================== */
+    /* CỘT PHẢI — BÀI VIẾT MỚI NHẤT */
+    /* ========================== */
+
+    .recent-posts {
+        width: 28%;
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        height: fit-content;
+    }
+
+
+    .recent-posts h2 {
         text-align: center;
+        font-size: 22px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #000;
     }
 
-    .continue a {
+    .post-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .post-list li {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 12px 0;
+        gap: 12px;
+    }
+
+    .post-index {
+        font-size: 26px;
+        font-weight: bold;
+        color: #bbb;
+        width: 28px;
+    }
+
+    .post-category {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .post-title {
+        font-size: 15px;
+        margin-top: 3px;
+        cursor: pointer;
+    }
+
+    .post-title:hover {
+        color: #bb7412;
+    }
+
+    /* PAGINATION */
+    .pagination {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .pagination .page {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        border: 1px solid #ddd;
         color: #333;
         text-decoration: none;
-        font-size: 15px;
+        font-size: 16px;
+        border-radius: 3px;
+        transition: all 0.2s ease;
     }
 
-    .continue a:hover {
-        text-decoration: underline;
-        color: #a46b2c;
+    .pagination .page:hover {
+        background: #000;
+        color: #fff;
+    }
+
+    .pagination .active {
+        background: #000;
+        color: #fff !important;
+        border-color: #000;
+    }
+
+    .pagination .next {
+        font-weight: bold;
+    }
+
+
+    /* ========================== */
+    /* RESPONSIVE */
+    /* ========================== */
+
+    @media (max-width: 900px) {
+        .news-wrapper {
+            flex-direction: column;
+        }
+
+        .news-section,
+        .recent-posts {
+            width: 100%;
+        }
+
+        .recent-posts {
+            margin-top: 30px;
+        }
+    }
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .category-list .category-item {
+        padding: 10px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
+        text-decoration: none;
+        padding: 4px 6px;
+    }
+
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
+    }
+
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
+        }
     }
 </style>
 
@@ -295,9 +333,7 @@
         <div class="header-container">
             <!-- Logo -->
             <div class="logo">
-                <a href="TrangChu.html">
-                    <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img />
-                </a>
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img />
             </div>
 
             <!-- Thanh tìm kiếm -->
@@ -338,9 +374,9 @@
 
 
                     <li><a href="/thuong-hieu">Thương hiệu</a></li>
-                    <li><a href="TinTuc1.html">Tin tức</a></li>
-                    <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                    <li><a href="LienHe.html">Liên hệ</a></li>
+                    <li><a href="/tin-tuc">Tin tức</a></li>
+                    <li><a href="/cong-tac-vien">Công tác viên</a></li>
+                    <li><a href="/lien-he">Liên hệ</a></li>
                 </ul>
             </nav>
 
@@ -386,7 +422,7 @@
             <p>Tổng tiền: 0đ</p>
             <div class="modal-buttons">
                 <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
-                <button class="checkout-btn">Thanh Toán</button>
+                <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
             </div>
         </div>
     </div>
@@ -412,78 +448,129 @@
 
     <!------------------------------------------------------------------------------------>
     <!--Body-->
-    <main class="main-detailProduct">
-        <!-- Breadcrumb -->
-        <section class="breadcrumb-bar py-2">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-2 rounded-3">
-                        <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
-                    </ol>
-                </nav>
-            </div>
-        </section>
 
-        <!----------------------------------GIỎ HÀNG----------------------------------------------->
+    <section class="news-wrapper">
+        <!-- Cột trái: Tin tức -->
+        <div class="news-section">
+            <h2>Tin Tức</h2>
 
-        <div class="cart-container">
-            <h1>Giỏ hàng của bạn</h1>
-            <div class="cart-content">
-
-                <div class="cart-productlist">
-                    <div class="cart-title-qty">
-                        <p>Bạn đang có <strong>1 sản phẩm</strong> trong giỏ hàng</p>
+            <div class="news-grid">
+                <div class="news-item">
+                    <div class="news-img">
+                        <img src="image/news/cha-la-kho-nguyen-canh.jpg"
+                            alt="Chà là khô nguyên cành, Siêu thực phẩm tốt cho sức khỏe">
                     </div>
-
-                    <div class="cart-items">
-                        <div class="item">
-                            <img src="image/newProducts/banhhat.jpg" alt="Banh hat dinh duong">
-                            <div class="item-infor">
-                                <h3>Bánh hạt dinh dưỡng 30 x 15 g</h3>
-                                <p class="price">219,000đ</p>
-                                <div class="quantity-box">
-                                    <button class="qty-btn" id="decrease-qty">-</button>
-                                    <input type="number" name="qty-product" value="1" min="1">
-                                    <button class="qty-btn" id="increase-qty">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right-infor">
-                            <i class="fa-solid fa-trash"></i>
-                            <p class="total">Thành tiền: <strong>219,000đ</strong></p>
-                        </div>
-                    </div>
-
-                    <div class="order-note">
-                        <p>Ghi chú đơn hàng</p>
-                        <textarea name="note" id="order-note"></textarea>
-                    </div>
-
+                    <a href="#" class="title">
+                        <h3>CHÀ LÀ KHÔ NGUYÊN CÀNH, SIÊU THỰC PHẨM TỐT CHO SỨC KHỎE</h3>
+                    </a>
+                    <p class="news-date">26-12-2024 / NGƯỜI VIẾT: ADMIN</p>
+                    <p class="sub-paragraph">Chà là khô nguyên cành đang trở thành 1 trong những "siêu thực phẩm" được
+                        yêu thích nhất hiện nay nhờ vị ngọt...</p>
+                    <a href="#" class="more">Xem thêm</a>
                 </div>
 
-                <div class="order-info">
-                    <h2>Thông tin đơn hàng</h2>
-                    <div class="order-total">
-                        <span>Tổng tiền:</span>
-                        <strong>219,000₫</strong>
+                <div class="news-item">
+                    <div class="news-img">
+                        <img src="image/news/mut-tet.jpg" alt="10 loại mứt hạt, bánh tết">
                     </div>
-                    <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
-                        Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
+                    <a href="#" class="title">
+                        <h3>10 LOẠI MỨT HẠT, BÁNH TẾT KHÔNG THỂ THIẾU TRONG NGÀY XUÂN</h3>
+                    </a>
+                    <p class="news-date">19-12-2024 / NGƯỜI VIẾT: ADMIN</p>
+                    <p class="sub-paragraph">Mứt hạt bánh tết là một thức quà đã quá quen thuộc gắn liền với nét văn hóa
+                        ngày xuân Việt Nam. Không chỉ là...</p>
+                    <a href="#" class="more">Xem thêm</a>
+                </div>
 
-                    <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">THANH TOÁN</button>
-
-                    <div class="continue">
-                        <a href="#">Tiếp tục mua hàng</a>
+                <div class="news-item">
+                    <div class="news-img">
+                        <img src="image/news/banh-hat-dinh-duong.jpg" alt="Banh hạt dinh dưỡng">
                     </div>
+                    <a href="#" class="title">
+                        <h3>BÁNH HẠT DINH DƯỠNG, MÓN ĂN VẶT LÀNH MẠNH CHO NGƯỜI BẬN RỘN</h3>
+                    </a>
+                    <p class="news-date">28-11-2024 / NGƯỜI VIẾT: ADMIN</p>
+                    <p class="sub-paragraph">Bánh hạt dinh dưỡng Mộc An từ lâu đã trở thành món ăn vặt "chân ái" của
+                        những người theo đuổi lối sống lành mạnh....</p>
+                    <a href="#" class="more">Xem thêm</a>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-img">
+                        <img src="image/news/tra-gao-lut-dau-den.png" alt="Trà gạo lứt đậu đen">
+                    </div>
+                    <a href="#" class="title">
+                        <h3>DÙNG TRÀ GẠO LỨT ĐẬU ĐEN THẾ NÀO ĐỂ VỪA GIẢM CÂN VỪA LỢI SỮA</h3>
+                    </a>
+                    <p class="news-date">01-11-2024 / NGƯỜI VIẾT: ADMIN</p>
+                    <p class="sub-paragraph">Trà gạo lứt đậu đen từ xưa đến nay được xem như là một loại dược liệu bổ
+                        dưỡng trong quan điểm của y học...</p>
+                    <a href="#" class="more">Xem thêm</a>
                 </div>
             </div>
+            <div class="pagination">
+                <a href="TinTuc1.html" class="page prev">«</a>
+                <a href="TinTuc1.html" class="page">1</a>
+                <a href="TinTuc2.html" class="page active">2</a>
+            </div>
+
         </div>
 
+        <!-- Cột phải: Bài viết mới nhất -->
+        <aside class="recent-posts">
+            <h2>BÀI VIẾT MỚI NHẤT</h2>
 
-        <!------------------------------------------------------------------------------>
+            <ul class="post-list">
+                <li>
+                    <span class="post-index">1</span>
+                    <div>
+                        <span class="post-category">TIN TỨC</span>
+                        <p class="post-title">+5 loại siêu hạt dinh dưỡng cần thiết cho mẹ bầu</p>
+                    </div>
+                </li>
 
-    </main>
+                <li>
+                    <span class="post-index">2</span>
+                    <div>
+                        <span class="post-category">TIN TỨC</span>
+                        <p class="post-title">Ngũ cốc cao cấp có thực sự hỗ trợ người ốm phục hồi nhanh?</p>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="post-index">3</span>
+                    <div>
+                        <span class="post-category">TIN TỨC</span>
+                        <p class="post-title">Táo đỏ Tân Cương chất lượng, giá tốt tại Huế</p>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="post-index">4</span>
+                    <div>
+                        <span class="post-category">TIN TỨC</span>
+                        <p class="post-title">Xoài sấy dẻo ngon, giá tốt tại Huế</p>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="post-index">5 </span>
+                    <div>
+                        <span class="post-category">TIN TỨC</span>
+                        <p class="post-title">Chà là khô nguyên cành, Siêu thực phẩm tốt cho sức khỏe</p>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="post-index">6</span>
+                    <div>
+                        <span class="post-category">TIN TỨC</span>
+                        <p class="post-title">10 loại mứt hạt bánh tết không thể thiếu trong ngày xuân</p>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+    </section>
 
     <!------------------------------------------------------------------------------>
     <!--Footer-->
@@ -547,7 +634,7 @@
                             <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                                 <div class="logo-footer">
 
-                                    <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                         <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                             alt="Ngũ cốc Ngon">
                                     </a>
@@ -558,10 +645,11 @@
                                     Email: ngucocNgon@gmail.com<br>
                                     Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                                 <div class="logo-footer-bct">
-
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                        height="70px" width="150px" alt="Bộ Công Thương">
-
+                                    <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
+                                        rel="noreferrer" aria-label="logo bct">
+                                        <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                            height="70px" width="150px" alt="Bộ Công Thương">
+                                    </a>
                                 </div>
                             </div>
 
@@ -572,7 +660,7 @@
                                     <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
                                     <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
                                             trả</a></li>
-                                    <li><a href="/pages/chinh-sach-bao-mat" title="Chính sách bảo mật">Chính sách bảo
+                                    <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                             mật</a></li>
                                     <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
                                             vụ</a></li>
@@ -588,10 +676,10 @@
                                 <h3 class="footer-title">KẾT NỐI NHANH</h3>
                                 <ul>
                                     <li><a href="/" title="Trang chủ">Trang chủ</a></li>
-                                    <li><a href="/pages/ngon" title="Ngon">Ngon</a></li>
-                                    <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
+                                    <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                    <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                     <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
-                                    <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
                                     <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
                                     <li><a href="/pages/lien-he" title="Liên hệ">Liên hệ</a></li>
                                 </ul>
@@ -644,25 +732,6 @@
             </div>
         </footer>
     </div>
-
-    <!-- Tăng giảm số lượng js -->
-    <script>
-        let detailProductQty = 1;
-        const detailProductQtyDisplay = document.getElementById('detail-product-qty');
-        const detailProductPlus = document.getElementById('detail-product-plus');
-        const detailProductMinus = document.getElementById('detail-product-minus');
-
-        detailProductPlus.addEventListener('click', () => {
-            detailProductQty++;
-            detailProductQtyDisplay.textContent = detailProductQty;
-        });
-
-        detailProductMinus.addEventListener('click', () => {
-            if (detailProductQty > 1) detailProductQty--;
-            detailProductQtyDisplay.textContent = detailProductQty;
-        });
-
-    </script>
 
     <!--back to top (bootstrap) js-->
     <script>
