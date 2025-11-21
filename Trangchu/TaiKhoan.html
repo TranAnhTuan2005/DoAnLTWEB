@@ -154,54 +154,13 @@
 
     .address-label {
         font-weight: 700;
-        font-size: 15px;
+        font-size: 16px;
         color: #2c1c12;
         margin-bottom: 6px;
         display: block;
     }
 
-    /* Hàng chứa input + nút lưu */
-    .address-row {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
 
-    /* Ô nhập địa chỉ */
-    .address-input {
-        flex: 1;
-        padding: 12px 14px;
-        font-size: 15px;
-        border: 1px solid #e1e1e1;
-        border-radius: 6px;
-        background: #fff;
-        transition: border-color .15s ease, box-shadow .15s ease;
-    }
-
-    .address-input:focus {
-        outline: none;
-        border-color: #a46b2c;
-        box-shadow: 0 0 0 3px rgba(164, 107, 44, 0.15);
-    }
-
-    /* Nút Lưu */
-    .address-save-btn {
-        padding: 12px 18px;
-        background: #2c1c12;
-        color: #fff;
-        font-size: 14px;
-        font-weight: 600;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: opacity .15s ease, transform .15s ease;
-    }
-
-    .address-save-btn:hover {
-        opacity: .95;
-        transform: translateY(-1px);
-    }
 
 </style>
 
@@ -348,6 +307,7 @@
                         <div class="AccountList">
                             <ul class="list-unstyled">
                                 <li class="current"><a href="TaiKhoan.html">Thông tin tài khoản</a></li>
+                                <li><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
                                 <li class="last"><a href="TrangChu.html">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -373,14 +333,12 @@
                     <p><span>SĐT: </span></p>
 
                     <div class="account-address-box">
-                        <label for="account-address" class="address-label">Địa chỉ giao hàng</label>
+                        <label class="address-label">Địa chỉ giao hàng</label>
 
-                        <div class="address-row">
-                            <input type="text" id="account-address" class="address-input"
-                                   placeholder="Nhập địa chỉ: số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố">
-
-                            <button class="address-save-btn">Lưu</button>
-                        </div>
+                        <!-- Hiển thị link xem địa chỉ -->
+                        <p class="address-view">
+                            <a href="DanhSachDiaChi.html" class="address-view-link">Xem địa chỉ</a>
+                        </p>
                     </div>
 
                 </div>
