@@ -87,6 +87,20 @@
                             fill="#333" />
                     </svg>
                 </a>
+
+                <!-- Dropdown sau khi đăng nhập (demo) -->
+                <div id="accountMenu" class="account-menu" hidden>
+                    <div class="account-menu_inner">
+                        <p class="account-menu_hello">Xin chào, <strong>Nguyễn Văn C</strong></p>
+                        <hr>
+                        <a class="account-menu_link" href="TaiKhoan.html">Thông tin tài khoản</a>
+                        <a class="account-menu_link" href="DanhSachDiaChi.html">Danh sách địa chỉ</a>
+                        <a class="account-menu_link" href="TrangChu.html">Đăng xuất</a>
+                    </div>
+                    <span class="account-menu_arrow"></span>
+                </div>
+
+
                 <a href="#" class="cart-btn" aria-label="Giỏ hàng">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -876,6 +890,77 @@
             }
         });
     </script>
+
+
+
+    <!--DEMO cho TK khi đăng nhập UI như nào---------------------------------------->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal       = document.getElementById('account-modal');
+            const accountMenu = document.getElementById('accountMenu');
+            const accountBtn  = document.querySelector('.account-btn');
+
+            let isLoggedInDemo = false; // flag demo: sau khi bấm Đăng nhập sẽ thành true
+
+            const modalContent = modal.querySelector('.modal-content');
+            const isModalOpen   = () => modal.style.display === 'block';
+            const openModal     = () => (modal.style.display = 'block');
+            const closeModal    = () => (modal.style.display = 'none');
+
+            // Bấm icon: nếu modal đang mở thì đóng; nếu chưa đăng nhập thì mở; đã "login demo" thì hiện dropdown
+            accountBtn.addEventListener('click', function(e){
+                e.preventDefault();
+
+                if (isModalOpen()) { // đang mở => đóng
+                    closeModal();
+                    return;
+                }
+                if (!isLoggedInDemo) {
+                    if (accountMenu) accountMenu.hidden = true;
+                    openModal();
+                } else {
+                    if (accountMenu) accountMenu.hidden = !accountMenu.hidden;
+                }
+            });
+
+            // Đóng khi bấm nút X
+            const closeBtn = modal.querySelector('.close-btn');
+            closeBtn.addEventListener('click', closeModal);
+
+            //  Đóng khi click ra ngoài vùng
+            document.addEventListener('click', function(e){
+                if (!isModalOpen()) return;
+                const clickedInside = modalContent.contains(e.target) || accountBtn.contains(e.target);
+                if (!clickedInside) closeModal();
+            });
+
+
+
+            // SUBMIT form đăng nhập (demo): đóng modal + bật dropdown + set trạng thái "đã đăng nhập"
+            const loginForm = modal.querySelector('form');
+            loginForm.addEventListener('submit', function(e){
+                e.preventDefault();
+                modal.style.display = 'none';
+                if (accountMenu) accountMenu.hidden = false;
+                isLoggedInDemo = true;
+            });
+
+            // CLICK RA NGOÀI để đóng dropdown
+            document.addEventListener('click', function(e){
+                if (!accountMenu || accountMenu.hidden) return;
+                const clickInside = accountMenu.contains(e.target) || accountBtn.contains(e.target);
+                if (!clickInside) accountMenu.hidden = true;
+            });
+
+            // ESC để đóng dropdown
+            document.addEventListener('keydown', function(e){
+                if (e.key === 'Escape' && accountMenu && !accountMenu.hidden) {
+                    accountMenu.hidden = true;
+                }
+            });
+        });
+    </script>
+
 
 </body>
 </html>
