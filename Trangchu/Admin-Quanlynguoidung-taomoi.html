@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Quản lý người dùng</title>
+    <meta charset="UTF-8">
+    <title>Admin-Tạo mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 </head>
@@ -161,67 +160,6 @@
 
 
 
-    /* === USER TABLE ================================== */
-    .user-section {
-        padding: 20px;
-    }
-
-    .user-card {
-        background: #fff;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .user-card h3 {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-
-    .btn-create {
-        background-color: #03a9f4;
-        border: none;
-        color: white;
-        padding: 8px 14px;
-        border-radius: 6px;
-        font-size: 15px;
-        cursor: pointer;
-        float: right;
-        margin-top: -38px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th, td {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        text-align: left;
-    }
-
-    th {
-        background: #f1f1f1;
-    }
-
-    .action-btn {
-        border: none;
-        padding: 8px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        color: white;
-        margin-right: 6px;
-    }
-
-
-    .delete-btn {
-        background-color: #e63946;
-    }
-
-
-
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
     .account {
         margin-left: auto;
@@ -365,7 +303,126 @@
     }
 
 
+    /* Wrapper layout */
+    .create-wrap {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        margin: 10px 0 40px;
+    }
 
+    .create-wrap .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .create-left {
+        flex: 0 0 25%;
+        max-width: 25%;
+        box-sizing: border-box;
+        padding-right: 8px;
+    }
+
+    .create-left .card {
+        padding: 18px;
+        background: #fff;
+        border: 1px solid #e7ecf2;
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(11, 20, 35, 0.03);
+        text-align: center;
+    }
+
+    .create-left .avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid #eef3f6;
+        box-shadow: 0 6px 18px rgba(11, 20, 35, 0.06);
+        display: block;
+        margin: 6px auto 12px;
+    }
+
+    .create-left .btn-upload {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: 1px solid #d1e0ea;
+        background: #fff;
+        color: #333;
+        display: inline-block;
+    }
+
+    .create-right {
+        flex: 1 1 0%;
+        max-width: 75%;
+        box-sizing: border-box;
+        padding-left: 8px;
+    }
+
+    .create-right .card {
+        padding: 18px;
+        background: #fff;
+        border: 1px solid #e7ecf2;
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(11, 20, 35, 0.03);
+    }
+
+    .create-right h5 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    /*Form Thông tin*/
+    .create-right .form-control,
+    .create-right input[type="text"],
+    .create-right input[type="email"],
+    .create-right input[type="password"],
+    .create-right input[type="tel"],
+    .create-right textarea,
+    .create-right select {
+        display: block;
+        width: 100%;
+        padding: 8px 12px;
+        height: 40px;
+        border: 1px solid #d6e0ea !important;
+        border-radius: 6px !important;
+        box-sizing: border-box;
+        background: #fff;
+        font-size: 14px;
+        color: #111;
+        margin-top: 10px;
+    }
+
+    /* Radio  */
+    .create-right .form-check {
+        margin-right: 14px;
+    }
+
+    /* Button */
+    .btn-save {
+        background: #0aa0e6;
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-weight: 600;
+        margin-right: 8px;
+        margin-top: 15px;
+        margin-left: 10px;
+
+    }
+
+    /*ghi chú nhỏ (kích thước đề xuất)*/
+    .create-left .small-muted {
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 8px;
+    }
 
 
 </style>
@@ -383,7 +440,7 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home" ></i><a href="Admin-HomePage.html" >Bảng điều khiển</a></li>
+            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -393,17 +450,18 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="#">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="#">Sản phẩm</a></li>
+                    <li><i class="fa-solid fa-list"></i> <a href="">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li><i  class="fa-solid fa-file-lines"></i> <a href="#" >Bài viết</a></li>
+            <li><i class="fa-solid fa-file-lines"></i> <a href="">Bài viết</a></li>
             <hr>
 
-            <li><i  class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html" class="active">Người dùng</a></li>
+            <li><i class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html" class="active">Người dùng</a></li>
             <hr>
+
         </ul>
     </aside>
 
@@ -421,6 +479,7 @@
                     <img class="account-avatar-sm" src="image/admin/images.jpg" alt="avatar">
                     <span class="account-name">Admin</span>
                     <img class="fa fa-caret-down" style="margin-left:8px; color: rgba(255,255,255,0.9);"><img>
+
                 </button>
             </div>
         </header>
@@ -443,60 +502,92 @@
 
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Người dùng</span>
+            <span>Người dùng</span> /
+            <span>Tạo mới</span>
+
         </div>
 
-        <section class="user-section">
-            <div class="user-card">
-                <h3>Danh sách người dùng</h3>
-                <a href="Admin-Quanlynguoidung-taomoi.html">
-                <button class="btn-create" ><i class="fa fa-plus" ></i> Tạo mới</button>
-                </a>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Họ tên</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Trạng thái</th>
-                        <th>Hoạt động</th>
-                    </tr>
-                    </thead>
 
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>adm</td>
-                        <td>admin@gmail.com</td>
-                        <td>113</td>
-                        <td>Đã khóa</td>
-                        <td>
-                            <button class="action-btn delete-btn"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
+        <!--Form nhập dữ liệu-->
+        <div class="create-wrap container-fluid">
+            <div class="row g-3">
 
-                    <tr>
-                        <td>2</td>
-                        <td>adminT</td>
-                        <td>adminTuan@gmail.com</td>
-                        <td>0357250466</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <button class="action-btn delete-btn"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
+                <div class="col-md-3 create-left">
+                    <div class="card p-3">
+                        <div class="text-center">
+                            <img src="" alt="avatar" class="avatar"/>
+                            <label class="btn-upload btn btn-outline-secondary mt-2 d-inline-flex align-items-center justify-content-center">
+                                <i class="fa fa-upload me-2"></i> Chọn tệp
+                                <input type="file" accept="image/*" style="display:none">
+                            </label>
+                            <div class="small-muted mt-2">Kích thước đề xuất: 300×300px</div>
+                        </div>
+                    </div>
+                </div>
 
-                    </tbody>
-                </table>
+                <div class="col-md-9 create-right">
+                    <div class="card p-4">
+                        <h5>Thông tin người dùng</h5>
+
+                        <form class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Họ và tên <span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="text" placeholder="Họ và tên">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Email <span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="email" placeholder="Email">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Mật khẩu <span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="password" placeholder="Mật khẩu">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Phone <span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="tel" placeholder="Phone">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label d-block">Trạng thái</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" id="statusActive"
+                                           checked>
+                                    <label class="form-check-label" for="statusActive">Hoạt động</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" id="statusLocked">
+                                    <label class="form-check-label" for="statusLocked">Đã khóa</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-2">
+                                <button type="button" class="btn-save btn"><i class="fa fa-floppy-disk me-2"></i> Lưu dữ
+                                    liệu
+                                </button>
+                            </div>
+
+
+                        </form>
+
+
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+
 
     </main>
+
+
 </div>
 
+</body>
 
-<!--hiển thị thanh xổ xuống mục sản phẩm-->
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const submenuToggles = document.querySelectorAll(".submenu-toggle");
@@ -510,7 +601,7 @@
     });
 </script>
 
-<!--hiển thị box tk đăng nhập-->
+
 <script>
     (function () {
         const btn = document.getElementById('accountBtn');
@@ -545,8 +636,4 @@
         });
     })();
 </script>
-
-
-
-</body>
 </html>
