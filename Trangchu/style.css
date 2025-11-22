@@ -381,6 +381,63 @@ body {
 
 }
 
+/*---------------------------------------------------------------------------*/
+
+/* buộc container icon làm mốc định vị */
+.user-actions { position: relative; }
+
+/* khung dropdown */
+.account-menu{
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 1000;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+/* mũi tên tam giác */
+.account-menu__arrow{
+    position: absolute;
+    top: -8px; right: 22px;
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+    filter: drop-shadow(0 -1px 0 #eee);
+}
+
+/* phần trong */
+.account-menu__inner{ padding: 12px 14px; }
+.account-menu__hello{ margin: 0 0 6px; color:#333; }
+
+.account-menu__link{
+    display:block;
+    padding: 10px 6px;
+    color:#333;
+    text-decoration:none;
+    border-radius:6px;
+}
+.account-menu__link:hover{ background:#f7f7f7; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*---------------------------------------------------------------------------*/
 /*TRÌNH CHIẾU ẢNH*/

@@ -12,7 +12,6 @@
 
 <style>
 
-    /* ====== Styles for Account page ====== */
 
 
     /* Khối bao của trang phần body */
@@ -34,15 +33,15 @@
     }
 
     /*Thanh gạch nhỏ dưới tiêu đề */
-    .layout-infor-account::after{
-        content:"";
-        display:block;
-        width:60px;
-        height:4px;
-        background:#2f2f2f;
+    .layout-infor-account::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: #2f2f2f;
         margin: 10px auto 0;
-        border-radius:2px;
-        opacity:0.9;
+        border-radius: 2px;
+        opacity: 0.9;
     }
 
     /* Sidebar */
@@ -52,6 +51,7 @@
         padding-left: 60px;
         box-sizing: border-box;
     }
+
     .AccountSidebar {
         position: sticky;
         top: 120px; /* khoảng cách từ mép trên*/
@@ -80,7 +80,8 @@
         color: #666;
         font-size: 15px;
     }
-    .AccountList li::before{
+
+    .AccountList li::before {
         content: "◦";
         color: #c9b29b;
         position: absolute;
@@ -88,10 +89,12 @@
         top: 0;
         font-size: 14px;
     }
+
     .AccountList li a {
         color: #6d6d6d;
         text-decoration: none; /*không hiện gạch chân*/
     }
+
     /*mục đang chọn*/
     .AccountList li.current a {
         color: #2c1c12;
@@ -109,7 +112,7 @@
     .title-detail {
         font-size: 16px;
         font-weight: 700;
-        border-bottom: 1px solid ;
+        border-bottom: 1px solid;
         padding-bottom: 14px;
         margin-bottom: 18px;
     }
@@ -130,12 +133,11 @@
     }
 
 
-
-
     /* box thông báo / đơn hàng*/
     .customer-table-wrap {
         margin-top: 22px;
     }
+
     /*nội dung bên trong box*/
     .customer-table-bg {
         border: 6px solid #f4f4f4; /* tạo khung sáng */
@@ -161,11 +163,9 @@
     }
 
 
-
 </style>
 
 <body>
-
 
 
 <!-- Thanh thông tin trên cùng -->
@@ -186,7 +186,7 @@
         <!-- Logo -->
         <div class="logo">
             <a href="TrangChu.html">
-                <img src="image/Header/logongucocNgon.png"  alt="Ngũ cốc Ngon"><img/>
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
@@ -195,7 +195,7 @@
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
                 <i class="icon_timkiem">
-                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
                 </i>
             </button>
         </div>
@@ -225,14 +225,13 @@
         </nav>
 
 
-
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
             <a href="#" class="account-btn" aria-label="Tài khoản">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                             d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
-                            fill="#333" />
+                            fill="#333"/>
                 </svg>
             </a>
             <a href="#" class="cart-btn" aria-label="Giỏ hàng">
@@ -359,8 +358,6 @@
 </main>
 
 
-
-
 <!--Footer-->
 
 <div class="main-footer-new">
@@ -409,7 +406,6 @@
 
         </div>
     </section>
-
 
 
     <!-- Footer chính -->
@@ -526,7 +522,7 @@
 <script>
     const backToTopBtn = document.getElementById("btn-back-to-top");
 
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
         if (window.scrollY > 300) {
             backToTopBtn.style.display = "block";
         } else {
