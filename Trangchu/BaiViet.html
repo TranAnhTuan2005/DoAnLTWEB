@@ -58,101 +58,115 @@
         }
     }
 
-    /* Bố cục 2 cột */
-    .news-wrapper {
-        display: flex;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 40px auto;
+    body {
         font-family: 'Quicksand', sans-serif;
-        padding: 0 20px;
-        column-gap: 40px;
+        color: #333;
+        background-color: #fff;
     }
 
-    /* ========================== */
-    /* CỘT TRÁI — TIN TỨC */
-    /* ========================== */
-
-    .news-section {
-        width: 70%;
+    article.post {
+        margin-top: 30px;
+        display: flex;
+        gap: 30px;
+        max-width: 1400px;
+        /* tăng chiều rộng tổng */
+        margin: 0 auto;
+        align-items: flex-start;
     }
 
-    .news-section h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
+    /* Cột trái: Bài viết chính */
+    article.post .news {
+        width: 72%;
+        /* rộng hơn */
+    }
+
+    article.post h1 {
+        font-size: 32px;
         font-weight: bold;
-        text-align: left;
+        margin-bottom: 10px;
+        text-align: center;
+        color: #222;
     }
 
-    .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
+    article.post .author {
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
-    .news-item {
-        background: #fff;
+    article.post section.post-image {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .cate-infor-post .post-image {
+        display: inline-block;
+        justify-content: center;
+    }
+
+    article.post section.post-image img {
+        text-align: center;
+        max-width: 100%;
+        height: auto;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        padding-bottom: 10px;
-        transition: 0.2s;
     }
 
-    .news-item:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    article.post section.post-image .description {
+        max-width: 600px;
+        text-align: center;
+        color: #adadad;
+        font-size: 14px;
+        margin-top: 5px;
     }
 
-    .news-img img {
-        width: 100%;
-        border-radius: 8px 8px 0 0;
+    article.post section.cate-infor-post {
+        margin-bottom: 30px;
+    }
+
+    article.post section.cate-infor-post h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        display: inline-block;
+        padding-bottom: 3px;
+        font-weight: bold;
+    }
+
+    article.post section.cate-infor-post p {
+        margin-bottom: 10px;
+    }
+
+    article.post section.cate-infor-post img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 10px 0;
         display: block;
     }
 
-    .news-item .title h3 {
-        font-size: 17px;
-        padding: 10px;
-        color: #000;
-    }
+    /* responsive cho mobile */
+    @media (max-width: 600px) {
+        article.post h1 {
+            font-size: 24px;
+        }
 
-    .news-item .title {
-        text-decoration: none;
-    }
-
-    .news-item .title:hover h3 {
-        color: #bb7412;
-    }
-
-    .news-date {
-        margin-left: 10px;
-        font-size: 14px;
-        color: #777;
-    }
-
-    .sub-paragraph,
-    .more {
-        margin-left: 10px;
-        font-size: 14px;
-        color: #777;
-    }
-
-    .more:hover {
-        color: #bb7412;
+        article.post section.cate-infor-post h2 {
+            font-size: 18px;
+        }
     }
 
     /* ========================== */
     /* CỘT PHẢI — BÀI VIẾT MỚI NHẤT */
     /* ========================== */
 
+    /* Cột phải: Recent posts */
     .recent-posts {
-        width: 28%;
+        width: 20%;
         background: #fff;
         padding: 25px;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-        height: fit-content;
     }
-
 
     .recent-posts h2 {
         text-align: center;
@@ -194,120 +208,6 @@
 
     .post-title:hover {
         color: #bb7412;
-    }
-
-    /* PAGINATION */
-    .pagination {
-        display: flex;
-        gap: 10px;
-        margin-top: 30px;
-    }
-
-    .pagination .page {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 38px;
-        height: 38px;
-        border: 1px solid #ddd;
-        color: #333;
-        text-decoration: none;
-        font-size: 16px;
-        border-radius: 3px;
-        transition: all 0.2s ease;
-    }
-
-    .pagination .page:hover {
-        background: #000;
-        color: #fff;
-    }
-
-    .pagination .active {
-        background: #000;
-        color: #fff !important;
-        border-color: #000;
-    }
-
-    .pagination .next {
-        font-weight: bold;
-    }
-
-
-    /* ========================== */
-    /* RESPONSIVE */
-    /* ========================== */
-
-    @media (max-width: 900px) {
-        .news-wrapper {
-            flex-direction: column;
-        }
-
-        .news-section,
-        .recent-posts {
-            width: 100%;
-        }
-
-        .recent-posts {
-            margin-top: 30px;
-        }
-    }
-
-    /* ===== DANH MỤC SIDEBAR ===== */
-    .category-sidebar {
-        border: 1px solid #f0e7df;
-        background: linear-gradient(180deg, #fff, #fff);
-    }
-
-    .category-sidebar h4 {
-        color: #6d4c41;
-        font-weight: 700;
-        font-size: 18px;
-    }
-
-    .category-list .category-item {
-        padding: 10px 8px;
-        border-radius: 6px;
-        transition: background 0.18s ease, transform 0.12s ease;
-        margin-bottom: 6px;
-    }
-
-    .category-list .category-item a {
-        display: block;
-        color: #4b4b4b;
-        text-decoration: none;
-        padding: 4px 6px;
-    }
-
-    .category-list .category-item:hover {
-        background-color: #faf0e5;
-        transform: translateX(4px);
-    }
-
-    .category-list .category-item a .badge {
-        font-size: 0.8rem;
-        opacity: 0.9;
-    }
-
-    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
-    .category-list .category-item.active,
-    .category-list .category-item a.active {
-        background-color: #a46b2c;
-        color: #fff;
-    }
-
-    .category-list .category-item.active a,
-    .category-list .category-item a.active {
-        color: #fff;
-    }
-
-    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
-    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
-    @media (max-width: 767.98px) {
-
-        /* mặc định ẩn category list, bật bằng nút toggle */
-        #categoryList.collapsed {
-            display: none;
-        }
     }
 </style>
 
@@ -447,69 +347,188 @@
     <!------------------------------------------------------------------------------------>
     <!--Body-->
 
-    <section class="news-wrapper">
-        <!-- Cột trái: Tin tức -->
-        <div class="news-section">
-            <h2>Tin Tức</h2>
+    <article class="post">
+        <div class="news">
+            <h1>5 LOẠI NGŨ CỐC TỐT CHO SỨC KHỎE MẸ BẦU</h1>
+            <p class="author">Người viết: Admin | <time datetime="2024-11-24T16:05">16:05 27-10-2025</time></p>
 
-            <div class="news-grid">
+            <section class="post-image">
+                <img src="image/post/tin-tuc-cacloaihat.png" alt="Các loại hạt dinh dưỡng tốt cho sức khỏe">
+            </section>
+            <section class="loi-mo-dau">
+                <p>Trong suốt thời kỳ mang thai, nhiều mẹ lo lắng nên bổ sung những thực phẩm gì vào bữa ăn sao cho đủ
+                    chất
+                    mà bé vẫn hấp thu dễ dàng. Giữa vô vàn lựa chọn, các loại hạt ngũ cốc dinh dưỡng đang được xem là
+                    một
+                    giải pháp thông minh cho các mẹ bầu hiện đại. Không chỉ vượt trội về các chỉ số dưỡng chất, các loại
+                    hạt
+                    ngũ cốc này còn cung cấp lượng chất xơ tự nhiên cần thiết giúp mẹ nhanh chóng lấy lại vóc dáng.</p>
+                <p>Nếu mẹ vẫn chưa biết nên bắt đầu từ đâu, bài viết này Mộc An sẽ bật mí 5 loại siêu hạt dinh dưỡng
+                    không
+                    thể thiếu trong thực đơn của mẹ bầu, giúp mẹ khỏe mạnh suốt thai kỳ và con yêu phát triển toàn diện
+                    ngay
+                    từ trong bụng mẹ.</p>
+            </section>
 
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/tin-tuc-cacloaihat.png" alt="5 loại hạt dinh dưỡng">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>+5 LOẠI HẠT DINH DƯỠNG CẦN THIẾT CHO MẸ BẦU</h3>
-                    </a>
-                    <p class="news-date">27-10-2025 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Bài viết này chúng tôi sẽ bật mí 5 loại hạt siêu dinh dưỡng...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
+            <section class="cate-infor-post">
+                <h2>1. HẠT ÓC CHÓ</h2>
+                <p>Nếu đưa ra lựa chọn nên dùng gì để giúp bé phát triển trí não từ trong bụng mẹ, Mộc an sẽ khuyên bạn
+                    sử
+                    dụng hạt hạt óc chó để kết hợp vào bữa ăn hằng ngày. Không phải ngẫu nhiên mà loại hạt nhỏ bé này
+                    lại
+                    được gọi là “thực phẩm vàng cho não bộ” — bởi hình dáng của nó đã gợi nhắc đến bộ não người và thành
+                    phần dinh dưỡng bên trong thì quả thật kỳ diệu.</p>
+                <p>Óc chó là một loại ngũ cốc nguyên hạt, giàu chất xơ và các dưỡng chất thiết yếu khác như: <br> <br>
 
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/tin-tuc-ncdd.webp" alt=" Ngũ cốc cao cấp">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>NGŨ CỐC CAO CẤP CÓ THỰC SỰ HỖ TRỢ NGƯỜI ỐM PHỤC HỒI NHANH</h3>
-                    </a>
-                    <p class="news-date">25-01-2025 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Sau một đợt ốm kéo dài, cơ thể cần chế độ dinh dưỡng đặc biệt...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
+                    - <strong>Omega-3 (ALA)</strong> cao gấp 3 lần hạnh nhân, đây là dưỡng chất vô cùng quan trọng cho
+                    sự
+                    phát triển trí não
+                    và hệ thần kinh của thai nhi <br> <br>
 
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/tao-do.jpg" alt="Táo đỏ Tân Cương">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>TÁO ĐỎ TÂN CƯƠNG CHẤT LƯỢNG, GIÁ TỐT TẠI HUẾ</h3>
-                    </a>
-                    <p class="news-date">10-01-2025 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Táo đỏ Tân Cương, đặc sản nổi tiếng của vùng Trung Quốc...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
+                    - <strong>Nhóm vitamin E, B6, folate, sắt, canxi và magie</strong> giúp mẹ bầu duy trì năng lượng,
+                    cải
+                    thiện chất lượng
+                    máu và tăng sức đề kháng tự nhiên <br> <br>
 
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/xoai-say-deo-muoi-ot.png" alt="Xoài xấy dẻo ngon">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>XOÀI SẤY DẺO NGON, GIÁ TỐT TẠI HUẾ</h3>
-                    </a>
-                    <p class="news-date">31-12-2024 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Xoài sấy dẻo là một trong những đặc sản được yêu thích nhất bở̀i hương vị
-                        tự nhiên, dễ dàng bảo quản và giàu dưỡng...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
-            </div>
-            <div class="pagination">
-                <a href="TinTuc1.html" class="page active">1</a>
-                <a href="TinTuc2.html" class="page">2</a>
-                <a href="TinTuc2.html" class="page next">»</a>
-            </div>
+                    - <strong>Chất tryptophan</strong> giúp cơ thể sản sinh serotonin – “hormone hạnh phúc”, hỗ trợ giấc
+                    ngủ
+                    và giữ tinh thần
+                    thư thái suốt thai kỳ.</p>
+
+                <section class="post-image">
+                    <img src="image/post/hat_oc_cho_do.jpg" alt="Các loại hạt dinh dưỡng tốt cho sức khỏe">
+                    <p class="description">(Các loại hạt dinh dưỡng tốt cho sức khỏe)</p>
+                </section>
+            </section>
+
+            <section class="cate-infor-post">
+                <h2>2. HẠT CHIA ÚC NHẬP KHẨU</h2>
+                <p>Ở vị trí thứ 2, Mộc An sẽ khuyên bạn hãy chọn hạt chia.</p>
+                <p>Hạt chia chứa nguồn dinh dưỡng gấp nhiều lần các loại ngũ cốc thông thường, khiến các chuyên gia dinh
+                    dưỡng gọi đây là “thực phẩm của thế kỷ 21”. Hạt chia là siêu hạt ngũ cốc dinh dưỡng phù hợp cho mẹ
+                    bầu ở
+                    thời kỳ mang thai nhờ vào lượng chất xơ, Omega-3 và canxi tự nhiên cực cao, mang đến hàng loạt lợi
+                    ích
+                    cho cả mẹ và thai nhi: <br> <br>
+
+                    - <strong>Giàu Omega-3 thực vật (ALA)</strong> giúp thai nhi phát triển trí não, hệ thần kinh và thị
+                    giác ngay từ những
+                    tháng đầu thai kỳ.<br> <br>
+
+                    - <strong>Hàm lượng chất xơ</strong> cao gấp 2 lần yến mạch hỗ trợ tiêu hóa cho mẹ, giảm táo bón và
+                    giúp
+                    mẹ nhanh chóng
+                    lấy lại vóc dáng<br> <br>
+
+                    - <strong>Bổ sung canxi và magie</strong> tự nhiên giúp xương mẹ chắc khỏe, hỗ trợ hình thành hệ
+                    khung
+                    xương và răng cho
+                    bé.<br> <br>
+
+                    - <strong>Cung cấp năng lượng ổn định</strong> nhờ khả năng hấp thụ nước gấp 10–12 lần trọng lượng,
+                    hạt
+                    chia giúp mẹ bầu
+                    no lâu, kiểm soát đường huyết và giảm cảm giác mệt mỏi.<br> <br>
+
+                    - Giàu chất chống oxy hóa giúp da mẹ sáng mịn, hạn chế rạn da và lão hóa sớm trong thai kỳ.</p>
+                <section class="post-image">
+                    <img src="image/post/hat_chia_uc_nhap_khau.jpg" alt="Các loại hạt dinh dưỡng tốt cho sức khỏe">
+                    <p class="description">(Hạt chia nhập khẩu Úc)</p>
+                </section>
+            </section>
+
+            <section class="cate-infor-post">
+                <h2>3. HẠT ĐẦU GÀ</h2>
+                <p>Đậu gà là một loại siêu hạt dinh dưỡng dành cho mẹ bầu vừa dễ ăn, dễ nấu, lại bổ sung năng lượng tự
+                    nhiên
+                    vừa là thực phẩm không thể thiếu trong thực đơn mỗi ngày.</p>
+                <p>Đậu gà là loại ngũ cốc họ đậu, chứa dồi dào các dưỡng chất thiết yếu như: <br> <br>
+
+                    - Protein và sắt tự nhiên giúp mẹ hình thành và tái tạo tế bào máu, hỗ trợ cung cấp oxy cho thai nhi
+                    phát triển ổn định, đồng thời giảm nguy cơ thiếu máu thai kỳ. <br> <br>
+
+                    - Axit folic (vitamin B9) đóng vai trò then chốt trong việc hình thành ống thần kinh và não bộ của
+                    bé
+                    ngay từ những tuần đầu thai kỳ. <br> <br>
+
+                    - Chất xơ hòa tan giúp mẹ bầu tiêu hóa tốt hơn, giảm táo bón và ổn định đường huyết — một “vấn đề
+                    muôn
+                    thuở” trong thai kỳ. <br> <br>
+
+                    - Canxi và magie hỗ trợ xương khớp mẹ chắc khỏe, giúp thai nhi phát triển khung xương vững vàng từ
+                    trong
+                    bụng mẹ.</p>
+
+                <p>Không chỉ bổ dưỡng, hạt đậu gà còn rất dễ chế biến: mẹ có thể nấu cháo đậu gà, trộn salad, nghiền
+                    nhuyễn
+                    ăn kèm sữa chua hoặc kết hợp cùng ngũ cốc Mộc An để tạo nên bữa sáng nhẹ nhàng mà vẫn đủ 4 nhóm
+                    dưỡng
+                    chất cần thiết cho cả mẹ và bé.</p>
+            </section>
+
+            <section class="cate-infor-post">
+                <h2>4. HẠT SEN</h2>
+                <p>Để có giấc ngủ ngon và nuôi con khỏe mạnh từ trong bụng, chắc chắn hạt sen sẽ là lựa chọn đặc biệt
+                    cần
+                    thiết cho mẹ trong thời kỳ mang thai với nhiều công dụng như: <br> <br>
+
+                    - Giúp mẹ ngủ ngon và an thần tự nhiên: Nhờ chứa hoạt chất alkaloid và isoquinoline, hạt sen có tác
+                    dụng
+                    giảm căng thẳng, ổn định thần kinh và cải thiện chất lượng giấc ngủ, đặc biệt hữu ích cho mẹ bầu
+                    thường
+                    bị mất ngủ hoặc mệt mỏi cuối thai kỳ. <br> <br>
+
+                    - Tăng cường hệ miễn dịch và hỗ trợ tiêu hóa: Lượng chất xơ cao cùng vitamin B và magie giúp ngăn
+                    ngừa
+                    táo bón, cân bằng đường huyết, đồng thời tăng sức đề kháng tự nhiên cho cả mẹ và bé. <br> <br>
+
+                    - Hỗ trợ phát triển não bộ và tim mạch thai nhi: Hạt sen chứa axit folic và phốt pho, hai dưỡng chất
+                    quan trọng giúp hình thành hệ thần kinh và tim mạch khỏe mạnh cho bé ngay từ trong bụng mẹ. <br>
+                    <br>
+
+                    - Là món ăn nhẹ lành mạnh, dễ kết hợp: Mẹ có thể nấu cháo, hầm canh hoặc trộn cùng ngũ cốc Mộc An để
+                    tạo
+                    nên bữa phụ vừa thơm ngon, vừa dễ tiêu hoá, vừa mang lại cảm giác thư thái.
+                </p>
+                <section class="post-image">
+                    <img src="image/post/hat_sen.jpg" alt="Các loại hạt dinh dưỡng tốt cho sức khỏe">
+                    <p class="description">(Hạt sen hỗ trợ ngủ ngon và nuôi con khỏe mạnh từ trong bụng mẹ)</p>
+                </section>
+            </section>
+
+            <section class="cate-infor-post">
+                <h2>5. HẠT YẾN MẠCH</h2>
+                <p>Nếu phải chọn một loại hạt vừa bổ dưỡng, dễ ăn và lành tính nhất trong thai kỳ, Mộc An chắc chắn sẽ
+                    khuyên mẹ dùng hạt yến mạch mỗi ngày. Loại “siêu hạt” này không chỉ là bữa sáng lành mạnh quen thuộc
+                    của
+                    thế giới mà còn là người bạn đồng hành tuyệt vời của mẹ bầu trong suốt chín tháng mười ngày.</p>
+
+                <p>Không phải ngẫu nhiên mà yến mạch được gọi là “năng lượng vàng của mẹ bầu” — bởi chỉ một chén nhỏ
+                    cũng đủ
+                    cung cấp hàng loạt dưỡng chất giúp mẹ khỏe, con phát triển trọn vẹn từ trong bụng mẹ.</p>
+
+                <p>Yến mạch là một ngũ cốc nguyên hạt giàu chất xơ hòa tan và protein thực vật, chứa nhiều vitamin và
+                    khoáng
+                    chất thiết yếu như: <br> <br>
+
+                    Beta-glucan – loại chất xơ đặc biệt giúp ổn định đường huyết, giảm cholesterol xấu và ngăn ngừa tiểu
+                    đường thai kỳ. <br> <br>
+
+                    Vitamin nhóm B, sắt và magie – hỗ trợ tạo máu, giảm mệt mỏi, ngăn thiếu máu và chuột rút – những vấn
+                    đề
+                    mà mẹ bầu thường gặp. <br> <br>
+
+                    Chất chống oxy hóa avenanthramide – chỉ có trong yến mạch, giúp bảo vệ tim mạch, giảm viêm và tăng
+                    cường
+                    miễn dịch tự nhiên cho mẹ.</p>
+                <section class="post-image">
+                    <img src="image/post/hat_yen_mach.jpg" alt="Các loại hạt dinh dưỡng tốt cho sức khỏe">
+                    <p class="description">(Hạt yên mạch - Năng lượng và cho mẹ)</p>
+                </section>
+            </section>
 
         </div>
+
 
         <!-- Cột phải: Bài viết mới nhất -->
         <aside class="recent-posts">
@@ -520,7 +539,7 @@
                     <span class="post-index">1</span>
                     <div>
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title" >+5 loại siêu hạt dinh dưỡng cần thiết cho mẹ bầu</p>
+                        <p class="post-title">+5 loại siêu hạt dinh dưỡng cần thiết cho mẹ bầu</p>
                     </div>
                 </li>
 
@@ -565,7 +584,7 @@
                 </li>
             </ul>
         </aside>
-    </section>
+    </article>
 
     <!------------------------------------------------------------------------------>
     <!--Footer-->
