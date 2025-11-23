@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý danh mục</title>
+    <title>Quản lý danh mục - tạo mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -162,6 +162,10 @@
         color: #007bff;
     }
 
+    .breadcrumb .current{
+        color: #777;
+    }
+
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
     .account {
         margin-left: auto;
@@ -307,7 +311,6 @@
     /* Dashboard */
     .dashboard {
         padding: 20px;
-        margin-top: -20px;
     }
 
     .dashboard h2 {
@@ -330,83 +333,108 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .button-wrap {
+    /* Khung 2 cột chính*/
+    .post-editor {
         display: flex;
-        justify-content: right;
+        gap: 25px;
+        margin-top: 20px;
     }
 
-    .new-post {
-        background-color: #03a9f4;
-        font-size: 15px;
-        color: white;
+    /* CỘT TRÁI */
+    .post-left {
+        flex: 1;
+        background: #fff;
+        padding: 25px; /* PADDING CHỐNG DÍNH LỀ */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* FORM INPUT CHUNG */
+    .post-left input,
+    .post-left select,
+    .post-left textarea {
+        width: 100%;
         padding: 10px;
-        border: none;
-        border-radius: 3px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .compulsory{
+        display: inline;
+        color: red;
+    }
+    .fa-floppy-disk{
+        margin-right: 5px;
+    }
+    .fa-rotate-left{
+        margin-right: 5px;
+    }
+
+    /* CỘT PHẢI */
+    .post-right {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Title mỗi box */
+    .post-right h3 {
         margin-bottom: 10px;
+        font-size: 18px;
     }
 
-    .new-post:hover {
-        background-color: #007bff;
-        cursor: pointer;
-    }
-
-    .cate {
+    /* Nút */
+    .btn-box {
         display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
-    .cate li {
-        list-style-type: none;
-        border: 1px solid #888;
-        padding: 15px 0;
-    }
-
-    /* Chiều rộng từng cột */
-    .cate-stt {
-        width: 60px;
-        text-align: center;
+    .btn-save {
+        flex: 1;
+        padding: 10px;
+        background: #03a9f4;
+        border: none;
+        color: #fff;
         font-weight: bold;
-    }
-
-    .cate-item {
-        width: 270px;
-        text-align: center;
-        font-weight: bold;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    /* Thumbnail */
-    .cate-item img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-    }
-
-    .thin li {
-        font-weight: lighter;
-    }
-
-    .fa-pen {
-        border: 1px solid #007bff;
-        padding: 5px;
-        color: white;
-        background-color: #007bff;
         border-radius: 3px;
-    }
-
-    .fa-trash {
-        border: 1px solid red;
-        padding: 5px;
-        color: white;
-        background-color: red;
-        border-radius: 3px;
-    }
-
-    .fa-solid {
         cursor: pointer;
     }
 
+    .btn-reset {
+        flex: 1;
+        padding: 10px;
+        background: #e53935;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #choose{
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    /* Thumbnail preview */
+    .thumbnail-box {
+        margin-top: 15px;
+    }
+
+    .thumbnail-preview {
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #999;
+        border-radius: 6px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+    }
 
 </style>
 <body>
@@ -478,73 +506,50 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Danh mục</span>
+            <span>Danh mục</span> /
+            <span class="current">Tạo mới</span>
         </div>
 
-        <section class="dashboard">
+        <section class="post-editor">
+            <!-- CỘT TRÁI -->
+            <div class="post-left">
+                <label>Tên danh mục <p class="compulsory">(*)</p></label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
 
-        </section>
-
-        <!--Dashboard-->
-        <section class="dashboard">
-            <div class="border-dashboard">
-                <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLyDanhMuc-TaoMoi.html'">+Tạo
-                        mới</button>
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex:1;">
+                        <label>Trạng thái</label>
+                        <select style="width:100%; padding: 10px; margin-top: 8px;">
+                            <option>Hiển thị</option>
+                            <option>Ẩn</option>
+                        </select>
+                    </div>
                 </div>
-                <ul class="cate">
-                    <li class="cate-stt">STT</li>
-                    <li class="cate-item">Tên danh mục</li>
-                    <li class="cate-item">Tổng sản phẩm</li>
-                    <li class="cate-item">Trạng thái</li>
-                    <li class="cate-item">Hành động</li>
-                </ul>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">1</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">147</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+                <label style="margin-top:15px; display:block;">Mô tả ngắn</label>
+                <textarea style="width:100%; height:120px; padding:10px;"></textarea>
+            </div>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">2</li>
-                    <li class="cate-item">Hạt dinh dưỡng</li>
-                    <li class="cate-item">21</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+            <!-- CỘT PHẢI -->
+            <div class="post-right">
+                <h3>Xuất bản</h3>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">3</li>
-                    <li class="cate-item">Bánh dinh dưỡng</li>
-                    <li class="cate-item">58</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+                <div class="btn-box">
+                    <button class="btn-save" onclick="window.location.href='Admin-QuanLyDanhMuc.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
+                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+                </div>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">4</li>
-                    <li class="cate-item">Trà gạo lứt</li>
-                    <li class="cate-item">9</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+                <h3>Thumbnail</h3>
+                <div class="thumbnail-box">
+                    <input type="file" id="choose">
+                    <div class="thumbnail-preview">
+                        <i class="fa-regular fa-image" style="font-size:50px;"></i>
+                    </div>
+                </div>
             </div>
         </section>
+
+
     </main>
 </div>
 
