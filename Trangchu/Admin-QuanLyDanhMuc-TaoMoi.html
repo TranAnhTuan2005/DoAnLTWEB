@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin-Tạo mới</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý danh mục - tạo mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -12,7 +14,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Tahoma", sans-serif, Arial;
+        font-family: "Tahoma", sans-serif;
     }
 
     body {
@@ -24,7 +26,7 @@
         height: 100vh;
     }
 
-    /* === SIDEBAR === */
+    /* Sidebar tổng thể */
     .sidebar {
         width: 250px;
         background-color: #2f3640;
@@ -72,6 +74,13 @@
         text-decoration: none;
     }
 
+    /* Submenu */
+    .has-submenu {
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+    }
+
     .submenu-toggle {
         width: 100%;
         display: flex;
@@ -79,11 +88,13 @@
         gap: 10px;
     }
 
-    .has-submenu {
-        flex-direction: column;
-        align-items: flex-start;
-        position: relative;
-        opacity: 0.6;
+    .arrow {
+        margin-left: auto;
+        transition: 0.3s;
+    }
+
+    .has-submenu.open .arrow {
+        transform: rotate(180deg);
     }
 
     .submenu {
@@ -103,20 +114,11 @@
         padding: 10px 40px;
         display: flex;
         align-items: center;
+        color:#fff;
         gap: 8px;
     }
 
-    .arrow {
-        margin-left: auto;
-        transition: 0.3s;
-    }
-
-    .has-submenu.open .arrow {
-        transform: rotate(180deg);
-    }
-
-
-    /* === MAIN === */
+    /* Main content */
     .main {
         flex: 1;
         display: flex;
@@ -136,7 +138,12 @@
         font-weight: bold;
     }
 
-    /* breadcrumb */
+    .topbar-right img {
+        width: 35px;
+        border-radius: 50%;
+    }
+
+    /* Breadcumb */
     .breadcrumb {
         font-size: 16px;
         color: #007bff;
@@ -144,21 +151,20 @@
         margin-left: 20px;
     }
 
+    .breadcrumb a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.2s;
+    }
+
     .breadcrumb span {
         margin: 0 5px;
+        color: #007bff;
     }
 
-    /* mặc định: các icon và link mờ */
-    .menu a, .menu i {
-        opacity: 0.6;
+    .breadcrumb .current{
+        color: #777;
     }
-
-    /* mục active: sáng rõ hơn */
-    .menu a.active, .fa-solid.fa-user {
-        opacity: 1;
-    }
-
-
 
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
     .account {
@@ -302,135 +308,138 @@
         }
     }
 
-
-    /* Wrapper layout */
-    .create-wrap {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px 20px;
-        margin: 10px 0 40px;
+    /* Dashboard */
+    .dashboard {
+        padding: 20px;
     }
 
-    .create-wrap .row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        align-items: flex-start;
-    }
-
-    .create-left {
-        flex: 0 0 25%;
-        max-width: 25%;
-        box-sizing: border-box;
-        padding-right: 8px;
-    }
-
-    .create-left .card {
-        padding: 18px;
-        background: #fff;
-        border: 1px solid #e7ecf2;
-        border-radius: 8px;
-        box-shadow: 0 6px 18px rgba(11, 20, 35, 0.03);
-        text-align: center;
-    }
-
-    .create-left .avatar {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 6px solid #eef3f6;
-        box-shadow: 0 6px 18px rgba(11, 20, 35, 0.06);
-        display: block;
-        margin: 6px auto 12px;
-    }
-
-    .create-left .btn-upload {
-        width: 100%;
-        padding: 8px 10px;
-        border-radius: 6px;
-        border: 1px solid #d1e0ea;
-        background: #fff;
+    .dashboard h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
         color: #333;
-        display: inline-block;
     }
 
-    .create-right {
-        flex: 1 1 0%;
-        max-width: 75%;
-        box-sizing: border-box;
-        padding-left: 8px;
+    .dashboard h3 {
+        margin-bottom: 15px;
+        margin-top: -10px;
+        font-size: 20px;
+        color: #333;
     }
 
-    .create-right .card {
-        padding: 18px;
-        background: #fff;
-        border: 1px solid #e7ecf2;
+    .border-dashboard {
+        background: white;
+        padding: 30px;
         border-radius: 8px;
-        box-shadow: 0 6px 18px rgba(11, 20, 35, 0.03);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .create-right h5 {
-        font-size: 18px;
-        margin-bottom: 12px;
-        font-weight: 600;
-        color: #1f2937;
+    /* Khung 2 cột chính*/
+    .post-editor {
+        display: flex;
+        gap: 25px;
+        margin-top: 20px;
     }
 
-    /*Form Thông tin*/
-    .create-right .form-control,
-    .create-right input[type="text"],
-    .create-right input[type="email"],
-    .create-right input[type="password"],
-    .create-right input[type="tel"],
-    .create-right textarea,
-    .create-right select {
-        display: block;
-        width: 100%;
-        padding: 8px 12px;
-        height: 40px;
-        border: 1px solid #d6e0ea !important;
-        border-radius: 6px !important;
-        box-sizing: border-box;
+    /* CỘT TRÁI */
+    .post-left {
+        flex: 1;
         background: #fff;
-        font-size: 14px;
-        color: #111;
-        margin-top: 10px;
+        padding: 25px; /* PADDING CHỐNG DÍNH LỀ */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* Radio  */
-    .create-right .form-check {
-        margin-right: 14px;
+    /* FORM INPUT CHUNG */
+    .post-left input,
+    .post-left select,
+    .post-left textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .compulsory{
+        display: inline;
+        color: red;
+    }
+    .fa-floppy-disk{
+        margin-right: 5px;
+    }
+    .fa-rotate-left{
+        margin-right: 5px;
     }
 
-    /* Button */
+    /* CỘT PHẢI */
+    .post-right {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Title mỗi box */
+    .post-right h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    /* Nút */
+    .btn-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
     .btn-save {
-        background: #0aa0e6;
-        color: #fff;
+        flex: 1;
+        padding: 10px;
+        background: #03a9f4;
         border: none;
-        padding: 8px 14px;
-        border-radius: 6px;
-        font-weight: 600;
-        margin-right: 8px;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .btn-reset {
+        flex: 1;
+        padding: 10px;
+        background: #e53935;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #choose{
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    /* Thumbnail preview */
+    .thumbnail-box {
         margin-top: 15px;
-        margin-left: 10px;
-
     }
 
-    /*ghi chú nhỏ (kích thước đề xuất)*/
-    .create-left .small-muted {
-        font-size: 12px;
-        color: #6b7280;
-        margin-top: 8px;
+    .thumbnail-preview {
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #999;
+        border-radius: 6px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
     }
-
 
 </style>
-
 <body>
-
 <div class="container">
-
+    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <div class="admin-info">
@@ -440,7 +449,7 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -451,24 +460,20 @@
                 </div>
                 <ul class="submenu">
                     <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.html">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.html">Bài viết</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.html">Bài viết</a></li>
             <hr>
-
-            <li><i class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html" class="active">Người dùng</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.html">Người dùng</a></li>
             <hr>
-
         </ul>
     </aside>
 
-
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- Main content -->
     <main class="main">
-
         <header class="topbar">
             <h1>Quản lý bán ngũ cốc</h1>
 
@@ -479,7 +484,6 @@
                     <img class="account-avatar-sm" src="image/admin/images.jpg" alt="avatar">
                     <span class="account-name">Admin</span>
                     <img class="fa fa-caret-down" style="margin-left:8px; color: rgba(255,255,255,0.9);"><img>
-
                 </button>
             </div>
         </header>
@@ -499,107 +503,80 @@
             </div>
         </div>
 
-
+        <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Người dùng</span> /
-            <span>Tạo mới</span>
-
+            <span>Danh mục</span> /
+            <span class="current">Tạo mới</span>
         </div>
 
+        <section class="post-editor">
+            <!-- CỘT TRÁI -->
+            <div class="post-left">
+                <label>Tên danh mục <p class="compulsory">(*)</p></label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
 
-        <!--Form nhập dữ liệu-->
-        <div class="create-wrap container-fluid">
-            <div class="row g-3">
-
-                <div class="col-md-3 create-left">
-                    <div class="card p-3">
-                        <div class="text-center">
-                            <img src="" alt="avatar" class="avatar"/>
-                            <label class="btn-upload btn btn-outline-secondary mt-2 d-inline-flex align-items-center justify-content-center">
-                                <i class="fa fa-upload me-2"></i> Chọn tệp
-                                <input type="file" accept="image/*" style="display:none">
-                            </label>
-                            <div class="small-muted mt-2">Kích thước đề xuất: 300×300px</div>
-                        </div>
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex:1;">
+                        <label>Trạng thái</label>
+                        <select style="width:100%; padding: 10px; margin-top: 8px;">
+                            <option>Hiển thị</option>
+                            <option>Ẩn</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="col-md-9 create-right">
-                    <div class="card p-4">
-                        <h5>Thông tin người dùng</h5>
-
-                        <form class="row g-3">
-                            <div class="col-12">
-                                <label class="form-label">Họ và tên <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="text" placeholder="Họ và tên">
-                            </div>
-
-                            <div class="col-12">
-                                <label class="form-label">Email <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="email" placeholder="Email">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">Mật khẩu <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="password" placeholder="Mật khẩu">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">Phone <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="tel" placeholder="Phone">
-                            </div>
-
-                            <div class="col-12">
-                                <label class="form-label d-block">Trạng thái</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="statusActive"
-                                           checked>
-                                    <label class="form-check-label" for="statusActive">Hoạt động</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="statusLocked">
-                                    <label class="form-check-label" for="statusLocked">Đã khóa</label>
-                                </div>
-                            </div>
-
-                            <div class="col-12 mt-2">
-                                <button type="button" class="btn-save btn"><i class="fa fa-floppy-disk me-2"></i> Lưu dữ
-                                    liệu
-                                </button>
-                            </div>
-
-
-                        </form>
-
-
-                    </div>
-                </div>
-
+                <label style="margin-top:15px; display:block;">Mô tả ngắn</label>
+                <textarea style="width:100%; height:120px; padding:10px;"></textarea>
             </div>
-        </div>
+
+            <!-- CỘT PHẢI -->
+            <div class="post-right">
+                <h3>Xuất bản</h3>
+
+                <div class="btn-box">
+                    <button class="btn-save" onclick="window.location.href='Admin-QuanLyDanhMuc.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
+                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+                </div>
+
+                <h3>Thumbnail</h3>
+                <div class="thumbnail-box">
+                    <input type="file" id="choose">
+                    <div class="thumbnail-preview">
+                        <i class="fa-regular fa-image" style="font-size:50px;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
     </main>
-
-
 </div>
 
-</body>
-
-
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const submenuToggles = document.querySelectorAll(".submenu-toggle");
+    document.addEventListener("DOMContentLoaded", () => {
 
-        submenuToggles.forEach((toggle) => {
-            toggle.addEventListener("click", function () {
-                const parent = this.closest(".has-submenu");
-                parent.classList.toggle("open");
-            });
-        });
+        const menu = document.querySelector(".has-submenu");
+        const arrow = document.querySelector(".has-submenu .arrow");
+
+        // Nhấn để mở/đóng submenu
+        document.querySelector(".submenu-toggle").onclick = () => {
+            menu.classList.toggle("open");
+
+            // Lưu trạng thái submenu
+            localStorage.setItem("menu-open", menu.classList.contains("open"));
+        };
+
+        // Khi load trang: mở submenu
+        if (localStorage.getItem("menu-open") === "true") {
+            menu.classList.add("open");
+
+            // Ngăn mũi tên xoay khi load lại trang
+            arrow.style.transform = "none";
+        }
     });
 </script>
+
 
 
 <script>
@@ -636,4 +613,7 @@
         });
     })();
 </script>
+
+
+</body>
 </html>
