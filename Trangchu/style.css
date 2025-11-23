@@ -15,7 +15,7 @@ body {
 .main-nav a.active,
 .main-nav a[aria-current="page"] {
     font-weight: 700;
-    color: #333;     /* đổi màu nếu cần */
+    color: #333; /* đổi màu nếu cần */
 }
 
 /* nếu muốn đổi màu khi active từng <li> */
@@ -57,7 +57,6 @@ body {
 }
 
 
-
 /* Header chính */
 .main-header {
     background: #fff;
@@ -73,7 +72,6 @@ body {
     vertical-align: middle;
     /*căn giữa logo với phần tử khác*/
 }
-
 
 
 /*  Drop menu */
@@ -199,9 +197,6 @@ body {
 }
 
 
-
-
-
 /* Modal Styles */
 
 .modal {
@@ -323,8 +318,6 @@ body {
 }
 
 
-
-
 /*định dạng nút thanh toán màu xanh lá */
 .checkout-btn {
     background: #4CAF50;
@@ -379,6 +372,61 @@ body {
     font-size: 14px;
     color: #757575;
 
+}
+
+/*---------------------Css modal TK đã đăng nhập (DEMO)------------------------------------------*/
+
+.user-actions {
+    position: relative;
+}
+
+.account-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 1000;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.account-menu_arrow {
+    position: absolute;
+    top: -8px;
+    right: 22px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+    filter: drop-shadow(0 -1px 0 #eee);
+}
+
+.account-menu_inner {
+    padding: 12px 14px;
+}
+
+.account-menu_hello {
+    margin: 0 0 6px;
+    color: #333;
+}
+
+.account-menu_link {
+    display: block;
+    padding: 10px 6px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.account-menu_link:hover {
+    background: #f7f7f7;
+}
+
+.account-menu {
+    right: 48px;
 }
 
 
@@ -1029,7 +1077,8 @@ body {
     object-fit: cover;
     transition: transform 0.3s ease;
 }
-.news-item{
+
+.news-item {
     display: inline-block;
     text-align: left;
 }
@@ -1167,7 +1216,6 @@ body {
 .footer-copyright a:hover {
     color: #a46b2c;
 }
-
 
 
 /*back to top*/

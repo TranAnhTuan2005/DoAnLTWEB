@@ -149,8 +149,15 @@
         margin: 0 5px;
     }
 
+    /* mặc định: các icon và link mờ */
+    .menu a, .menu i {
+        opacity: 0.6;
+    }
 
-
+    /* mục active: sáng rõ hơn */
+    .menu a.active, .fa-solid.fa-user {
+        opacity: 1;
+    }
 
 
 
@@ -208,15 +215,10 @@
         margin-right: 6px;
     }
 
-    .edit-btn {
-        background-color: #0ea5e9;
-    }
 
     .delete-btn {
         background-color: #e63946;
     }
-
-
 
 
 
@@ -363,6 +365,9 @@
     }
 
 
+
+
+
 </style>
 
 <body>
@@ -378,7 +383,7 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html">Bảng điều khiển</a></li>
+            <li><i class="fa-solid fa-home" ></i><a href="Admin-HomePage.html" >Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -388,16 +393,16 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="">Danh mục</a></li>
+                    <li><i class="fa-solid fa-list"></i> <a href="#">Danh mục</a></li>
                     <li><i class="fa-solid fa-boxes-stacked"></i> <a href="">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li><i class="fa-solid fa-file-lines"></i> <a href="">Bài viết</a></li>
+            <li><i  class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.html" >Bài viết</a></li>
             <hr>
 
-            <li><i  class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html">Người dùng</a></li>
+            <li><i  class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html" class="active">Người dùng</a></li>
             <hr>
         </ul>
     </aside>
@@ -444,9 +449,9 @@
         <section class="user-section">
             <div class="user-card">
                 <h3>Danh sách người dùng</h3>
-
-                <button class="btn-create"><i class="fa fa-plus"></i> Tạo mới</button>
-
+                <a href="Admin-Quanlynguoidung-taomoi.html">
+                <button class="btn-create" ><i class="fa fa-plus" ></i> Tạo mới</button>
+                </a>
                 <table>
                     <thead>
                     <tr>
@@ -467,7 +472,6 @@
                         <td>113</td>
                         <td>Đã khóa</td>
                         <td>
-                            <button class="action-btn edit-btn"><i class="fa fa-pen"></i></button>
                             <button class="action-btn delete-btn"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
@@ -479,7 +483,6 @@
                         <td>0357250466</td>
                         <td>Hoạt động</td>
                         <td>
-                            <button class="action-btn edit-btn"><i class="fa fa-pen"></i></button>
                             <button class="action-btn delete-btn"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
@@ -492,6 +495,8 @@
     </main>
 </div>
 
+
+<!--hiển thị thanh xổ xuống mục sản phẩm-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const submenuToggles = document.querySelectorAll(".submenu-toggle");
@@ -505,7 +510,7 @@
     });
 </script>
 
-
+<!--hiển thị box tk đăng nhập-->
 <script>
     (function () {
         const btn = document.getElementById('accountBtn');
@@ -540,6 +545,7 @@
         });
     })();
 </script>
+
 
 
 </body>
