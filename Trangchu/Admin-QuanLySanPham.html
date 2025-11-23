@@ -307,6 +307,7 @@
     /* Dashboard */
     .dashboard {
         padding: 20px;
+        margin-top: -20px;
     }
 
     .dashboard h2 {
@@ -430,13 +431,13 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.html">Danh mục</a></li>
                     <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="">Bài viết</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.html">Bài viết</a></li>
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.html">Người dùng</a></li>
             <hr>
@@ -572,18 +573,30 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const submenuToggles = document.querySelectorAll(".submenu-toggle");
+    document.addEventListener("DOMContentLoaded", () => {
 
-        submenuToggles.forEach((toggle) => {
-            toggle.addEventListener("click", function () {
-                const parent = this.closest(".has-submenu");
-                parent.classList.toggle("open");
-            });
-        });
+        const menu = document.querySelector(".has-submenu");
+        const arrow = document.querySelector(".has-submenu .arrow");
+
+        // Nhấn để mở/đóng submenu
+        document.querySelector(".submenu-toggle").onclick = () => {
+            menu.classList.toggle("open");
+
+            // Lưu trạng thái submenu
+            localStorage.setItem("menu-open", menu.classList.contains("open"));
+        };
+
+        // Khi load trang: mở submenu
+        if (localStorage.getItem("menu-open") === "true") {
+            menu.classList.add("open");
+
+            // Ngăn mũi tên xoay khi load lại trang
+            arrow.style.transform = "none";
+        }
     });
-
 </script>
+
+
 
 <script>
     (function () {
