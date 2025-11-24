@@ -394,9 +394,11 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <i class="icon_timkiem">
-                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                </i>
+                <a href="TimKiem.html">
+                    <i class="icon_timkiem">
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                    </i>
+                </a>
             </button>
         </div>
 
@@ -406,19 +408,26 @@
                 <li><a href="TrangChu.html">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="/collections/all">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item">Ngũ cốc</li>
-                        <li class="dropdown-item">Hạt dinh dưỡng</li>
-                        <li class="dropdown-item">Bánh dinh dưỡng</li>
-                        <li class="dropdown-item">Trà gạo lứt</li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                        </li>
                     </ul>
 
                 </li>
 
-                <li><a href="/thuong-hieu">Thương hiệu</a></li>
-                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="TinTuc1.html">Tin tức</a></li>
                 <li><a href="CongTacVien.html">Cộng tác viên</a></li>
                 <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
@@ -465,7 +474,7 @@
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
             <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn">Thanh Toán</button>
+            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
         </div>
     </div>
 </div>
@@ -484,7 +493,7 @@
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
             <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
@@ -803,17 +812,15 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="/pages/chinh-sach-bao-mat" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="/pages/quy-dinh-va-hinh-thuc-thanh-toan"
+                                <li><a href="PhuongThucThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
-                                <li><a href="/pages/phuong-thuc-van-chuyen" title="Phương thức vận chuyển">Phương
-                                    thức vận chuyển</a></li>
                             </ul>
                         </div>
 
@@ -821,13 +828,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="/" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="/pages/ngon" title="Ngon">Ngon</a></li>
-                                <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
-                                <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
-                                <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="/pages/lien-he" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -873,7 +879,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="#">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                 rel="noreferrer">Team 18</a></p>
             </div>
         </div>
