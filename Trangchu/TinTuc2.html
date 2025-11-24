@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Chính sách bảo mật</title>
+    <title>Tin tức</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -64,6 +64,10 @@
     /* ========================== */
     /* CỘT TRÁI — TIN TỨC */
     /* ========================== */
+
+    body {
+        font-family: 'Tahoma', Arial, sans-serif;
+    }
 
     .news-section {
         width: 70%;
@@ -181,6 +185,9 @@
     }
 
     .post-title {
+        display: block;
+        text-decoration: none;
+        color: #888;
         font-size: 15px;
         margin-top: 3px;
         cursor: pointer;
@@ -332,7 +339,7 @@
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
                 <button type="submit">
-                    <i class="icon_timkiem">
+                    <i class="icon_timkiem" onclick="window.location.href='TimKiem-KetQua.html'">
                         <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
                     </i>
                 </button>
@@ -365,10 +372,10 @@
 
 
 
-                    <li><a href="/thuong-hieu">Thương hiệu</a></li>
-                    <li><a href="/tin-tuc">Tin tức</a></li>
-                    <li><a href="/cong-tac-vien">Công tác viên</a></li>
-                    <li><a href="/lien-he">Liên hệ</a></li>
+
+                    <li><a href="TinTuc1.html">Tin tức</a></li>
+                    <li><a href="CongTacVien.html">Công tác viên</a></li>
+                    <li><a href="LienHe.html">Liên hệ</a></li>
                 </ul>
             </nav>
 
@@ -431,9 +438,9 @@
                 <p>This site is protected by reCAPTCHA and the Google <a
                         href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                         href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-                <button type="submit">Đăng Nhập</button>
-                <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
-                <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+                <button type="submit" onclick="window.location.href='TrangChu-daDNTK.html'">Đăng Nhập</button>
+                <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+                <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
             </form>
         </div>
     </div>
@@ -513,19 +520,19 @@
             <h2>BÀI VIẾT MỚI NHẤT</h2>
 
             <ul class="post-list">
-                <li>
+                 <li>
                     <span class="post-index">1</span>
                     <div>
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title">+5 loại siêu hạt dinh dưỡng cần thiết cho mẹ bầu</p>
+                       <a href="BaiViet.html" class="post-title">+5 loại siêu hạt dinh dưỡng cần thiết cho mẹ bầu</a>
                     </div>
                 </li>
 
                 <li>
                     <span class="post-index">2</span>
-                    <div>
+                    <div >
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title">Ngũ cốc cao cấp có thực sự hỗ trợ người ốm phục hồi nhanh?</p>
+                         <a href="BaiViet.html" class="post-title">Ngũ cốc cao cấp có thực sự hỗ trợ người ốm phục hồi nhanh?</a>
                     </div>
                 </li>
 
@@ -533,23 +540,23 @@
                     <span class="post-index">3</span>
                     <div>
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title">Táo đỏ Tân Cương chất lượng, giá tốt tại Huế</p>
+                         <a href="BaiViet.html" class="post-title">Táo đỏ Tân Cương chất lượng, giá tốt tại Huế</a>
                     </div>
                 </li>
 
                 <li>
                     <span class="post-index">4</span>
-                    <div>
+                    <div >
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title">Xoài sấy dẻo ngon, giá tốt tại Huế</p>
+                        <a href="BaiViet.html" class="post-title">Xoài sấy dẻo ngon, giá tốt tại Huế</a>
                     </div>
                 </li>
 
                 <li>
                     <span class="post-index">5 </span>
-                    <div>
+                    <div >
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title">Chà là khô nguyên cành, Siêu thực phẩm tốt cho sức khỏe</p>
+                        <a href="BaiViet.html" class="post-title">Chà là khô nguyên cành, Siêu thực phẩm tốt cho sức khỏe</a>
                     </div>
                 </li>
 
@@ -557,7 +564,7 @@
                     <span class="post-index">6</span>
                     <div>
                         <span class="post-category">TIN TỨC</span>
-                        <p class="post-title">10 loại mứt hạt bánh tết không thể thiếu trong ngày xuân</p>
+                        <a href="BaiViet.html" class="post-title">10 loại mứt hạt bánh tết không thể thiếu trong ngày xuân</a>
                     </div>
                 </li>
             </ul>
@@ -626,7 +633,7 @@
                             <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                                 <div class="logo-footer">
 
-                                    <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                         <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                             alt="Ngũ cốc Ngon">
                                     </a>
@@ -649,17 +656,15 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                                 <ul>
-                                    <li><a href="/search" title="Tìm kiếm">Tìm kiếm</a></li>
-                                    <li><a href="/pages/chinh-sach-doi-tra" title="Chính sách đổi trả">Chính sách đổi
+                                    <li><a href="TimKiem-KetQua.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                    <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
                                             trả</a></li>
                                     <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                             mật</a></li>
-                                    <li><a href="/pages/dieu-khoan-dich-vu" title="Điều khoản dịch vụ">Điều khoản dịch
+                                    <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                             vụ</a></li>
-                                    <li><a href="/pages/quy-dinh-va-hinh-thuc-thanh-toan"
+                                    <li><a href="ChinhSachThanhToan.html"
                                             title="Phương thức thanh toán">Phương thức thanh toán</a></li>
-                                    <li><a href="/pages/phuong-thuc-van-chuyen" title="Phương thức vận chuyển">Phương
-                                            thức vận chuyển</a></li>
                                 </ul>
                             </div>
 
@@ -670,10 +675,9 @@
                                     <li><a href="/" title="Trang chủ">Trang chủ</a></li>
                                     <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                     <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="/pages/thuong-hieu" title="Thương hiệu">Thương hiệu</a></li>
-                                    <li><a href="/blogs/tin-tuc" title="Tin tức">Tin tức</a></li>
-                                    <li><a href="/pages/cong-tac-vien" title="Cộng tác viên">Cộng tác viên</a></li>
-                                    <li><a href="/pages/lien-he" title="Liên hệ">Liên hệ</a></li>
+                                    <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
+                                    <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                                 </ul>
                             </div>
 
