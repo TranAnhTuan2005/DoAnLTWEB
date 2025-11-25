@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif, Tahoma;
+    font-family: Tahoma, Arial, sans-serif;
     line-height: 1.6;
     /*Khoảng cách dòng*/
 }
@@ -701,7 +701,7 @@ body {
     padding: 50px 0;
     background-color: #fff;
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
 }
 
 .new-products h2 {
@@ -838,7 +838,7 @@ body {
     background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
-    font-family: 'Quicksand', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
 }
 
 .product-modal-content {
@@ -962,7 +962,7 @@ body {
     padding: 50px 0;
     background-color: #fff;
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
+   font-family: Tahoma, Arial, sans-serif;
     margin-left: 20px;
 }
 
@@ -1037,7 +1037,7 @@ body {
     padding: 50px;
     background-color: #fff;
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
+   font-family: Tahoma, Arial, sans-serif;
 
 }
 
