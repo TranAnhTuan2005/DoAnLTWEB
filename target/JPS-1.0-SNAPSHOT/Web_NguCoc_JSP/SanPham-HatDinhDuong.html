@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sản phẩm - Hạt dinh dưỡng</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    /* ==== Trang danh mục sản phẩm ==== */
+    .main-collection {
+        font-family: 'Tahoma', Arial, sans-serif;
+        color: #444;
+        background-color: #fff;
+    }
+
+    /* --- Breadcrumb --- */
+    /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
+    .breadcrumb-bar {
+        padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
+        padding-bottom: 5px;
+        background: #f6efe3;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
+    .breadcrumb-bar .breadcrumb .breadcrumb-item {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Dấu phân cách (nếu muốn điều chỉnh kích thước/màu) */
+    .breadcrumb-bar .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+        content: "/";             /* đảm bảo ký tự phân cách luôn là / */
+        margin: 0 6px;
+        color: #8a7354;
+        font-weight: 600;
+    }
+
+    /* Text các link và active */
+    .breadcrumb-bar .breadcrumb a {
+        color: #6d4c41;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .breadcrumb-bar .breadcrumb .active {
+        color: #3b2d22;
+        font-weight: 600;
+    }
+
+    /* ==== Banner ==== */
+    .banner-collection {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .banner-collection img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* ==== Khung chính ==== */
+    .collection-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 80px;
+        gap: 40px;
+    }
+
+    /* ==== Sidebar (Danh mục sản phẩm + Giá) ==== */
+    .sidebar {
+        flex: 0 0 250px;
+    }
+
+    .sidebar h2 {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 40px;
+    }
+
+    .sidebar ul li {
+        margin: 8px 0;
+    }
+
+    .sidebar a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .sidebar a:hover {
+        color: #8b5e34;
+    }
+
+    .price-list input[type="radio"] {
+        margin-right: 8px;
+    }
+
+    /* ==== Khu vực sản phẩm ==== */
+    .collection-product-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ==== Header sản phẩm ==== */
+    .product-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .product-header h2 {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    #sort {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* ==== Lưới sản phẩm ==== */
+    /* Lưới sản phẩm: 4 cột, mỗi dòng 4 sản phẩm */
+    .collection-product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    /* ==== Khung sản phẩm ==== */
+    .collection-product-item {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        text-align: center;
+        padding-bottom: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .collection-product-item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ==== Hình ảnh sản phẩm ==== */
+    .collection-product-image {
+        position: relative;
+        width: 100%;
+        height: 220px; /* chiều cao cố định theo ảnh sản phẩm đầu tiên */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+    }
+
+    .collection-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* cắt ảnh đều khung */
+        transition: transform 0.4s ease;
+    }
+    
+    .collection-product-item:hover .collection-product-image img {
+        transform: scale(1.05);
+    }
+
+    /* ==== overlay khi hover ==== */
+    .collection-overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 60px;
+        background-color: rgb(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .collection-product-item:hover .collection-overlay {
+        opacity: 1;
+    }
+
+    .collection-overlay button {
+        border: none;
+        color: #fff;
+        font-size: 13px;
+        padding: 8px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .collection-add-to-cart {
+        background-color: #bb7412;
+    }
+
+    .collection-add-to-cart:hover {
+        background-color: #c52314;
+    }
+
+    .collection-view-btn {
+        background-color: #bb7412;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .collection-view-btn:hover {
+        background-color: #c52314;
+    }
+
+    /* ==== Tên và giá sản phẩm ==== */
+    .collection-product-item h3 {
+        font-size: 15px;
+        margin-top: 15px;
+        margin-bottom: 6px;
+        color: #333;
+    }
+
+    .collection-product-item p {
+        font-weight: 600;
+    }
+
+    /*Modal chi tiết sản phẩm*/
+    /*Hình bên trái*/
+    .product-modal-content img {
+        width: 250px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    /*Căn chỉnh cho thông tin bên phải*/
+    .product-modal-content .info {
+        flex: 1;
+        text-align: left;
+    }
+
+    .product-modal-content .info h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+
+    }
+
+    .product-modal-content .info .price {
+        color: #b22a00;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .product-modal-content .infor .add {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        background: #3b5c2f;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .product-modal-content .infor .add:hover {
+        background-color: #2d471f;
+    }
+
+    /*link xem chi tiết sản phẩm*/
+    .product-modal-content .infor a {
+        text-decoration: none;
+        margin-top: 15px;
+        color: #333;
+    }
+
+    .product-modal-content .infor a:hover {
+        text-decoration: underline;
+        color: #bb7412;
+    }
+
+    .quantity-box input {
+        width: 50px;
+        text-align: center;
+        padding-top: 5px;
+        font-size: 16px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+    }
+
+</style>
+
+
+<body>
+
+<!-- Thanh thông tin trên cùng -->
+<div class="top-info-bar">
+    <div class="header-container">
+        <span>Ngũ cốc Ngon xin chào!</span>
+        <div class="contact-info">
+            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
+            <a href="tel:0357250466">Hotline: 0357 250 466</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Header chính -->
+<header class="main-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="TrangChu.html">
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            </a>
+        </div>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
+            <button type="submit">
+                <a href="TimKiem.html">
+                    <i class="icon_timkiem">
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                    </i>
+                </a>
+            </button>
+        </div>
+
+        <!-- Menu điều hướng -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="VeNgon.html">Về Ngon</a></li>
+                <li class="menu-sp">
+                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <li><a href="TinTuc1.html">Tin tức</a></li>
+                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
+                <li><a href="LienHe.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+
+
+
+        <!-- Biểu tượng tài khoản và giỏ hàng -->
+        <div class="user-actions">
+            <a href="#" class="account-btn" aria-label="Tài khoản">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
+                </svg>
+            </a>
+            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+</header>
+
+
+<!-- Modal cho Giỏ hàng -->
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Giỏ Hàng</h2>
+        <p>Hiện chưa có sản phẩm</p>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+        </svg>
+
+        <p>Tổng tiền: 0đ</p>
+        <div class="modal-buttons">
+            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
+            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal cho Đăng nhập Tài khoản -->
+<div id="account-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Đăng Nhập Tài Khoản</h2>
+        <p>Nhập email và mật khẩu của bạn:</p>
+        <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Mật khẩu" required>
+            <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+            <button type="submit">Đăng Nhập</button>
+            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+        </form>
+    </div>
+</div>
+
+<!------------------------------------------------------------------------------------>
+<!--Body-->
+<main class="main-collection">
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-bar py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-2 rounded-3">
+                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="SanPham-TatCa.html">Danh mục</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Hạt dinh dưỡng</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Collection -->
+    <div class="banner-collection">
+        <img src="image/collection/banner.jpg" alt="Ngũ cốc">
+    </div>
+
+    <div class="collection-container">
+        <!-- Cột danh mục bên trái -->
+        <aside class="sidebar">
+            <h2>DANH MỤC SẢN PHẨM</h2>
+            <ul class="category-list">
+                <li><a href="SanPham-TatCa.html">Tất cả sản phẩm</a></li>
+                <li><a href="SanPham-NguCoc.html">Ngũ cốc</a></li>
+                <li><a href="SanPham-HatDinhDuong.html"><b>Hạt dinh dưỡng</b></a></li>
+                <li><a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a></li>
+                <li><a href="SanPham-TraGaoLut.html">Trà gạo lứt</a></li>
+            </ul>
+
+            <h2>GIÁ SẢN PHẨM</h2>
+            <ul class="price-list">
+                <li><label><input type="radio" name="price"> Dưới 100,000₫</label></li>
+                <li><label><input type="radio" name="price"> 100,000₫ - 199,000₫</label></li>
+                <li><label><input type="radio" name="price"> 200,000₫ - 299,000₫</label></li>
+                <li><label><input type="radio" name="price"> 300,000₫ - 399,000₫</label></li>
+                <li><label><input type="radio" name="price"> Trên 400,000₫</label></li>
+            </ul>
+        </aside>
+
+        <!-- Danh sách sản phẩm -->
+        <section class="collection-product-section">
+            <div class="product-header">
+                <h2>Hạt dinh dưỡng</h2>
+                <select id="sort">
+                    <option value="price-ascending">Giá: Tăng dần</option>
+                    <option value="price-descending">Giá: Giảm dần</option>
+                    <option value="name-az">Tên: A-Z</option>
+                    <option value="name-za">Tên: Z-A</option>
+                    <option value="oldest">Cũ nhất</option>
+                    <option value="newest">Mới nhất</option>
+                    <option value="best-seller">Bán chạy nhất</option>
+                    <option value="inventory-descending">Tồn kho: Giảm dần</option>
+                </select>
+            </div>
+
+            <div class="collection-product-grid">
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/combo-set-hat-nau-sua-14-goi-100g.jpg"
+                             alt="Combo set hạt nấu sữa 14 gói 100g"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/combo-set-hat-nau-sua-14-goi-100g.jpg', 'Combo set hạt nấu sữa 14 gói 100g', '329,000đ')">
+                                👁 XEM NHANH </button>
+                        </div>
+                    </div>
+                    <h3>Combo set hạt nấu sữa 14 gói 100g</h3>
+                    <p class="price">329,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/combo-set-hat-nau-sua-14-goi-50g.jpg"
+                             alt="Combo set hạt nấu sữa 14 gói 50g"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/combo-set-hat-nau-sua-14-goi-50g.jpg', 'Combo set hạt nấu sữa 14 gói 50g', '189,000đ')">
+                                👁 XEM NHANH </button>
+                        </div>
+                    </div>
+                    <h3>Combo set hạt nấu sữa 14 gói 50g</h3>
+                    <p class="price">189,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/granola.jpg" alt="Granola"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/granola.jpg', 'Granola', '179,000đ')">👁 XEM
+                                NHANH</button>
+                        </div>
+                    </div>
+                    <h3>Granola</h3>
+                    <p class="price">179,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/hanh-nhan-tach-vo.jpg"
+                             alt="Hạnh nhân tách vỏ"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/hanh-nhan-tach-vo.jpg', 'Hạnh nhân tách vỏ', '195,000đ')">👁
+                                XEM NHANH</button>
+                        </div>
+                    </div>
+                    <h3>Hạnh nhân tách vỏ</h3>
+                    <p class="price">195,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/hat-bi-xanh.jpg" alt="Hạt bí xanh"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/hat-bi-xanh.jpg', 'Hạt bí xanh', '135,000đ')">👁
+                                XEM NHANH</button>
+                        </div>
+                    </div>
+                    <h3>Hạt bí xanh</h3>
+                    <p class="price">135,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/hat-dieu-say-tu-nhien.jpg"
+                             alt="Hạt điều sấy tự nhiên"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/hat-dieu-say-tu-nhien.jpg','Hạnh điều sấy tự nhiên', '195,000đ')">👁
+                                XEM NHANH</button>
+                        </div>
+                    </div>
+                    <h3>Hạt điều sấy tự nhiên</h3>
+                    <p class="price">195,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/mix-hat.png"
+                             alt="Mix hạt"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/mix-hat.png', 'Mix hạt', '239,000đ')">👁
+                                XEM NHANH</button>
+                        </div>
+                    </div>
+                    <h3>Mix hạt</h3>
+                    <p class="price">239,000đ</p>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="collection-product-item">
+                    <div class="collection-product-image">
+                        <img src="image/collection/mix-trai-cay.jpg" alt="Mix trái cây"><!-- Hình ảnh minh họa-->
+                        <div class="collection-overlay"><!-- Hover để hiển thị-->
+                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                            <button class="collection-view-btn"
+                                    onclick="openModal('./image/collection/mix-trai-cay.jpg', 'Mix trái cây', '179,000đ')">👁 XEM
+                                NHANH</button>
+                        </div>
+                    </div>
+                    <h3>Mix trái cây</h3>
+                    <p class="price">179,000đ</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Modal hiển thị chi tiết sản phẩm-->
+        <div class="product-modal" id="productModal">
+            <div class="product-modal-content">
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+                <img id="modal-img" src="" alt="">
+                <div class="infor">
+                    <h3 id="modal-name"></h3>
+                    <p class="price" id="modal-price"></p>
+                    <div class="quantity-box">
+                        <button class="qty-btn" id="qty-decrease">-</button>
+                        <input type="text" id="product-qty" value="1" min="1">
+                        <button class="qty-btn" id="qty-increase">+</button>
+                    </div>
+                    <button class="add">🛒 THÊM VÀO GIỎ</button>
+                    <p><a href="#">Xem chi tiết sản phẩm</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!------------------------------------------------------------------------------>
+<!--Footer-->
+
+<div class="main-footer-new">
+    <!--section đăng kí nhận tin-->
+    <section id="send-for-gmail" class="section section-for-email">
+        <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <div class="container-fluid">
+            <div class="row flexAlignCenter flexJustiCenter">
+                <div class="col-md-6 col-sm-12">
+                    <h3 class="title">Đăng kí nhận tin</h3>
+                    <p class="content">
+                        Đăng ký Email để theo dõi những sản phẩm được giảm giá của chúng tôi.
+                        <br>
+                        Theo dõi fanpage Ngũ cốc Ngon để cập nhật thông tin mới nhất.
+                    </p>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-newsletter">
+                        <form accept-charset="UTF-8" action="/account/contact" class="contact-form" method="post">
+                            <input name="form_type" type="hidden" value="customer">
+                            <input name="utf8" type="hidden" value="✓">
+                            <div class="form-group">
+                                <input type="hidden" id="newsletter_tags" name="contact[tags]"
+                                       value="khách hàng tiềm năng, bản tin">
+                                <input required="" type="email" value="" placeholder="Nhập email của bạn"
+                                       name="contact[email]" aria-label="Email Address"
+                                       class="inputNew form-control grey newsletter-input">
+                                <button type="submit" class="button dark submitNewsletter"><span>Gửi</span></button>
+                            </div>
+                            <div class="sitebox-recaptcha hidden">
+                                This site is protected by reCAPTCHA and the Google
+                                <a href="https://policies.google.com/privacy" target="_blank"
+                                   rel="noreferrer">Privacy Policy</a>
+                                and <a href="https://policies.google.com/terms" target="_blank"
+                                       rel="noreferrer">Terms of Service</a> apply.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Footer chính -->
+    <footer class="main-footer footer">
+        <div class="footer-middle">
+            <div class="container-fluid">
+                <div class="footer-middle-container">
+
+
+
+                    <div class="row">
+                        <!-- Cột 1: Giới thiệu -->
+                        <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
+                            <div class="logo-footer">
+
+                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
+                                         alt="Ngũ cốc Ngon">
+                                </a>
+                            </div>
+                            <p>Công ty TNHH Phát triển Nông nghiệp Xanh Ngon<br>
+                                ĐC: Dĩ An, TP.HCM<br>
+                                ĐT: 0357250466<br>
+                                Email: ngucocNgon@gmail.com<br>
+                                Giấy CNĐKKD: 34472346746(23/2/2025)</p>
+                            <div class="logo-footer-bct">
+
+                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                         height="70px" width="150px" alt="Bộ Công Thương">
+
+                            </div>
+                        </div>
+
+                        <!-- Cột 2: Hỗ trợ khách hàng -->
+                        <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
+                            <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
+                            <ul>
+                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                    trả</a></li>
+                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                    mật</a></li>
+                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                    vụ</a></li>
+                                <li><a href="ChinhSachThanhToan.html"
+                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Cột 3: Kết nối nhanh -->
+                        <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
+                            <h3 class="footer-title">KẾT NỐI NHANH</h3>
+                            <ul>
+                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Cột 4: Liên hệ và mạng xã hội -->
+                        <div class="boxphone ft-col col-md-3 col-sm-6 col-xs-12">
+                            <h3 class="footer-title">CHĂM SÓC KHÁCH HÀNG</h3>
+                            <p class="fter-hotline">
+                                <a href="tel:0357250466" rel="nofollow">0357 250 466</a>
+                            </p>
+                            <h3 class="footer-title">THEO DÕI CHÚNG TÔI</h3>
+                            <ul class="shop_social">
+                                <li class="facebook_social">
+                                    <a href="#" target="_blank" rel="noreferrer" title="Facebook"
+                                       aria-label="Facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="instagram_social">
+                                    <a href="#" target="_blank" rel="noreferrer" title="Instagram"
+                                       aria-label="Instagram">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li class="youtube_social">
+                                    <a href="#" target="_blank" rel="noreferrer" title="Youtube"
+                                       aria-label="Youtube">
+                                        <i class="fa fa-youtube-play"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--back to top bootstrap-->
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                id="btn-back-to-top"
+                class="btn btn-success btn-lg">
+            ↑
+        </button>
+
+        <div class="footer-copyright text-center">
+            <div class="container-fluid">
+                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                            rel="noreferrer">Team 18</a></p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Bỏ chọn input radio sau khi chọn -->
+<script>
+    const radios = document.querySelectorAll('input[name="price"]');
+
+    radios.forEach(radio => {
+        radio.addEventListener('click', function() {
+            // Nếu radio này đang được chọn lần trước
+            if (this.checked && this.dataset.wasChecked === "true") {
+                this.checked = false;          // bỏ chọn
+                this.dataset.wasChecked = "false";
+            } else {
+                // đặt trạng thái cho tất cả radio khác
+                radios.forEach(r => r.dataset.wasChecked = "false");
+                this.dataset.wasChecked = "true";
+            }
+        });
+    });
+</script>
+
+<!--back to top (bootstrap) js-->
+<script>
+    const backToTopBtn = document.getElementById("btn-back-to-top");
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+</script>
+
+</body>
+</html>
