@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -137,9 +139,12 @@
         <span class="close-btn">&times;</span>
         <h2>Đăng Nhập Tài Khoản</h2>
         <p>Nhập email và mật khẩu của bạn:</p>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Mật khẩu" required>
+
+        <form action="Trangchu-login" method="post" autocomplete="off">
+        <!--test-->
+
+        <input type="text" name="username" placeholder="Tài khoản" required  autocomplete="off">
+            <input type="password" name="password" placeholder="Mật khẩu" required autocomplete="new-password">
             <p>This site is protected by reCAPTCHA and the Google <a
                     href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>

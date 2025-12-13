@@ -3,7 +3,7 @@ package vn.edu.nlu.fit.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.model.products;
+import vn.edu.nlu.fit.model.Products;
 import vn.edu.nlu.fit.services.ProductService;
 
 
@@ -15,7 +15,7 @@ public class ListProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService proS= new ProductService();
-        List<products> list= proS.getListProduct();
+        List<Products> list= proS.getListProduct();
         request.setAttribute("list", list);
         request.getRequestDispatcher("SanPham-TatCa.jsp").forward(request, response);
     }

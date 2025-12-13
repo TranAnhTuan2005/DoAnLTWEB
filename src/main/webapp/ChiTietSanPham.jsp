@@ -368,6 +368,7 @@
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
+
 <main class="main-detailProduct">
     <!-- Breadcrumb -->
     <section class="breadcrumb-bar py-2">
@@ -386,13 +387,13 @@
 
         <!-- Hình ảnh sản phẩm -->
         <div class="detail-product-gallery">
-            <img id="detail-product-image" src="Web_NguCoc_JSP/image/collection/ngu-coc-tre-em.png" alt="Ngũ cốc trẻ em" class="detail-product-image">
+            <img id="detail-product-image" src="${product.img}" alt="Ngũ cốc trẻ em" class="detail-product-image">
         </div>
 
         <!-- Thông tin sản phẩm -->
         <div class="detail-product-info">
-            <h1 class="detail-product-title">Ngũ cốc trẻ em</h1>
-            <p class="detail-product-price">239,000₫</p>
+            <h1 class="detail-product-title">${product.name}</h1>
+            <p class="detail-product-price">${product.price}₫</p>
 
             <div class="detail-product-action-row">
                 <div class="detail-product-quantity">
@@ -426,23 +427,19 @@
         <h2 class="detail-product-section-title">Thông tin bạn cần biết</h2>
 
         <p class="detail-product-text">
-            Ngũ cốc trẻ em được nghiên cứu và phát triển dựa trên nguyên lý khoa học về sinh lý và quá trình hấp thu dinh dưỡng đặc thù của trẻ nhỏ.
+            ${product.description}
         </p>
 
         <h3 class="detail-product-subtitle">Thành phần:</h3>
         <p class="detail-product-text">
-            Ngũ cốc trẻ em chứa hơn 30 loại hạt giàu dưỡng chất gồm: yến mạch, hạt sen, diêm mạch, đậu gà, đậu lăng, hạnh nhân, óc chó, hạt chia, hạt điều...
+            ${product.ingredient}
         </p>
-        <ul class="detail-product-list">
-            <li>Yến mạch, hạt sen, diêm mạch, đậu gà, đậu lăng, đậu Hà Lan, hạnh nhân, óc chó đỏ, óc chó vàng, mắc ca, hạt chia, hạt điều, bí xanh.</li>
-            <li>Đậu xanh, đậu huyết, đậu đen xanh lòng, đậu tây trắng, đậu tây đỏ, đậu ngự, gạo lứt đỏ, nếp cẩm, mè đen, đậu nành thuần chủng, bắp nếp, bột khoai lang, bột bí ngô...</li>
-        </ul>
+
 
         <h3 class="detail-product-subtitle">Công dụng:</h3>
         <ul class="detail-product-list">
-            <li>Bổ sung canxi, chất xơ, omega-3, vitamin giúp trẻ phát triển thể chất và trí não.</li>
-            <li>Kích thích trẻ ăn ngon miệng.</li>
-            <li>Hỗ trợ tiêu hóa tốt hơn.</li>
+            <li>${product.uses}</li>
+
         </ul>
 
         <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
