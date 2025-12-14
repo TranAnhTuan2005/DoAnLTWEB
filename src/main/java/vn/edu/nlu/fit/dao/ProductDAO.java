@@ -40,13 +40,13 @@ public class ProductDAO extends BaseDao {
 
     //lay du lieu ra
     public List<Products> getListProduct() {
-        return getJdbi().withHandle(handle ->
-                handle.createQuery("select * from products").mapToBean(Products.class).list());
+        return getJdbi().withHandle(h ->
+                h.createQuery("select * from products").mapToBean(Products.class).list());
     }
 
     public Products getProduct(int id) {
-        return getJdbi().withHandle(handle ->
-                handle.createQuery("select * from products where id=:id").bind("id", id).
+        return getJdbi().withHandle(h ->
+                h.createQuery("select * from products where id=:id").bind("id", id).
                         mapToBean(Products.class).stream().findFirst().orElse(null));
     }
 

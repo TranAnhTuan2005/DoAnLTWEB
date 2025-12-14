@@ -6,46 +6,39 @@ public class Products implements Serializable { //dung javaBean
 
     private int id;
     private String name;
-    private String img;
-    private int price;
-
-///
+    private double price;
+    private String image;
+    private double rating;
     private int status;
+    private int isNew;
     private int quantity;
-
     private String brand;
     private String description;
-    private String expiry_date;
+    private String expiryDate;
+    private String ingredient;
     private String instruction;
     private String attention;
     private String uses;
-    private String ingredient;
+
     public Products() {
     }
 
-
-    public Products(int id, String ingredient, String uses, String instruction, String description, int quantity, int price, String img, String name, int status, String brand, String expiry_date, String attention) {
+    public Products(int id, String name, double price, String image, double rating, int status, int isNew, int quantity, String brand, String description, String expiryDate, String ingredient, String instruction, String attention, String uses) {
         this.id = id;
-        this.ingredient = ingredient;
-        this.uses = uses;
-        this.instruction = instruction;
-        this.description = description;
-        this.quantity = quantity;
+        this.name = name;
         this.price = price;
-        this.img = img;
-        this.name = name;
+        this.image = image;
+        this.rating = rating;
         this.status = status;
+        this.isNew = isNew;
+        this.quantity = quantity;
         this.brand = brand;
-        this.expiry_date = expiry_date;
+        this.description = description;
+        this.expiryDate = expiryDate;
+        this.ingredient = ingredient;
+        this.instruction = instruction;
         this.attention = attention;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.uses = uses;
     }
 
     public int getId() {
@@ -56,28 +49,36 @@ public class Products implements Serializable { //dung javaBean
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public String getName() {
+        return name;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
-    }
-
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public int getStatus() {
@@ -88,12 +89,12 @@ public class Products implements Serializable { //dung javaBean
         this.status = status;
     }
 
-    public String getBrand() {
-        return brand;
+    public int getIsNew() {
+        return isNew;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setIsNew(int isNew) {
+        this.isNew = isNew;
     }
 
     public int getQuantity() {
@@ -104,6 +105,14 @@ public class Products implements Serializable { //dung javaBean
         this.quantity = quantity;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -112,12 +121,20 @@ public class Products implements Serializable { //dung javaBean
         this.description = description;
     }
 
-    public String getExpiry_date() {
-        return expiry_date;
+    public String getExpiryDate() {
+        return expiryDate;
     }
 
-    public void setExpiry_date(String expiry_date) {
-        this.expiry_date = expiry_date;
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 
     public String getInstruction() {
@@ -142,5 +159,26 @@ public class Products implements Serializable { //dung javaBean
 
     public void setUses(String uses) {
         this.uses = uses;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", rating=" + rating +
+                ", status=" + status +
+                ", isNew=" + isNew +
+                ", quantity=" + quantity +
+                ", brand='" + brand + '\'' +
+                ", description='" + description + '\'' +
+                ", expiryDate='" + expiryDate + '\'' +
+                ", ingredient='" + ingredient + '\'' +
+                ", instruction='" + instruction + '\'' +
+                ", attention='" + attention + '\'' +
+                ", uses='" + uses + '\'' +
+                '}';
     }
 }
