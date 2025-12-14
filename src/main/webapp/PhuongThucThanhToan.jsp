@@ -1,0 +1,398 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin giao hàng</title>
+    <style>
+        body {
+            font-family: 'Tahoma', Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .checkout-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            min-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /** căn form thông tin rộng hơn*/
+        .shipping-form {
+            flex: 1;
+            /*Chia đều mỗi phần tử đều 1 bên*/
+            max-width: 700px;
+        }
+
+        .shipping-form h1 {
+            font-size: 26px;
+        }
+
+        .shipping-form nav {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .shipping-form nav a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .shipping-form nav a:hover {
+            cursor: pointer;
+            color: #5c93db;
+        }
+
+        .shipping-form h2 {
+            font-weight: normal;
+            font-size: 18px;
+        }
+
+        .shipping-method {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+
+        .method-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .method-item span {
+            flex-grow: 1;
+        }
+
+
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .pay-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .pay-card:last-child {
+            border-bottom: none;
+        }
+
+        .pay-card:hover {
+            background: #f6f9ff;
+        }
+
+        .pay-card input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .pay-card .icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .pay-card input:checked~span,
+        .pay-card input:checked~img {
+            filter: brightness(0.85);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            /* cắt đôi*/
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .cart-link {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .cart-link:hover {
+            cursor: pointer;
+            color: #5c93db;
+        }
+
+        .submit-btn {
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .submit-btn:hover {
+            background-color: #155bb5;
+        }
+
+        /*Đường ngăn*/
+        .divider {
+            width: 1px;
+            background-color: #ddd;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        /*Mục sản phẩm*/
+        .order-summary {
+            flex: 0 0 350px;
+            background: #fafafa;
+            border: 1px solid #eeeeee;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .order-summary h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        /*đưa thông tin của item căn theo chiều ngang*/
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .product-img {
+            position: relative;
+        }
+
+        .product-img img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        /*xử lí thông tin mặt hàng*/
+        .product-qty {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #a3a3a3;
+            color: #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .product-infor {
+            flex-grow: 1;
+            margin-left: 10px;
+            ;
+        }
+
+        .product-name {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .product-price {
+            font-weight: lighter;
+        }
+
+        .discount {
+            display: flex;
+            margin: 15px 0;
+        }
+
+        .discount input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .discount button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .summary-line,
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .total-price {
+            font-size: 18px;
+            color: #000;
+        }
+
+        /* ---------------- RESPONSIVE ----------------*/
+        @media (max-width: 900px) {
+            .checkout-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .divider {
+                display: none;
+            }
+
+            .order-summary {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="checkout-container">
+        <!--Cột form bên trái-->
+        <div class="shipping-form">
+            <h1>Ngũ cốc Ngon</h1>
+            <nav>
+                <a href="GioHang.html">Giỏ hàng</a> >
+                <a href="ThongTinGiaoHang.html">Thông tin giao hàng</a> >
+                <span>Phương thức thanh toán</span>
+            </nav> <!--Đường dẫn hiện tại-->
+
+            <h2>Phương thức vận chuyển</h2>
+            <div class="shipping-method">
+                <label class="method-item">
+                    <input type="radio" name="ship" checked>
+                    <span>Giao hàng tận nơi</span>
+                    <strong id="delivery-price">20,000đ</strong>
+                </label>
+            </div>
+
+            <h2>Phương thức thanh toán</h2>
+
+            <div class="payment-method">
+                <label class="pay-card">
+                    <input type="radio" name="payment" checked>
+                    <img src="image/paymentMethod/cod.svg" class="icon">
+                    <span>Thanh toán khi giao hàng (COD)</span>
+                </label>
+
+                <label class="pay-card">
+                    <input type="radio" name="payment">
+                    <img src="image/paymentMethod/cash.svg" class="icon">
+                    <span>Chuyển khoản qua ngân hàng</span>
+                </label>
+            </div>
+
+            <div class="form-footer">
+                <a href="GioHang.html" class="cart-link">Giỏ hàng</a>
+                <button class="submit-btn" onclick="window.location.href='DatHangThanhCong.html'">Hoàn tất đơn
+                    hàng</button>
+            </div>
+        </div>
+
+        <!--Đường ngăn cách-->
+        <div class="divider"></div>
+
+        <!--Cột đơn hàng bên phải-->
+        <div class="order-summary">
+            <h2>Đơn hàng của bạn</h2>
+
+            <div class="product-item">
+                <div class="product-img">
+                    <img src="image/newProducts/banhhat.jpg" alt="Bánh hạt dinh dưỡng">
+                    <span class="product-qty">1</span>
+                </div>
+                <div class="product-infor">
+                    <p class="product-name">Bánh hạt dinh dưỡng 30 x 15 g</p>
+                </div>
+                <div class="product-price">219.000đ</div>
+            </div>
+            <div class="discount">
+                <input type="text" placeholder="Mã giảm giá" name="discount">
+                <button>Sử dụng</button>
+            </div>
+
+            <div class="summary-line">
+                <span>Tạm tính</span>
+                <span>219.000đ</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Phí vận chuyển</span>
+                <span>20.000đ</span>
+            </div>
+
+            <hr>
+
+            <div class="total-line">
+                <div>
+                    <strong>Tổng cộng</strong>
+                    <small>VND</small>
+                </div>
+                <strong class="total-price">239.000đ</strong>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--Xử lí import tỉnh/ thành phố, quận/ huyện-->
+    <script>
+        const provinceSelect = document.getElementById('province');
+        const districtSelect = document.getElementById('district');
+
+        // Load tỉnh/thành
+        fetch("https://provinces.open-api.vn/api/p/")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(p => {
+                    const opt = document.createElement("option");
+                    opt.value = p.code;
+                    opt.textContent = p.name;
+                    provinceSelect.appendChild(opt);
+                });
+            });
+
+        // Khi chọn tỉnh thì load huyện
+        provinceSelect.addEventListener("change", function () {
+            districtSelect.innerHTML = '<option value="">Quận/ huyện</option>';
+
+            fetch(`https://provinces.open-api.vn/api/p/${this.value}?depth=2`)
+                .then(res => res.json())
+                .then(data => {
+                    data.districts.forEach(d => {
+                        const opt = document.createElement("option");
+                        opt.value = d.code;
+                        opt.textContent = d.name;
+                        districtSelect.appendChild(opt);
+                    });
+                });
+        });
+    </script>
+
+</body>
+
+
+</html>
