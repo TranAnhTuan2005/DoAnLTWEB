@@ -11,28 +11,28 @@ public abstract class BaseDao {
     private Jdbi jdbi;
 
     protected Jdbi getJdbi(){
-        if(jdbi==null){
-            makeConnect();
-        }
+        if(jdbi==null) makeConnect();
         return jdbi;
     }
 
     private void makeConnect() {
 
-        String url= "jdbc:mysql://"+DBProperties.host()+":"+DBProperties.port()+"/"+DBProperties.dbname()+"?"+DBProperties.option();
+        MysqlDataSource dataSource= new MysqlDataSource();
 
-        MysqlDataSource src= new MysqlDataSource();
-        src.setURL(url);
-        src.setUser(DBProperties.username());
-        src.setPassword(DBProperties.password());
+        String url= "jdbc:mysql://"+DBProperties.getDbHost()+":"+DBProperties.getDbPort()+"/"+DBProperties.getDbName()+"?"+DBProperties.getDbOption();
+        dataSource.setURL(url);
+
+        dataSource.setUser(DBProperties.getUsername());
+        dataSource.setPassword(DBProperties.getPassword());
         try{
-            src.setUseCompression(true);//nen du lieu tu mysql gui len
-            src.setAutoReconnect(true);//tu dong ket noi lai khi bi ngat ket noi voi mySQL
+            dataSource.setUseCompression(true);//nen du lieu tu mysql gui len
+            dataSource.setAutoReconnect(true);//tu dong ket noi lai khi bi ngat ket noi voi mySQL
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
-        jdbi=Jdbi.create(src);
+        jdbi=Jdbi.create(dataSource);
     }
 
 
