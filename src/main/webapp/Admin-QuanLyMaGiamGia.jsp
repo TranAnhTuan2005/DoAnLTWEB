@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý đơn hàng</title>
+    <title>Quản lý mã giảm giá</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -370,7 +370,7 @@
     }
 
     .cate-item {
-        width: 140px;
+        width: 160px;
         text-align: center;
         font-weight: bold;
         overflow: hidden;
@@ -443,9 +443,9 @@
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a></li>
             <hr>
-            <li> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.html">Đơn hàng</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.html">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -484,7 +484,7 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Đơn hàng</span>
+            <span>Mã giảm giá</span>
         </div>
 
         <section class="dashboard">
@@ -495,34 +495,28 @@
         <section class="dashboard">
             <div class="border-dashboard">
                 <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLyDonHang-TaoMoi.jsp'">+Tạo
+                    <button class="new-post" onclick="window.location.href='Admin-QuanLyMaGiamGia-TaoMoi.jsp'">+Tạo
                         mới</button>
                 </div>
                 <ul class="cate">
                     <li class="cate-stt">STT</li>
-                    <li class="cate-item">Mã đơn hàng</li>
-                    <li class="cate-item">Tên người dùng</li>
-                    <li class="cate-item">Số điện thoại</li>
-                    <li class="cate-item">Tổng tiền</li>
-                    <li class="cate-item">Ngày đặt</li>
+                    <li class="cate-item">Mã giảm giá</li>
+                    <li class="cate-item">Mức giảm</li>
+                    <li class="cate-item">Điều kiện</li>
+                    <li class="cate-item">Giới hạn</li>
+                    <li class="cate-item">Số lượng</li>
                     <li class="cate-item">Trạng thái</li>
-<!--                    Màu vàng: Chờ xác nhận (Cần xử lý ngay).-->
-<!--                    Màu xanh dương: Đang giao.-->
-<!--                    Màu xanh lá: Thành công.-->
-<!--                    Màu đỏ: Đã hủy.-->
-                    <li class="cate-item">Thanh toán</li>
                     <li class="cate-item">Hành động</li>
                 </ul>
 
                 <ul class="cate thin">
                     <li class="cate-stt">1</li>
-                    <li class="cate-item">001</li>
-                    <li class="cate-item">Nguyễn Văn Bảo</li>
-                    <li class="cate-item">0987272381</li>
-                    <li class="cate-item">547,000đ</li>
-                    <li class="cate-item">14/12/2025</li>
-                    <li class="cate-item">Chờ xác nhận</li>
-                    <li class="cate-item">Đã thanh toán</li>
+                    <li class="cate-item">NGUCOCNGON</li>
+                    <li class="cate-item">10%</li>
+                    <li class="cate-item">Đơn > 300.000đ</li>
+                    <li class="cate-item">Tối đa 50k</li>
+                    <li class="cate-item">68</li>
+                    <li class="cate-item">Còn hạn</li>
                     <li class="cate-item">
                         <i class="fa-solid fa-pen"></i>
                         <i class="fa-solid fa-trash"></i>
