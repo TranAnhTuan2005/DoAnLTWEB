@@ -387,7 +387,7 @@
 
         <!-- Hình ảnh sản phẩm -->
         <div class="detail-product-gallery">
-            <img id="detail-product-image" src="${product.img}" alt="Ngũ cốc trẻ em" class="detail-product-image">
+            <img id="detail-product-image" src="${product.image}" alt="Ngũ cốc trẻ em" class="detail-product-image">
         </div>
 
         <!-- Thông tin sản phẩm -->

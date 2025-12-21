@@ -558,13 +558,13 @@
                     <div class="collection-product-image">
 
                         <a href="${detailUrl_byID}">
-                            <img src="${p.img}" alt="${p.name}">
+                            <img src="${p.image}" alt="${p.name}">
                         </a>
 
                         <div class="collection-overlay"><!-- Hover để hiển thị-->
                             <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
                             <button class="collection-view-btn"
-                                    onclick="openModal('${p.img}','${p.name}', '${p.price}đ', '${detailUrl_byID}')">👁
+                                    onclick="openModal('${p.image}','${p.name}', '${p.price}đ', '${detailUrl_byID}')">👁
                                 XEM NHANH
                             </button>
                         </div>
@@ -866,8 +866,8 @@
 
 <!--hàm mở, đóng modal lấy ra id cho link trang chi tiết sp-->
 <script>
-    function openModal(img, name, price, detailUrl_byID) {
-        document.getElementById('modal-img').src = img;
+    function openModal(image, name, price, detailUrl_byID) {
+        document.getElementById('modal-img').src = image;
         document.getElementById('modal-name').innerText = name;
         document.getElementById('modal-price').innerText = price;
         document.getElementById('modal-detail-link').href = detailUrl_byID;
