@@ -492,7 +492,7 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html">Bảng điều khiển</a></li>
+            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -502,16 +502,18 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.html">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
+                    <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.html">Bài viết</a></li>
+            <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
             <hr>
 
             <li><i class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html" class="active">Người dùng</a></li>
+            <hr>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
         </ul>
     </aside>
@@ -558,7 +560,7 @@
         <section class="user-section">
             <div class="user-card">
                 <h3>Danh sách người dùng</h3>
-                <a href="Admin-Quanlynguoidung-taomoi.html">
+                <a href="Admin-Quanlynguoidung-taomoi.jsp">
                     <button class="btn-create"><i class="fa fa-plus"></i> Tạo mới</button>
                 </a>
                 <table>

@@ -134,7 +134,7 @@
                 const pass = document.getElementById("password").value;
 
                 if (user === "admin" && pass === "123") {
-                    window.location.href = "Admin-HomePage.html";
+                    window.location.href = "Admin-HomePage.jsp";
                 } else {
                     // Xoá mật khẩu đã nhập
                     password.value = "";

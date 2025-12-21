@@ -1,9 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bảng điều khiển - Quản lý bán hàng</title>
+    <title>Quản lý đơn hàng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -79,7 +81,6 @@
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        opacity: 0.6;
     }
 
     .submenu-toggle {
@@ -115,6 +116,7 @@
         padding: 10px 40px;
         display: flex;
         align-items: center;
+        color:#fff;
         gap: 8px;
     }
 
@@ -160,89 +162,6 @@
     .breadcrumb span {
         margin: 0 5px;
         color: #007bff;
-    }
-
-    /* Dashboard */
-    .dashboard {
-        padding: 20px;
-    }
-
-    .dashboard h2 {
-        margin-bottom: 15px;
-        font-size: 20px;
-        color: #333;
-    }
-
-    .dashboard h3 {
-        margin-bottom: 15px;
-        margin-top: -10px;
-        font-size: 20px;
-        color: #333;
-    }
-
-    .border-dashboard {
-        background: white;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .cards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 15px;
-    }
-
-    .card {
-        flex: 1 1 220px;
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card .icon {
-        font-size: 30px;
-        color: #555;
-    }
-
-    .card h3 {
-        font-size: 16px;
-        color: #333;
-    }
-
-    .card p {
-        margin-top: 5px;
-        font-size: 14px;
-    }
-
-    .card a {
-        color: #03a9f4;
-        text-decoration: none;
-    }
-
-    .danh-muc {
-        border-left: 5px solid #03a9f4;
-    }
-
-    .san-pham {
-        border-left: 5px solid #4caf50;
-    }
-
-    .thanh-vien {
-        border-left: 5px solid #f44336;
-    }
-
-    .bai-viet {
-        border-left: 5px solid #00bcd4;
-    }
-
-    hr {
-        opacity: 0.5;
     }
 
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
@@ -387,6 +306,109 @@
         }
     }
 
+    /* Dashboard */
+    .dashboard {
+        padding: 20px;
+        margin-top: -20px;
+    }
+
+    .dashboard h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .dashboard h3 {
+        margin-bottom: 15px;
+        margin-top: -10px;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .border-dashboard {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-wrap {
+        display: flex;
+        justify-content: right;
+    }
+
+    .new-post {
+        background-color: #03a9f4;
+        font-size: 15px;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        margin-bottom: 10px;
+    }
+
+    .new-post:hover {
+        background-color: #007bff;
+        cursor: pointer;
+    }
+
+    .cate {
+        display: flex;
+    }
+
+    .cate li {
+        list-style-type: none;
+        border: 1px solid #888;
+        padding: 15px 0;
+    }
+
+    /* Chiều rộng từng cột */
+    .cate-stt {
+        width: 40px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .cate-item {
+        width: 140px;
+        text-align: center;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    /* Thumbnail */
+    .cate-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .thin li {
+        font-weight: lighter;
+    }
+
+    .fa-pen {
+        border: 1px solid #007bff;
+        padding: 5px;
+        color: white;
+        background-color: #007bff;
+        border-radius: 3px;
+    }
+
+    .fa-trash {
+        border: 1px solid red;
+        padding: 5px;
+        color: white;
+        background-color: red;
+        border-radius: 3px;
+    }
+
+    .fa-solid {
+        cursor: pointer;
+    }
+
 
 </style>
 <body>
@@ -401,27 +423,27 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html" >Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu" style="opacity: 0.6">
                 <div class="submenu-toggle">
                     <i class="fa-solid fa-box"></i>
-                    <span>Sản phẩm </span>
+                    <span>Sản phẩm</span>
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.html">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.html">Bài viết</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.html">Người dùng</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.html">Đơn hàng</a></li>
+            <li> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.html">Đơn hàng</a></li>
             <hr>
         </ul>
     </aside>
@@ -460,64 +482,81 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Bảng điều khiển</span>
+            <span>Đơn hàng</span>
         </div>
 
         <section class="dashboard">
+
+        </section>
+
+        <!--Dashboard-->
+        <section class="dashboard">
             <div class="border-dashboard">
-                <h3>Dữ liệu website</h3>
-                <hr>
-                <div class="cards">
-                    <div class="card danh-muc">
-                        <div class="icon"><i class="fa-solid fa-list"></i></div>
-                        <div class="info">
-                            <h3>Số danh mục sản phẩm</h3>
-                            <p>4</p>
-                        </div>
-                    </div>
-
-                    <div class="card san-pham">
-                        <div class="icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        <div class="info">
-                            <h3>Sản phẩm</h3>
-                            <p>7</p>
-                        </div>
-                    </div>
-
-                    <div class="card thanh-vien">
-                        <div class="icon"><i class="fa-solid fa-users"></i></div>
-                        <div class="info">
-                            <h3>Thành viên</h3>
-                            <p>2</p>
-                        </div>
-                    </div>
-
-                    <div class="card bai-viet">
-                        <div class="icon"><i class="fa-solid fa-file-word"></i></div>
-                        <div class="info">
-                            <h3>Số lượng bài viết</h3>
-                            <p>0</p>
-                        </div>
-                    </div>
+                <div class="button-wrap">
+                    <button class="new-post" onclick="window.location.href='Admin-QuanLyDonHang-TaoMoi.jsp'">+Tạo
+                        mới</button>
                 </div>
+                <ul class="cate">
+                    <li class="cate-stt">STT</li>
+                    <li class="cate-item">Mã đơn hàng</li>
+                    <li class="cate-item">Tên người dùng</li>
+                    <li class="cate-item">Số điện thoại</li>
+                    <li class="cate-item">Tổng tiền</li>
+                    <li class="cate-item">Ngày đặt</li>
+                    <li class="cate-item">Trạng thái</li>
+<!--                    Màu vàng: Chờ xác nhận (Cần xử lý ngay).-->
+<!--                    Màu xanh dương: Đang giao.-->
+<!--                    Màu xanh lá: Thành công.-->
+<!--                    Màu đỏ: Đã hủy.-->
+                    <li class="cate-item">Thanh toán</li>
+                    <li class="cate-item">Hành động</li>
+                </ul>
+
+                <ul class="cate thin">
+                    <li class="cate-stt">1</li>
+                    <li class="cate-item">001</li>
+                    <li class="cate-item">Nguyễn Văn Bảo</li>
+                    <li class="cate-item">0987272381</li>
+                    <li class="cate-item">547,000đ</li>
+                    <li class="cate-item">14/12/2025</li>
+                    <li class="cate-item">Chờ xác nhận</li>
+                    <li class="cate-item">Đã thanh toán</li>
+                    <li class="cate-item">
+                        <i class="fa-solid fa-pen"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </li>
+                </ul>
+
             </div>
         </section>
     </main>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const submenuToggles = document.querySelectorAll(".submenu-toggle");
+    document.addEventListener("DOMContentLoaded", () => {
 
-        submenuToggles.forEach((toggle) => {
-            toggle.addEventListener("click", function () {
-                const parent = this.closest(".has-submenu");
-                parent.classList.toggle("open");
-            });
-        });
+        const menu = document.querySelector(".has-submenu");
+        const arrow = document.querySelector(".has-submenu .arrow");
+
+        // Nhấn để mở/đóng submenu
+        document.querySelector(".submenu-toggle").onclick = () => {
+            menu.classList.toggle("open");
+
+            // Lưu trạng thái submenu
+            localStorage.setItem("menu-open", menu.classList.contains("open"));
+        };
+
+        // Khi load trang: mở submenu
+        if (localStorage.getItem("menu-open") === "true") {
+            menu.classList.add("open");
+
+            // Ngăn mũi tên xoay khi load lại trang
+            arrow.style.transform = "none";
+        }
     });
-
 </script>
+
+
 
 <script>
     (function () {
