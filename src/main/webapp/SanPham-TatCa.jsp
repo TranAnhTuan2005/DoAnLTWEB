@@ -867,7 +867,7 @@
 <!--hàm mở, đóng modal lấy ra id cho link trang chi tiết sp-->
 <script>
     function openModal(image, name, price, detailUrl_byID) {
-        document.getElementById('modal-image').src = image;
+        document.getElementById('modal-img').src = image;
         document.getElementById('modal-name').innerText = name;
         document.getElementById('modal-price').innerText = price;
         document.getElementById('modal-detail-link').href = detailUrl_byID;
