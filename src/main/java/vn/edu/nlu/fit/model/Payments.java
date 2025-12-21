@@ -3,7 +3,7 @@ package vn.edu.nlu.fit.model;
 public  class Payments {
     private int id;
     private int order_id;
-    private paymentMethods_id;
+    //private paymentMethods_id;
     private double amount;
     private boolean status;
     private Date date;
