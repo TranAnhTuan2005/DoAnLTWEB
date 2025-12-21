@@ -14,6 +14,5 @@ public class CartItem {
     public void upQuantity(int quan){
         if(quantiy<=1)  quantiy =1;
         this.quantiy = quan;
-
     }
 }
