@@ -55,8 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Đóng khi click ngoài
-    window.addEventListener('click', () => {
-        cartModal.classList.remove('show');
+    window.addEventListener('click', (e) => {
+        if (!cartModal.contains(e.target) && !e.target.closest('.cart-btn')) {
+            cartModal.classList.remove('show');
+        }
         accountModal.classList.remove('show');
     });
 
@@ -164,3 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+
+

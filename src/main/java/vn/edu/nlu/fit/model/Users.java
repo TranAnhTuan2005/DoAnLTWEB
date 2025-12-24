@@ -6,7 +6,7 @@ public class Users {
     private int id;
     private String name;
     private String address;
-    private LocalDate birthday;
+    private String birthday;
     private String phoneNumber;
     private String image;
     private String username;
@@ -16,7 +16,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(int id, String name, String address, LocalDate birthday, String phoneNumber, String image, String username, String password, String role) {
+    public Users(int id, String name, String address, String birthday, String phoneNumber, String image, String username, String password, String role) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -52,11 +52,11 @@ public class Users {
         this.address = address;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -75,6 +75,7 @@ public class Users {
     public void setImage(String image) {
         this.image = image;
     }
+
 
     public String getUsername() {
         return username;

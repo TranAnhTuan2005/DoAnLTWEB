@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 12/7/2025
-  Time: 20:33 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
@@ -14,8 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Ngũ cốc Ngon | Dinh dưỡng cho mọi nhà</title>
-    <link rel="stylesheet" href="Web_NguCoc_JSP/style.css">
-    <script src="Web_NguCoc_JSP/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -39,8 +33,8 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="Web_NguCoc_JSP/TrangChu.html">
-                <img src="Web_NguCoc_JSP/image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            <a href="TrangChu.html">
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
@@ -48,9 +42,9 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <a href="Web_NguCoc_JSP/TimKiem.html">
+                <a href="TimKiem.html">
                     <i class="icon_timkiem">
-                        <img src="Web_NguCoc_JSP/image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
                     </i>
                 </a>
             </button>
@@ -59,44 +53,74 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="Web_NguCoc_JSP/TrangChu.html">Trang chủ</a></li>
-                <li><a href="Web_NguCoc_JSP/VeNgon.html">Về Ngon</a></li>
+                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="Web_NguCoc_JSP/SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
-                <li><a href="Web_NguCoc_JSP/TinTuc1.html">Tin tức</a></li>
-                <li><a href="Web_NguCoc_JSP/CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="Web_NguCoc_JSP/LienHe.html">Liên hệ</a></li>
+                <li><a href="TinTuc1.html">Tin tức</a></li>
+                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
+                <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
         </nav>
 
 
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
-            <a href="#" class="account-btn" aria-label="Tài khoản">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
-                            fill="#333"/>
-                </svg>
-            </a>
+            <c:choose>
+
+                <c:when test="${empty sessionScope.USER}">
+                    <a href="#" class="account-btn" aria-label="Tài khoản" id="btn-open-login">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
+                        </svg>
+                    </a>
+                </c:when>
+
+
+                <c:otherwise>
+                    <a href="#" class="account-btn" id="btn-toggle-account">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
+                        </svg>
+                    </a>
+
+                    <!-- DROPDOWN TÀI KHOẢN -->
+                    <div id="accountMenu" class="account-menu" hidden>
+                        <div class="account-menu_inner">
+                            <p class="account-menu_hello">
+                                Xin chào, <strong>${sessionScope.USER.name}</strong>
+                            </p>
+                            <hr>
+                            <a class="account-menu_link" href="TaiKhoan.jsp">Thông tin tài khoản</a>
+                            <a class="account-menu_link" href="DanhSachDiaChi.jsp">Danh sách địa chỉ</a>
+                            <a class="account-menu_link" href="DangXuat">Đăng xuất</a>
+                        </div>
+                        <span class="account-menu_arrow"></span>
+                    </div>
+                </c:otherwise>
+
+            </c:choose>
+
             <a href="#" class="cart-btn" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -127,7 +151,7 @@
 
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
+            <button class="view-cart-btn" onclick="window.location.href='GioHang.jsp'">Xem Giỏ Hàng</button>
             <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
         </div>
     </div>
@@ -140,7 +164,7 @@
         <h2>Đăng Nhập Tài Khoản</h2>
         <p>Nhập email và mật khẩu của bạn:</p>
 
-        <form action="Trangchu-login" method="post" autocomplete="off">
+        <form id="loginForm" action="<c:url value='/Trangchu-login'/>" method="post" autocomplete="off">
         <!--test-->
 
         <input type="text" name="username" placeholder="Tài khoản" required  autocomplete="off">
@@ -148,9 +172,9 @@
             <p>This site is protected by reCAPTCHA and the Google <a
                     href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-            <button type="submit">Đăng Nhập</button>
-            <p><a href="Web_NguCoc_JSP/TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="Web_NguCoc_JSP/QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <button type="submit" >Đăng Nhập</button>
+            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
@@ -160,16 +184,16 @@
     <div class="slider-container">
 
         <div class="slide active"> <!-- Hình ảnh hiển thị đầu tiên -->
-            <img src="Web_NguCoc_JSP/image/home-slider/slide1.jpg" alt="Ngũ cốc">
+            <img src="image/home-slider/slide1.jpg" alt="Ngũ cốc">
         </div>
         <div class="slide">
-            <img src="Web_NguCoc_JSP/image/home-slider/slide2.jpg" alt="Ngũ cốc">
+            <img src="image/home-slider/slide2.jpg" alt="Ngũ cốc">
         </div>
         <div class="slide">
-            <img src="Web_NguCoc_JSP/image/home-slider/slide3.jpg" alt="Ngũ cốc">
+            <img src="image/home-slider/slide3.jpg" alt="Ngũ cốc">
         </div>
         <div class="slide">
-            <img src="Web_NguCoc_JSP/image/home-slider/slide4.jpg" alt="Ngũ cốc">
+            <img src="image/home-slider/slide4.jpg" alt="Ngũ cốc">
         </div>
 
         <button class="prev-btn">&#10094;</button> <!-- Nút qua ảnh trước -->
@@ -189,28 +213,28 @@
         <div class="si-items">
             <a href="#" class="si-item">
                 <div class="si-img">
-                    <img src="Web_NguCoc_JSP/image/suggest-interest/ngu_coc_me_bau.png" alt="Ngũ cốc mẹ bầu">
+                    <img src="image/suggest-interest/ngu_coc_me_bau.png" alt="Ngũ cốc mẹ bầu">
                 </div>
                 <p>Ngũ cốc mẹ bầu</p>
             </a>
 
             <a href="#" class="si-item">
                 <div class="si-img">
-                    <img src="Web_NguCoc_JSP/image/suggest-interest/ngu_coc_loi_sua.png" alt="Ngũ cốc lợi sữa">
+                    <img src="image/suggest-interest/ngu_coc_loi_sua.png" alt="Ngũ cốc lợi sữa">
                 </div>
                 <p>Ngũ cốc lợi sữa</p>
             </a>
 
             <a href="#" class="si-item">
                 <div class="si-img">
-                    <img src="Web_NguCoc_JSP/image/suggest-interest/ngu_coc_tre_em.png" alt="Ngũ cốc trẻ em">
+                    <img src="image/suggest-interest/ngu_coc_tre_em.png" alt="Ngũ cốc trẻ em">
                 </div>
                 <p>Ngũ cốc trẻ em</p>
             </a>
 
             <a href="#" class="si-item">
                 <div class="si-img">
-                    <img src="Web_NguCoc_JSP/image/suggest-interest/ngu_coc_dinh_duong_cao_cap.png"
+                    <img src="image/suggest-interest/ngu_coc_dinh_duong_cao_cap.png"
                          alt="Ngũ cốc dinh dưỡng cao cấp">
                 </div>
                 <p>Ngũ cốc dinh dưỡng<br>cao cấp</p>
@@ -218,14 +242,14 @@
 
             <a href="#" class="si-item">
                 <div class="si-img">
-                    <img src="Web_NguCoc_JSP/image/suggest-interest/ngu_coc_nguoi_gia.png" alt="Ngũ cốc người già">
+                    <img src="image/suggest-interest/ngu_coc_nguoi_gia.png" alt="Ngũ cốc người già">
                 </div>
                 <p>Ngũ cốc người già</p>
             </a>
 
             <a href="#" class="si-item">
                 <div class="si-img bg-lightgreen">
-                    <img src="Web_NguCoc_JSP/image/suggest-interest/ngu_coc_khac.png" alt="Ngũ cốc khác">
+                    <img src="image/suggest-interest/ngu_coc_khac.png" alt="Ngũ cốc khác">
                 </div>
                 <p>Ngũ cốc khác</p>
             </a>
@@ -235,34 +259,34 @@
 
 <section class="cate-product"> <!-- Section danh mục sản phẩm -->
     <h2 class="section-title">
-        <img src="Web_NguCoc_JSP/image/categoryProduct/title-icon.png" alt="icon" class="icon"> DANH MỤC SẢN PHẨM
+        <img src="image/categoryProduct/title-icon.png" alt="icon" class="icon"> DANH MỤC SẢN PHẨM
     </h2>
 
     <div class="product-list">
-        <a href="Web_NguCoc_JSP/SanPham-TatCa.html" class="product-card-a">
+        <a href="SanPham-TatCa.html" class="product-card-a">
             <div class="product-card">
-                <img src="Web_NguCoc_JSP/image/categoryProduct/ngu_coc.png" alt="Ngũ cốc" class="product-img">
+                <img src="image/categoryProduct/ngu_coc.png" alt="Ngũ cốc" class="product-img">
                 <h3 class="product-title">Ngũ cốc</h3>
             </div>
         </a>
 
-        <a href="Web_NguCoc_JSP/SanPham-TatCa.html" class="product-card-a">
+        <a href="SanPham-TatCa.html" class="product-card-a">
             <div class="product-card">
-                <img src="Web_NguCoc_JSP/image/categoryProduct/combohatsen.jpg" alt="Hạt dinh dưỡng" class="product-img">
+                <img src="image/categoryProduct/combohatsen.jpg" alt="Hạt dinh dưỡng" class="product-img">
                 <h3 class="product-title">Hạt dinh dưỡng</h3>
             </div>
         </a>
 
-        <a href="Web_NguCoc_JSP/SanPham-TatCa.html" class="product-card-a">
+        <a href="SanPham-TatCa.html" class="product-card-a">
             <div class="product-card">
-                <img src="Web_NguCoc_JSP/image/categoryProduct/banh_dinh_duong.png" alt="Bánh dinh dưỡng" class="product-img">
+                <img src="image/categoryProduct/banh_dinh_duong.png" alt="Bánh dinh dưỡng" class="product-img">
                 <h3 class="product-title">Bánh dinh dưỡng</h3>
             </div>
         </a>
 
-        <a href="Web_NguCoc_JSP/SanPham-TatCa.html" class="product-card-a">
+        <a href="SanPham-TatCa.html" class="product-card-a">
             <div class="product-card">
-                <img src="Web_NguCoc_JSP/image/categoryProduct/tra_gao_lut.png" alt="Trà gạo lứt" class="product-img">
+                <img src="image/categoryProduct/tra_gao_lut.png" alt="Trà gạo lứt" class="product-img">
                 <h3 class="product-title">Trà gạo lứt</h3>
             </div>
         </a>
@@ -284,7 +308,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/banhhat.jpg"
+                    <img src="image/newProducts/banhhat.jpg"
                          alt="Bánh hạt dinh dưỡng cao cấp"><!-- hình ảnh minh họa -->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -302,7 +326,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/botgaolut.png"
+                    <img src="image/newProducts/botgaolut.png"
                          alt="Bột gạo lứt mè đen hỗ trợ giảm cân"><!-- hình ảnh minh họa -->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -320,7 +344,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/botngucoc.png"
+                    <img src="image/newProducts/botngucoc.png"
                          alt="Bột ngũ cốc tăng cân"><!-- hình ảnh minh họa -->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -338,7 +362,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/chaohat.png"
+                    <img src="image/newProducts/chaohat.png"
                          alt="Cháo hạt vỡ cho trẻ em"><!-- hình ảnh minh họa -->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -356,7 +380,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/combohatsen.jpg"
+                    <img src="image/newProducts/combohatsen.jpg"
                          alt="Combo hat sen 100g"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -374,7 +398,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/combohatsen50g.jpg"
+                    <img src="image/newProducts/combohatsen50g.jpg"
                          alt="Combo hat sen 50g"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -391,7 +415,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/granola.png" alt="Granola"><!-- Hình ảnh minh họa-->
+                    <img src="image/newProducts/granola.png" alt="Granola"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
@@ -407,7 +431,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/hanhnhantachvo.jpg"
+                    <img src="image/newProducts/hanhnhantachvo.jpg"
                          alt="Hạnh nhân tách vỏ"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -425,7 +449,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/hatbixanh.jpg" alt="Hạt bí xanh"><!-- Hình ảnh minh họa-->
+                    <img src="image/newProducts/hatbixanh.jpg" alt="Hạt bí xanh"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
@@ -441,7 +465,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/hatdieusay.jpg"
+                    <img src="image/newProducts/hatdieusay.jpg"
                          alt="Hạt điều sấy tự nhiên"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -459,7 +483,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/mixhat.png" alt="Mix hạt"><!-- Hình ảnh minh họa-->
+                    <img src="image/newProducts/mixhat.png" alt="Mix hạt"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
@@ -475,7 +499,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/mixtraicay.png" alt="Mix trái cây"><!-- Hình ảnh minh họa-->
+                    <img src="image/newProducts/mixtraicay.png" alt="Mix trái cây"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
@@ -491,7 +515,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/ngucocdd10goi.jpg"
+                    <img src="image/newProducts/ngucocdd10goi.jpg"
                          alt="Ngũ cốc dinh dưỡng 10 gói"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -509,7 +533,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/ngucocdd15goi.jpg"
+                    <img src="image/newProducts/ngucocdd15goi.jpg"
                          alt="Ngũ cốc dinh dưỡng 15 gói"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -527,7 +551,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/ngucocddcaocap.jpg"
+                    <img src="image/newProducts/ngucocddcaocap.jpg"
                          alt="Ngũ cốc dinh dưỡng cao cấp"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -545,7 +569,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/ngucocloisua.png" alt="Ngũ cốc lợi sữa"><!-- Hình ảnh minh họa-->
+                    <img src="image/newProducts/ngucocloisua.png" alt="Ngũ cốc lợi sữa"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
@@ -562,7 +586,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/ngucocmebau.png" alt="Ngũ cốc mẹ bầu"><!-- Hình ảnh minh họa-->
+                    <img src="image/newProducts/ngucocmebau.png" alt="Ngũ cốc mẹ bầu"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
@@ -579,7 +603,7 @@
             <!-- Sản phẩm -->
             <div class="product-item">
                 <div class="product-image">
-                    <img src="Web_NguCoc_JSP/image/newProducts/ngucocnggia.png"
+                    <img src="image/newProducts/ngucocnggia.png"
                          alt="Ngũ cốc cho người lớn tuổi"><!-- Hình ảnh minh họa-->
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
@@ -613,7 +637,7 @@
                 <button class="qty-btn" id="qty-increase">+</button>
             </div>
             <button class="add">🛒 THÊM VÀO GIỎ</button>
-            <p><a href="Web_NguCoc_JSP/ChiTietSanPham.html">Xem chi tiết sản phẩm</a></p>
+            <p><a href="ChiTietSanPham.html">Xem chi tiết sản phẩm</a></p>
         </div>
     </div>
 </div>
@@ -628,7 +652,7 @@
             <!-- Cột 1 -->
             <div class="favorite-column">
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/banhhat.jpg" alt="Bánh hạt"></a>
+                    <a href=""><img src="image/favouriteProduct/banhhat.jpg" alt="Bánh hạt"></a>
                     <div class="fav-info">
                         <a href="">Bánh hạt dinh dưỡng 30 x 15 g</a>
                         <p class="price">219,000₫</p>
@@ -636,7 +660,7 @@
                 </div>
 
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/botgaolut.png" alt="Bột gạo lứt"></a>
+                    <a href=""><img src="image/favouriteProduct/botgaolut.png" alt="Bột gạo lứt"></a>
                     <div class="fav-info">
                         <a href="">Bột gạo lứt mè đen hỗ trợ giảm cân</a>
                         <p class="price">179,000₫</p>
@@ -644,7 +668,7 @@
                 </div>
 
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/botngucoc.png" alt="Bột ngũ cốc"></a>
+                    <a href=""><img src="image/favouriteProduct/botngucoc.png" alt="Bột ngũ cốc"></a>
                     <div class="fav-info">
                         <a href="">Bột ngũ cốc tăng cân</a>
                         <p class="price">209,000₫</p>
@@ -655,7 +679,7 @@
             <!-- Cột 2 -->
             <div class="favorite-column">
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/chaohat.png" alt="Cháo hạt vỡ"></a>
+                    <a href=""><img src="image/favouriteProduct/chaohat.png" alt="Cháo hạt vỡ"></a>
                     <div class="fav-info">
                         <a href="">Cháo hạt vỡ cho trẻ em</a>
                         <p class="price">169,000₫</p>
@@ -663,7 +687,7 @@
                 </div>
 
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/combohatsen.jpg" alt="Combo 100g"></a>
+                    <a href=""><img src="image/favouriteProduct/combohatsen.jpg" alt="Combo 100g"></a>
                     <div class="fav-info">
                         <a href="">Combo set hạt nấu sữa 14 gói 100g</a>
                         <p class="price">329,000₫</p>
@@ -671,7 +695,7 @@
                 </div>
 
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/combohatsen50g.jpg" alt="Combo 50g"></a>
+                    <a href=""><img src="image/favouriteProduct/combohatsen50g.jpg" alt="Combo 50g"></a>
                     <div class="fav-info">
                         <a href="">Combo set hạt nấu sữa 14 gói 50g</a>
                         <p class="price">189,000₫</p>
@@ -682,7 +706,7 @@
             <!-- Cột 3 -->
             <div class="favorite-column">
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/granola.png" alt="Granola"></a>
+                    <a href=""><img src="image/favouriteProduct/granola.png" alt="Granola"></a>
                     <div class="fav-info">
                         <a href="">Granola</a>
                         <p class="price">179,000₫</p>
@@ -690,7 +714,7 @@
                 </div>
 
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/hatdieusay.jpg" alt="Hạt điều sấy"></a>
+                    <a href=""><img src="image/favouriteProduct/hatdieusay.jpg" alt="Hạt điều sấy"></a>
                     <div class="fav-info">
                         <a href="">Hạt điều sấy tự nhiên</a>
                         <p class="price">195,000₫</p>
@@ -698,7 +722,7 @@
                 </div>
 
                 <div class="fav-item">
-                    <a href=""><img src="Web_NguCoc_JSP/image/favouriteProduct/mixhat.png" alt="Mix hạt"></a>
+                    <a href=""><img src="image/favouriteProduct/mixhat.png" alt="Mix hạt"></a>
                     <div class="fav-info">
                         <a href="">Mix hạt</a>
                         <p class="price">239,000₫</p>
@@ -719,38 +743,38 @@
 
         <div class="news-item">
             <div class="news-img">
-                <img src="Web_NguCoc_JSP/image/news/tin-tuc-cacloaihat.png" alt="Tin tức chính về các loại">
+                <img src="image/news/tin-tuc-cacloaihat.png" alt="Tin tức chính về các loại">
             </div>
-            <a href="Web_NguCoc_JSP/BaiViet.html" class="title">
+            <a href="BaiViet.html" class="title">
                 <h3>+5 LOẠI HẠT DINH DƯỠNG CẦN THIẾT CHO MẸ BẦU</h3>
             </a>
             <p class="sub-paragraph">Bài viết này chúng tôi sẽ bật mí 5 loại hạt siêu dinh dưỡng không thể thiếu
                 trong thực đơn...</p>
-            <a href="Web_NguCoc_JSP/BaiViet.html" class="more">Xem thêm</a>
+            <a href="BaiViet.html" class="more">Xem thêm</a>
         </div>
 
         <div class="news-item">
             <div class="news-img">
-                <img src="Web_NguCoc_JSP/image/news/tin-tuc-ncdd.webp" alt="Tin tức chính về các loại">
+                <img src="image/news/tin-tuc-ncdd.webp" alt="Tin tức chính về các loại">
             </div>
-            <a href="Web_NguCoc_JSP/BaiViet.html" class="title">
+            <a href="BaiViet.html" class="title">
                 <h3>NGŨ CỐC CAO CẤP CÓ THỰC SỰ HỖ TRỢ NGƯỜI ỐM PHỤC HỒI NHANH</h3>
             </a>
             <p class="sub-paragraph">Sau một đợt ốm kéo dài, cơ thể chúng ta cần một chế độ dinh dưỡng đặc biêt để
                 hồi...</p>
-            <a href="Web_NguCoc_JSP/BaiViet.html" class="more">Xem thêm</a>
+            <a href="BaiViet.html" class="more">Xem thêm</a>
         </div>
 
         <div class="news-item">
             <div class="news-img">
-                <img src="Web_NguCoc_JSP/image/news/tao-do.jpg" alt="Tin tức chính về các loại">
+                <img src="image/news/tao-do.jpg" alt="Tin tức chính về các loại">
             </div>
-            <a href="Web_NguCoc_JSP/BaiViet.html" class="title">
+            <a href="BaiViet.html" class="title">
                 <h3>TÁO ĐỎ TÂN CƯƠNG CHẤT LƯỢNG, GIÁ TỐT TẠI HUẾ</h3>
             </a>
             <p class="sub-paragraph">Táo đỏ Tân Cương, một trong những đặc sản nổi tiếng của vùng đất này(Trung
                 Quốc), được nhiều người...</p>
-            <a href="Web_NguCoc_JSP/BaiViet.html" class="more">Xem thêm</a>
+            <a href="BaiViet.html" class="more">Xem thêm</a>
         </div>
     </div>
 </section>
@@ -818,8 +842,8 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-                                <a href="Web_NguCoc_JSP/TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
-                                    <img src="Web_NguCoc_JSP/image/Header/logongucocNgon.png" height="100px" width="250px"
+                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
                             </div>
@@ -840,14 +864,14 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="Web_NguCoc_JSP/TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="Web_NguCoc_JSP/DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="Web_NguCoc_JSP/PhuongThucThanhToan.html"
+                                <li><a href="PhuongThucThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
 
                             </ul>
@@ -857,12 +881,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="Web_NguCoc_JSP/TrangChu.html" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="Web_NguCoc_JSP/VeNgon.html" title="Ngon">Ngon</a></li>
-                                <li><a href="Web_NguCoc_JSP/SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="Web_NguCoc_JSP/TinTuc1.html" title="Tin tức">Tin tức</a></li>
-                                <li><a href="Web_NguCoc_JSP/CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="Web_NguCoc_JSP/LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -908,8 +932,8 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="Web_NguCoc_JSP/TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                                                                                                           rel="noreferrer">Team 18</a></p>
+                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>
     </footer>
@@ -927,6 +951,7 @@
         }
     });
 </script>
+
 
 </body>
 </html>
