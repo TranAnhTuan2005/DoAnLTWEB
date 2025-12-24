@@ -41,6 +41,7 @@ public class Products implements Serializable { //dung javaBean
         this.uses = uses;
     }
 
+
     public int getId() {
         return id;
     }
@@ -73,20 +74,20 @@ public class Products implements Serializable { //dung javaBean
         this.image = image;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
     public int getStatus() {
         return status;
     }
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public int getIsNew() {
@@ -113,20 +114,20 @@ public class Products implements Serializable { //dung javaBean
         this.brand = brand;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getExpiryDate() {
         return expiryDate;
     }
 
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getIngredient() {

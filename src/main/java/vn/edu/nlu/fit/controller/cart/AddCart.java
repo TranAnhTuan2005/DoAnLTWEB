@@ -3,7 +3,6 @@ package vn.edu.nlu.fit.controller.cart;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.cart.Cart;
 import vn.edu.nlu.fit.model.Products;
 import vn.edu.nlu.fit.services.ProductService;
 
@@ -27,7 +26,7 @@ public class AddCart extends HttpServlet {
         if(cart==null){
             cart = new Cart();
         }
-        cart.addItem(product,quantity);
+        cart.add(product,quantity);
         session.setAttribute("cart", cart);
         response.sendRedirect( "/SanPham-TatCa");
     }
