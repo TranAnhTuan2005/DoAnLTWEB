@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Sản phẩm - tất cả</title>
-    <link rel="stylesheet" href="Web_NguCoc_JSP/style.css">
-    <script src="Web_NguCoc_JSP/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -372,8 +372,8 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="Web_NguCoc_JSP/TrangChu.html">
-                <img src="Web_NguCoc_JSP/image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            <a href="TrangChu.html">
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
@@ -381,9 +381,9 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <a href="Web_NguCoc_JSP/TimKiem.html">
+                <a href="TimKiem.html">
                     <i class="icon_timkiem">
-                        <img src="Web_NguCoc_JSP/image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
                     </i>
                 </a>
             </button>
@@ -392,32 +392,32 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="Web_NguCoc_JSP/TrangChu.html">Trang chủ</a></li>
-                <li><a href="Web_NguCoc_JSP/VeNgon.html">Về Ngon</a></li>
+                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="Web_NguCoc_JSP/SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
 
-                <li><a href="Web_NguCoc_JSP/TinTuc1.html">Tin tức</a></li>
-                <li><a href="Web_NguCoc_JSP/CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="Web_NguCoc_JSP/LienHe.html">Liên hệ</a></li>
+                <li><a href="TinTuc1.html">Tin tức</a></li>
+                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
+                <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -445,23 +445,43 @@
 
 
 <!-- Modal cho Giỏ hàng -->
+
 <div id="cart-modal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2>Giỏ Hàng</h2>
-        <p>Hiện chưa có sản phẩm</p>
+        <h2>GIỎ HÀNG</h2>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-        </svg>
+        <!-- CASE: CHƯA CÓ SẢN PHẨM -->
+            <p>Hiện chưa có sản phẩm</p>
 
-        <p>Tổng tiền: 0đ</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+            </svg>
+
+            <p>Tổng tiền: 0đ</p>
+
+        <!-- CASE: CÓ SẢN PHẨM -->
+            <div class="cart-items">
+                <c:forEach var="item" items="${sessionScope.cart.item}">
+                    <div class="cart-item">
+                        <img src="${item.product.image}" width="60"/>
+                        <div class="cart-info">
+                            <p><b>${item.product.name}</b></p>
+                            <p>${item.quantity} × ${item.product.price}đ</p>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <p class="cart-total">
+                <b>TỔNG TIỀN:</b> ${sessionScope.cart.total}
+            </p>
+
         <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
+            <a href="GioHang.jsp" class="view-cart-btn">Xem Giỏ Hàng</a>
+            <a href="ThanhToan.jsp" class="checkout-btn">Thanh Toán</a>
         </div>
     </div>
 </div>
@@ -478,7 +498,7 @@
             <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy
                 Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="Web_NguCoc_JSP/TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
@@ -492,8 +512,8 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="Web_NguCoc_JSP/TrangChu.html">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="Web_NguCoc_JSP/SanPham-TatCa.html">Danh mục</a></li>
+                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="SanPham-TatCa.html">Danh mục</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tất cả sản phẩm</li>
                 </ol>
             </nav>
@@ -502,7 +522,7 @@
 
     <!-- Collection -->
     <div class="banner-collection">
-        <img src="Web_NguCoc_JSP/image/collection/banner.jpg" alt="Ngũ cốc">
+        <img src="image/collection/banner.jpg" alt="Ngũ cốc">
     </div>
 
     <div class="collection-container">
@@ -510,10 +530,10 @@
         <aside class="sidebar">
             <h2>DANH MỤC SẢN PHẨM</h2>
             <ul class="category-list">
-                <li><a href="Web_NguCoc_JSP/SanPham-TatCa.html"> <b>Tất cả sản phẩm</b> </a></li>
-                <li><a href="Web_NguCoc_JSP/SanPham-NguCoc.html">Ngũ cốc</a></li>
-                <li><a href="Web_NguCoc_JSP/SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a></li>
-                <li><a href="Web_NguCoc_JSP/SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a></li>
+                <li><a href="SanPham-TatCa.html"> <b>Tất cả sản phẩm</b> </a></li>
+                <li><a href="SanPham-NguCoc.html">Ngũ cốc</a></li>
+                <li><a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a></li>
+                <li><a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a></li>
                 <li><a href="SanPham-TraGaolut.html">Trà gạo lứt</a></li>
             </ul>
 
@@ -550,39 +570,47 @@
 
                 <!-- Sản phẩm -->
 
-                <c:forEach var="p" items="${list}">
-                <c:url var="detailUrl_byID" value="/Chi-tiet-san-pham">
-                    <c:param name="id" value="${p.id}"/>
-                </c:url>
-                <div class="collection-product-item">
-                    <div class="collection-product-image">
+                <c:forEach var="p" items="${list}" >
+                    <c:url var="detailUrl_byID" value="/Chi-tiet-san-pham">
+                        <c:param name="id" value="${p.id}"/>
+                    </c:url>
 
-                        <a href="${detailUrl_byID}">
-                            <img src="${p.image}" alt="${p.name}">
-                        </a>
 
-                        <div class="collection-overlay"><!-- Hover để hiển thị-->
-                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                            <button class="collection-view-btn"
-                                    onclick="openModal('${p.image}','${p.name}', '${p.price}đ', '${detailUrl_byID}')">👁
-                                XEM NHANH
-                            </button>
+                    <div class="collection-product-item">
+                        <div class="collection-product-image">
+
+                            <a href="${detailUrl_byID}">
+                                <img src="${p.image}" alt="${p.name}">
+                            </a>
+
+                            <div class="collection-overlay"><!-- Hover để hiển thị-->
+
+                                <a href="GioHang?id=${p.id}">
+                                <button class="collection-add-to-cart" onclick="">
+                                    🛒 THÊM VÀO GIỎ
+                                </button>
+                                </a>
+
+                                <button class="collection-view-btn"
+                                        onclick="openModal('${p.image}','${p.name}', '${p.price}đ', '${detailUrl_byID}')">👁
+                                    XEM NHANH
+                                </button>
+                            </div>
                         </div>
+                        <h3>${p.name}</h3>
+                        <p class="price">${p.price}đ</p>
                     </div>
-                    <h3>${p.name}</h3>
-                    <p class="price">${p.price}đ</p>
-                </div>
                 </c:forEach>
 
                 <!------------------------13--------------------------->
 
             </div>
-                <!-- Nút chuyển trang -->
-                <div class="pagination">
-                    <button id="prev">&laquo;</button>
-                    <span id="page-num">1</span>
-                    <button id="next">&raquo;</button>
-                </div>
+            <!-- Nút chuyển trang -->
+            <div class="pagination">
+                <button id="prev">&laquo;</button>
+                <span id="page-num">1</span>
+                <button id="next">&raquo;</button>
+            </div>
 
         </section>
 
@@ -673,9 +701,9 @@
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
 
-                                <a href="Web_NguCoc_JSP/TrangChu.html" title="Ngũ cốc Ngon"
+                                <a href="TrangChu.html" title="Ngũ cốc Ngon"
                                    aria-label="logo shop footer">
-                                    <img src="Web_NguCoc_JSP/image/Header/logongucocNgon.png" height="100px"
+                                    <img src="image/Header/logongucocNgon.png" height="100px"
                                          width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -697,17 +725,17 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="Web_NguCoc_JSP/TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách
+                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách
                                     đổi
                                     trả</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách
+                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách
                                     bảo
                                     mật</a></li>
-                                <li><a href="Web_NguCoc_JSP/DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản
+                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản
                                     dịch
                                     vụ</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachThanhToan.html"
+                                <li><a href="ChinhSachThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
                             </ul>
                         </div>
@@ -716,13 +744,13 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="Web_NguCoc_JSP/TrangChu.html" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="Web_NguCoc_JSP/VeNgon.html" title="Ngon">Ngon</a></li>
-                                <li><a href="Web_NguCoc_JSP/SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="Web_NguCoc_JSP/TinTuc1.html" title="Tin tức">Tin tức</a></li>
-                                <li><a href="Web_NguCoc_JSP/CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a>
+                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a>
                                 </li>
-                                <li><a href="Web_NguCoc_JSP/LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -768,9 +796,9 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="Web_NguCoc_JSP/TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#"
-                                                                                                           target="_blank"
-                                                                                                           rel="noreferrer">Team
+                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#"
+                                                                                            target="_blank"
+                                                                                            rel="noreferrer">Team
                     18</a></p>
             </div>
         </div>
@@ -877,7 +905,9 @@
     function closeModal() {
         document.getElementById('productModal').style.display = 'none';
     }
+
 </script>
+
 
 </body>
 </html>

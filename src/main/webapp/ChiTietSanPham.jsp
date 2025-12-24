@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết sản phẩm</title>
-    <link rel="stylesheet" href="Web_NguCoc_JSP/style.css">
-    <script src="Web_NguCoc_JSP/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -257,8 +257,8 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="Web_NguCoc_JSP/TrangChu.html">
-                <img src="Web_NguCoc_JSP/image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            <a href="TrangChu.html">
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
@@ -266,9 +266,9 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <a href="Web_NguCoc_JSP/TimKiem.html">
+                <a href="TimKiem.html">
                     <i class="icon_timkiem">
-                        <img src="Web_NguCoc_JSP/image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
                     </i>
                 </a>
             </button>
@@ -277,32 +277,32 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="Web_NguCoc_JSP/TrangChu.html">Trang chủ</a></li>
-                <li><a href="Web_NguCoc_JSP/VeNgon.html">Về Ngon</a></li>
+                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="Web_NguCoc_JSP/SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="Web_NguCoc_JSP/SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
 
-                <li><a href="Web_NguCoc_JSP/TinTuc1.html">Tin tức</a></li>
-                <li><a href="Web_NguCoc_JSP/CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="Web_NguCoc_JSP/LienHe.html">Liên hệ</a></li>
+                <li><a href="TinTuc1.html">Tin tức</a></li>
+                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
+                <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -343,7 +343,7 @@
 
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
+            <button class="view-cart-btn" onclick="window.location.href='GioHang.jsp'">Xem Giỏ Hàng</button>
             <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
         </div>
     </div>
@@ -375,7 +375,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="Web_NguCoc_JSP/TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Ngũ cốc trẻ em</li>
                 </ol>
             </nav>
@@ -407,15 +407,15 @@
 
             <ul class="detail-product-policy">
                 <li>
-                    <img src="Web_NguCoc_JSP/image/icon-detail-product/cam-ket.png" alt="Cam kết">
+                    <img src="image/icon-detail-product/cam-ket.png" alt="Cam kết">
                     <p>Cam kết chất lượng sản phẩm 100%</p>
                 </li>
                 <li>
-                    <img src="Web_NguCoc_JSP/image/icon-detail-product/kiem-tra.png" alt="Kiểm tra">
+                    <img src="image/icon-detail-product/kiem-tra.png" alt="Kiểm tra">
                     <p>Kiểm tra hàng hóa khi nhận hàng</p>
                 </li>
                 <li>
-                    <img src="Web_NguCoc_JSP/image/icon-detail-product/doi-tra.png" alt="Đổi trả">
+                    <img src="image/icon-detail-product/doi-tra.png" alt="Đổi trả">
                     <p>Đổi trả trong 30 ngày nếu sản phẩm hết hạn</p>
                 </li>
             </ul>
@@ -532,8 +532,8 @@
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
 
-                                <a href="Web_NguCoc_JSP/TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
-                                    <img src="Web_NguCoc_JSP/image/Header/logongucocNgon.png" height="100px" width="250px"
+                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
                             </div>
@@ -554,14 +554,14 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="Web_NguCoc_JSP/TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="Web_NguCoc_JSP/DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="Web_NguCoc_JSP/ChinhSachThanhToan.html"
+                                <li><a href="ChinhSachThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
                             </ul>
                         </div>
@@ -570,12 +570,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="Web_NguCoc_JSP/TrangChu.html" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="Web_NguCoc_JSP/VeNgon.html" title="Ngon">Ngon</a></li>
-                                <li><a href="Web_NguCoc_JSP/SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="Web_NguCoc_JSP/TinTuc1.html" title="Tin tức">Tin tức</a></li>
-                                <li><a href="Web_NguCoc_JSP/CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="Web_NguCoc_JSP/LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -621,8 +621,8 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="Web_NguCoc_JSP/TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                                                                                                           rel="noreferrer">Team 18</a></p>
+                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>
     </footer>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -91,16 +91,22 @@
             </a>
 
             <!-- Dropdown sau khi đăng nhập (demo) -->
-            <div id="accountMenu" class="account-menu" hidden>
-                <div class="account-menu_inner">
-                    <p class="account-menu_hello">Xin chào, <strong>Nguyễn Văn C</strong></p>
-                    <hr>
-                    <a class="account-menu_link" href="TaiKhoan.html">Thông tin tài khoản</a>
-                    <a class="account-menu_link" href="DanhSachDiaChi.html">Danh sách địa chỉ</a>
-                    <a class="account-menu_link" href="TrangChu-daDNTK.html">Đăng xuất</a>
-                </div>
-                <span class="account-menu_arrow"></span>
-            </div>
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <div id="accountMenu" class="account-menu" hidden>
+                        <div class="account-menu_inner">
+                            <p>Xin chào, <strong>${sessionScope.user.name}</strong></p>
+                            <hr>
+                            <a href="#">Thông tin tài khoản</a>
+                            <a href="<c:url value='/'/>">Đăng xuất</a>
+                        </div>
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <!-- chỉ hiện icon để mở modal -->
+                </c:otherwise>
+            </c:choose>
 
 
             <a href="#" class="cart-btn" aria-label="Giỏ hàng">
@@ -145,16 +151,25 @@
         <span class="close-btn">&times;</span>
         <h2>Đăng Nhập Tài Khoản</h2>
         <p>Nhập email và mật khẩu của bạn:</p>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Mật khẩu" required>
+
+        <form action="<c:url value='/Trangchu-login'/>" method="post">
+            <input type="text" name="username" placeholder="Tên đăng nhập" required>
+            <input type="password" name="password" placeholder="Mật khẩu" required>
+
+            <c:if test="${not empty error}">
+                <p style="color:red">${error}</p>
+            </c:if>
+
             <p>This site is protected by reCAPTCHA and the Google <a
                     href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+
             <button type="submit">Đăng Nhập</button>
+
             <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
+
     </div>
 </div>
 
@@ -934,64 +949,126 @@
 
 
 <!--DEMO cho TK khi đăng nhập UI như nào---------------------------------------->
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', function () {--%>
+<%--        const modal = document.getElementById('account-modal');--%>
+<%--        const accountMenu = document.getElementById('accountMenu');--%>
+<%--        const accountBtn = document.querySelector('.account-btn');--%>
+
+<%--        let isLoggedInDemo = false; // flag demo: sau khi bấm Đăng nhập sẽ thành true--%>
+
+<%--        const modalContent = modal.querySelector('.modal-content');--%>
+<%--        const isModalOpen = () => modal.style.display === 'block';--%>
+<%--        const openModal = () => (modal.style.display = 'block');--%>
+<%--        const closeModal = () => (modal.style.display = 'none');--%>
+
+<%--        // Bấm icon: nếu modal đang mở thì đóng; nếu chưa đăng nhập thì mở; đã "login demo" thì hiện dropdown--%>
+<%--        accountBtn.addEventListener('click', function (e) {--%>
+<%--           // e.preventDefault();--%>
+
+<%--            if (isModalOpen()) { // đang mở => đóng--%>
+<%--                closeModal();--%>
+<%--                return;--%>
+<%--            }--%>
+<%--            if (!isLoggedInDemo) {--%>
+<%--                if (accountMenu) accountMenu.hidden = true;--%>
+<%--                openModal();--%>
+<%--            } else {--%>
+<%--                if (accountMenu) accountMenu.hidden = !accountMenu.hidden;--%>
+<%--            }--%>
+<%--        });--%>
+
+<%--        // Đóng khi bấm nút X--%>
+<%--        const closeBtn = modal.querySelector('.close-btn');--%>
+<%--        closeBtn.addEventListener('click', closeModal);--%>
+
+<%--        //  Đóng khi click ra ngoài vùng--%>
+<%--        document.addEventListener('click', function (e) {--%>
+<%--            if (!isModalOpen()) return;--%>
+<%--            const clickedInside = modalContent.contains(e.target) || accountBtn.contains(e.target);--%>
+<%--            if (!clickedInside) closeModal();--%>
+<%--        });--%>
+
+
+<%--        // SUBMIT form đăng nhập (demo): đóng modal + bật dropdown + set trạng thái "đã đăng nhập"--%>
+<%--        const loginForm = modal.querySelector('form');--%>
+<%--        loginForm.addEventListener('submit', function (e) {--%>
+<%--            //e.preventDefault();--%>
+<%--            modal.style.display = 'none';--%>
+<%--            if (accountMenu) accountMenu.hidden = false;--%>
+<%--            isLoggedInDemo = true;--%>
+<%--        });--%>
+
+<%--        // CLICK RA NGOÀI để đóng dropdown--%>
+<%--        document.addEventListener('click', function (e) {--%>
+<%--            if (!accountMenu || accountMenu.hidden) return;--%>
+<%--            const clickInside = accountMenu.contains(e.target) || accountBtn.contains(e.target);--%>
+<%--            if (!clickInside) accountMenu.hidden = true;--%>
+<%--        });--%>
+
+<%--        // ESC để đóng dropdown--%>
+<%--        document.addEventListener('keydown', function (e) {--%>
+<%--            if (e.key === 'Escape' && accountMenu && !accountMenu.hidden) {--%>
+<%--                accountMenu.hidden = true;--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('account-modal');
-        const accountMenu = document.getElementById('accountMenu');
         const accountBtn = document.querySelector('.account-btn');
+        const modalContent = modal?.querySelector('.modal-content');
+        const accountMenu = document.getElementById('accountMenu');
 
-        let isLoggedInDemo = false; // flag demo: sau khi bấm Đăng nhập sẽ thành true
+        const isLoggedIn = ${not empty sessionScope.user};
 
-        const modalContent = modal.querySelector('.modal-content');
-        const isModalOpen = () => modal.style.display === 'block';
-        const openModal = () => (modal.style.display = 'block');
-        const closeModal = () => (modal.style.display = 'none');
-
-        // Bấm icon: nếu modal đang mở thì đóng; nếu chưa đăng nhập thì mở; đã "login demo" thì hiện dropdown
+        const openModal = () => {
+            if (!isLoggedIn) {
+                modal.style.display = 'block';
+            }
+        };
+        const closeModal = () => modal.style.display = 'none';
+        if (isLoggedIn && modal) {
+            modal.style.display = 'none';
+        }
         accountBtn.addEventListener('click', function (e) {
             e.preventDefault();
-
-            if (isModalOpen()) { // đang mở => đóng
-                closeModal();
-                return;
-            }
-            if (!isLoggedInDemo) {
-                if (accountMenu) accountMenu.hidden = true;
-                openModal();
+            e.stopPropagation();
+            if (isLoggedIn) {
+                // đã login → toggle dropdown
+                if (accountMenu) {
+                    accountMenu.hidden = !accountMenu.hidden;
+                }
             } else {
-                if (accountMenu) accountMenu.hidden = !accountMenu.hidden;
+                // chưa login → mở modal
+                openModal();
             }
         });
 
-        // Đóng khi bấm nút X
-        const closeBtn = modal.querySelector('.close-btn');
-        closeBtn.addEventListener('click', closeModal);
+        // đóng modal bằng X
+        modal?.querySelector('.close-btn')?.addEventListener('click', closeModal);
 
-        //  Đóng khi click ra ngoài vùng
+        // click ra ngoài
         document.addEventListener('click', function (e) {
-            if (!isModalOpen()) return;
-            const clickedInside = modalContent.contains(e.target) || accountBtn.contains(e.target);
-            if (!clickedInside) closeModal();
+            // đóng modal
+            if (modal && modal.style.display === 'block') {
+                if (!modalContent.contains(e.target) && !accountBtn.contains(e.target)) {
+                    closeModal();
+                }
+            }
+
+            // đóng dropdown
+            if (accountMenu && !accountMenu.hidden) {
+                if (!accountMenu.contains(e.target) && !accountBtn.contains(e.target)) {
+                    accountMenu.hidden = true;
+                }
+            }
         });
 
-
-        // SUBMIT form đăng nhập (demo): đóng modal + bật dropdown + set trạng thái "đã đăng nhập"
-        const loginForm = modal.querySelector('form');
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            modal.style.display = 'none';
-            if (accountMenu) accountMenu.hidden = false;
-            isLoggedInDemo = true;
-        });
-
-        // CLICK RA NGOÀI để đóng dropdown
-        document.addEventListener('click', function (e) {
-            if (!accountMenu || accountMenu.hidden) return;
-            const clickInside = accountMenu.contains(e.target) || accountBtn.contains(e.target);
-            if (!clickInside) accountMenu.hidden = true;
-        });
-
-        // ESC để đóng dropdown
+        // ESC đóng dropdown
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && accountMenu && !accountMenu.hidden) {
                 accountMenu.hidden = true;
@@ -999,6 +1076,7 @@
         });
     });
 </script>
+
 
 
 </body>

@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -406,7 +406,7 @@
                 <p>This site is protected by reCAPTCHA and the Google <a
                         href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                         href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-                <button type="submit" onclick="window.location.href='TrangChu-daDNTK.html'">Đăng Nhập</button>
+                <button type="submit" onclick="window.location.href='TrangChu-daDNTK.jsp'">Đăng Nhập</button>
                 <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
                 <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
             </form>

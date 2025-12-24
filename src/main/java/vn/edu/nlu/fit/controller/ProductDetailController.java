@@ -8,7 +8,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "ListProductDetailController", value = "/Chi-tiet-san-pham")
 public class ProductDetailController extends HttpServlet {
