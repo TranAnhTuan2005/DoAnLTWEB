@@ -8,19 +8,21 @@ import java.io.IOException;
 
 @WebServlet(name = "LogoutController", value = "/DangXuat")
 public class LogoutController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().invalidate();
-        response.sendRedirect("TrangChu.jsp");
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // xoá toàn bộ session (user)
+        }
+
+        // quay về trang chủ
+        response.sendRedirect(request.getContextPath() + "/TrangChu.jsp");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-
-        request.getSession().invalidate();
-
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"status\":\"success\"}");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doGet(request, response);
     }
 }

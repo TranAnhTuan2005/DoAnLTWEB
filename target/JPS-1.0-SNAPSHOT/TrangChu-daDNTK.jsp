@@ -90,15 +90,15 @@
                 </svg>
             </a>
 
-            <!-- Dropdown sau khi đăng nhập (demo) -->
+            <!-- Dropdown sau khi đăng nhập  -->
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <div id="accountMenu" class="account-menu" hidden>
                         <div class="account-menu_inner">
                             <p>Xin chào, <strong>${sessionScope.user.name}</strong></p>
                             <hr>
-                            <a href="#">Thông tin tài khoản</a>
-                            <a href="<c:url value='/'/>">Đăng xuất</a>
+                            <a href="TaiKhoan.html">Thông tin tài khoản</a>
+                            <a href="<c:url value='/DangXuat'/>">Đăng xuất</a>
                         </div>
                     </div>
                 </c:when>
@@ -150,10 +150,10 @@
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
+        <p>Nhập tào khoản và mật khẩu của bạn:</p>
 
         <form action="<c:url value='/Trangchu-login'/>" method="post">
-            <input type="text" name="username" placeholder="Tên đăng nhập" required>
+            <input type="text" name="username" placeholder="Tài khoản đăng nhập" required>
             <input type="password" name="password" placeholder="Mật khẩu" required>
 
             <c:if test="${not empty error}">
@@ -1014,6 +1014,8 @@
 <%--        });--%>
 <%--    });--%>
 <%--</script>--%>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('account-modal');

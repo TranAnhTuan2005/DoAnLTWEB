@@ -15,7 +15,7 @@ public class LoginControler extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("TrangChu-daDNTK.jsp").forward(request, response);
+        request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
     }
 
     //    @Override
@@ -38,10 +38,10 @@ public class LoginControler extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            response.sendRedirect(request.getContextPath() + "/TrangChu-daDNTK.jsp");
+            response.sendRedirect(request.getContextPath() + "/TrangChu.jsp");
         } else {
             request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
-            request.getRequestDispatcher("TrangChu-daDNTK.jsp").forward(request, response);
+            request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
         }
     }
 }
