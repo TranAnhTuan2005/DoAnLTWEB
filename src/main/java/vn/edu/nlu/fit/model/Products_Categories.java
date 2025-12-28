@@ -2,16 +2,16 @@ package vn.edu.nlu.fit.model;
 
 public class Products_Categories {
     private int id;
-    private int productId;
-    private int categoryId;
+    private int productID;
+    private int categoryID;
 
     public Products_Categories() {
     }
 
-    public Products_Categories(int id, int productId, int categoryId) {
+    public Products_Categories(int id, int productID, int categoryID) {
         this.id = id;
-        this.productId = productId;
-        this.categoryId = categoryId;
+        this.productID = productID;
+        this.categoryID = categoryID;
     }
 
     public int getId() {
@@ -22,28 +22,28 @@ public class Products_Categories {
         this.id = id;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
     @Override
     public String toString() {
         return "Products_Categories{" +
                 "id=" + id +
-                ", productId=" + productId +
-                ", categoryId=" + categoryId +
+                ", productId=" + productID +
+                ", categoryId=" + categoryID +
                 '}';
     }
 }

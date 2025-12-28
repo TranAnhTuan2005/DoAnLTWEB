@@ -2,21 +2,24 @@ package vn.edu.nlu.fit.model;
 
 public  class Payments {
     private int id;
-    private int order_id;
-    //private paymentMethods_id;
+    private int orderID;
+    private int paymentMethodID;
     private double amount;
-    private boolean status;
-    private Date date;
+    private boolean paymentStatus;
+    private Date paymentDate;
 
 
-    public Payments(int id, Date date, boolean status, double amount, int order_id) {
-        this.id = id;
-        this.date = date;
-        this.status = status;
-        this.amount = amount;
-        this.order_id = order_id;
+    public Payments() {
     }
 
+    public Payments(int id, int orderID, int paymentMethodID, double amount, boolean paymentStatus, Date paymentDate) {
+        this.id = id;
+        this.orderID = orderID;
+        this.paymentMethodID = paymentMethodID;
+        this.amount = amount;
+        this.paymentStatus = paymentStatus;
+        this.paymentDate = paymentDate;
+    }
 
     public int getId() {
         return id;
@@ -26,12 +29,20 @@ public  class Payments {
         this.id = id;
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public int getOrderID() {
+        return orderID;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public int getPaymentMethodID() {
+        return paymentMethodID;
+    }
+
+    public void setPaymentMethodID(int paymentMethodID) {
+        this.paymentMethodID = paymentMethodID;
     }
 
     public double getAmount() {
@@ -42,30 +53,31 @@ public  class Payments {
         this.amount = amount;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isPaymentStatus() {
+        return paymentStatus;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setPaymentStatus(boolean paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getPaymentDate() {
+        return paymentDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPaymentDate(Date paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Payments{" +
                 "id=" + id +
-                ", order_id=" + order_id +
+                ", orderID=" + orderID +
+                ", paymentMethodID=" + paymentMethodID +
                 ", amount=" + amount +
-                ", status=" + status +
-                ", date=" + date +
+                ", paymentStatus=" + paymentStatus +
+                ", paymentDate=" + paymentDate +
                 '}';
     }
 }
