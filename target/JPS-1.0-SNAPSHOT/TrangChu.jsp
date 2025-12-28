@@ -95,7 +95,7 @@
                 <c:when test="${not empty sessionScope.user}">
                     <div id="accountMenu" class="account-menu" hidden>
                         <div class="account-menu_inner">
-                            <p>Xin chào, <strong>${sessionScope.user.name}</strong></p>
+                            <p>Xin chào, <strong>${sessionScope.user.username}</strong></p>
                             <hr>
                             <a href="TaiKhoan.html">Thông tin tài khoản</a>
                             <a href="<c:url value='/DangXuat'/>">Đăng xuất</a>

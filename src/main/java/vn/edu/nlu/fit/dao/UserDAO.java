@@ -19,9 +19,9 @@ public class UserDAO extends BaseDao {
 
     public void insert(Users user) {
         String sql = """
-            INSERT INTO users(name, username, password, birthday, role)
-            VALUES (:name, :username, :password, :birthday, :role)
-        """;
+        INSERT INTO users(full_name, username, password_hash, birthday, user_role)
+        VALUES (:fullName, :username, :password_hash, :birthday, :userRole)
+    """;
 
         getJdbi().withHandle(h ->
                 h.createUpdate(sql)
@@ -29,6 +29,7 @@ public class UserDAO extends BaseDao {
                         .execute()
         );
     }
+
 
 
 }

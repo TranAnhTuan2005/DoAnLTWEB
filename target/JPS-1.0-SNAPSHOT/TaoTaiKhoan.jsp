@@ -240,7 +240,7 @@
 
 
                     <div class="mb-3">
-                        <input name="name" type="text"
+                        <input name="fullName" type="text"
                                class="form-control custom-input"
                                placeholder="Tên" required>
                     </div>

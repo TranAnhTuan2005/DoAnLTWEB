@@ -387,12 +387,12 @@
 
         <!-- Hình ảnh sản phẩm -->
         <div class="detail-product-gallery">
-            <img id="detail-product-image" src="${product.image}" alt="Ngũ cốc trẻ em" class="detail-product-image">
+            <img id="detail-product-image" src="${product.imageURL}" alt="Ngũ cốc trẻ em" class="detail-product-image">
         </div>
 
         <!-- Thông tin sản phẩm -->
         <div class="detail-product-info">
-            <h1 class="detail-product-title">${product.name}</h1>
+            <h1 class="detail-product-title">${product.productName}</h1>
             <p class="detail-product-price">${product.price}₫</p>
 
             <div class="detail-product-action-row">
@@ -427,7 +427,7 @@
         <h2 class="detail-product-section-title">Thông tin bạn cần biết</h2>
 
         <p class="detail-product-text">
-            ${product.description}
+            ${product.productDescription}
         </p>
 
         <h3 class="detail-product-subtitle">Thành phần:</h3>
@@ -437,35 +437,19 @@
 
 
         <h3 class="detail-product-subtitle">Công dụng:</h3>
-        <ul class="detail-product-list">
-            <li>${product.uses}</li>
-
-        </ul>
+            <p>${product.uses}</p>
 
         <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>Cho 2 thìa ngũ cốc (20g) vào ly.</li>
-            <li>Thêm 50ml nước sôi nguội, đánh tan để không vón cục.</li>
-            <li>Thêm 100ml nước sôi nóng, khuấy đều và thưởng thức.</li>
-            <li>Uống ngon hơn khi thêm sữa hoặc đường.</li>
-        </ul>
-        <p class="detail-product-text">Trẻ em từ 6 tháng đến 1 tuổi:</p>
-        <ul class="detail-product-list">
-            <li>Cho 1,5 thìa ngũ cốc (khoảng 15g) với 100ml nước sôi nguội, đánh tan để bột không bị vón cục.</li>
-            <li>Đặt lên bếp khuấy đều tay trong khoảng 2 phút.</li>
-            <li>Cho ra chén, để nguội trước khi sử dụng.</li>
-        </ul>
+            <p>${product.instruction}</p>
+
+
 
         <h3 class="detail-product-subtitle">Lưu ý:</h3>
-        <p class="detail-product-text">Khi pha bột, cần pha từ loãng sang đặc dần.</p>
+        <p class="detail-product-text">${product.attention}</p>
 
         <h3 class="detail-product-subtitle">Hạn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>8 tháng, kể từ ngày sản xuất.</li>
-            <li>Dùng tốt nhất trong vòng 02 tháng sau khi mở bao bì.</li>
-            <li>Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp. Nhớ đóng kín bao bì sau khi sử dụng.</li>
-            <li>Không dùng sản phẩm khi hết hạn sử dụng.</li>
-        </ul>
+            <p>${product.productExpiryDate}</p>
+
     </section>
 
 </main>

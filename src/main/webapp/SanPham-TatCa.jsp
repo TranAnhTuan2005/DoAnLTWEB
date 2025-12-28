@@ -466,9 +466,9 @@
             <div class="cart-items">
                 <c:forEach var="item" items="${sessionScope.cart.item}">
                     <div class="cart-item">
-                        <img src="${item.product.image}" width="60"/>
+                        <img src="${item.product.image_url}" width="60"/>
                         <div class="cart-info">
-                            <p><b>${item.product.name}</b></p>
+                            <p><b>${item.product.product_name}</b></p>
                             <p>${item.quantity} × ${item.product.price}đ</p>
                         </div>
                     </div>
@@ -580,7 +580,7 @@
                         <div class="collection-product-image">
 
                             <a href="${detailUrl_byID}">
-                                <img src="${p.image}" alt="${p.name}">
+                                <img src="${p.imageURL}" alt="${p.productName}">
                             </a>
 
                             <div class="collection-overlay"><!-- Hover để hiển thị-->
@@ -592,12 +592,12 @@
                                 </a>
 
                                 <button class="collection-view-btn"
-                                        onclick="openModal('${p.image}','${p.name}', '${p.price}đ', '${detailUrl_byID}')">👁
+                                        onclick="openModal('${p.imageURL}','${p.productName}', '${p.price}đ', '${detailUrl_byID}')">👁
                                     XEM NHANH
                                 </button>
                             </div>
                         </div>
-                        <h3>${p.name}</h3>
+                        <h3>${p.productName}</h3>
                         <p class="price">${p.price}đ</p>
                     </div>
                 </c:forEach>
@@ -894,9 +894,9 @@
 
 <!--hàm mở, đóng modal lấy ra id cho link trang chi tiết sp-->
 <script>
-    function openModal(image, name, price, detailUrl_byID) {
-        document.getElementById('modal-img').src = image;
-        document.getElementById('modal-name').innerText = name;
+    function openModal(imageURL, productName, price, detailUrl_byID) {
+        document.getElementById('modal-img').src = imageURL;
+        document.getElementById('modal-name').innerText = productName;
         document.getElementById('modal-price').innerText = price;
         document.getElementById('modal-detail-link').href = detailUrl_byID;
         document.getElementById('productModal').style.display = 'flex';

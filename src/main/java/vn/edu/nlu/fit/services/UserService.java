@@ -3,6 +3,8 @@ package vn.edu.nlu.fit.services;
 import vn.edu.nlu.fit.dao.UserDAO;
 import vn.edu.nlu.fit.model.Users;
 
+import java.time.LocalDate;
+
 public class UserService {
 
     private UserDAO userDAO = new UserDAO();
@@ -19,23 +21,28 @@ public class UserService {
     public Users login(String username, String password) {
         Users user = userDAO.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword_hash().equals(password)) {
             return user;
         }
         return null;
     }
 
 
-    public boolean register(String name, String username,
-                            String password, String birthday) {
+    public boolean register(String fullName,
+                            String username,
+                            String password,
+                            String birthday) {
 
         // check trống
-        if (name == null || username == null || password == null || birthday == null ||
-                name.isEmpty() || username.isEmpty() || password.isEmpty() || birthday.isEmpty()) {
+        if (fullName == null || fullName.isEmpty()
+                || username == null || username.isEmpty()
+                || password == null || password.isEmpty()
+                || birthday == null || birthday.isEmpty()) {
+
             throw new IllegalArgumentException("Vui lòng nhập đầy đủ thông tin");
         }
 
-        // check email / phone format
+        // check email / phone
         boolean isEmail = username.matches(email_regrex);
         boolean isPhone = username.matches(phone_regrex);
         boolean isPassword = password.matches(password_regrex);
@@ -44,23 +51,27 @@ public class UserService {
             throw new IllegalArgumentException(
                     "Email hoặc số điện thoại không đúng định dạng");
         }
+
         // check password mạnh
         if (!isPassword) {
             throw new IllegalArgumentException(
                     "Mật khẩu phải ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt");
         }
 
-        // check trùng
+        // check trùng username
         if (userDAO.findByUsername(username) != null) {
             throw new IllegalArgumentException("Tài khoản đã tồn tại");
         }
 
+
+
         Users user = new Users();
-        user.setName(name);
+        user.setFullName(fullName);
         user.setUsername(username);
-        user.setPassword(password); // hash sau
-        user.setBirthday(birthday);
-        user.setRole("user");
+        user.setPassword_hash(password);
+        LocalDate birthDate = LocalDate.parse(birthday);
+        user.setBirthday(birthDate);
+        user.setUserRole("user");
 
         userDAO.insert(user);
         return true;
