@@ -3,23 +3,26 @@ package vn.edu.nlu.fit.model;
 public class Orders {
     private int id;
     private double total;
-    private Date date;
-    private String address;
-    private boolean status;
-    private int user_id;
-    private int deliveryMethod_id;
-    private int discount_id;
+    private Date orderDate;
+    private String orderAddress;
+    private int orderStatus;
+    private int userID;
+    private int deliveryMethodID;
+    private int discountID;
 
 
-    public Orders(int id, String address, Date date, double total, boolean status, int user_id, int discount_id, int deliveryMethod_id) {
-        this.id = id;
-        this.address = address;
-        this.date = date;
+    public Orders() {
+    }
+
+    public Orders(int discountID, int deliveryMethodID, int userID, int orderStatus, String orderAddress, Date orderDate, double total, int id) {
+        this.discountID = discountID;
+        this.deliveryMethodID = deliveryMethodID;
+        this.userID = userID;
+        this.orderStatus = orderStatus;
+        this.orderAddress = orderAddress;
+        this.orderDate = orderDate;
         this.total = total;
-        this.status = status;
-        this.user_id = user_id;
-        this.discount_id = discount_id;
-        this.deliveryMethod_id = deliveryMethod_id;
+        this.id = id;
     }
 
     public int getId() {
@@ -30,38 +33,6 @@ public class Orders {
         this.id = id;
     }
 
-    public int getDiscount_id() {
-        return discount_id;
-    }
-
-    public void setDiscount_id(int discount_id) {
-        this.discount_id = discount_id;
-    }
-
-    public int getDeliveryMethod_id() {
-        return deliveryMethod_id;
-    }
-
-    public void setDeliveryMethod_id(int deliveryMethod_id) {
-        this.deliveryMethod_id = deliveryMethod_id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public double getTotal() {
         return total;
     }
@@ -70,33 +41,65 @@ public class Orders {
         this.total = total;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getOrderAddress() {
+        return orderAddress;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setOrderAddress(String orderAddress) {
+        this.orderAddress = orderAddress;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public int isOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getDeliveryMethodID() {
+        return deliveryMethodID;
+    }
+
+    public void setDeliveryMethodID(int deliveryMethodID) {
+        this.deliveryMethodID = deliveryMethodID;
+    }
+
+    public int getDiscountID() {
+        return discountID;
+    }
+
+    public void setDiscountID(int discountID) {
+        this.discountID = discountID;
+    }
+
+    @Override
+    public String toString() {
         return "Orders{" +
                 "id=" + id +
                 ", total=" + total +
-                ", date=" + date +
-                ", address='" + address + '\'' +
-                ", status=" + status +
-                ", user_id=" + user_id +
-                ", deliveryMethod_id=" + deliveryMethod_id +
-                ", discount_id=" + discount_id +
+                ", orderDate=" + orderDate +
+                ", orderAddress='" + orderAddress + '\'' +
+                ", orderStatus=" + orderStatus +
+                ", userID=" + userID +
+                ", deliveryMethodID=" + deliveryMethodID +
+                ", discountID=" + discountID +
                 '}';
     }
 }

@@ -4,28 +4,30 @@ import java.time.LocalDate;
 
 public class Users {
     private int id;
-    private String name;
-    private String address;
+    private String fullName;
+    private String userAddress;
     private String birthday;
+    private String email;
     private String phoneNumber;
-    private String image;
+    private String imageURL;
     private String username;
-    private String password;
-    private String role;
+    private String password_hash;
+    private String userRole;
 
     public Users() {
     }
 
-    public Users(int id, String name, String address, String birthday, String phoneNumber, String image, String username, String password, String role) {
+    public Users(int id, String fullName, String userAddress, String birthday, String email, String phoneNumber, String imageURL, String username, String password_hash, String userRole) {
         this.id = id;
-        this.name = name;
-        this.address = address;
+        this.fullName = fullName;
+        this.userAddress = userAddress;
         this.birthday = birthday;
+        this.email = email;
         this.phoneNumber = phoneNumber;
-        this.image = image;
+        this.imageURL = imageURL;
         this.username = username;
-        this.password = password;
-        this.role = role;
+        this.password_hash = password_hash;
+        this.userRole = userRole;
     }
 
     public int getId() {
@@ -36,20 +38,20 @@ public class Users {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUserAddress() {
+        return userAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     public String getBirthday() {
@@ -60,6 +62,14 @@ public class Users {
         this.birthday = birthday;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -68,14 +78,13 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
-
 
     public String getUsername() {
         return username;
@@ -85,34 +94,35 @@ public class Users {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword_hash() {
+        return password_hash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword_hash(String password_hash) {
+        this.password_hash = password_hash;
     }
 
-    public String getRole() {
-        return role;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     @Override
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", birthday=" + birthday +
+                ", fullName='" + fullName + '\'' +
+                ", userAddress='" + userAddress + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", image='" + image + '\'' +
+                ", imageURL='" + imageURL + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
+                ", password_hash='" + password_hash + '\'' +
+                ", userRole='" + userRole + '\'' +
                 '}';
     }
 }

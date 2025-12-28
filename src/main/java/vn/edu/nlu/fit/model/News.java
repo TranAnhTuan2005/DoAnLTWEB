@@ -4,20 +4,22 @@ public class News {
     private int id;
     private String title;
     private String content;
-    private String image;
-    private int user_id;
-    private Date date_post;
-    private boolean is_published;
+    private String imageURL;
+    private int userID;
+    private Date datePost;
+    private int isPublished;
 
+    public News() {
+    }
 
-    public News(int id, String title, boolean is_published, int user_id, Date date_post, String image, String content) {
+    public News(int id, String title, String content, String imageURL, int userID, Date datePost, int isPublished) {
         this.id = id;
         this.title = title;
-        this.is_published = is_published;
-        this.user_id = user_id;
-        this.date_post = date_post;
-        this.image = image;
         this.content = content;
+        this.imageURL = imageURL;
+        this.userID = userID;
+        this.datePost = datePost;
+        this.isPublished = isPublished;
     }
 
     public int getId() {
@@ -28,14 +30,6 @@ public class News {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -44,48 +38,56 @@ public class News {
         this.title = title;
     }
 
-    public String getImage() {
-        return image;
+    public String getContent() {
+        return content;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public Date getDate_post() {
-        return date_post;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setDate_post(Date date_post) {
-        this.date_post = date_post;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public boolean isIs_published() {
-        return is_published;
+    public Date getDatePost() {
+        return datePost;
     }
 
-    public void setIs_published(boolean is_published) {
-        this.is_published = is_published;
+    public void setDatePost(Date datePost) {
+        this.datePost = datePost;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public int isPublished() {
+        return isPublished;
+    }
+
+    public void setPublished(int published) {
+        isPublished = published;
+    }
+
+    @Override
+    public String toString() {
         return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", image='" + image + '\'' +
-                ", user_id=" + user_id +
-                ", date_post=" + date_post +
-                ", is_published=" + is_published +
+                ", imageURL='" + imageURL + '\'' +
+                ", userID=" + userID +
+                ", datePost=" + datePost +
+                ", isPublished=" + isPublished +
                 '}';
     }
 }
