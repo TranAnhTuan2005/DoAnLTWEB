@@ -1,9 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý sản phẩm</title>
+    <title>Quản lý mã giảm giá</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -362,13 +364,13 @@
 
     /* Chiều rộng từng cột */
     .cate-stt {
-        width: 60px;
+        width: 40px;
         text-align: center;
         font-weight: bold;
     }
 
     .cate-item {
-        width: 180px;
+        width: 160px;
         text-align: center;
         font-weight: bold;
         overflow: hidden;
@@ -424,7 +426,7 @@
             <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
             <hr>
 
-            <li class="has-submenu">
+            <li class="has-submenu" style="opacity: 0.6">
                 <div class="submenu-toggle">
                     <i class="fa-solid fa-box"></i>
                     <span>Sản phẩm</span>
@@ -432,7 +434,7 @@
                 </div>
                 <ul class="submenu">
                     <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -443,7 +445,7 @@
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.html">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -482,7 +484,7 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Sản phẩm</span>
+            <span>Mã giảm giá</span>
         </div>
 
         <section class="dashboard">
@@ -493,78 +495,28 @@
         <section class="dashboard">
             <div class="border-dashboard">
                 <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLySanPham-TaoMoi.jsp'">+Tạo
+                    <button class="new-post" onclick="window.location.href='Admin-QuanLyMaGiamGia-TaoMoi.jsp'">+Tạo
                         mới</button>
                 </div>
                 <ul class="cate">
                     <li class="cate-stt">STT</li>
-                    <li class="cate-item">Ảnh</li>
-                    <li class="cate-item">Tên sản phẩm</li>
-                    <li class="cate-item">Danh mục</li>
-                    <li class="cate-item">Giá</li>
+                    <li class="cate-item">Mã giảm giá</li>
+                    <li class="cate-item">Mức giảm</li>
+                    <li class="cate-item">Điều kiện</li>
+                    <li class="cate-item">Giới hạn</li>
                     <li class="cate-item">Số lượng</li>
+                    <li class="cate-item">Trạng thái</li>
                     <li class="cate-item">Hành động</li>
                 </ul>
 
                 <ul class="cate thin">
                     <li class="cate-stt">1</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-tre-em.png" alt="Ngũ cốc trẻ em"></li>
-                    <li class="cate-item">Ngũ cốc trẻ em</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">24</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">2</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-me-bau.png" alt="Ngũ cốc mẹ bầu"></li>
-                    <li class="cate-item">Ngũ cốc mẹ bầu</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">15</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">3</li>
-                    <li class="cate-item"><img src="image/collection/bot-ngu-coc-tang-can.png" alt="Bột ngũ cốc tăng cân"></li>
-                    <li class="cate-item">Bột ngũ cốc tăng cân</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">209,000đ</li>
-                    <li class="cate-item">41</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">4</li>
-                    <li class="cate-item"><img src="image/collection/banh-hat-dinh-duong-20x15g.jpg" alt="Bánh hạt dinh dưỡng 20x15g"></li>
-                    <li class="cate-item">Bánh hạt dinh dưỡng</li>
-                    <li class="cate-item">Bánh dinh dưỡng</li>
-                    <li class="cate-item">159,000đ</li>
-                    <li class="cate-item">6</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">5</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-dinh-duong-cao-cap.png" alt="Ngũ cốc dinh dưỡng cao cấp"></li>
-                    <li class="cate-item">Ngũ cốc dinh dưỡng</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">67</li>
+                    <li class="cate-item">NGUCOCNGON</li>
+                    <li class="cate-item">10%</li>
+                    <li class="cate-item">Đơn > 300.000đ</li>
+                    <li class="cate-item">Tối đa 50k</li>
+                    <li class="cate-item">68</li>
+                    <li class="cate-item">Còn hạn</li>
                     <li class="cate-item">
                         <i class="fa-solid fa-pen"></i>
                         <i class="fa-solid fa-trash"></i>

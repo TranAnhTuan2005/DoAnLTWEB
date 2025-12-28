@@ -16,4 +16,19 @@ public class UserDAO extends BaseDao {
         );
     }
 
+
+    public void insert(Users user) {
+        String sql = """
+            INSERT INTO users(name, username, password, birthday, role)
+            VALUES (:name, :username, :password, :birthday, :role)
+        """;
+
+        getJdbi().withHandle(h ->
+                h.createUpdate(sql)
+                        .bindBean(user)
+                        .execute()
+        );
+    }
+
+
 }

@@ -12,7 +12,7 @@ public class Products implements Serializable { //dung javaBean
     private int status;
     private int isNew;
     private int quantity;
-    private String brand;
+    //private String brand;
     private String description;
     private String expiryDate;
     private String ingredient;
@@ -32,7 +32,7 @@ public class Products implements Serializable { //dung javaBean
         this.status = status;
         this.isNew = isNew;
         this.quantity = quantity;
-        this.brand = brand;
+        //this.brand = brand;
         this.description = description;
         this.expiryDate = expiryDate;
         this.ingredient = ingredient;
@@ -106,13 +106,13 @@ public class Products implements Serializable { //dung javaBean
         this.quantity = quantity;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+//    public String getBrand() {
+//        return brand;
+//    }
+//
+//    public void setBrand(String brand) {
+//        this.brand = brand;
+//    }
 
     public String getExpiryDate() {
         return expiryDate;
@@ -173,7 +173,7 @@ public class Products implements Serializable { //dung javaBean
                 ", status=" + status +
                 ", isNew=" + isNew +
                 ", quantity=" + quantity +
-                ", brand='" + brand + '\'' +
+                //", brand='" + brand + '\'' +
                 ", description='" + description + '\'' +
                 ", expiryDate='" + expiryDate + '\'' +
                 ", ingredient='" + ingredient + '\'' +

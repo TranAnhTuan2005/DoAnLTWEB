@@ -406,8 +406,8 @@
                 <p>This site is protected by reCAPTCHA and the Google <a
                         href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                         href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-                <button type="submit" onclick="window.location.href='TrangChu-daDNTK.jsp'">Đăng Nhập</button>
-                <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+                <button type="submit" onclick="window.location.href='TrangChu.jsp'">Đăng Nhập</button>
+                <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
                 <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
             </form>
         </div>

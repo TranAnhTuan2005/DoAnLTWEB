@@ -1,7 +1,5 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -33,7 +31,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.html">
+            <a href="TrangChu-daDNTK.html">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -53,7 +51,7 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="TrangChu-daDNTK.html">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
@@ -84,42 +82,32 @@
 
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
+            <a href="#" class="account-btn" aria-label="Tài khoản">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
+                            fill="#333"/>
+                </svg>
+            </a>
+
+            <!-- Dropdown sau khi đăng nhập  -->
             <c:choose>
-
-                <c:when test="${empty sessionScope.USER}">
-                    <a href="#" class="account-btn" aria-label="Tài khoản" id="btn-open-login">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
-                        </svg>
-                    </a>
-                </c:when>
-
-
-                <c:otherwise>
-                    <a href="#" class="account-btn" id="btn-toggle-account">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
-                        </svg>
-                    </a>
-
-                    <!-- DROPDOWN TÀI KHOẢN -->
+                <c:when test="${not empty sessionScope.user}">
                     <div id="accountMenu" class="account-menu" hidden>
                         <div class="account-menu_inner">
-                            <p class="account-menu_hello">
-                                Xin chào, <strong>${sessionScope.USER.name}</strong>
-                            </p>
+                            <p>Xin chào, <strong>${sessionScope.user.name}</strong></p>
                             <hr>
-                            <a class="account-menu_link" href="TaiKhoan.jsp">Thông tin tài khoản</a>
-                            <a class="account-menu_link" href="DanhSachDiaChi.jsp">Danh sách địa chỉ</a>
-                            <a class="account-menu_link" href="DangXuat">Đăng xuất</a>
+                            <a href="TaiKhoan.html">Thông tin tài khoản</a>
+                            <a href="<c:url value='/DangXuat'/>">Đăng xuất</a>
                         </div>
-                        <span class="account-menu_arrow"></span>
                     </div>
-                </c:otherwise>
+                </c:when>
 
+                <c:otherwise>
+                    <!-- chỉ hiện icon để mở modal -->
+                </c:otherwise>
             </c:choose>
+
 
             <a href="#" class="cart-btn" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -151,7 +139,7 @@
 
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.jsp'">Xem Giỏ Hàng</button>
+            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
             <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
         </div>
     </div>
@@ -162,20 +150,26 @@
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
+        <p>Nhập tào khoản và mật khẩu của bạn:</p>
 
-        <form id="loginForm" action="<c:url value='/Trangchu-login'/>" method="post" autocomplete="off">
-        <!--test-->
+        <form action="<c:url value='/Trangchu-login'/>" method="post">
+            <input type="text" name="username" placeholder="Tài khoản đăng nhập" required>
+            <input type="password" name="password" placeholder="Mật khẩu" required>
 
-        <input type="text" name="username" placeholder="Tài khoản" required  autocomplete="off">
-            <input type="password" name="password" placeholder="Mật khẩu" required autocomplete="new-password">
+            <c:if test="${not empty error}">
+                <p style="color:red">${error}</p>
+            </c:if>
+
             <p>This site is protected by reCAPTCHA and the Google <a
                     href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-            <button type="submit" >Đăng Nhập</button>
-            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+
+            <button type="submit">Đăng Nhập</button>
+
+            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
+
     </div>
 </div>
 
@@ -211,28 +205,28 @@
             </div>
         </div>
         <div class="si-items">
-            <a href="#" class="si-item">
+            <a href="SanPham-TatCa.html" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_me_bau.png" alt="Ngũ cốc mẹ bầu">
                 </div>
                 <p>Ngũ cốc mẹ bầu</p>
             </a>
 
-            <a href="#" class="si-item">
+            <a href="SanPham-TatCa.html" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_loi_sua.png" alt="Ngũ cốc lợi sữa">
                 </div>
                 <p>Ngũ cốc lợi sữa</p>
             </a>
 
-            <a href="#" class="si-item">
+            <a href="SanPham-TatCa.html" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_tre_em.png" alt="Ngũ cốc trẻ em">
                 </div>
                 <p>Ngũ cốc trẻ em</p>
             </a>
 
-            <a href="#" class="si-item">
+            <a href="SanPham-TatCa.html" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_dinh_duong_cao_cap.png"
                          alt="Ngũ cốc dinh dưỡng cao cấp">
@@ -240,14 +234,14 @@
                 <p>Ngũ cốc dinh dưỡng<br>cao cấp</p>
             </a>
 
-            <a href="#" class="si-item">
+            <a href="SanPham-TatCa.html" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_nguoi_gia.png" alt="Ngũ cốc người già">
                 </div>
                 <p>Ngũ cốc người già</p>
             </a>
 
-            <a href="#" class="si-item">
+            <a href="SanPham-TatCa.html" class="si-item">
                 <div class="si-img bg-lightgreen">
                     <img src="image/suggest-interest/ngu_coc_khac.png" alt="Ngũ cốc khác">
                 </div>
@@ -264,34 +258,35 @@
 
     <div class="product-list">
         <a href="SanPham-TatCa.html" class="product-card-a">
-            <div class="product-card">
-                <img src="image/categoryProduct/ngu_coc.png" alt="Ngũ cốc" class="product-img">
-                <h3 class="product-title">Ngũ cốc</h3>
-            </div>
+        <div class="product-card">
+            <img src="image/categoryProduct/ngu_coc.png" alt="Ngũ cốc" class="product-img">
+            <h3 class="product-title">Ngũ cốc</h3>
+        </div>
         </a>
 
         <a href="SanPham-TatCa.html" class="product-card-a">
-            <div class="product-card">
-                <img src="image/categoryProduct/combohatsen.jpg" alt="Hạt dinh dưỡng" class="product-img">
-                <h3 class="product-title">Hạt dinh dưỡng</h3>
-            </div>
+        <div class="product-card">
+            <img src="image/categoryProduct/combohatsen.jpg" alt="Hạt dinh dưỡng" class="product-img">
+            <h3 class="product-title">Hạt dinh dưỡng</h3>
+        </div>
         </a>
 
         <a href="SanPham-TatCa.html" class="product-card-a">
-            <div class="product-card">
-                <img src="image/categoryProduct/banh_dinh_duong.png" alt="Bánh dinh dưỡng" class="product-img">
-                <h3 class="product-title">Bánh dinh dưỡng</h3>
-            </div>
+        <div class="product-card">
+            <img src="image/categoryProduct/banh_dinh_duong.png" alt="Bánh dinh dưỡng" class="product-img">
+            <h3 class="product-title">Bánh dinh dưỡng</h3>
+        </div>
         </a>
 
         <a href="SanPham-TatCa.html" class="product-card-a">
-            <div class="product-card">
-                <img src="image/categoryProduct/tra_gao_lut.png" alt="Trà gạo lứt" class="product-img">
-                <h3 class="product-title">Trà gạo lứt</h3>
-            </div>
+        <div class="product-card">
+            <img src="image/categoryProduct/tra_gao_lut.png" alt="Trà gạo lứt" class="product-img">
+            <h3 class="product-title">Trà gạo lứt</h3>
+        </div>
         </a>
 
     </div>
+
 </section>
 
 <!------------------------------------------------------------------------------>
@@ -745,36 +740,36 @@
             <div class="news-img">
                 <img src="image/news/tin-tuc-cacloaihat.png" alt="Tin tức chính về các loại">
             </div>
-            <a href="BaiViet.html" class="title">
+            <a href="" class="title">
                 <h3>+5 LOẠI HẠT DINH DƯỠNG CẦN THIẾT CHO MẸ BẦU</h3>
             </a>
             <p class="sub-paragraph">Bài viết này chúng tôi sẽ bật mí 5 loại hạt siêu dinh dưỡng không thể thiếu
                 trong thực đơn...</p>
-            <a href="BaiViet.html" class="more">Xem thêm</a>
+            <a href="#" class="more">Xem thêm</a>
         </div>
 
         <div class="news-item">
             <div class="news-img">
                 <img src="image/news/tin-tuc-ncdd.webp" alt="Tin tức chính về các loại">
             </div>
-            <a href="BaiViet.html" class="title">
+            <a href="" class="title">
                 <h3>NGŨ CỐC CAO CẤP CÓ THỰC SỰ HỖ TRỢ NGƯỜI ỐM PHỤC HỒI NHANH</h3>
             </a>
             <p class="sub-paragraph">Sau một đợt ốm kéo dài, cơ thể chúng ta cần một chế độ dinh dưỡng đặc biêt để
                 hồi...</p>
-            <a href="BaiViet.html" class="more">Xem thêm</a>
+            <a href="#" class="more">Xem thêm</a>
         </div>
 
         <div class="news-item">
             <div class="news-img">
                 <img src="image/news/tao-do.jpg" alt="Tin tức chính về các loại">
             </div>
-            <a href="BaiViet.html" class="title">
+            <a href="" class="title">
                 <h3>TÁO ĐỎ TÂN CƯƠNG CHẤT LƯỢNG, GIÁ TỐT TẠI HUẾ</h3>
             </a>
             <p class="sub-paragraph">Táo đỏ Tân Cương, một trong những đặc sản nổi tiếng của vùng đất này(Trung
                 Quốc), được nhiều người...</p>
-            <a href="BaiViet.html" class="more">Xem thêm</a>
+            <a href="#" class="more">Xem thêm</a>
         </div>
     </div>
 </section>
@@ -842,7 +837,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu-daDNTK.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -881,7 +876,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="TrangChu-daDNTK.html" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
@@ -951,6 +946,137 @@
         }
     });
 </script>
+
+
+<!--DEMO cho TK khi đăng nhập UI như nào---------------------------------------->
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', function () {--%>
+<%--        const modal = document.getElementById('account-modal');--%>
+<%--        const accountMenu = document.getElementById('accountMenu');--%>
+<%--        const accountBtn = document.querySelector('.account-btn');--%>
+
+<%--        let isLoggedInDemo = false; // flag demo: sau khi bấm Đăng nhập sẽ thành true--%>
+
+<%--        const modalContent = modal.querySelector('.modal-content');--%>
+<%--        const isModalOpen = () => modal.style.display === 'block';--%>
+<%--        const openModal = () => (modal.style.display = 'block');--%>
+<%--        const closeModal = () => (modal.style.display = 'none');--%>
+
+<%--        // Bấm icon: nếu modal đang mở thì đóng; nếu chưa đăng nhập thì mở; đã "login demo" thì hiện dropdown--%>
+<%--        accountBtn.addEventListener('click', function (e) {--%>
+<%--           // e.preventDefault();--%>
+
+<%--            if (isModalOpen()) { // đang mở => đóng--%>
+<%--                closeModal();--%>
+<%--                return;--%>
+<%--            }--%>
+<%--            if (!isLoggedInDemo) {--%>
+<%--                if (accountMenu) accountMenu.hidden = true;--%>
+<%--                openModal();--%>
+<%--            } else {--%>
+<%--                if (accountMenu) accountMenu.hidden = !accountMenu.hidden;--%>
+<%--            }--%>
+<%--        });--%>
+
+<%--        // Đóng khi bấm nút X--%>
+<%--        const closeBtn = modal.querySelector('.close-btn');--%>
+<%--        closeBtn.addEventListener('click', closeModal);--%>
+
+<%--        //  Đóng khi click ra ngoài vùng--%>
+<%--        document.addEventListener('click', function (e) {--%>
+<%--            if (!isModalOpen()) return;--%>
+<%--            const clickedInside = modalContent.contains(e.target) || accountBtn.contains(e.target);--%>
+<%--            if (!clickedInside) closeModal();--%>
+<%--        });--%>
+
+
+<%--        // SUBMIT form đăng nhập (demo): đóng modal + bật dropdown + set trạng thái "đã đăng nhập"--%>
+<%--        const loginForm = modal.querySelector('form');--%>
+<%--        loginForm.addEventListener('submit', function (e) {--%>
+<%--            //e.preventDefault();--%>
+<%--            modal.style.display = 'none';--%>
+<%--            if (accountMenu) accountMenu.hidden = false;--%>
+<%--            isLoggedInDemo = true;--%>
+<%--        });--%>
+
+<%--        // CLICK RA NGOÀI để đóng dropdown--%>
+<%--        document.addEventListener('click', function (e) {--%>
+<%--            if (!accountMenu || accountMenu.hidden) return;--%>
+<%--            const clickInside = accountMenu.contains(e.target) || accountBtn.contains(e.target);--%>
+<%--            if (!clickInside) accountMenu.hidden = true;--%>
+<%--        });--%>
+
+<%--        // ESC để đóng dropdown--%>
+<%--        document.addEventListener('keydown', function (e) {--%>
+<%--            if (e.key === 'Escape' && accountMenu && !accountMenu.hidden) {--%>
+<%--                accountMenu.hidden = true;--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('account-modal');
+        const accountBtn = document.querySelector('.account-btn');
+        const modalContent = modal?.querySelector('.modal-content');
+        const accountMenu = document.getElementById('accountMenu');
+
+        const isLoggedIn = ${not empty sessionScope.user};
+
+        const openModal = () => {
+            if (!isLoggedIn) {
+                modal.style.display = 'block';
+            }
+        };
+        const closeModal = () => modal.style.display = 'none';
+        if (isLoggedIn && modal) {
+            modal.style.display = 'none';
+        }
+        accountBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isLoggedIn) {
+                // đã login → toggle dropdown
+                if (accountMenu) {
+                    accountMenu.hidden = !accountMenu.hidden;
+                }
+            } else {
+                // chưa login → mở modal
+                openModal();
+            }
+        });
+
+        // đóng modal bằng X
+        modal?.querySelector('.close-btn')?.addEventListener('click', closeModal);
+
+        // click ra ngoài
+        document.addEventListener('click', function (e) {
+            // đóng modal
+            if (modal && modal.style.display === 'block') {
+                if (!modalContent.contains(e.target) && !accountBtn.contains(e.target)) {
+                    closeModal();
+                }
+            }
+
+            // đóng dropdown
+            if (accountMenu && !accountMenu.hidden) {
+                if (!accountMenu.contains(e.target) && !accountBtn.contains(e.target)) {
+                    accountMenu.hidden = true;
+                }
+            }
+        });
+
+        // ESC đóng dropdown
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && accountMenu && !accountMenu.hidden) {
+                accountMenu.hidden = true;
+            }
+        });
+    });
+</script>
+
 
 
 </body>

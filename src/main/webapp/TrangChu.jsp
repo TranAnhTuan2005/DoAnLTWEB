@@ -166,7 +166,7 @@
 
             <button type="submit">Đăng Nhập</button>
 
-            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
 

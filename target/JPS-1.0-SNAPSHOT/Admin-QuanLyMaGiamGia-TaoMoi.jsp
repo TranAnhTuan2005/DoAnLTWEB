@@ -1,9 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý sản phẩm</title>
+    <title>Quản lý mã giảm giá - tạo mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -162,6 +164,10 @@
         color: #007bff;
     }
 
+    .breadcrumb .current{
+        color: #777;
+    }
+
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
     .account {
         margin-left: auto;
@@ -307,7 +313,6 @@
     /* Dashboard */
     .dashboard {
         padding: 20px;
-        margin-top: -20px;
     }
 
     .dashboard h2 {
@@ -330,83 +335,108 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .button-wrap {
+    /* Khung 2 cột chính*/
+    .post-editor {
         display: flex;
-        justify-content: right;
+        gap: 25px;
+        margin-top: 20px;
     }
 
-    .new-post {
-        background-color: #03a9f4;
-        font-size: 15px;
-        color: white;
+    /* CỘT TRÁI */
+    .post-left {
+        flex: 1;
+        background: #fff;
+        padding: 25px; /* PADDING CHỐNG DÍNH LỀ */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* FORM INPUT CHUNG */
+    .post-left input,
+    .post-left select,
+    .post-left textarea {
+        width: 100%;
         padding: 10px;
-        border: none;
-        border-radius: 3px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .compulsory{
+        display: inline;
+        color: red;
+    }
+    .fa-floppy-disk{
+        margin-right: 5px;
+    }
+    .fa-rotate-left{
+        margin-right: 5px;
+    }
+
+    /* CỘT PHẢI */
+    .post-right {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Title mỗi box */
+    .post-right h3 {
         margin-bottom: 10px;
+        font-size: 18px;
     }
 
-    .new-post:hover {
-        background-color: #007bff;
-        cursor: pointer;
-    }
-
-    .cate {
+    /* Nút */
+    .btn-box {
         display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
-    .cate li {
-        list-style-type: none;
-        border: 1px solid #888;
-        padding: 15px 0;
-    }
-
-    /* Chiều rộng từng cột */
-    .cate-stt {
-        width: 60px;
-        text-align: center;
+    .btn-save {
+        flex: 1;
+        padding: 10px;
+        background: #03a9f4;
+        border: none;
+        color: #fff;
         font-weight: bold;
-    }
-
-    .cate-item {
-        width: 180px;
-        text-align: center;
-        font-weight: bold;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    /* Thumbnail */
-    .cate-item img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-    }
-
-    .thin li {
-        font-weight: lighter;
-    }
-
-    .fa-pen {
-        border: 1px solid #007bff;
-        padding: 5px;
-        color: white;
-        background-color: #007bff;
         border-radius: 3px;
-    }
-
-    .fa-trash {
-        border: 1px solid red;
-        padding: 5px;
-        color: white;
-        background-color: red;
-        border-radius: 3px;
-    }
-
-    .fa-solid {
         cursor: pointer;
     }
 
+    .btn-reset {
+        flex: 1;
+        padding: 10px;
+        background: #e53935;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #choose{
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    /* Thumbnail preview */
+    .thumbnail-box {
+        margin-top: 15px;
+    }
+
+    .thumbnail-preview {
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #999;
+        border-radius: 6px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+    }
 
 </style>
 <body>
@@ -432,7 +462,7 @@
                 </div>
                 <ul class="submenu">
                     <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.html">Sản phẩm</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -443,7 +473,7 @@
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -482,97 +512,53 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Sản phẩm</span>
+            <span>Mã giảm giá</span> /
+            <span class="current">Tạo mới</span>
         </div>
 
-        <section class="dashboard">
+        <section class="post-editor">
+            <!-- CỘT TRÁI -->
+            <div class="post-left">
+                <label>Mã giảm giá <p class="compulsory">(*)</p></label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
 
-        </section>
+                <label>Mức giảm <p class="compulsory">(*)</p></label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
 
-        <!--Dashboard-->
-        <section class="dashboard">
-            <div class="border-dashboard">
-                <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLySanPham-TaoMoi.jsp'">+Tạo
-                        mới</button>
+                <label>Điều kiện </label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+
+                <label>Giới hạn</label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+
+                <label>Số lượng</label>
+                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex:1;">
+                        <label>Trạng thái</label>
+                        <select style="width:100%; padding: 10px; margin-top: 8px;">
+                            <option style="color: limegreen">Còn hạn</option>
+                            <option style="color: red">Hết hạn</option>
+                        </select>
+                    </div>
                 </div>
-                <ul class="cate">
-                    <li class="cate-stt">STT</li>
-                    <li class="cate-item">Ảnh</li>
-                    <li class="cate-item">Tên sản phẩm</li>
-                    <li class="cate-item">Danh mục</li>
-                    <li class="cate-item">Giá</li>
-                    <li class="cate-item">Số lượng</li>
-                    <li class="cate-item">Hành động</li>
-                </ul>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">1</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-tre-em.png" alt="Ngũ cốc trẻ em"></li>
-                    <li class="cate-item">Ngũ cốc trẻ em</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">24</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+            </div>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">2</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-me-bau.png" alt="Ngũ cốc mẹ bầu"></li>
-                    <li class="cate-item">Ngũ cốc mẹ bầu</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">15</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+            <!-- CỘT PHẢI -->
+            <div class="post-right">
+                <h3>Xuất bản</h3>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">3</li>
-                    <li class="cate-item"><img src="image/collection/bot-ngu-coc-tang-can.png" alt="Bột ngũ cốc tăng cân"></li>
-                    <li class="cate-item">Bột ngũ cốc tăng cân</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">209,000đ</li>
-                    <li class="cate-item">41</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">4</li>
-                    <li class="cate-item"><img src="image/collection/banh-hat-dinh-duong-20x15g.jpg" alt="Bánh hạt dinh dưỡng 20x15g"></li>
-                    <li class="cate-item">Bánh hạt dinh dưỡng</li>
-                    <li class="cate-item">Bánh dinh dưỡng</li>
-                    <li class="cate-item">159,000đ</li>
-                    <li class="cate-item">6</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">5</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-dinh-duong-cao-cap.png" alt="Ngũ cốc dinh dưỡng cao cấp"></li>
-                    <li class="cate-item">Ngũ cốc dinh dưỡng</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">67</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+                <div class="btn-box">
+                    <button class="btn-save" onclick="window.location.href='Admin-QuanLyMaGiamGia.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
+                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+                </div>
 
             </div>
         </section>
+
+
     </main>
 </div>
 
