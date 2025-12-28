@@ -2,18 +2,21 @@ package vn.edu.nlu.fit.model;
 
 public class Order_Trackings {
     private int id;
-    private int order_id;
-    private boolean status;
+    private int orderID;
+    private int orderTrackingStatus;
     private String note;
-    private Date update_time;
+    private Date updateTime;
 
 
-    public Order_Trackings(int id, int order_id, Date update_time, String note, boolean status) {
+    public Order_Trackings() {
+    }
+
+    public Order_Trackings(int id, int orderID, int orderTrackingStatus, String note, Date updateTime) {
         this.id = id;
-        this.order_id = order_id;
-        this.update_time = update_time;
+        this.orderID = orderID;
+        this.orderTrackingStatus = orderTrackingStatus;
         this.note = note;
-        this.status = status;
+        this.updateTime = updateTime;
     }
 
     public int getId() {
@@ -24,28 +27,20 @@ public class Order_Trackings {
         this.id = id;
     }
 
-    public boolean isStatus() {
-        return status;
+    public int getOrderID() {
+        return orderID;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public int isOrderTrackingStatus() {
+        return orderTrackingStatus;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
-    }
-
-    public Date getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
+    public void setOrderTrackingStatus(int orderTrackingStatus) {
+        this.orderTrackingStatus = orderTrackingStatus;
     }
 
     public String getNote() {
@@ -56,14 +51,22 @@ public class Order_Trackings {
         this.note = note;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
         return "Order_Trackings{" +
                 "id=" + id +
-                ", order_id=" + order_id +
-                ", status=" + status +
+                ", orderID=" + orderID +
+                ", orderTrackingStatus=" + orderTrackingStatus +
                 ", note='" + note + '\'' +
-                ", update_time=" + update_time +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

@@ -2,13 +2,16 @@ package vn.edu.nlu.fit.model;
 
 public class PaymentMethods {
     private int id;
-    private String name;
-    private boolean isActive;
+    private String methodName;
+    private int isActived;
 
-    public PaymentMethods(int id, String name, boolean isActive){
+    public PaymentMethods() {
+    }
+
+    public PaymentMethods(int id, String methodName, int isActived) {
         this.id = id;
-        this.name = name;
-        this.isActive = isActive;
+        this.methodName = methodName;
+        this.isActived = isActived;
     }
 
     public int getId() {
@@ -19,28 +22,28 @@ public class PaymentMethods {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMethodName() {
+        return methodName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public int getIsActived() {
+        return isActived;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIsActived(int isActived) {
+        this.isActived = isActived;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "PaymentMethods{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", isActive=" + isActive +
+                ", methodName='" + methodName + '\'' +
+                ", isActived=" + isActived +
                 '}';
     }
 }

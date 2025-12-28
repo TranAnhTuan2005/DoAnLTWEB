@@ -2,14 +2,14 @@ package vn.edu.nlu.fit.model;
 
 public class DeliveryMethods {
     private int id;
-    private int order_id;
-    private boolean isActived;
+    private String methodName;
+    private int isActived;
     private double price;
 
 
-    public DeliveryMethods(int id, int order_id, boolean isActived, double price) {
+    public DeliveryMethods(int id, String methodName, int isActived, double price) {
         this.id = id;
-        this.order_id = order_id;
+        this.methodName = methodName;
         this.isActived = isActived;
         this.price = price;
     }
@@ -22,20 +22,20 @@ public class DeliveryMethods {
         this.id = id;
     }
 
-    public boolean isActived() {
+    public int isActived() {
         return isActived;
     }
 
-    public void setActived(boolean actived) {
+    public void setActived(int actived) {
         isActived = actived;
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public String getMethodName() {
+        return methodName;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 
     public double getPrice() {
@@ -50,7 +50,7 @@ public class DeliveryMethods {
     public java.lang.String toString() {
         return "DeliveryMethods{" +
                 "id=" + id +
-                ", order_id=" + order_id +
+                ", methodName=" + methodName +
                 ", isActived=" + isActived +
                 ", price=" + price +
                 '}';

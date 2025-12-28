@@ -2,52 +2,20 @@ package vn.edu.nlu.fit.model;
 
 public class Products_Orders {
     private int id;
-    private int orderId;
-    private int productId;
+    private int orderID;
+    private int productID;
     private int quantity;
     private double priceAtTime;
 
     public Products_Orders() {
     }
 
-    public Products_Orders(int id, int orderId, int productId, int quantity, double priceAtTime) {
+    public Products_Orders(int id, int orderID, int productID, int quantity, double priceAtTime) {
         this.id = id;
-        this.orderId = orderId;
-        this.productId = productId;
+        this.orderID = orderID;
+        this.productID = productID;
         this.quantity = quantity;
         this.priceAtTime = priceAtTime;
-    }
-
-    public double getPriceAtTime() {
-        return priceAtTime;
-    }
-
-    public void setPriceAtTime(double priceAtTime) {
-        this.priceAtTime = priceAtTime;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
     }
 
     public int getId() {
@@ -58,12 +26,44 @@ public class Products_Orders {
         this.id = id;
     }
 
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPriceAtTime() {
+        return priceAtTime;
+    }
+
+    public void setPriceAtTime(double priceAtTime) {
+        this.priceAtTime = priceAtTime;
+    }
+
     @Override
     public String toString() {
         return "Products_Orders{" +
                 "id=" + id +
-                ", orderId=" + orderId +
-                ", productId=" + productId +
+                ", orderID=" + orderID +
+                ", productID=" + productID +
                 ", quantity=" + quantity +
                 ", priceAtTime=" + priceAtTime +
                 '}';

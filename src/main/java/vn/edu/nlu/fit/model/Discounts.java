@@ -2,20 +2,18 @@ package vn.edu.nlu.fit.model;
 
 public class Discounts {
     private int id;
-    private String name;
-    private double amount;
-    private double percent;
-    private int status;
+    private String discountName;
+    private double percentDiscount;
+    private int discountStatus;
 
     public Discounts() {
     }
 
-    public Discounts(int id, String name, double amount, double percent, int status) {
+    public Discounts(int id, String discountName, double percentDiscount, int discountStatus) {
         this.id = id;
-        this.name = name;
-        this.amount = amount;
-        this.percent = percent;
-        this.status = status;
+        this.discountName = discountName;
+        this.percentDiscount = percentDiscount;
+        this.discountStatus = discountStatus;
     }
 
     public int getId() {
@@ -26,46 +24,37 @@ public class Discounts {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDiscountName() {
+        return discountName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDiscountName(String discountName) {
+        this.discountName = discountName;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getPercentDiscount() {
+        return percentDiscount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setPercentDiscount(double percentDiscount) {
+        this.percentDiscount = percentDiscount;
     }
 
-    public double getPercent() {
-        return percent;
+    public int getDiscountStatus() {
+        return discountStatus;
     }
 
-    public void setPercent(double percent) {
-        this.percent = percent;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    public void setDiscountStatus(int discountStatus) {
+        this.discountStatus = discountStatus;
     }
 
     @Override
     public String toString() {
         return "Discounts{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", amount=" + amount +
-                ", percent=" + percent +
-                ", status=" + status +
+                ", discountName='" + discountName + '\'' +
+                ", percentDiscount=" + percentDiscount +
+                ", discountStatus=" + discountStatus +
                 '}';
     }
 }
