@@ -10,7 +10,7 @@ public class UserService {
     public Users login(String username, String password) {
         Users user = userDAO.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword_hash().equals(password)) {
             return user;
         }
         return null;
