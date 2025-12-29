@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -100,7 +102,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.html">
+            <a href="TrangChu.jsp">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -118,7 +120,7 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="TrangChu.jsp">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
@@ -228,53 +230,69 @@
                 <div class="underline mx-auto mb-4"></div>
 
                 <!-- Form -->
-                <form id="registerForm" class="register-form" novalidate>
+                <form action="<c:url value='/TaoTaiKhoan'/>" method="post" class="register-form">
+
+                    <!-- HIỂN THỊ LỖI -->
+                    <c:if test="${not empty error}">
+                        <div class="alert alert-danger">${error}</div>
+                    </c:if>
+
+
 
                     <div class="mb-3">
-                        <label for="firstName" class="form-label visually-hidden">Tên</label>
-                        <input id="firstName" name="firstName" type="text" class="form-control custom-input" placeholder="Tên" required>
+                        <input name="fullName" type="text"
+                               class="form-control custom-input"
+                               placeholder="Tên" required>
                     </div>
 
                     <div class="mb-3 d-flex align-items-center gap-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" checked>
-                            <label class="form-check-label" for="female">Nữ</label>
+                            <input class="form-check-input" type="radio"
+                                   name="gender" value="female" checked>
+                            <label class="form-check-label">Nữ</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                            <label class="form-check-label" for="male">Nam</label>
+                            <input class="form-check-input" type="radio"
+                                   name="gender" value="male">
+                            <label class="form-check-label">Nam</label>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="dob" class="form-label visually-hidden">Ngày sinh</label>
-                        <input id="dob" name="dob" type="date" class="form-control custom-input" placeholder="mm/dd/yyyy">
+                        <input name="birthday" type="date"
+                               class="form-control custom-input" required>
+                    </div>
+
+                    <!-- EMAIL / PHONE -->
+                    <div class="mb-3">
+                        <input name="username" type="text"
+                               class="form-control custom-input highlight-input"
+                               placeholder="Email hoặc số điện thoại" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="text" class="form-label visually-hidden">Email hoặc số điện thoại</label>
-                        <input id="text" name="text" type="text" class="form-control custom-input highlight-input" placeholder="Email hoặc số điện thoại" required>
+                        <input name="password" type="password"
+                               class="form-control custom-input highlight-input"
+                               placeholder="Mật khẩu" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label visually-hidden">Mật khẩu</label>
-                        <input id="password" name="password" type="password" class="form-control custom-input highlight-input" placeholder="Mật khẩu" required>
-                    </div>
-
-                    <p class="small text-muted mt-2 mb-3">
-                        This site is protected by reCAPTCHA and the Google
-                        <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a> and
-                        <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
-                    </p>
+                    <small class="text-muted">
+                        Mật khẩu tối thiểu 8 ký tự, gồm chữ, số và ký tự đặc biệt
+                    </small>
 
                     <div class="mb-4">
-                        <!--set type submit thì sẽ bị lỗi-->
-                        <button type="button" class="btn btn-register" onclick="window.location.href='TaiKhoan.html'" >ĐĂNG KÝ</button>
+                        <!-- QUAN TRỌNG: submit -->
+                        <button type="submit" class="btn btn-register">
+                            ĐĂNG KÝ
+                        </button>
                     </div>
 
                     <div class="mb-5">
-                        <a href="TrangChu.html" class="text-muted link-back">← Quay lại trang chủ</a>
+                        <a href="TrangChu.jsp" class="text-muted link-back">
+                            ← Quay lại trang chủ
+                        </a>
                     </div>
+
                 </form>
 
             </div>
@@ -349,7 +367,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -361,8 +379,8 @@
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
 
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                         height="70px" width="150px" alt="Bộ Công Thương">
+                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                     height="70px" width="150px" alt="Bộ Công Thương">
 
                             </div>
                         </div>
@@ -388,7 +406,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
@@ -439,8 +457,8 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                                                                                            rel="noreferrer">Team 18</a></p>
+                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                           rel="noreferrer">Team 18</a></p>
             </div>
         </div>
     </footer>

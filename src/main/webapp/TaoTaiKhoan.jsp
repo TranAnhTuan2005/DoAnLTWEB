@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chi tiết sản phẩm</title>
+    <title>Tạo tài khoản</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,230 +13,75 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    .main-detailProduct {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
+    /* ===== Đăng ký/đăng nhập===== */
+    .account-title {
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        color: #2c1c12;
+        margin-top: 4px;
     }
 
-    /* --- Breadcrumb --- */
-    /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
-    .breadcrumb-bar {
-        padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
-        padding-bottom: 5px;
-        background: #f6efe3;
-        border-bottom: 1px solid rgba(0,0,0,0.04);
+    /*gạch nhỏ phía trên*/
+    .underline {
+        width: 60px;
+        height: 4px;
+        background: #111;
+        border-radius: 2px;
     }
 
-    /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
-    .breadcrumb-bar .breadcrumb .breadcrumb-item {
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Dấu phân cách (nếu muốn điều chỉnh kích thước/màu) */
-    .breadcrumb-bar .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-        content: "/";             /* đảm bảo ký tự phân cách luôn là / */
-        margin: 0 6px;
-        color: #8a7354;
-        font-weight: 600;
-    }
-
-    /* Text các link và active */
-    .breadcrumb-bar .breadcrumb a {
-        color: #6d4c41;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    .breadcrumb-bar .breadcrumb .active {
-        color: #3b2d22;
-        font-weight: 600;
-    }
-
-
-
-    /* ===== Layout chính ===== */
-    .detail-product-page {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: start;
-        justify-content: center;
-        max-width: 1300px;
-        margin: 60px auto;
-        padding: 0 40px;
-    }
-
-    /* ===== Hình ảnh sản phẩm ===== */
-    .detail-product-gallery {
-        max-width: 480px;
-    }
-
-    .detail-product-image {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* ===== Thông tin sản phẩm ===== */
-    .detail-product-info {
-        max-width: 1200px;
-        margin-left: -100px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .detail-product-title {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        position: relative;
-        display: inline-block;
-        padding-bottom: 8px;
-    }
-
-    .detail-product-title::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: #839b4c;
-        margin-top: 6px;
-    }
-
-    .detail-product-price {
-        font-size: 22px;
-        color: #e63946;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-
-    .detail-product-quantity {
-        display: inline;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-
-    .detail-product-quantity input {
-        width: 50px;
-        text-align: center;
-        padding-top: 5px;
-        font-size: 16px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-    }
-
-    .detail-product-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 20px;
-        border: 1px solid #aaa;
-        background: #eee;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.15s;
-    }
-
-    .detail-product-btn:hover {
-        background: #d6d6d6;
-    }
-
-    .detail-product-add-cart {
-        margin-bottom: 15px;
-        background: #3b5c2f;
-        color: #fff;
+    /*style cho mục input */
+    .custom-input {
+        background: #f1f1f1;
         border: none;
-        padding: 10px 20px;
-        font-size: 15px;
-        border-radius: 5px;
-        cursor: pointer;
+        padding: 20px 18px;
+        border-radius: 2px;
+        box-shadow: none;
+        font-size: 14px;
+        color: #222;
     }
 
-    .detail-product-add-cart:hover {
-        background-color: #2d471f;
+    /*chỉnh màu nền cho input email/password */
+    .highlight-input {
+        background: #eaf2ff;
     }
 
-    .detail-product-action-row {
-        display: flex;
-        align-items: center;
-        gap: 20px; /* khoảng cách giữa số lượng và nút giỏ */
-        margin-bottom: 20px;
+    /* khoảng cách giữa các input */
+    .register-form .mb-3 {
+        margin-bottom: 22px ;
     }
 
-    .detail-product-policy {
-        list-style: none;
-        margin-left: -34px;
+
+
+    /* nút đăng ký */
+    .btn-register {
+        background-color: #a46b2c;
+        color: #fff;
+        padding: 12px 28px;
+        border: none;
+        border-radius: 4px;
+        font-weight: 700;
+        letter-spacing: 0.6px; /*giản cách giữa các chữ */
+    }
+    /*hover nút đăng ký*/
+    .btn-register:hover {
+        background-color: #8a551f;
     }
 
-    .detail-product-policy img {
-        width: 6%;
+    /* quay lại trang chủ */
+    .link-back {
+        display: inline-block;
+        color: #666;
+        text-decoration: none;
+    }
+    /*hover (chỉnh màu)*/
+    .link-back:hover {
+        color: #333;
     }
 
-    .detail-product-policy li {
-        margin-bottom: 8px;
-        display: flex;
-    }
 
-    .detail-product-policy li p{
-        margin-top: 10px;
-        margin-left: 10px;
-    }
-
-    /* ===== Mô tả chi tiết ===== */
-    .detail-product-description {
-        max-width: 1300px;
-        margin: 40px auto;
-        padding: 0 40px;
-    }
-
-    .detail-product-section-title {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        position: relative;
-        padding-bottom: 6px;
-    }
-
-    .detail-product-section-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 1250px;
-        height: 3px;
-        background-color: #839b4c;
-    }
-
-    .detail-product-subtitle {
-        color: #c76d00;
-        margin-top: 20px;
-        margin-bottom: 8px;
-    }
-
-    .detail-product-list {
-        margin-left: 20px;
-        margin-bottom: 15px;
-    }
-
-    .detail-product-text {
-        margin-bottom: 10px;
-    }
-
-    @media (max-width: 768px) {
-        .detail-product-page {
-            flex-direction: column;
-            align-items: center;
-        }
-        .detail-product-gallery,
-        .detail-product-info {
-            max-width: 100%;
-        }
-    }
 
 </style>
-
 
 <body>
 
@@ -266,11 +111,9 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <a href="TimKiem.html">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
+                </i>
             </button>
         </div>
 
@@ -299,7 +142,6 @@
 
                 </li>
 
-
                 <li><a href="TinTuc1.html">Tin tức</a></li>
                 <li><a href="CongTacVien.html">Cộng tác viên</a></li>
                 <li><a href="LienHe.html">Liên hệ</a></li>
@@ -312,11 +154,14 @@
         <div class="user-actions">
             <a href="#" class="account-btn" aria-label="Tài khoản">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
+                    <path
+                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
+                            fill="#333" />
                 </svg>
             </a>
-            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="" class="cart-btn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
@@ -335,7 +180,8 @@
         <h2>Giỏ Hàng</h2>
         <p>Hiện chưa có sản phẩm</p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
@@ -343,7 +189,8 @@
 
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.jsp'">Xem Giỏ Hàng</button>
+            <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
+
             <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
         </div>
     </div>
@@ -358,109 +205,114 @@
         <form>
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+            <p>This site is protected by reCAPTCHA and the Google <a
+                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
+                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
 
-<!------------------------------------------------------------------------------------>
-<!--Body-->
 
-<main class="main-detailProduct">
-    <!-- Breadcrumb -->
-    <section class="breadcrumb-bar py-2">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Ngũ cốc trẻ em</li>
-                </ol>
-            </nav>
-        </div>
-    </section>
 
-    <!-- Detail product -->
-    <section class="detail-product-page">
 
-        <!-- Hình ảnh sản phẩm -->
-        <div class="detail-product-gallery">
-            <img id="detail-product-image" src="${product.imageURL}" alt="Ngũ cốc trẻ em" class="detail-product-image">
-        </div>
+<!--Body tạo tài khoản-->
+<!--Bootstrap py5: padding-top và padding-bottom = 3rem ( 1rem = 16px → py-5 = 48px trên và dưới) -->
+<main class="account-page py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
 
-        <!-- Thông tin sản phẩm -->
-        <div class="detail-product-info">
-            <h1 class="detail-product-title">${product.productName}</h1>
-            <p class="detail-product-price">${product.price}₫</p>
+                <!-- Heading -->
+                <h1 class="account-title text-center mb-4">Tạo tài khoản</h1>
+                <div class="underline mx-auto mb-4"></div>
 
-            <div class="detail-product-action-row">
-                <div class="detail-product-quantity">
-                    <button id="detail-product-minus" class="detail-product-btn">-</button>
-                    <input type="text" id="detail-product-qty" value="1" min="1">
-                    <button id="detail-product-plus" class="detail-product-btn">+</button>
-                </div>
+                <!-- Form -->
+                <form action="<c:url value='/TaoTaiKhoan'/>" method="post" class="register-form">
 
-                <button class="detail-product-add-cart">Thêm vào giỏ</button>
+                    <!-- HIỂN THỊ LỖI -->
+                    <c:if test="${not empty error}">
+                        <div class="alert alert-danger">${error}</div>
+                    </c:if>
+
+
+
+                    <div class="mb-3">
+                        <input name="fullName" type="text"
+                               class="form-control custom-input"
+                               placeholder="Tên" required>
+                    </div>
+
+                    <div class="mb-3 d-flex align-items-center gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"
+                                   name="gender" value="female" checked>
+                            <label class="form-check-label">Nữ</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"
+                                   name="gender" value="male">
+                            <label class="form-check-label">Nam</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input name="birthday" type="date"
+                               class="form-control custom-input" required>
+                    </div>
+
+                    <!-- EMAIL / PHONE -->
+                    <div class="mb-3">
+                        <input name="username" type="text"
+                               class="form-control custom-input highlight-input"
+                               placeholder="Email hoặc số điện thoại" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <input name="password" type="password"
+                               class="form-control custom-input highlight-input"
+                               placeholder="Mật khẩu" required>
+                    </div>
+
+                    <small class="text-muted">
+                        Mật khẩu tối thiểu 8 ký tự, gồm chữ, số và ký tự đặc biệt
+                    </small>
+
+                    <div class="mb-4">
+                        <!-- QUAN TRỌNG: submit -->
+                        <button type="submit" class="btn btn-register">
+                            ĐĂNG KÝ
+                        </button>
+                    </div>
+
+                    <div class="mb-5">
+                        <a href="TrangChu.jsp" class="text-muted link-back">
+                            ← Quay lại trang chủ
+                        </a>
+                    </div>
+
+                </form>
+
             </div>
-
-            <ul class="detail-product-policy">
-                <li>
-                    <img src="image/icon-detail-product/cam-ket.png" alt="Cam kết">
-                    <p>Cam kết chất lượng sản phẩm 100%</p>
-                </li>
-                <li>
-                    <img src="image/icon-detail-product/kiem-tra.png" alt="Kiểm tra">
-                    <p>Kiểm tra hàng hóa khi nhận hàng</p>
-                </li>
-                <li>
-                    <img src="image/icon-detail-product/doi-tra.png" alt="Đổi trả">
-                    <p>Đổi trả trong 30 ngày nếu sản phẩm hết hạn</p>
-                </li>
-            </ul>
         </div>
-    </section>
 
-    <!-- Mô tả sản phẩm -->
-    <section class="detail-product-description">
-        <h2 class="detail-product-section-title">Thông tin bạn cần biết</h2>
-
-        <p class="detail-product-text">
-            ${product.productDescription}
-        </p>
-
-        <h3 class="detail-product-subtitle">Thành phần:</h3>
-        <p class="detail-product-text">
-            ${product.ingredient}
-        </p>
-
-
-        <h3 class="detail-product-subtitle">Công dụng:</h3>
-        <p>${product.uses}</p>
-
-        <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
-        <p>${product.instruction}</p>
-
-
-
-        <h3 class="detail-product-subtitle">Lưu ý:</h3>
-        <p class="detail-product-text">${product.attention}</p>
-
-        <h3 class="detail-product-subtitle">Hạn sử dụng:</h3>
-        <p>${product.productExpiryDate}</p>
-
-    </section>
+    </div>
 
 </main>
 
-<!------------------------------------------------------------------------------>
+
+
+
 <!--Footer-->
 
 <div class="main-footer-new">
     <!--section đăng kí nhận tin-->
     <section id="send-for-gmail" class="section section-for-email">
+
         <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <!--thẻ div gồm các class sử dụng bootstrap chia 4 cột-->
         <div class="container-fluid">
             <div class="row flexAlignCenter flexJustiCenter">
                 <div class="col-md-6 col-sm-12">
@@ -503,19 +355,18 @@
     </section>
 
 
+
     <!-- Footer chính -->
+
     <footer class="main-footer footer">
         <div class="footer-middle">
             <div class="container-fluid">
                 <div class="footer-middle-container">
 
-
-
                     <div class="row">
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-
                                 <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
@@ -545,8 +396,9 @@
                                     mật</a></li>
                                 <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="ChinhSachThanhToan.html"
+                                <li><a href="PhuongThucThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                             </ul>
                         </div>
 
@@ -612,21 +464,6 @@
     </footer>
 </div>
 
-<!-- Tăng giảm số lượng js -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const qtyInput = document.getElementById('detail-product-qty');
-        document.getElementById('detail-product-plus').onclick = () => {
-            qtyInput.value = Number(qtyInput.value) + 1;
-        };
-        document.getElementById('detail-product-minus').onclick = () => {
-            if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
-        };
-
-    });
-
-</script>
-
 <!--back to top (bootstrap) js-->
 <script>
     const backToTopBtn = document.getElementById("btn-back-to-top");
@@ -639,6 +476,7 @@
         }
     });
 </script>
+
 
 </body>
 </html>
