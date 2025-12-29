@@ -1,10 +1,9 @@
-package vn.edu.nlu.fit.cart;
+package vn.edu.nlu.fit.Cart;
 
 import vn.edu.nlu.fit.model.Products;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class CartItem implements Serializable {
     private Products product;
@@ -15,6 +14,10 @@ public class CartItem implements Serializable {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public double getTotal(){
+        return quantity*price;
     }
 
     public Products getProduct() {
