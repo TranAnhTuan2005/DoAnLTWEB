@@ -17,6 +17,10 @@ public class CartItem implements Serializable {
         this.price = price;
     }
 
+    public double getTotal(){
+        return quantity*price;
+    }
+
     public Products getProduct() {
         return product;
     }
