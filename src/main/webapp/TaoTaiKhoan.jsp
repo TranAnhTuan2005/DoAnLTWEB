@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -230,69 +228,53 @@
                 <div class="underline mx-auto mb-4"></div>
 
                 <!-- Form -->
-                <form action="<c:url value='/TaoTaiKhoan'/>" method="post" class="register-form">
-
-                    <!-- HIỂN THỊ LỖI -->
-                    <c:if test="${not empty error}">
-                        <div class="alert alert-danger">${error}</div>
-                    </c:if>
-
-
+                <form id="registerForm" class="register-form" novalidate>
 
                     <div class="mb-3">
-                        <input name="fullName" type="text"
-                               class="form-control custom-input"
-                               placeholder="Tên" required>
+                        <label for="firstName" class="form-label visually-hidden">Tên</label>
+                        <input id="firstName" name="firstName" type="text" class="form-control custom-input" placeholder="Tên" required>
                     </div>
 
                     <div class="mb-3 d-flex align-items-center gap-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio"
-                                   name="gender" value="female" checked>
-                            <label class="form-check-label">Nữ</label>
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" checked>
+                            <label class="form-check-label" for="female">Nữ</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio"
-                                   name="gender" value="male">
-                            <label class="form-check-label">Nam</label>
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                            <label class="form-check-label" for="male">Nam</label>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <input name="birthday" type="date"
-                               class="form-control custom-input" required>
-                    </div>
-
-                    <!-- EMAIL / PHONE -->
-                    <div class="mb-3">
-                        <input name="username" type="text"
-                               class="form-control custom-input highlight-input"
-                               placeholder="Email hoặc số điện thoại" required>
+                        <label for="dob" class="form-label visually-hidden">Ngày sinh</label>
+                        <input id="dob" name="dob" type="date" class="form-control custom-input" placeholder="mm/dd/yyyy">
                     </div>
 
                     <div class="mb-3">
-                        <input name="password" type="password"
-                               class="form-control custom-input highlight-input"
-                               placeholder="Mật khẩu" required>
+                        <label for="text" class="form-label visually-hidden">Email hoặc số điện thoại</label>
+                        <input id="text" name="text" type="text" class="form-control custom-input highlight-input" placeholder="Email hoặc số điện thoại" required>
                     </div>
 
-                    <small class="text-muted">
-                        Mật khẩu tối thiểu 8 ký tự, gồm chữ, số và ký tự đặc biệt
-                    </small>
+                    <div class="mb-3">
+                        <label for="password" class="form-label visually-hidden">Mật khẩu</label>
+                        <input id="password" name="password" type="password" class="form-control custom-input highlight-input" placeholder="Mật khẩu" required>
+                    </div>
+
+                    <p class="small text-muted mt-2 mb-3">
+                        This site is protected by reCAPTCHA and the Google
+                        <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a> and
+                        <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+                    </p>
 
                     <div class="mb-4">
-                        <!-- QUAN TRỌNG: submit -->
-                        <button type="submit" class="btn btn-register">
-                            ĐĂNG KÝ
-                        </button>
+                        <!--set type submit thì sẽ bị lỗi-->
+                        <button type="button" class="btn btn-register" onclick="window.location.href='TaiKhoan.html'" >ĐĂNG KÝ</button>
                     </div>
 
                     <div class="mb-5">
-                        <a href="TrangChu.jsp" class="text-muted link-back">
-                            ← Quay lại trang chủ
-                        </a>
+                        <a href="TrangChu.html" class="text-muted link-back">← Quay lại trang chủ</a>
                     </div>
-
                 </form>
 
             </div>

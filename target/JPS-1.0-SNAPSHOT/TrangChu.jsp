@@ -95,7 +95,7 @@
                 <c:when test="${not empty sessionScope.user}">
                     <div id="accountMenu" class="account-menu" hidden>
                         <div class="account-menu_inner">
-                            <p>Xin chào, <strong>${sessionScope.user.username}</strong></p>
+                            <p>Xin chào, <strong>${sessionScope.user.name}</strong></p>
                             <hr>
                             <a href="TaiKhoan.html">Thông tin tài khoản</a>
                             <a href="<c:url value='/DangXuat'/>">Đăng xuất</a>
@@ -166,7 +166,7 @@
 
             <button type="submit">Đăng Nhập</button>
 
-            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
             <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
 

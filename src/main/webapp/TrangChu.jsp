@@ -127,7 +127,7 @@
 <div id="cart-modal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2>Giỏ Hàng</h2>
+        <h2>Giỏ Hàng (${sessionScope.cart.Total})</h2>
         <p>Hiện chưa có sản phẩm</p>
 
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -306,7 +306,7 @@
                     <img src="image/newProducts/banhhat.jpg"
                          alt="Bánh hạt dinh dưỡng cao cấp"><!-- hình ảnh minh họa -->
                     <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                        <button class="add-to-cart" onclick="window.location.href='addCart?id=${p.id}&quantity=1'">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
                                 onclick="openModal('./image/newProducts/banhhat.jpg','Bánh hạt dinh dưỡng 30 x 15g', '219,000đ')">
                             👁

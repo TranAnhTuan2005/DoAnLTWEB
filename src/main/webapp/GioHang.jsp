@@ -439,22 +439,23 @@
                         <p>Bạn đang có <strong>1 sản phẩm</strong> trong giỏ hàng</p>
                     </div>
 
+                    <c:forEach items="${sessionScope.cart.item}" var="p">
                     <div class="cart-items">
                         <div class="item">
                             <img src="image/newProducts/banhhat.jpg" alt="Banh hat dinh duong">
                             <div class="item-infor">
-                                <h3>Bánh hạt dinh dưỡng 30 x 15 g</h3>
-                                <p class="price">219,000đ</p>
+                                <h3>${p.product.name}</h3>
+                                <p class="price">${p.product.name}</p>
                                 <div class="quantity-box">
                                     <button class="qty-btn" id="decrease-qty">-</button>
-                                    <input type="number" name="qty-product" value="1" min="1">
+                                    <input type="number" name="qty-product" value="${p.quantity}" min="1">
                                     <button class="qty-btn" id="increase-qty">+</button>
                                 </div>
                             </div>
                         </div>
                         <div class="right-infor">
-                            <i class="fa-solid fa-trash"></i>
-                            <p class="total">Thành tiền: <strong>219,000đ</strong></p>
+                           <a href="DelCart?id=${p.product.id}"><i class="fa-solid fa-trash"></i></a>
+                            <p class="total">Thành tiền: <strong>${p.price}đ</strong></p>
                         </div>
                     </div>
 
@@ -469,7 +470,7 @@
                     <h2>Thông tin đơn hàng</h2>
                     <div class="order-total">
                         <span>Tổng tiền:</span>
-                        <strong>219,000₫</strong>
+                        <strong>${sessionScope.cart.total}đ</strong>
                     </div>
                     <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
