@@ -16,7 +16,6 @@ public class UserDAO extends BaseDao {
         );
     }
 
-
     public void insert(Users user) {
         String sql = """
         INSERT INTO users(full_name, username, password_hash, birthday, user_role)
@@ -29,7 +28,5 @@ public class UserDAO extends BaseDao {
                         .execute()
         );
     }
-
-
 
 }

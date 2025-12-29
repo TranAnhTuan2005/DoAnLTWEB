@@ -102,7 +102,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.html">
+            <a href="TrangChu.jsp">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -120,7 +120,7 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="TrangChu.jsp">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
@@ -367,7 +367,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -379,8 +379,8 @@
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
 
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                         height="70px" width="150px" alt="Bộ Công Thương">
+                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                     height="70px" width="150px" alt="Bộ Công Thương">
 
                             </div>
                         </div>
@@ -406,7 +406,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
@@ -457,8 +457,8 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                                                                                            rel="noreferrer">Team 18</a></p>
+                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                           rel="noreferrer">Team 18</a></p>
             </div>
         </div>
     </footer>

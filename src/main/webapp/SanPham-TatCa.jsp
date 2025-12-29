@@ -372,7 +372,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.html">
+            <a href="TrangChu.jsp">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -392,7 +392,7 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="TrangChu.jsp">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
@@ -452,32 +452,32 @@
         <h2>GIỎ HÀNG</h2>
 
         <!-- CASE: CHƯA CÓ SẢN PHẨM -->
-            <p>Hiện chưa có sản phẩm</p>
+        <p>Hiện chưa có sản phẩm</p>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-            </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+        </svg>
 
-            <p>Tổng tiền: 0đ</p>
+        <p>Tổng tiền: 0đ</p>
 
         <!-- CASE: CÓ SẢN PHẨM -->
-            <div class="cart-items">
-                <c:forEach var="item" items="${sessionScope.cart.item}">
-                    <div class="cart-item">
-                        <img src="${item.product.image_url}" width="60"/>
-                        <div class="cart-info">
-                            <p><b>${item.product.product_name}</b></p>
-                            <p>${item.quantity} × ${item.product.price}đ</p>
-                        </div>
+        <div class="cart-items">
+            <c:forEach var="item" items="${sessionScope.cart.item}">
+                <div class="cart-item">
+                    <img src="${item.product.image_url}" width="60"/>
+                    <div class="cart-info">
+                        <p><b>${item.product.product_name}</b></p>
+                        <p>${item.quantity} × ${item.product.price}đ</p>
                     </div>
-                </c:forEach>
-            </div>
+                </div>
+            </c:forEach>
+        </div>
 
-            <p class="cart-total">
-                <b>TỔNG TIỀN:</b> ${sessionScope.cart.total}
-            </p>
+        <p class="cart-total">
+            <b>TỔNG TIỀN:</b> ${sessionScope.cart.total}
+        </p>
 
         <div class="modal-buttons">
             <a href="GioHang.jsp" class="view-cart-btn">Xem Giỏ Hàng</a>
@@ -512,7 +512,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
                     <li class="breadcrumb-item"><a href="SanPham-TatCa.html">Danh mục</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tất cả sản phẩm</li>
                 </ol>
@@ -586,9 +586,9 @@
                             <div class="collection-overlay"><!-- Hover để hiển thị-->
 
                                 <a href="GioHang?id=${p.id}">
-                                <button class="collection-add-to-cart" onclick="">
-                                    🛒 THÊM VÀO GIỎ
-                                </button>
+                                    <button class="collection-add-to-cart" onclick="">
+                                        🛒 THÊM VÀO GIỎ
+                                    </button>
                                 </a>
 
                                 <button class="collection-view-btn"
@@ -701,7 +701,7 @@
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
 
-                                <a href="TrangChu.html" title="Ngũ cốc Ngon"
+                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon"
                                    aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px"
                                          width="250px"
@@ -744,7 +744,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
@@ -796,9 +796,9 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#"
-                                                                                            target="_blank"
-                                                                                            rel="noreferrer">Team
+                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#"
+                                                                                           target="_blank"
+                                                                                           rel="noreferrer">Team
                     18</a></p>
             </div>
         </div>

@@ -76,5 +76,4 @@ public class UserService {
         userDAO.insert(user);
         return true;
     }
-
 }

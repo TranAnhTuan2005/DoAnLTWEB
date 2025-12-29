@@ -257,7 +257,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.html">
+            <a href="TrangChu.jsp">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -277,7 +277,7 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="TrangChu.jsp">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
@@ -375,7 +375,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Ngũ cốc trẻ em</li>
                 </ol>
             </nav>
@@ -437,10 +437,10 @@
 
 
         <h3 class="detail-product-subtitle">Công dụng:</h3>
-            <p>${product.uses}</p>
+        <p>${product.uses}</p>
 
         <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
-            <p>${product.instruction}</p>
+        <p>${product.instruction}</p>
 
 
 
@@ -448,7 +448,7 @@
         <p class="detail-product-text">${product.attention}</p>
 
         <h3 class="detail-product-subtitle">Hạn sử dụng:</h3>
-            <p>${product.productExpiryDate}</p>
+        <p>${product.productExpiryDate}</p>
 
     </section>
 
@@ -516,7 +516,7 @@
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
 
-                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -554,7 +554,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
@@ -605,8 +605,8 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                                                                                            rel="noreferrer">Team 18</a></p>
+                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                           rel="noreferrer">Team 18</a></p>
             </div>
         </div>
     </footer>

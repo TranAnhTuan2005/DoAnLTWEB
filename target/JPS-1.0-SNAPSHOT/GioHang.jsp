@@ -298,7 +298,7 @@
         <div class="header-container">
             <!-- Logo -->
             <div class="logo">
-                <a href="TrangChu.html">
+                <a href="TrangChu.jsp">
                     <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img />
                 </a>
             </div>
@@ -316,10 +316,10 @@
             <!-- Menu điều hướng -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="TrangChu.html">Trang chủ</a></li>
+                    <li><a href="TrangChu.jsp">Trang chủ</a></li>
                     <li><a href="VeNgon.html">Về Ngon</a></li>
                     <li class="menu-sp">
-                        <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                        <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
 
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
@@ -407,7 +407,7 @@
                         href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                         href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
                 <button type="submit" onclick="window.location.href='TrangChu.jsp'">Đăng Nhập</button>
-                <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
+                <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
                 <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
             </form>
         </div>
@@ -421,7 +421,7 @@
             <div class="container">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-2 rounded-3">
-                        <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
                     </ol>
                 </nav>
@@ -439,22 +439,23 @@
                         <p>Bạn đang có <strong>1 sản phẩm</strong> trong giỏ hàng</p>
                     </div>
 
+                    <c:forEach items="${sessionScope.cart.item}" var="p">
                     <div class="cart-items">
                         <div class="item">
                             <img src="image/newProducts/banhhat.jpg" alt="Banh hat dinh duong">
                             <div class="item-infor">
-                                <h3>Bánh hạt dinh dưỡng 30 x 15 g</h3>
-                                <p class="price">219,000đ</p>
+                                <h3>${p.product.name}</h3>
+                                <p class="price">${p.product.name}</p>
                                 <div class="quantity-box">
                                     <button class="qty-btn" id="decrease-qty">-</button>
-                                    <input type="number" name="qty-product" value="1" min="1">
+                                    <input type="number" name="qty-product" value="${p.quantity}" min="1">
                                     <button class="qty-btn" id="increase-qty">+</button>
                                 </div>
                             </div>
                         </div>
                         <div class="right-infor">
-                            <i class="fa-solid fa-trash"></i>
-                            <p class="total">Thành tiền: <strong>219,000đ</strong></p>
+                           <a href="DelCart?id=${p.product.id}"><i class="fa-solid fa-trash"></i></a>
+                            <p class="total">Thành tiền: <strong>${p.price}đ</strong></p>
                         </div>
                     </div>
 
@@ -469,7 +470,7 @@
                     <h2>Thông tin đơn hàng</h2>
                     <div class="order-total">
                         <span>Tổng tiền:</span>
-                        <strong>219,000₫</strong>
+                        <strong>${sessionScope.cart.total}đ</strong>
                     </div>
                     <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
@@ -477,7 +478,7 @@
                     <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">THANH TOÁN</button>
 
                     <div class="continue">
-                        <a href="SanPham-TatCa.html">Tiếp tục mua hàng</a>
+                        <a href="SanPham-TatCa.jsp">Tiếp tục mua hàng</a>
                     </div>
                 </div>
             </div>
@@ -550,7 +551,7 @@
                             <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                                 <div class="logo-footer">
 
-                                    <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                         <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                              alt="Ngũ cốc Ngon">
                                     </a>
@@ -588,9 +589,9 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">KẾT NỐI NHANH</h3>
                                 <ul>
-                                    <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                    <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
                                     <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
-                                    <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
+                                    <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
                                     <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
                                     <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
                                     <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
