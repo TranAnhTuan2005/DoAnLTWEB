@@ -257,7 +257,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.html">
+            <a href="TrangChu.jsp">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -277,7 +277,7 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.html">Trang chủ</a></li>
+                <li><a href="TrangChu.jsp">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
@@ -375,7 +375,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Ngũ cốc trẻ em</li>
                 </ol>
             </nav>
@@ -387,12 +387,12 @@
 
         <!-- Hình ảnh sản phẩm -->
         <div class="detail-product-gallery">
-            <img id="detail-product-image" src="${product.image}" alt="Ngũ cốc trẻ em" class="detail-product-image">
+            <img id="detail-product-image" src="${product.imageURL}" alt="Ngũ cốc trẻ em" class="detail-product-image">
         </div>
 
         <!-- Thông tin sản phẩm -->
         <div class="detail-product-info">
-            <h1 class="detail-product-title">${product.name}</h1>
+            <h1 class="detail-product-title">${product.productName}</h1>
             <p class="detail-product-price">${product.price}₫</p>
 
             <div class="detail-product-action-row">
@@ -427,7 +427,7 @@
         <h2 class="detail-product-section-title">Thông tin bạn cần biết</h2>
 
         <p class="detail-product-text">
-            ${product.description}
+            ${product.productDescription}
         </p>
 
         <h3 class="detail-product-subtitle">Thành phần:</h3>
@@ -437,35 +437,19 @@
 
 
         <h3 class="detail-product-subtitle">Công dụng:</h3>
-        <ul class="detail-product-list">
-            <li>${product.uses}</li>
-
-        </ul>
+        <p>${product.uses}</p>
 
         <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>Cho 2 thìa ngũ cốc (20g) vào ly.</li>
-            <li>Thêm 50ml nước sôi nguội, đánh tan để không vón cục.</li>
-            <li>Thêm 100ml nước sôi nóng, khuấy đều và thưởng thức.</li>
-            <li>Uống ngon hơn khi thêm sữa hoặc đường.</li>
-        </ul>
-        <p class="detail-product-text">Trẻ em từ 6 tháng đến 1 tuổi:</p>
-        <ul class="detail-product-list">
-            <li>Cho 1,5 thìa ngũ cốc (khoảng 15g) với 100ml nước sôi nguội, đánh tan để bột không bị vón cục.</li>
-            <li>Đặt lên bếp khuấy đều tay trong khoảng 2 phút.</li>
-            <li>Cho ra chén, để nguội trước khi sử dụng.</li>
-        </ul>
+        <p>${product.instruction}</p>
+
+
 
         <h3 class="detail-product-subtitle">Lưu ý:</h3>
-        <p class="detail-product-text">Khi pha bột, cần pha từ loãng sang đặc dần.</p>
+        <p class="detail-product-text">${product.attention}</p>
 
         <h3 class="detail-product-subtitle">Hạn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>8 tháng, kể từ ngày sản xuất.</li>
-            <li>Dùng tốt nhất trong vòng 02 tháng sau khi mở bao bì.</li>
-            <li>Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp. Nhớ đóng kín bao bì sau khi sử dụng.</li>
-            <li>Không dùng sản phẩm khi hết hạn sử dụng.</li>
-        </ul>
+        <p>${product.productExpiryDate}</p>
+
     </section>
 
 </main>
@@ -532,7 +516,7 @@
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
 
-                                <a href="TrangChu.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -570,7 +554,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.html" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
@@ -621,8 +605,8 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
-                                                                                            rel="noreferrer">Team 18</a></p>
+                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                                                                                           rel="noreferrer">Team 18</a></p>
             </div>
         </div>
     </footer>

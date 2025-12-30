@@ -3,9 +3,7 @@ package vn.edu.nlu.fit.controller.cart;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.Cart.CartItem;
-import vn.edu.nlu.fit.model.Products;
-import vn.edu.nlu.fit.services.ProductService;
+
 
 import java.io.IOException;
 
