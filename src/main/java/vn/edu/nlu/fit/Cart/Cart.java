@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.cart;
+package vn.edu.nlu.fit.Cart;
 
 import vn.edu.nlu.fit.model.Products;
 

@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.cart;
+package vn.edu.nlu.fit.Cart;
 
 import vn.edu.nlu.fit.model.Products;
 
@@ -15,6 +15,10 @@ public class CartItem implements Serializable {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public double getTotal(){
+        return quantity*price;
     }
 
     public Products getProduct() {
