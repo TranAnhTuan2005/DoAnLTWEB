@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.controller;
+package vn.edu.nlu.fit.controller.Login;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

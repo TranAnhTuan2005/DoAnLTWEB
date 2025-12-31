@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.controller;
+package vn.edu.nlu.fit.controller.Login;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -29,7 +29,7 @@ public class LoginControler extends HttpServlet {
 //                request.getRequestDispatcher("TrangChu.jsp").forward(request, response  );
 //            }
 //    }
-        String username = request.getParameter("username");
+        String username = request.getParameter("email");
         String password = request.getParameter("password");
 
         Users user = userService.login(username, password);
@@ -40,7 +40,7 @@ public class LoginControler extends HttpServlet {
 
             response.sendRedirect(request.getContextPath() + "/TrangChu.jsp");
         } else {
-            request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
+            request.setAttribute("error", "Sai tên email hoặc mật khẩu");
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
         }
     }

@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.controller;
+package vn.edu.nlu.fit.controller.Login;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -20,16 +20,17 @@ public class RegisterController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String name = request.getParameter("fullName");
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String phoneNumber = request.getParameter("phoneNumber");
         String password = request.getParameter("password");
         String birthday = request.getParameter("birthday");
 
         try {
             UserService userService = new UserService();
-            userService.register(name, username, password, birthday);
+            userService.register(name, email, phoneNumber, password, birthday);
 
         // đăng nhập luôn sau khi đăng ký
-            Users user = userService.login(username, password);
+            Users user = userService.login(email, password);
 
         // lưu user vào session
             request.getSession().setAttribute("user", user);
