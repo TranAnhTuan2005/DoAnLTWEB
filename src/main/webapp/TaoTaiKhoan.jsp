@@ -209,8 +209,8 @@
                     href="https://policies.google.com/privacy">Privacy Policy</a> and <a
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="TaoTaiKhoan.html">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
@@ -232,44 +232,50 @@
                 <!-- Form -->
                 <form action="<c:url value='/TaoTaiKhoan'/>" method="post" class="register-form">
 
-                    <!-- HIỂN THỊ LỖI -->
+                    <!-- Hiển thị lỗi -->
                     <c:if test="${not empty error}">
                         <div class="alert alert-danger">${error}</div>
                     </c:if>
 
 
-
+                    <!-- Họ tên -->
                     <div class="mb-3">
+                        <label class="form-label fw-semibold">Họ tên:</label>
                         <input name="fullName" type="text"
                                class="form-control custom-input"
                                placeholder="Tên" required>
                     </div>
 
-                    <div class="mb-3 d-flex align-items-center gap-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio"
-                                   name="gender" value="female" checked>
-                            <label class="form-check-label">Nữ</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio"
-                                   name="gender" value="male">
-                            <label class="form-check-label">Nam</label>
-                        </div>
-                    </div>
 
                     <div class="mb-3">
+                        <label class="form-label fw-semibold">Ngày sinh:</label>
                         <input name="birthday" type="date"
                                class="form-control custom-input" required>
                     </div>
 
-                    <!-- EMAIL / PHONE -->
+                    <!-- email TK-->
                     <div class="mb-3">
-                        <input name="username" type="text"
-                               class="form-control custom-input highlight-input"
-                               placeholder="Email hoặc số điện thoại" required>
+                        <label class="form-label fw-semibold">Tài khoản:</label>
+                        <div class="mb-3">
+                            <input name="email"
+                                   type="email"
+                                   class="form-control custom-input highlight-input"
+                                   placeholder="Email"
+                                   required>
+                        </div>
                     </div>
 
+                    <!-- Số điện thoại  -->
+                    <div class="mb-3">
+                        <input name="phoneNumber"
+                               type="tel"
+                               class="form-control custom-input"
+                               placeholder="Số điện thoại (VD: 0xxxxxxxxx)"
+                               pattern="^0[0-9]{9}$"
+                               title="Số điện thoại phải đúng định dạng Việt Nam" required>
+                    </div>
+
+                    <!-- Mật khẩu -->
                     <div class="mb-3">
                         <input name="password" type="password"
                                class="form-control custom-input highlight-input"
@@ -281,7 +287,7 @@
                     </small>
 
                     <div class="mb-4">
-                        <!-- QUAN TRỌNG: submit -->
+                        <!--  submit -->
                         <button type="submit" class="btn btn-register">
                             ĐĂNG KÝ
                         </button>

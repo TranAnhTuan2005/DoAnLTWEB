@@ -150,10 +150,10 @@
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập tào khoản và mật khẩu của bạn:</p>
+        <p>Nhập Email và mật khẩu của bạn:</p>
 
         <form action="<c:url value='/Trangchu-login'/>" method="post">
-            <input type="text" name="username" placeholder="Tài khoản đăng nhập" required>
+            <input type="email" name="email" placeholder="Email đăng nhập" required>
             <input type="password" name="password" placeholder="Mật khẩu" required>
 
             <c:if test="${not empty error}">
@@ -167,7 +167,7 @@
             <button type="submit">Đăng Nhập</button>
 
             <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.html">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
 
     </div>

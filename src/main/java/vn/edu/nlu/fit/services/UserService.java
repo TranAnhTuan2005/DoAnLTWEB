@@ -4,6 +4,8 @@ import vn.edu.nlu.fit.dao.UserDAO;
 import vn.edu.nlu.fit.model.Users;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class UserService {
 
@@ -12,68 +14,94 @@ public class UserService {
     private static final String email_regrex =
             "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //nhập đúng định dajg email
 
-    private static final String phone_regrex =
-            "^(0|\\+84)(3|5|7|8|9)[0-9]{8}$";//nhập đúng định dạng phone vn
-
     private static final String password_regrex =
             "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"; //có chử cái, số, kí tự đặc biệt, từ 8 kí tự trở lên
 
-    public Users login(String username, String password) {
-        Users user = userDAO.findByUsername(username);
+    //login
+    public Users login(String email, String password) {
+        Users user = userDAO.findByEmail(email);
+        String hashPass = HashMD5.md5(password);
 
-        if (user != null && user.getPassword_hash().equals(password)) {
+        if (user != null && user.getPassword_hash().equals(hashPass)) {
             return user;
         }
         return null;
     }
 
-
-    public boolean register(String fullName,
-                            String username,
-                            String password,
-                            String birthday) {
+    //đk tk
+    public boolean register(String fullName, String email, String phoneNumber, String password, String birthday) {
 
         // check trống
-        if (fullName == null || fullName.isEmpty()
-                || username == null || username.isEmpty()
-                || password == null || password.isEmpty()
-                || birthday == null || birthday.isEmpty()) {
+        if (fullName == null || fullName.isEmpty() || email == null || email.isEmpty() || phoneNumber == null  || phoneNumber.isEmpty()
+                || password == null || password.isEmpty()  || birthday == null || birthday.isEmpty()) {
 
             throw new IllegalArgumentException("Vui lòng nhập đầy đủ thông tin");
         }
 
         // check email / phone
-        boolean isEmail = username.matches(email_regrex);
-        boolean isPhone = username.matches(phone_regrex);
+
+        boolean isEmail = email.matches(email_regrex);
         boolean isPassword = password.matches(password_regrex);
 
-        if (!isEmail && !isPhone) {
-            throw new IllegalArgumentException(
-                    "Email hoặc số điện thoại không đúng định dạng");
+        //check email
+        if (!isEmail) {
+            throw new IllegalArgumentException("Email không đúng định dạng");
         }
 
         // check password mạnh
         if (!isPassword) {
-            throw new IllegalArgumentException(
-                    "Mật khẩu phải ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt");
+            throw new IllegalArgumentException("Mật khẩu phải ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt");
         }
 
-        // check trùng username
-        if (userDAO.findByUsername(username) != null) {
+        // check trùng email
+        if (userDAO.findByEmail(email) != null) {
             throw new IllegalArgumentException("Tài khoản đã tồn tại");
         }
-
-
-
         Users user = new Users();
         user.setFullName(fullName);
-        user.setUsername(username);
-        user.setPassword_hash(password);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+
+        String hashPass = HashMD5.md5(password);
+        user.setPassword_hash(hashPass);
+
         LocalDate birthDate = LocalDate.parse(birthday);
         user.setBirthday(birthDate);
-        user.setUserRole("user");
 
+        user.setUserRole("user");
         userDAO.insert(user);
         return true;
     }
+
+
+    public void sendResetPasswordEmail(String email, String contextPath) {
+        Users user = userDAO.findByEmail(email);
+        if (user == null) {
+            throw new IllegalArgumentException("Email không tồn tại");
+        }
+        String token = UUID.randomUUID().toString();
+        LocalDateTime expired = LocalDateTime.now().plusMinutes(15);
+        userDAO.saveResetToken(email, token, expired);
+        String resetLink = contextPath + "/ResetPassword?token=" + token;
+        EmailUtil.sendResetEmail(email, resetLink);
+    }
+
+    public Users findByResetToken(String token) {
+        return userDAO.findByResetToken(token);
+    }
+
+    public void resetPasswordByToken(String token, String newPassword) {
+        Users user = userDAO.findByResetToken(token);
+        if (user == null) {
+            throw new IllegalArgumentException("Token không hợp lệ hoặc đã hết hạn");
+        }
+        // hash mật khẩu mới
+        String hashedPassword = HashMD5.md5(newPassword);
+        userDAO.updatePasswordByToken(token, hashedPassword);
+        // xoá token sau khi dùng
+        userDAO.clearResetToken(token);
+    }
+
+
+
 }
