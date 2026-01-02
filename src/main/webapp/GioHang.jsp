@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -276,6 +277,27 @@
         text-decoration: underline;
         color: #a46b2c;
     }
+
+    /* Style cho cái con số bay lên (Badge) */
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+
+        background-color: #c52314;
+        color: white;
+
+        font-size: 11px;
+        font-weight: bold;
+
+        padding: 2px 6px;
+        border-radius: 50%;
+        min-width: 18px;
+        text-align: center;
+        line-height: 14px;
+        border: 2px solid #fff;
+    }
+
 </style>
 
 
@@ -365,34 +387,16 @@
                         <circle cx="20" cy="21" r="1"></circle>
                         <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                     </svg>
+                    <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                    </c:if>
                 </a>
             </div>
         </div>
 
     </header>
-
-
-    <!-- Modal cho Giỏ hàng -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Giỏ Hàng</h2>
-            <p>Hiện chưa có sản phẩm</p>
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-            </svg>
-
-            <p>Tổng tiền: 0đ</p>
-            <div class="modal-buttons">
-                <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
-                <button class="checkout-btn">Thanh Toán</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal cho Đăng nhập Tài khoản -->
     <div id="account-modal" class="modal">
@@ -436,16 +440,16 @@
 
                 <div class="cart-productlist">
                     <div class="cart-title-qty">
-                        <p>Bạn đang có <strong>1 sản phẩm</strong> trong giỏ hàng</p>
+                        <p>Bạn đang có <strong>${sessionScope.cart.totalQuantity} sản phẩm</strong> trong giỏ hàng</p>
                     </div>
 
                     <c:forEach items="${sessionScope.cart.item}" var="p">
                     <div class="cart-items">
                         <div class="item">
-                            <img src="image/newProducts/banhhat.jpg" alt="Banh hat dinh duong">
+                            <img src="${p.product.imageURL}" alt="Banh hat dinh duong">
                             <div class="item-infor">
-                                <h3>${p.product.name}</h3>
-                                <p class="price">${p.product.name}</p>
+                                <h3>${p.product.productName}</h3>
+                                <p class="price">${p.price}đ</p>
                                 <div class="quantity-box">
                                     <button class="qty-btn" id="decrease-qty">-</button>
                                     <input type="number" name="qty-product" value="${p.quantity}" min="1">
@@ -455,7 +459,7 @@
                         </div>
                         <div class="right-infor">
                            <a href="DelCart?id=${p.product.id}"><i class="fa-solid fa-trash"></i></a>
-                            <p class="total">Thành tiền: <strong>${p.price}đ</strong></p>
+                            <p class="total">Thành tiền: <strong>${p.total}đ</strong></p>
                         </div>
                     </div>
                     </c:forEach>
