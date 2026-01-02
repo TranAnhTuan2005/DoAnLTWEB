@@ -230,6 +230,12 @@
 
     .collection-add-to-cart {
         background-color: #bb7412;
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 15px;
+        color: white;
+        border-radius: 10px;
+        font-size: 14px;
     }
 
     .collection-add-to-cart:hover {
@@ -451,7 +457,7 @@
                           fill="#333"/>
                 </svg>
             </a>
-            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
+            <a href="${pageContext.request.contextPath}/ShowCart" class="cart-btn-direct" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
@@ -469,48 +475,6 @@
 
 </header>
 
-
-<%--<!-- Modal cho Giỏ hàng -->--%>
-
-<%--<div id="cart-modal" class="modal">--%>
-<%--    <div class="modal-content">--%>
-<%--        <span class="close-btn">&times;</span>--%>
-<%--        <h2>GIỎ HÀNG</h2>--%>
-
-<%--        <!-- CASE: CHƯA CÓ SẢN PHẨM -->--%>
-<%--        <p>Hiện chưa có sản phẩm</p>--%>
-
-<%--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">--%>
-<%--            <circle cx="9" cy="21" r="1"></circle>--%>
-<%--            <circle cx="20" cy="21" r="1"></circle>--%>
-<%--            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>--%>
-<%--        </svg>--%>
-
-<%--        <p>Tổng tiền: 0đ</p>--%>
-
-<%--        <!-- CASE: CÓ SẢN PHẨM -->--%>
-<%--        <div class="cart-items">--%>
-<%--            <c:forEach var="item" items="${sessionScope.cart.item}">--%>
-<%--                <div class="cart-item">--%>
-<%--                    <img src="${item.product.imageURL}" width="60"/>--%>
-<%--                    <div class="cart-info">--%>
-<%--                        <p><b>${item.product.productName}</b></p>--%>
-<%--                        <p>${item.quantity} × ${item.product.price}đ</p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </c:forEach>--%>
-<%--        </div>--%>
-
-<%--        <p class="cart-total">--%>
-<%--            <b>TỔNG TIỀN:</b> ${sessionScope.cart.total}--%>
-<%--        </p>--%>
-
-<%--        <div class="modal-buttons">--%>
-<%--            <a href="GioHang.jsp" class="view-cart-btn">Xem Giỏ Hàng</a>--%>
-<%--            <a href="ThanhToan.jsp" class="checkout-btn">Thanh Toán</a>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <!-- Modal cho Đăng nhập Tài khoản -->
 <div id="account-modal" class="modal">
@@ -610,8 +574,8 @@
                             </a>
 
                             <div class="collection-overlay"><!-- Hover để hiển thị-->
-
-                                <a href="${pageContext.request.contextPath}/addCart?id=${p.id}&quantity=1" class="collection-add-to-cart" style="text-decoration: none; display: inline-block; padding: 8px 15px; color: white; border-radius: 10px; font-size: 14px">
+                                <!-- contextPath đảm bảo nó chèn được thư mục gốc trc servlet-->
+                                <a href="${pageContext.request.contextPath}/addCart?id=${p.id}&quantity=1" class="collection-add-to-cart">
                                     🛒 THÊM VÀO GIỎ
                                 </a>
 
