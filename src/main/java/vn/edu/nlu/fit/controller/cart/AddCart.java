@@ -18,7 +18,7 @@ public class AddCart extends HttpServlet {
         ProductService productService=new ProductService();
         Products product= productService.getDetail(id);
         if(product == null){
-            response.sendRedirect( "/SanPham-TatCa");
+            response.sendRedirect( request.getContextPath() +"/SanPham-TatCa");
             return;
         }
 
@@ -29,7 +29,7 @@ public class AddCart extends HttpServlet {
         }
         cart.addItem(product,quantity);
         session.setAttribute("cart", cart);
-        response.sendRedirect( "/SanPham-TatCa");
+        response.sendRedirect( request.getContextPath() +"/SanPham-TatCa");
     }
 
     @Override
