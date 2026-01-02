@@ -56,7 +56,7 @@
                 <li><a href="TrangChu.html">Trang chủ</a></li>
                 <li><a href="VeNgon.html">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">

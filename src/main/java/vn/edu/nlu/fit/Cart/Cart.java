@@ -60,8 +60,22 @@ public class Cart implements Serializable {
         data.values().forEach(cartItem -> sum.updateAndGet(v->v+(cartItem.getPrice()*cartItem.getQuantity())));
         return sum.get();
     }
+    public CartItem getCartItem(int id){
+        return data.get(id);
+    }
+    public void update(int id, int quantity) {
+        CartItem item = getCartItem(id);
+
+        if (item != null) {
+            if (quantity < 1) {
+                data.remove(id);
+            } else {
+                item.setQuantity(quantity);
+            }
 
 
+        }
+    }
 
 
 
