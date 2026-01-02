@@ -458,7 +458,7 @@
                             <p class="total">Thành tiền: <strong>${p.price}đ</strong></p>
                         </div>
                     </div>
-
+                    </c:forEach>
                     <div class="order-note">
                         <p>Ghi chú đơn hàng</p>
                         <textarea name="note" id="order-note"></textarea>

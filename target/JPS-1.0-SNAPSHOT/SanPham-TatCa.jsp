@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page isELIgnored="false" %> <!--ép hiện dữ liệu lên-->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -350,6 +351,26 @@
         border-radius: 4px;
     }
 
+    /* Style cho cái con số bay lên (Badge) */
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+
+        background-color: #c52314;
+        color: white;
+
+        font-size: 11px;
+        font-weight: bold;
+
+        padding: 2px 6px;
+        border-radius: 50%;
+        min-width: 18px;
+        text-align: center;
+        line-height: 14px;
+        border: 2px solid #fff;
+    }
+
 </style>
 
 
@@ -437,6 +458,11 @@
                     <circle cx="20" cy="21" r="1"></circle>
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
         </div>
     </div>
@@ -444,47 +470,47 @@
 </header>
 
 
-<!-- Modal cho Giỏ hàng -->
+<%--<!-- Modal cho Giỏ hàng -->--%>
 
-<div id="cart-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>GIỎ HÀNG</h2>
+<%--<div id="cart-modal" class="modal">--%>
+<%--    <div class="modal-content">--%>
+<%--        <span class="close-btn">&times;</span>--%>
+<%--        <h2>GIỎ HÀNG</h2>--%>
 
-        <!-- CASE: CHƯA CÓ SẢN PHẨM -->
-        <p>Hiện chưa có sản phẩm</p>
+<%--        <!-- CASE: CHƯA CÓ SẢN PHẨM -->--%>
+<%--        <p>Hiện chưa có sản phẩm</p>--%>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-        </svg>
+<%--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">--%>
+<%--            <circle cx="9" cy="21" r="1"></circle>--%>
+<%--            <circle cx="20" cy="21" r="1"></circle>--%>
+<%--            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>--%>
+<%--        </svg>--%>
 
-        <p>Tổng tiền: 0đ</p>
+<%--        <p>Tổng tiền: 0đ</p>--%>
 
-        <!-- CASE: CÓ SẢN PHẨM -->
-        <div class="cart-items">
-            <c:forEach var="item" items="${sessionScope.cart.item}">
-                <div class="cart-item">
-                    <img src="${item.product.image_url}" width="60"/>
-                    <div class="cart-info">
-                        <p><b>${item.product.product_name}</b></p>
-                        <p>${item.quantity} × ${item.product.price}đ</p>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
+<%--        <!-- CASE: CÓ SẢN PHẨM -->--%>
+<%--        <div class="cart-items">--%>
+<%--            <c:forEach var="item" items="${sessionScope.cart.item}">--%>
+<%--                <div class="cart-item">--%>
+<%--                    <img src="${item.product.imageURL}" width="60"/>--%>
+<%--                    <div class="cart-info">--%>
+<%--                        <p><b>${item.product.productName}</b></p>--%>
+<%--                        <p>${item.quantity} × ${item.product.price}đ</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </c:forEach>--%>
+<%--        </div>--%>
 
-        <p class="cart-total">
-            <b>TỔNG TIỀN:</b> ${sessionScope.cart.total}
-        </p>
+<%--        <p class="cart-total">--%>
+<%--            <b>TỔNG TIỀN:</b> ${sessionScope.cart.total}--%>
+<%--        </p>--%>
 
-        <div class="modal-buttons">
-            <a href="GioHang.jsp" class="view-cart-btn">Xem Giỏ Hàng</a>
-            <a href="ThanhToan.jsp" class="checkout-btn">Thanh Toán</a>
-        </div>
-    </div>
-</div>
+<%--        <div class="modal-buttons">--%>
+<%--            <a href="GioHang.jsp" class="view-cart-btn">Xem Giỏ Hàng</a>--%>
+<%--            <a href="ThanhToan.jsp" class="checkout-btn">Thanh Toán</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- Modal cho Đăng nhập Tài khoản -->
 <div id="account-modal" class="modal">
@@ -585,10 +611,8 @@
 
                             <div class="collection-overlay"><!-- Hover để hiển thị-->
 
-                                <a href="GioHang?id=${p.id}">
-                                    <button class="collection-add-to-cart" onclick="">
-                                        🛒 THÊM VÀO GIỎ
-                                    </button>
+                                <a href="${pageContext.request.contextPath}/addCart?id=${p.id}&quantity=1" class="collection-add-to-cart" style="text-decoration: none; display: inline-block; padding: 8px 15px; color: white; border-radius: 10px; font-size: 14px">
+                                    🛒 THÊM VÀO GIỎ
                                 </a>
 
                                 <button class="collection-view-btn"
