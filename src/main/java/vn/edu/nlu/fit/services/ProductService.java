@@ -27,13 +27,13 @@ public class ProductService {
             case "price_desc":
                 filter = "price"; break;
             case "name_az":
-                filter = "productName"; sortType = "ASC"; break;
+                filter = "product_name"; sortType = "ASC"; break;
             case "name_za":
-                filter = "productName"; break;
+                filter = "product_name"; break;
             case "oldest":
-                filter = "isNew"; sortType = "ASC"; break;
+                filter = "is_new"; sortType = "ASC"; break;
             case "newest":
-                filter = "isNew"; break;
+                filter = "is_new"; break;
         }
 
         return proDao.getProductsByFilter(filter, sortType);
