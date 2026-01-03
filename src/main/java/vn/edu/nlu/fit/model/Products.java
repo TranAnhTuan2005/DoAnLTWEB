@@ -10,7 +10,6 @@ public class Products implements Serializable { //dung javaBean
     private String imageURL;
     private double rating;
     private int productStatus;
-    private int isNew;
     private int quantity;
     private String productDescription;
     private String productExpiryDate;
@@ -22,14 +21,13 @@ public class Products implements Serializable { //dung javaBean
     public Products() {
     }
 
-    public Products(int id, String productName, double price, String imageURL, double rating, int productStatus, int isNew, int quantity, String productDescription, String productExpiryDate, String ingredient, String instruction, String attention, String uses) {
+    public Products(int id, String productName, double price, String imageURL, double rating, int productStatus, int quantity, String productDescription, String productExpiryDate, String ingredient, String instruction, String attention, String uses) {
         this.id = id;
         this.productName = productName;
         this.price = price;
         this.imageURL = imageURL;
         this.rating = rating;
         this.productStatus = productStatus;
-        this.isNew = isNew;
         this.quantity = quantity;
         this.productDescription = productDescription;
         this.productExpiryDate = productExpiryDate;
@@ -85,14 +83,6 @@ public class Products implements Serializable { //dung javaBean
 
     public void setProductStatus(int productStatus) {
         this.productStatus = productStatus;
-    }
-
-    public int getIsNew() {
-        return isNew;
-    }
-
-    public void setIsNew(int isNew) {
-        this.isNew = isNew;
     }
 
     public int getQuantity() {
@@ -160,7 +150,6 @@ public class Products implements Serializable { //dung javaBean
                 ", imageURL='" + imageURL + '\'' +
                 ", rating=" + rating +
                 ", productStatus=" + productStatus +
-                ", isNew=" + isNew +
                 ", quantity=" + quantity +
                 ", productDescription='" + productDescription + '\'' +
                 ", productExpiryDate='" + productExpiryDate + '\'' +

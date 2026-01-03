@@ -14,13 +14,16 @@ public class FilterProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String categoryID = request.getParameter("categoryID");
         String sortType = request.getParameter("sort");
+        String price = request.getParameter("price");
 
         ProductService proS = new ProductService();
-        List<Products> list = proS.getProductsByFilter(sortType);
+        List<Products> list = proS.getProductsByFilter(categoryID, sortType, price);
 
         request.setAttribute("list", list);
         request.setAttribute("selectedSort", sortType); //  Giữ nguyên sự lựa chọn trên menu
+        request.setAttribute("tag", categoryID); // Để tô đậm danh mục đang chọn
         request.getRequestDispatcher("SanPham-TatCa.jsp").forward(request, response);
     }
 

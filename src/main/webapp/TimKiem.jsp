@@ -1,32 +1,26 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page isELIgnored="false" %> <!--ép hiện dữ liệu lên-->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Giới thiệu - Về Ngon</title>
+    <title>Tìm kiếm</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <style>
-    /* ==== Trang Về Ngon ==== */
-    .about-page {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
-
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
         padding-bottom: 5px;
-        background:  #f6efe3;
+        background: #f6efe3;
         border-bottom: 1px solid rgba(0,0,0,0.04);
     }
-
-
 
     /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
     .breadcrumb-bar .breadcrumb .breadcrumb-item {
@@ -55,136 +49,88 @@
 
 
 
-    /* --- Giới thiệu mở đầu --- */
-    .about-intro .lead {
-        font-size: 18px;
-        line-height: 1.8;
-        color: #555;
-        max-width: 850px;
-        margin: 0 auto;
-    }
-
-    /* --- Các phần nội dung --- */
-    .about-page h2 {
-        color: #6d4c41;
-        font-weight: 600;
-    }
-    .about-page p {
-        font-size: 16px;
-        line-height: 1.7;
-    }
-
-    /* --- Ảnh trong nội dung --- */
-    .about-page img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        object-fit: cover;
-    }
-
-    /* --- Section sáng và tối xen kẽ --- */
-    .about-story,
-    .about-growth {
-        background-color: #faf7f5;
-    }
-
-    /* --- Người sáng lập --- */
-    .about-founder {
+    /*----------NỘI DUNG CHÍNH---------- */
+    .main {
+        font-family: 'Tahoma', Arial, sans-serif;
+        color: #444;
         background-color: #fff;
     }
-    .about-founder h3 {
-        color: #6d4c41;
-        font-weight: 600;
+
+    .search-section{
+        padding: 64px 20px 100px;
+        text-align:center;
     }
-    .about-founder p {
-        max-width: 600px;
+
+    /* header */
+    .search-title{
+        font-size:30px;
+        font-weight:700;
+        margin: 0 0 12px;
+        letter-spacing:0.3px;
+    }
+    .title-underline{
+        width:48px;
+        height:4px;
+        background:#222;
+        margin: 0 auto 28px;
+        border-radius:2px;
+    }
+
+    /* container for the search bar and helper text */
+    .search-inner{
+        max-width: 900px;
         margin: 0 auto;
-        line-height: 1.8;
     }
 
-    /* --- Phần kết --- */
-    .about-ending {
-        background-color: #faf7f5;
-    }
-    .about-ending h2 {
-        color: #6d4c41;
-        font-weight: 700;
-    }
-    .about-ending p {
-        max-width: 750px;
-        margin: 0 auto 20px auto;
-        line-height: 1.7;
+    /* the search box row */
+    .search-row{
+        display:flex;
+        align-items:center;
+        gap: 0;
+        padding: 0 12px;
     }
 
-    /* --- Nút CTA --- */
-    .about-ending .btn {
-        background-color: #a46b2c;
-        border: none;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .about-ending .btn:hover {
-        background-color: #6d4c41;
-        transform: translateY(-2px);
-    }
-
-    /* --- Hiệu ứng ảnh nhẹ --- */
-    .about-page img.shadow-sm:hover {
-        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-        transition: all 0.3s ease;
-    }
-
-
-
-
-
-    /* ===== DANH MỤC SIDEBAR ===== */
-    .category-sidebar {
-        border: 1px solid #f0e7df;
-        background: linear-gradient(180deg, #fff, #fff);
+    /* input wrapper stretches while button keeps fixed width */
+    .search-input{
+        flex:1;
+        display:flex;
+        align-items:center;
+        background: #eee;
+        border-radius: 2px 0 0 2px;
+        height: 64px;
+        padding: 0 20px;
+        border: 0;
+        font-size: 16px;
+        color: #333;
+        outline: none;
+        box-shadow: none;
+        border: 1px solid rgba(0,0,0,0.03);
     }
 
-    .category-sidebar h4 {
-        color: #6d4c41;
-        font-weight: 700;
-        font-size: 18px;
-    }
+    /* make placeholder slightly muted */
+    .search-input::placeholder{ color: #9b9b9b; }
 
-    .category-list .category-item {
-        padding: 10px 8px;
-        border-radius: 6px;
-        transition: background 0.18s ease, transform 0.12s ease;
-        margin-bottom: 6px;
+    .search-button{
+        width: 64px;
+        height: 64px;
+        background: #222;
+        border: 0;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        border-radius: 0 2px 2px 0;
+        margin-left: -1px; /* hide seam */
     }
+    .search-button svg{ width:22px; height:22px; fill:none; stroke:#fff; stroke-width:2; }
 
-    .category-list .category-item a {
-        display: block;
-        color: #4b4b4b;
-        text-decoration: none;
-        padding: 4px 6px;
+    /* small helper message below */
+    .search-hint{
+        margin-top: 28px;
+        color: #777;
+        line-height:1.7;
+        font-size:15px;
     }
-
-    .category-list .category-item:hover {
-        background-color: #faf0e5;
-        transform: translateX(4px);
-    }
-
-    .category-list .category-item a .badge {
-        font-size: 0.8rem;
-        opacity: 0.9;
-    }
-
-    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
-    .category-list .category-item.active,
-    .category-list .category-item a.active {
-        background-color: #a46b2c;
-        color: #fff;
-    }
-    .category-list .category-item.active a,
-    .category-list .category-item a.active {
-        color: #fff;
-    }
-
-
 
 
 </style>
@@ -208,10 +154,8 @@
 <header class="main-header">
     <div class="header-container">
         <!-- Logo -->
-        <div class="logo" >
-            <a href="TrangChu.jsp">
+        <div class="logo">
             <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
-            </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
@@ -219,9 +163,9 @@
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
                 <a href="TimKiem.html">
-                <i class="icon_timkiem">
-                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                </i>
+                    <i class="icon_timkiem">
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                    </i>
                 </a>
             </button>
         </div>
@@ -230,27 +174,26 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.html">Về Ngon</a></li>
+                <li><a href="VeNgon.jsp">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
-
 
 
                 <li><a href="TinTuc1.html">Tin tức</a></li>
@@ -313,177 +256,55 @@
             <input type="password" placeholder="Mật khẩu" required>
             <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
-<main class="about-page">
-
-    <!-- Breadcrumb bar: để riêng 1 div có màu nền khác -->
+<main class="main">
+    <!-- Breadcrumb -->
     <section class="breadcrumb-bar py-2">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Về Ngon</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tìm kiếm</li>
                 </ol>
             </nav>
         </div>
     </section>
 
-    <!-- Tiêu đề trang để ở section riêng -->
-    <section class="page-hero text-center py-4">
-        <div class="container">
-            <h1 class="about-title mb-0">Trao an lành, nhận yêu thương cùng Ngũ cốc Ngon</h1>
-        </div>
-    </section>
+    <!-- Main -->
+    <section class="search-section" aria-labelledby="search-heading">
+        <h1 id="search-heading" class="search-title">Tìm kiếm</h1>
+        <div class="title-underline" aria-hidden="true"></div>
 
+        <div class="search-inner">
+            <!-- Search form -->
+            <form id="site-search" class="search-row" role="search" action="TimKiem-KetQua.html" method="GET" onsubmit="return handleSearch(event)">
+                <input class="search-input" type="search" name="q" placeholder="Tìm kiếm" aria-label="Tìm kiếm" autocomplete="off" required />
 
-    <section class="about-intro py-5">
-        <div class="container">
-            <div class="row align-items-start">
+                <button type="submit" class="search-button" aria-label="Tìm kiếm">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="11" cy="11" r="6"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
 
-
-                <!-- SIDEBAR DANH MỤC TRANG-->
-
-                <!--thẻ div gồm các class sử dụng bootstrap chia làm 2 cột 1 ảnh và 1 nội dung xen kẽ nhau-->
-
-                <aside class="col-md-4 mb-4 mb-md-0">
-                    <div class="category-sidebar p-3 bg-white rounded shadow-sm">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="mb-0">Danh mục trang</h4>
-
-                            <!--dùng bootstrap tạo danh mục trang-->
-                            <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
-                            <button class="btn btn-outline-secondary d-md-none btn-sm"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#categoryList"
-                                    aria-expanded="false"
-                                    aria-controls="categoryList">
-                                Danh mục ▾
-                            </button>
-                        </div>
-
-                        <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
-                            <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
-                            <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
-                            <li class="category-item"><a href="DieuKhoanDichVu.html">Điều khoản dịch vụ</a></li>
-                            <li class="category-item"><a href="PhuongThucThanhToan.html">Phương thức thanh toán</a></li>
-                        </ul>
-                    </div>
-                </aside>
-
-                <!-- NỘI DUNG GIỚI THIỆU -->
-                <div class="col-md-8">
-                    <p class="lead text-start">
-                        Ngũ cốc Ngon được hình thành từ mong muốn mang lại sản phẩm thuần tự nhiên, lành mạnh và tốt cho sức khỏe.
-                        Chúng tôi tin rằng sự an lành bắt đầu từ những điều giản dị nhất – từ từng hạt ngũ cốc quê hương.
-
-                    </p>
-                    <br>
-
-                    <!--  có thể thêm 1-2 link nhanh hoặc featured ở đây -->
-                    <div class="mt-3">
-                        <a href="SanPham-TatCa.jsp" class="btn btn-outline-success me-2">Xem tất cả sản phẩm</a>
-                        <a href="ChinhSachDoiTra.html" class="btn btn-outline-secondary">Chính sách đổi trả</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Câu chuyện thương hiệu -->
-    <section class="about-story py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="image/Image_VeNgon/donglua.jpg" alt="Câu chuyện thương hiệu" class="img-fluid rounded-3 shadow-sm"><img>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="mb-3">Sinh ra từ làng, nuôi dưỡng dự định dang dở</h2>
-                    <p>
-                        Ngũ cốc Ngon được khởi đầu từ một người con sinh ra ở làng quê miền Trung, mang trong mình khát vọng
-                        đem đến sản phẩm sạch, an toàn và tốt cho sức khỏe cộng đồng. Từ những hạt gạo, hạt đậu bình dị,
-                        Ngon bắt đầu hành trình tạo nên những gói ngũ cốc mang giá trị thật sự.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Cơ duyên với ngũ cốc -->
-
-    <section class="about-journey py-5">
-        <div class="container">
-            <div class="row align-items-center flex-md-row-reverse">
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="image/Image_VeNgon/ngucoc1.jpg" alt="Cơ duyên với ngũ cốc" class="img-fluid rounded-3 shadow-sm">
-                </div>
-                <div class="col-md-6">
-                    <h2 class="mb-3">Cơ duyên đến với ngũ cốc</h2>
-                    <p>
-                        Từ một dự định nhỏ, Ngon dần trở thành niềm đam mê lớn khi nhận ra sức mạnh của những hạt ngũ cốc thuần Việt.
-                        Sản phẩm được nghiên cứu, thử nghiệm và hoàn thiện với mong muốn mang lại sự an lành cho từng gia đình Việt.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hành trình phát triển -->
-
-    <section class="about-growth py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="image/Image_VeNgon/ngucoc2.jpg" alt="Hành trình phát triển" class="img-fluid rounded-3 shadow-sm">
-                </div>
-                <div class="col-md-6">
-                    <h2 class="mb-3">Từ Ngũ cốc XYZ đến Ngũ cốc Ngon</h2>
-                    <p>
-                        Trải qua hành trình phát triển và cải tiến, thương hiệu Ngon không chỉ là sản phẩm dinh dưỡng mà còn là
-                        lời tri ân đến quê hương, đến những giá trị truyền thống được gìn giữ và lan tỏa.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Người sáng lập -->
-
-    <section class="about-founder py-5 text-center">
-        <div class="container">
-            <img src="image/Image_VeNgon/nguoisanglap.jpg" alt="Người sáng lập" class="img-fluid rounded-circle mb-3 shadow-sm"
-                 style="width:180px; height:180px; object-fit:cover;">
-            <h3 class="mb-1">Người sáng lập</h3>
-            <p class="fw-bold">ABCD</p>
-            <p class="fst-italic">
-                “Mỗi sản phẩm là một lời gửi gắm yêu thương, một món quà từ thiên nhiên cho sức khỏe cộng đồng.”
+            <p class="search-hint">
+                Rất tiếc, chúng tôi không tìm thấy kết quả cho từ khóa của bạn.<br>
+                Vui lòng kiểm tra chính tả, sử dụng các từ tổng quát hơn và thử lại!
             </p>
         </div>
     </section>
 
-    <!-- Kết thúc trang -->
 
-    <section class="about-ending py-5 bg-light text-center">
-        <div class="container">
-            <h2 class="mb-3">Ngũ cốc Ngon – Trao an lành, nhận yêu thương</h2>
-            <p class="mb-4">
-                Chúng tôi tin rằng sức khỏe là nền tảng của hạnh phúc, và hạnh phúc bắt đầu từ những điều giản dị nhất – từ bữa sáng lành mạnh mỗi ngày.
-            </p>
-            <a href="SanPham-TatCa.jsp" class="btn btn-success px-4 py-2 rounded-pill">Khám phá sản phẩm</a>
-        </div>
-    </section>
 
 </main>
-
-
-
 
 <!------------------------------------------------------------------------------>
 <!--Footer-->
@@ -491,9 +312,7 @@
 <div class="main-footer-new">
     <!--section đăng kí nhận tin-->
     <section id="send-for-gmail" class="section section-for-email">
-
         <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
-        <!--thẻ div gồm các class sử dụng bootstrap chia 4 cột-->
         <div class="container-fluid">
             <div class="row flexAlignCenter flexJustiCenter">
                 <div class="col-md-6 col-sm-12">
@@ -549,7 +368,7 @@
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
 
-                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -560,8 +379,11 @@
                                 Email: ngucocNgon@gmail.com<br>
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
+                                <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
+                                   rel="noreferrer" aria-label="logo bct">
                                     <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
                                          height="70px" width="150px" alt="Bộ Công Thương">
+                                </a>
                             </div>
                         </div>
 
@@ -576,9 +398,8 @@
                                     mật</a></li>
                                 <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="PhuongThucThanhToan.html"
+                                <li><a href="ChinhSachThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
-
                             </ul>
                         </div>
 
@@ -587,7 +408,7 @@
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
                                 <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
                                 <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
@@ -656,10 +477,6 @@
         }
     });
 </script>
-
-
-
-<script src="script.js"></script>
 
 </body>
 </html>
