@@ -50,10 +50,18 @@ public class ProductDAO extends BaseDao {
         });
     }
 
-    public List<Products> getProductsByFilter(int categoryID, String sortType) {
+    public List<Products> getProductsByFilter(int categoryID, String sortType, double minPrice, double maxPrice) {
         String sql = "select p.* from products p";
         if (categoryID > 0)
             sql += " join products_categories pc on p.id = pc.product_id where pc.category_id = :categoryID ";
+
+        if (maxPrice > 0) {
+            if (categoryID > 0) {
+                sql += " and p.price between :min and :max ";
+            } else {
+                sql += " where (p.price between :min and :max) ";
+            }
+        }
 
         switch (sortType != null ? sortType : "") {
             case "price_asc":
@@ -84,6 +92,10 @@ public class ProductDAO extends BaseDao {
             var query = h.createQuery(finalSql);
             if (categoryID > 0) {
                 query.bind("categoryID", categoryID);
+            }
+            if (maxPrice > 0) {
+                query.bind("min", minPrice);
+                query.bind("max", maxPrice);
             }
             return query.mapToBean(Products.class).list();
         });
