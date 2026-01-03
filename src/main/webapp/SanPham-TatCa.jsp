@@ -543,7 +543,7 @@
 
             <h2>GIÁ SẢN PHẨM</h2>
             <form id="priceForm" action="filter" method="GET">
-                <input type="hidden" name="cid" value="${param.cid}" />
+                <input type="hidden" name="categoryID" value="${tag}" />
                 <input type="hidden" name="sort" value="${param.sort}" />
                 <ul class="price-list">
                     <li><label><input type="radio" name="price" value="0-100000" onchange="this.form.submit()" ${param.price == '0-100000'?'checked':''}> Dưới 100,000₫</label></li>
@@ -561,6 +561,7 @@
                 <h2>Tất cả sản phẩm</h2>
                 <form action="filter" method="GET">
                     <input type="hidden" name="categoryID" value="${tag}">
+                    <input type="hidden" name="price" value="${param.price}">
 
                     <select name="sort" id="sort" onchange="this.form.submit()">
                         <option value="price_asc" ${selectedSort == 'price_asc' ? 'selected' : ''}>Giá: Tăng dần</option>

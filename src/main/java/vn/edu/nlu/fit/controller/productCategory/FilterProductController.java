@@ -16,9 +16,10 @@ public class FilterProductController extends HttpServlet {
 
         String categoryID = request.getParameter("categoryID");
         String sortType = request.getParameter("sort");
+        String price = request.getParameter("price");
 
         ProductService proS = new ProductService();
-        List<Products> list = proS.getProductsByFilter(categoryID, sortType);
+        List<Products> list = proS.getProductsByFilter(categoryID, sortType, price);
 
         request.setAttribute("list", list);
         request.setAttribute("selectedSort", sortType); //  Giữ nguyên sự lựa chọn trên menu
