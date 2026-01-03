@@ -377,6 +377,10 @@
         border: 2px solid #fff;
     }
 
+    .category-list li.active a {
+        font-weight: bold;
+    }
+
 </style>
 
 
@@ -408,7 +412,7 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <a href="TimKiem.html">
+                <a href="TimKiem.jsp">
                     <i class="icon_timkiem">
                         <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
                     </i>
@@ -420,22 +424,22 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.html">Về Ngon</a></li>
+                <li><a href="VeNgon.jsp">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
                         </li>
                     </ul>
 
@@ -503,7 +507,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="SanPham-TatCa.html">Danh mục</a></li>
+                    <li class="breadcrumb-item"><a href="SanPham-TatCa.jsp">Danh mục</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tất cả sản phẩm</li>
                 </ol>
             </nav>
@@ -520,21 +524,35 @@
         <aside class="sidebar">
             <h2>DANH MỤC SẢN PHẨM</h2>
             <ul class="category-list">
-                <li><a href="SanPham-TatCa.html"> <b>Tất cả sản phẩm</b> </a></li>
-                <li><a href="SanPham-NguCoc.html">Ngũ cốc</a></li>
-                <li><a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a></li>
-                <li><a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a></li>
-                <li><a href="SanPham-TraGaolut.html">Trà gạo lứt</a></li>
+                <li class="${tag == null || tag == '0' ? 'active' : ''}">
+                    <a href="filter?categoryID=0">Tất cả sản phẩm</a>
+                </li>
+                <li class="${tag == '1' ? 'active' : ''}">
+                    <a href="filter?categoryID=1">Ngũ cốc</a>
+                </li>
+                <li class="${tag == '2' ? 'active' : ''}">
+                    <a href="filter?categoryID=2">Bánh dinh dưỡng</a>
+                </li>
+                <li class="${tag == '3' ? 'active' : ''}">
+                    <a href="filter?categoryID=3">Hạt dinh dưỡng</a>
+                </li>
+                <li class="${tag == '4' ? 'active' : ''}">
+                    <a href="filter?categoryID=4">Trà gạo lứt</a>
+                </li>
             </ul>
 
             <h2>GIÁ SẢN PHẨM</h2>
-            <ul class="price-list">
-                <li><label><input type="radio" name="price"> Dưới 100,000₫</label></li>
-                <li><label><input type="radio" name="price"> 100,000₫ - 199,000₫</label></li>
-                <li><label><input type="radio" name="price"> 200,000₫ - 299,000₫</label></li>
-                <li><label><input type="radio" name="price"> 300,000₫ - 399,000₫</label></li>
-                <li><label><input type="radio" name="price"> Trên 400,000₫</label></li>
-            </ul>
+            <form id="priceForm" action="filter" method="GET">
+                <input type="hidden" name="cid" value="${param.cid}" />
+                <input type="hidden" name="sort" value="${param.sort}" />
+                <ul class="price-list">
+                    <li><label><input type="radio" name="price" value="0-100000" onchange="this.form.submit()" ${param.price == '0-100000'?'checked':''}> Dưới 100,000₫</label></li>
+                    <li><label><input type="radio" name="price" value="100000-199000" onchange="this.form.submit()" ${param.price == '100000-199000'?'checked':''}> 100,000₫ - 199,000₫</label></li>
+                    <li><label><input type="radio" name="price" value="200000-299000" onchange="this.form.submit()" ${param.price == '200000-299000'?'checked':''}> 200,000₫ - 299,000₫</label></li>
+                    <li><label><input type="radio" name="price" value="300000-399000" onchange="this.form.submit()" ${param.price == '300000-399000'?'checked':''}> 300,000₫ - 399,000₫</label></li>
+                    <li><label><input type="radio" name="price" value="400000-99999999" onchange="this.form.submit()" ${param.price == '400000-99999999'?'checked':''}> Trên 400,000₫</label></li>
+                </ul>
+            </form>
         </aside>
 
         <!-- Danh sách sản phẩm -->
@@ -542,6 +560,8 @@
             <div class="product-header">
                 <h2>Tất cả sản phẩm</h2>
                 <form action="filter" method="GET">
+                    <input type="hidden" name="categoryID" value="${tag}">
+
                     <select name="sort" id="sort" onchange="this.form.submit()">
                         <option value="price_asc" ${selectedSort == 'price_asc' ? 'selected' : ''}>Giá: Tăng dần</option>
                         <option value="price_desc" ${selectedSort == 'price_desc' ? 'selected' : ''}>Giá: Giảm dần</option>
@@ -713,7 +733,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
                                 <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách
                                     đổi
                                     trả</a></li>
@@ -733,7 +753,7 @@
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
                                 <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
                                 <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a>

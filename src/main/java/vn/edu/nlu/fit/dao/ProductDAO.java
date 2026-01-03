@@ -50,9 +50,43 @@ public class ProductDAO extends BaseDao {
         });
     }
 
-    public List<Products> getProductsByFilter(String filter, String sortType) {
-        String sql = "select * from products order by <filter> <sortType>";
-        return getJdbi().withHandle(h ->
-                h.createQuery(sql).define("filter", filter).define("sortType", sortType).mapToBean(Products.class).list());
+    public List<Products> getProductsByFilter(int categoryID, String sortType) {
+        String sql = "select p.* from products p";
+        if (categoryID > 0)
+            sql += " join products_categories pc on p.id = pc.product_id where pc.category_id = :categoryID ";
+
+        switch (sortType != null ? sortType : "") {
+            case "price_asc":
+                sql += " order by p.price ASC";
+                break;
+            case "price_desc":
+                sql += " order by p.price DESC";
+                break;
+            case "name_az":
+                sql += " order by p.product_name ASC";
+                break;
+            case "name_za":
+                sql += " order by p.product_name DESC";
+                break;
+            case "oldest":
+                sql += " order by p.id ASC";
+                break;
+            case "newest":
+                sql += " order by p.id DESC";
+                break;
+            default:
+                sql += " order by p.id DESC";
+                break;
+        }
+
+        String finalSql = sql;
+        return getJdbi().withHandle(h -> {
+            var query = h.createQuery(finalSql);
+            if (categoryID > 0) {
+                query.bind("categoryID", categoryID);
+            }
+            return query.mapToBean(Products.class).list();
+        });
     }
+
 }

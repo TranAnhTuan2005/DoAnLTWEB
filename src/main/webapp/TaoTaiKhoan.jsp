@@ -121,22 +121,22 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.html">Về Ngon</a></li>
+                <li><a href="VeNgon.jsp">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="SanPham-TatCa.html">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
                         </li>
                     </ul>
 
@@ -395,7 +395,7 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
                                 <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
@@ -413,7 +413,7 @@
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
                                 <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
+                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
                                 <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
