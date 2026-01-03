@@ -17,25 +17,15 @@ public class ProductService {
         return proDao.findById(id);
     }
 
-    public List<Products> getProductsByFilter(String type) {
-        String filter = "";
-        String sortType = "DESC";
-
-        switch (type) {
-            case "price_asc":
-                filter = "price"; sortType = "ASC"; break;
-            case "price_desc":
-                filter = "price"; break;
-            case "name_az":
-                filter = "product_name"; sortType = "ASC"; break;
-            case "name_za":
-                filter = "product_name"; break;
-            case "oldest":
-                filter = "is_new"; sortType = "ASC"; break;
-            case "newest":
-                filter = "is_new"; break;
+    public List<Products> getProductsByFilter(String stringCategoryID, String sortType) {
+        int categoryID = 0;
+        try {
+            if (stringCategoryID != null) categoryID = Integer.parseInt(stringCategoryID);
+        } catch (NumberFormatException e) {
+            categoryID = 0;
         }
 
-        return proDao.getProductsByFilter(filter, sortType);
+        // Gọi DAO
+        return proDao.getProductsByFilter(categoryID, sortType);
     }
 }

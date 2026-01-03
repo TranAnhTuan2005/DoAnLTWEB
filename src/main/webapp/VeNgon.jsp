@@ -1,33 +1,35 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page isELIgnored="false" %> <!--ép hiện dữ liệu lên-->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Sản phẩm - Bánh dinh dưỡng</title>
+    <title>Giới thiệu - Về Ngon</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
 <style>
-    /* ==== Trang danh mục sản phẩm ==== */
-
-
-    .main-collection {
+    /* ==== Trang Về Ngon ==== */
+    .about-page {
         font-family: 'Tahoma', Arial, sans-serif;
         color: #444;
         background-color: #fff;
     }
 
-    /* --- Breadcrumb --- */
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
         padding-bottom: 5px;
-        background: #f6efe3;
+        background:  #f6efe3;
         border-bottom: 1px solid rgba(0,0,0,0.04);
     }
+
+
 
     /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
     .breadcrumb-bar .breadcrumb .breadcrumb-item {
@@ -56,269 +58,137 @@
 
 
 
-    /* ==== Banner ==== */
-    .banner-collection {
-        width: 100%;
-        height: 350px;
-        overflow: hidden;
-        position: relative;
+    /* --- Giới thiệu mở đầu --- */
+    .about-intro .lead {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #555;
+        max-width: 850px;
+        margin: 0 auto;
     }
 
-    .banner-collection img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* ==== Khung chính ==== */
-    .collection-container {
-        display: flex;
-        justify-content: space-between;
-        padding: 40px 80px;
-        gap: 40px;
-    }
-
-    /* ==== Sidebar (Danh mục sản phẩm + Giá) ==== */
-    .sidebar {
-        flex: 0 0 250px;
-    }
-
-    .sidebar h2 {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        border-bottom: 1px solid #eee;
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-    }
-
-    .sidebar ul {
-        list-style: none;
-        padding-left: 0;
-        margin-bottom: 40px;
-    }
-
-    .sidebar ul li {
-        margin: 8px 0;
-    }
-
-    .sidebar a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-    }
-
-    .sidebar a:hover {
-        color: #8b5e34;
-    }
-
-    .price-list input[type="radio"] {
-        margin-right: 8px;
-    }
-
-    /* ==== Khu vực sản phẩm ==== */
-    .collection-product-section {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* ==== Header sản phẩm ==== */
-    .product-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-
-    .product-header h2 {
-        font-size: 26px;
-        font-weight: 700;
-    }
-
-    #sort {
-        padding: 8px 12px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        background-color: #fff;
-        font-size: 14px;
-        cursor: pointer;
-    }
-
-    /* ==== Lưới sản phẩm ==== */
-    /* Lưới sản phẩm: 4 cột, mỗi dòng 4 sản phẩm */
-    .collection-product-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
-    }
-
-    /* ==== Khung sản phẩm ==== */
-    .collection-product-item {
-        background-color: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 6px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        text-align: center;
-        padding-bottom: 20px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .collection-product-item:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    /* ==== Hình ảnh sản phẩm ==== */
-    .collection-product-image {
-        position: relative;
-        width: 100%;
-        height: 220px; /* chiều cao cố định theo ảnh sản phẩm đầu tiên */
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-    }
-
-    .collection-product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* cắt ảnh đều khung */
-        transition: transform 0.4s ease;
-    }
-    
-    .collection-product-item:hover .collection-product-image img {
-        transform: scale(1.05);
-    }
-
-    /* ==== overlay khi hover ==== */
-    .collection-overlay {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 60px;
-        background-color: rgb(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .collection-product-item:hover .collection-overlay {
-        opacity: 1;
-    }
-
-    .collection-overlay button {
-        border: none;
-        color: #fff;
-        font-size: 13px;
-        padding: 8px 15px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-    
-    .collection-add-to-cart {
-        background-color: #bb7412;
-    }
-
-    .collection-add-to-cart:hover {
-        background-color: #c52314;
-    }
-
-    .collection-view-btn {
-        background-color: #bb7412;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .collection-view-btn:hover {
-        background-color: #c52314;
-    }
-
-    /* ==== Tên và giá sản phẩm ==== */
-    .collection-product-item h3 {
-        font-size: 15px;
-        margin-top: 15px;
-        margin-bottom: 6px;
-        color: #333;
-    }
-
-    .collection-product-item p {
+    /* --- Các phần nội dung --- */
+    .about-page h2 {
+        color: #6d4c41;
         font-weight: 600;
     }
+    .about-page p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
 
-    /*Modal chi tiết sản phẩm*/
-    /*Hình bên trái*/
-    .product-modal-content img {
-        width: 250px;
-        border-radius: 8px;
+    /* --- Ảnh trong nội dung --- */
+    .about-page img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
         object-fit: cover;
     }
 
-    /*Căn chỉnh cho thông tin bên phải*/
-    .product-modal-content .info {
-        flex: 1;
-        text-align: left;
+    /* --- Section sáng và tối xen kẽ --- */
+    .about-story,
+    .about-growth {
+        background-color: #faf7f5;
     }
 
-    .product-modal-content .info h3 {
-        font-size: 22px;
-        margin-bottom: 10px;
-
+    /* --- Người sáng lập --- */
+    .about-founder {
+        background-color: #fff;
+    }
+    .about-founder h3 {
+        color: #6d4c41;
+        font-weight: 600;
+    }
+    .about-founder p {
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.8;
     }
 
-    .product-modal-content .info .price {
-        color: #b22a00;
-        font-size: 20px;
-        font-weight: bold;
+    /* --- Phần kết --- */
+    .about-ending {
+        background-color: #faf7f5;
+    }
+    .about-ending h2 {
+        color: #6d4c41;
+        font-weight: 700;
+    }
+    .about-ending p {
+        max-width: 750px;
+        margin: 0 auto 20px auto;
+        line-height: 1.7;
     }
 
-    .product-modal-content .infor .add {
-        margin-top: 10px;
-        margin-bottom: 15px;
-        background: #3b5c2f;
-        color: #fff;
+    /* --- Nút CTA --- */
+    .about-ending .btn {
+        background-color: #a46b2c;
         border: none;
-        padding: 10px 20px;
-        font-size: 15px;
-        border-radius: 5px;
-        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .about-ending .btn:hover {
+        background-color: #6d4c41;
+        transform: translateY(-2px);
     }
 
-    .product-modal-content .infor .add:hover {
-        background-color: #2d471f;
+    /* --- Hiệu ứng ảnh nhẹ --- */
+    .about-page img.shadow-sm:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        transition: all 0.3s ease;
     }
 
-    /*link xem chi tiết sản phẩm*/
-    .product-modal-content .infor a {
+
+
+
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .category-list .category-item {
+        padding: 10px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
         text-decoration: none;
-        margin-top: 15px;
-        color: #333;
+        padding: 4px 6px;
     }
 
-    .product-modal-content .infor a:hover {
-        text-decoration: underline;
-        color: #bb7412;
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
     }
 
-    .quantity-box input {
-        width: 50px;
-        text-align: center;
-        padding-top: 5px;
-        font-size: 16px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
     }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+
+
 
 </style>
 
@@ -341,9 +211,9 @@
 <header class="main-header">
     <div class="header-container">
         <!-- Logo -->
-        <div class="logo">
+        <div class="logo" >
             <a href="TrangChu.jsp">
-                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
@@ -351,10 +221,10 @@
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
             <button type="submit">
-                <a href="TimKiem.html">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
+                <a href="TimKiem.jsp">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
                 </a>
             </button>
         </div>
@@ -369,16 +239,16 @@
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.html">Ngũ cốc</a>
+                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a>
+                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.html">Bánh dinh dưỡng</a>
+                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.html">Trà gạo lứt</a>
+                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
                         </li>
                     </ul>
 
@@ -446,129 +316,177 @@
             <input type="password" placeholder="Mật khẩu" required>
             <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
-            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
+            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
-<main class="main-collection">
-    <!-- Breadcrumb -->
+<main class="about-page">
+
+    <!-- Breadcrumb bar: để riêng 1 div có màu nền khác -->
     <section class="breadcrumb-bar py-2">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="SanPham-TatCa.jsp">Danh mục</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Bánh dinh dưỡng</li>
+                    <li class="breadcrumb-item active" aria-current="page">Về Ngon</li>
                 </ol>
             </nav>
         </div>
     </section>
 
-    <!-- Collection -->
-    <div class="banner-collection">
-        <img src="image/collection/banner.jpg" alt="Ngũ cốc">
-    </div>
+    <!-- Tiêu đề trang để ở section riêng -->
+    <section class="page-hero text-center py-4">
+        <div class="container">
+            <h1 class="about-title mb-0">Trao an lành, nhận yêu thương cùng Ngũ cốc Ngon</h1>
+        </div>
+    </section>
 
-    <div class="collection-container">
-        <!-- Cột danh mục bên trái -->
-        <aside class="sidebar">
-            <h2>DANH MỤC SẢN PHẨM</h2>
-            <ul class="category-list">
-                <li><a href="SanPham-TatCa.jsp">Tất cả sản phẩm</a></li>
-                <li><a href="SanPham-NguCoc.html">Ngũ cốc</a></li>
-                <li><a href="SanPham-HatDinhDuong.html">Hạt dinh dưỡng</a></li>
-                <li><a href="SanPham-BanhDinhDuong.html"><b>Bánh dinh dưỡng</b></a></li>
-                <li><a href="SanPham-TraGaoLut.html">Trà gạo lứt</a></li>
-            </ul>
 
-            <h2>GIÁ SẢN PHẨM</h2>
-            <ul class="price-list">
-                <li><label><input type="radio" name="price"> Dưới 100,000₫</label></li>
-                <li><label><input type="radio" name="price"> 100,000₫ - 199,000₫</label></li>
-                <li><label><input type="radio" name="price"> 200,000₫ - 299,000₫</label></li>
-                <li><label><input type="radio" name="price"> 300,000₫ - 399,000₫</label></li>
-                <li><label><input type="radio" name="price"> Trên 400,000₫</label></li>
-            </ul>
-        </aside>
+    <section class="about-intro py-5">
+        <div class="container">
+            <div class="row align-items-start">
 
-        <!-- Danh sách sản phẩm -->
-        <section class="collection-product-section">
-            <div class="product-header">
-                <h2>Bánh dinh dưỡng</h2>
-                <select id="sort">
-                    <option value="price-ascending">Giá: Tăng dần</option>
-                    <option value="price-descending">Giá: Giảm dần</option>
-                    <option value="name-az">Tên: A-Z</option>
-                    <option value="name-za">Tên: Z-A</option>
-                    <option value="oldest">Cũ nhất</option>
-                    <option value="newest">Mới nhất</option>
-                    <option value="best-seller">Bán chạy nhất</option>
-                    <option value="inventory-descending">Tồn kho: Giảm dần</option>
-                </select>
-            </div>
 
-            <div class="collection-product-grid">
-                <!-- Sản phẩm -->
-                <div class="collection-product-item">
-                    <div class="collection-product-image">
-                        <img src="image/collection/banh-hat-dinh-duong-20x15g.jpg"
-                             alt="Bánh hạt dinh dưỡng 20 x 15g"><!-- Hình ảnh minh họa-->
-                        <div class="collection-overlay"><!-- Hover để hiển thị-->
-                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                            <button class="collection-view-btn"
-                                    onclick="openModal('./image/collection/banh-hat-dinh-duong-20x15g.jpg', 'Bánh hạt dinh dưỡng 20 x 15g', '159,000đ')">👁
-                                XEM NHANH</button>
+                <!-- SIDEBAR DANH MỤC TRANG-->
+
+                <!--thẻ div gồm các class sử dụng bootstrap chia làm 2 cột 1 ảnh và 1 nội dung xen kẽ nhau-->
+
+                <aside class="col-md-4 mb-4 mb-md-0">
+                    <div class="category-sidebar p-3 bg-white rounded shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0">Danh mục trang</h4>
+
+                            <!--dùng bootstrap tạo danh mục trang-->
+                            <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
+                            <button class="btn btn-outline-secondary d-md-none btn-sm"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#categoryList"
+                                    aria-expanded="false"
+                                    aria-controls="categoryList">
+                                Danh mục ▾
+                            </button>
                         </div>
+
+                        <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
+                            <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
+                            <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
+                            <li class="category-item"><a href="DieuKhoanDichVu.html">Điều khoản dịch vụ</a></li>
+                            <li class="category-item"><a href="PhuongThucThanhToan.html">Phương thức thanh toán</a></li>
+                        </ul>
                     </div>
-                    <h3>Bánh hạt dinh dưỡng 20 x 15g</h3>
-                    <p class="price">159,000đ</p>
-                </div>
+                </aside>
 
-                <!-- Sản phẩm -->
-                <div class="collection-product-item">
-                    <div class="collection-product-image">
-                        <img src="image/collection/banh-hat-dinh-duong-30x15g.jpg"
-                             alt="Bánh hạt dinh dưỡng 30 x 15g"><!-- Hình ảnh minh họa-->
-                        <div class="collection-overlay"><!-- Hover để hiển thị-->
-                            <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                            <button class="collection-view-btn"
-                                    onclick="openModal('./image/collection/banh-hat-dinh-duong-30x15g.jpg', 'Bánh hạt dinh dưỡng 30 x 15g', '219,000đ')">👁
-                                XEM NHANH</button>
-                        </div>
+                <!-- NỘI DUNG GIỚI THIỆU -->
+                <div class="col-md-8">
+                    <p class="lead text-start">
+                        Ngũ cốc Ngon được hình thành từ mong muốn mang lại sản phẩm thuần tự nhiên, lành mạnh và tốt cho sức khỏe.
+                        Chúng tôi tin rằng sự an lành bắt đầu từ những điều giản dị nhất – từ từng hạt ngũ cốc quê hương.
+
+                    </p>
+                    <br>
+
+                    <!--  có thể thêm 1-2 link nhanh hoặc featured ở đây -->
+                    <div class="mt-3">
+                        <a href="SanPham-TatCa.jsp" class="btn btn-outline-success me-2">Xem tất cả sản phẩm</a>
+                        <a href="ChinhSachDoiTra.html" class="btn btn-outline-secondary">Chính sách đổi trả</a>
                     </div>
-                    <h3>Bánh hạt dinh dưỡng 30 x 15g</h3>
-                    <p class="price">219,000đ</p>
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- Modal hiển thị chi tiết sản phẩm-->
-        <div class="product-modal" id="productModal">
-            <div class="product-modal-content">
-                <button class="close-modal" onclick="closeModal()">&times;</button>
-                <img id="modal-img" src="" alt="">
-                <div class="infor">
-                    <h3 id="modal-name"></h3>
-                    <p class="price" id="modal-price"></p>
-                    <div class="quantity-box">
-                        <button class="qty-btn" id="qty-decrease">-</button>
-                        <input type="text" id="product-qty" value="1" min="1">
-                        <button class="qty-btn" id="qty-increase">+</button>
-                    </div>
-                    <button class="add">🛒 THÊM VÀO GIỎ</button>
-                    <p><a href="#">Xem chi tiết sản phẩm</a></p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Câu chuyện thương hiệu -->
+    <section class="about-story py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="image/Image_VeNgon/donglua.jpg" alt="Câu chuyện thương hiệu" class="img-fluid rounded-3 shadow-sm"><img>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Sinh ra từ làng, nuôi dưỡng dự định dang dở</h2>
+                    <p>
+                        Ngũ cốc Ngon được khởi đầu từ một người con sinh ra ở làng quê miền Trung, mang trong mình khát vọng
+                        đem đến sản phẩm sạch, an toàn và tốt cho sức khỏe cộng đồng. Từ những hạt gạo, hạt đậu bình dị,
+                        Ngon bắt đầu hành trình tạo nên những gói ngũ cốc mang giá trị thật sự.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Cơ duyên với ngũ cốc -->
+
+    <section class="about-journey py-5">
+        <div class="container">
+            <div class="row align-items-center flex-md-row-reverse">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="image/Image_VeNgon/ngucoc1.jpg" alt="Cơ duyên với ngũ cốc" class="img-fluid rounded-3 shadow-sm">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Cơ duyên đến với ngũ cốc</h2>
+                    <p>
+                        Từ một dự định nhỏ, Ngon dần trở thành niềm đam mê lớn khi nhận ra sức mạnh của những hạt ngũ cốc thuần Việt.
+                        Sản phẩm được nghiên cứu, thử nghiệm và hoàn thiện với mong muốn mang lại sự an lành cho từng gia đình Việt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hành trình phát triển -->
+
+    <section class="about-growth py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="image/Image_VeNgon/ngucoc2.jpg" alt="Hành trình phát triển" class="img-fluid rounded-3 shadow-sm">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-3">Từ Ngũ cốc XYZ đến Ngũ cốc Ngon</h2>
+                    <p>
+                        Trải qua hành trình phát triển và cải tiến, thương hiệu Ngon không chỉ là sản phẩm dinh dưỡng mà còn là
+                        lời tri ân đến quê hương, đến những giá trị truyền thống được gìn giữ và lan tỏa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Người sáng lập -->
+
+    <section class="about-founder py-5 text-center">
+        <div class="container">
+            <img src="image/Image_VeNgon/nguoisanglap.jpg" alt="Người sáng lập" class="img-fluid rounded-circle mb-3 shadow-sm"
+                 style="width:180px; height:180px; object-fit:cover;">
+            <h3 class="mb-1">Người sáng lập</h3>
+            <p class="fw-bold">ABCD</p>
+            <p class="fst-italic">
+                “Mỗi sản phẩm là một lời gửi gắm yêu thương, một món quà từ thiên nhiên cho sức khỏe cộng đồng.”
+            </p>
+        </div>
+    </section>
+
+    <!-- Kết thúc trang -->
+
+    <section class="about-ending py-5 bg-light text-center">
+        <div class="container">
+            <h2 class="mb-3">Ngũ cốc Ngon – Trao an lành, nhận yêu thương</h2>
+            <p class="mb-4">
+                Chúng tôi tin rằng sức khỏe là nền tảng của hạnh phúc, và hạnh phúc bắt đầu từ những điều giản dị nhất – từ bữa sáng lành mạnh mỗi ngày.
+            </p>
+            <a href="SanPham-TatCa.jsp" class="btn btn-success px-4 py-2 rounded-pill">Khám phá sản phẩm</a>
+        </div>
+    </section>
 
 </main>
+
+
+
 
 <!------------------------------------------------------------------------------>
 <!--Footer-->
@@ -576,7 +494,9 @@
 <div class="main-footer-new">
     <!--section đăng kí nhận tin-->
     <section id="send-for-gmail" class="section section-for-email">
+
         <!--phần tử sẽ chiếm toàn bộ chiều ngang màn hình-->
+        <!--thẻ div gồm các class sử dụng bootstrap chia 4 cột-->
         <div class="container-fluid">
             <div class="row flexAlignCenter flexJustiCenter">
                 <div class="col-md-6 col-sm-12">
@@ -645,7 +565,6 @@
                             <div class="logo-footer-bct">
                                     <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
                                          height="70px" width="150px" alt="Bộ Công Thương">
-
                             </div>
                         </div>
 
@@ -653,15 +572,16 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.html" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
                                 <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
                                 <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="ChinhSachThanhToan.html"
+                                <li><a href="PhuongThucThanhToan.html"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                             </ul>
                         </div>
 
@@ -727,25 +647,6 @@
     </footer>
 </div>
 
-<!-- Bỏ chọn input radio sau khi chọn -->
-<script>
-    const radios = document.querySelectorAll('input[name="price"]');
-
-    radios.forEach(radio => {
-        radio.addEventListener('click', function() {
-            // Nếu radio này đang được chọn lần trước
-            if (this.checked && this.dataset.wasChecked === "true") {
-                this.checked = false;          // bỏ chọn
-                this.dataset.wasChecked = "false";
-            } else {
-                // đặt trạng thái cho tất cả radio khác
-                radios.forEach(r => r.dataset.wasChecked = "false");
-                this.dataset.wasChecked = "true";
-            }
-        });
-    });
-</script>
-
 <!--back to top (bootstrap) js-->
 <script>
     const backToTopBtn = document.getElementById("btn-back-to-top");
@@ -758,6 +659,10 @@
         }
     });
 </script>
+
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
