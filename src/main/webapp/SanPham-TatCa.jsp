@@ -541,16 +541,16 @@
         <section class="collection-product-section">
             <div class="product-header">
                 <h2>Tất cả sản phẩm</h2>
-                <select id="sort">
-                    <option value="price-ascending">Giá: Tăng dần</option>
-                    <option value="price-descending">Giá: Giảm dần</option>
-                    <option value="name-az">Tên: A-Z</option>
-                    <option value="name-za">Tên: Z-A</option>
-                    <option value="oldest">Cũ nhất</option>
-                    <option value="newest">Mới nhất</option>
-                    <option value="best-seller">Bán chạy nhất</option>
-                    <option value="inventory-descending">Tồn kho: Giảm dần</option>
-                </select>
+                <form action="filter" method="GET">
+                    <select name="sort" id="sort" onchange="this.form.submit()">
+                        <option value="price_asc" ${selectedSort == 'price_asc' ? 'selected' : ''}>Giá: Tăng dần</option>
+                        <option value="price_desc" ${selectedSort == 'price_desc' ? 'selected' : ''}>Giá: Giảm dần</option>
+                        <option value="name_az" ${selectedSort == 'name_az' ? 'selected' : ''}>Tên: A-Z</option>
+                        <option value="name_za" ${selectedSort == 'name_za' ? 'selected' : ''}>Tên: Z-A</option>
+                        <option value="oldest" ${selectedSort == 'oldest' ? 'selected' : ''}>Cũ nhất</option>
+                        <option value="newest" ${selectedSort == 'newest' ? 'selected' : ''}>Mới nhất</option>
+                    </select>
+                </form>
             </div>
 
             <div class="collection-product-grid">
