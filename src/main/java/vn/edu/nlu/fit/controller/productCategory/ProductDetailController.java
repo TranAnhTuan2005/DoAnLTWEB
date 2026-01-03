@@ -1,4 +1,4 @@
-package vn.edu.nlu.fit.controller;
+package vn.edu.nlu.fit.controller.productCategory;
 
 import vn.edu.nlu.fit.model.Products;
 import vn.edu.nlu.fit.services.ProductService;

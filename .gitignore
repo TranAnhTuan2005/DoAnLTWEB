@@ -1,0 +1,23 @@
+# --- Maven ---
+target/
+*.log
+
+# --- VS Code ---
+.vscode/
+*.code-workspace
+*.history
+
+# --- Eclipse ---
+.settings/
+.classpath
+.project
+bin/
+
+# --- IntelliJ ---
+.idea/
+*.iml
+out/
+
+# --- Hệ điều hành ---
+.DS_Store
+Thumbs.db
