@@ -20,28 +20,25 @@ public class LoginControler extends HttpServlet {
 
     //    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//            String  username = request.getParameter("username");
-//            String password = request.getParameter("password");
-//            if("012345678".equals(username) && "123".equals(password)){
-//                response.sendRedirect("SanPham-TatCa.jsp");
-//            }else{
-//                request.setAttribute("error","invalid username or password");
-//                request.getRequestDispatcher("TrangChu.jsp").forward(request, response  );
-//            }
-//    }
+
         String username = request.getParameter("email");
         String password = request.getParameter("password");
 
         Users user = userService.login(username, password);
 
         if (user != null) {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
 
-            response.sendRedirect(request.getContextPath() + "/TrangChu.jsp");
+            // redirect về sevlet trang chủ
+            response.sendRedirect(request.getContextPath() + "/TrangChu");
+
         } else {
-            request.setAttribute("error", "Sai tên email hoặc mật khẩu");
-            request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
+            request.setAttribute("error", "Sai email hoặc mật khẩu");
+
+            // quay lại TRANG ĐĂNG NHẬP
+            request.getRequestDispatcher("/TrangDangNhapTK.jsp")
+                    .forward(request, response);
         }
     }
 }
