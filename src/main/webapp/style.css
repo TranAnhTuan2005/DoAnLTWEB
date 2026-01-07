@@ -427,8 +427,11 @@ body {
 
 .account-menu {
     right: 48px;
+    display: none;
 }
-
+.account-menu.show {
+    display: block;
+}
 
 /*---------------------------------------------------------------------------*/
 /*TRÌNH CHIẾU ẢNH*/
@@ -1247,5 +1250,7 @@ body {
 #btn-back-to-top:hover {
     background-color: #4CAF50;
 }
+
+
 
 
