@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -49,66 +52,38 @@
             color: #5c93db;
         }
 
+        /*Phần đăng nhập ?*/
         .shipping-form h2 {
-            font-weight: normal;
-            font-size: 18px;
+            font-size: 20px;
+            margin-bottom: 5px;
         }
 
-        .shipping-method {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 25px;
+        .shipping-form p a {
+            color: #1a73e8;
+            text-decoration: none;
         }
 
+        /*Giãn các phần tử đều ra*/
+        .form-group,
+        .form-row {
+            margin-bottom: 15px;
+        }
 
-        .method-item {
+        /*Giãn ngang theo gap*/
+        .form-row {
             display: flex;
-            justify-content: space-between;
             gap: 10px;
         }
 
-        .method-item span {
-            flex-grow: 1;
-        }
-
-
-        .payment-method {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .pay-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        /*chỉnh các input*/
+        input,
+        select {
+            width: 100%;
             padding: 15px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-        }
-
-        .pay-card:last-child {
-            border-bottom: none;
-        }
-
-        .pay-card:hover {
-            background: #f6f9ff;
-        }
-
-        .pay-card input[type="radio"] {
-            width: 18px;
-            height: 18px;
-        }
-
-        .pay-card .icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        .pay-card input:checked~span,
-        .pay-card input:checked~img {
-            filter: brightness(0.85);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
         }
 
         .form-footer {
@@ -263,6 +238,11 @@
                 width: 100%;
             }
         }
+        .product-list-scroll{
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
     </style>
 
 </head>
@@ -273,41 +253,45 @@
         <div class="shipping-form">
             <h1>Ngũ cốc Ngon</h1>
             <nav>
-                <a href="GioHang.jsp">Giỏ hàng</a> >
-                <a href="ThongTinGiaoHang.html">Thông tin giao hàng</a> >
+                <a href="GioHangTrong.html">Giỏ hàng</a> >
+                <span>Thông tin giao hàng</span> >
                 <span>Phương thức thanh toán</span>
             </nav> <!--Đường dẫn hiện tại-->
 
-            <h2>Phương thức vận chuyển</h2>
-            <div class="shipping-method">
-                <label class="method-item">
-                    <input type="radio" name="ship" checked>
-                    <span>Giao hàng tận nơi</span>
-                    <strong id="delivery-price">20,000đ</strong>
-                </label>
-            </div>
+            <h2>Thông tin giao hàng</h2>
+            <p>Bạn đã có tài khoản? <a href="TrangChu.jsp">Đăng nhập</a></p>
+            <form action="#" method="post"><!--Form thông tin đơn hàng-->
 
-            <h2>Phương thức thanh toán</h2>
+                <div class="form-group"><!--Họ và tên-->
+                    <input type="text" placeholder="Họ và tên" name="fullname" required>
+                </div>
 
-            <div class="payment-method">
-                <label class="pay-card">
-                    <input type="radio" name="payment" checked>
-                    <img src="image/paymentMethod/cod.svg" class="icon">
-                    <span>Thanh toán khi giao hàng (COD)</span>
-                </label>
+                <div class="form-row"><!--Email và số điện thoại-->
+                    <input type="email" name="Email" placeholder="Email" id="mail" required>
+                    <input type="tel" name="sdt" placeholder="Số điện thoại" required>
+                </div>
 
-                <label class="pay-card">
-                    <input type="radio" name="payment">
-                    <img src="image/paymentMethod/cash.svg" class="icon">
-                    <span>Chuyển khoản qua ngân hàng</span>
-                </label>
-            </div>
+                <div class="form-group"><!--địa chỉ khách hàng-->
+                    <input type="text" placeholder="Địa chỉ" name="dc" required>
+                </div>
 
-            <div class="form-footer">
-                <a href="GioHang.jsp" class="cart-link">Giỏ hàng</a>
-                <button class="submit-btn" onclick="window.location.href='DatHangThanhCong.html'">Hoàn tất đơn
-                    hàng</button>
-            </div>
+                <div class="form-row"> <!--Thông tin quận/ huyện/ thành phố-->
+                    <select name="province" id="province" required>
+                        <option value="">Tỉnh/ thành phố</option>
+                    </select>
+
+                    <select name="district" id="district">
+                        <option value="">Quận/ huyện</option>
+                    </select>
+                </div>
+
+                <div class="form-footer">
+                    <a href="GioHang.jsp" class="cart-link">Giỏ hàng</a>
+                    <button type="submit" class="submit-btn"
+                        onclick="window.location.href='PhuongThucThanhToan.jsp'">Tiếp tục đến phương thức thanh
+                        toán</button>
+                </div>
+            </form>
         </div>
 
         <!--Đường ngăn cách-->
@@ -315,31 +299,41 @@
 
         <!--Cột đơn hàng bên phải-->
         <div class="order-summary">
-            <h2>Đơn hàng của bạn</h2>
+            <h2>Đơn hàng của bạn (${sessionScope.cart.totalQuantity} sản phẩm)</h2>
 
-            <div class="product-item">
-                <div class="product-img">
-                    <img src="image/newProducts/banhhat.jpg" alt="Bánh hạt dinh dưỡng">
-                    <span class="product-qty">1</span>
-                </div>
-                <div class="product-infor">
-                    <p class="product-name">Bánh hạt dinh dưỡng 30 x 15 g</p>
-                </div>
-                <div class="product-price">219.000đ</div>
+            <div class="product-list-scroll" >
+                <c:forEach items="${sessionScope.cart.item}" var="p">
+                    <div class="product-item">
+                        <div class="product-img">
+                            <img src="${p.product.imageURL}" alt="${p.product.productName}">
+                            <span class="product-qty">${p.quantity}</span>
+                        </div>
+                        <div class="product-infor">
+                            <p class="product-name">${p.product.productName}</p>
+                        </div>
+                        <div class="product-price">
+                            <fmt:formatNumber value="${p.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
+            <hr style="border-top: 1px solid #eee; margin: 10px 0;">
+
             <div class="discount">
                 <input type="text" placeholder="Mã giảm giá" name="discount">
-                <button>Sử dụng</button>
+                <button type="button">Sử dụng</button>
             </div>
 
             <div class="summary-line">
                 <span>Tạm tính</span>
-                <span>219.000đ</span>
+                <span>
+                <fmt:formatNumber value="${sessionScope.cart.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+            </span>
             </div>
 
             <div class="summary-line">
                 <span>Phí vận chuyển</span>
-                <span>20.000đ</span>
+                <span>—</span>
             </div>
 
             <hr>
@@ -349,7 +343,9 @@
                     <strong>Tổng cộng</strong>
                     <small>VND</small>
                 </div>
-                <strong class="total-price">239.000đ</strong>
+                <strong class="total-price">
+                    <fmt:formatNumber value="${sessionScope.cart.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                </strong>
             </div>
 
         </div>
@@ -376,8 +372,9 @@
         // Khi chọn tỉnh thì load huyện
         provinceSelect.addEventListener("change", function () {
             districtSelect.innerHTML = '<option value="">Quận/ huyện</option>';
+            var url = "https://provinces.open-api.vn/api/p/" + this.value + "?depth=2";
 
-            fetch(`https://provinces.open-api.vn/api/p/${this.value}?depth=2`)
+            fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     data.districts.forEach(d => {
