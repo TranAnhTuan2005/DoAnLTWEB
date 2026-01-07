@@ -300,7 +300,7 @@
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
             <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
+            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.jsp'">Thanh Toán</button>
         </div>
     </div>
 </div>
@@ -375,7 +375,7 @@
                             <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
                             <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
                             <li class="category-item"><a href="DieuKhoanDichVu.html">Điều khoản dịch vụ</a></li>
-                            <li class="category-item"><a href="PhuongThucThanhToan.html">Phương thức thanh toán</a></li>
+                            <li class="category-item"><a href="PhuongThucThanhToan.jsp">Phương thức thanh toán</a></li>
                         </ul>
                     </div>
                 </aside>
@@ -579,7 +579,7 @@
                                     mật</a></li>
                                 <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="PhuongThucThanhToan.html"
+                                <li><a href="PhuongThucThanhToan.jsp"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
 
                             </ul>

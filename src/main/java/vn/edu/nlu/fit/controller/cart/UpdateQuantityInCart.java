@@ -25,7 +25,6 @@ public class UpdateQuantityInCart extends HttpServlet {
 
         HttpSession session = request.getSession();//lấy giỏ hàng
         Cart cart = (Cart) session.getAttribute("cart");
-
         if(cart!=null){
             cart.update(productId, quantity);
             session.setAttribute("cart", cart);

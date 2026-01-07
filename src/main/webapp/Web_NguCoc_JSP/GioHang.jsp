@@ -474,7 +474,7 @@
                     <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
 
-                    <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">THANH TOÁN</button>
+                    <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.jsp'">THANH TOÁN</button>
 
                     <div class="continue">
                         <a href="SanPham-TatCa.html">Tiếp tục mua hàng</a>

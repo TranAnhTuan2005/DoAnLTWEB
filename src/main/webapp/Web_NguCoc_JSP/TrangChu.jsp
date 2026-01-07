@@ -152,7 +152,7 @@
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
             <button class="view-cart-btn" onclick="window.location.href='GioHang.jsp'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
+            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.jsp'">Thanh Toán</button>
         </div>
     </div>
 </div>

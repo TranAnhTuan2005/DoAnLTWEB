@@ -191,7 +191,7 @@
         <div class="modal-buttons">
             <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
 
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
+            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.jsp'">Thanh Toán</button>
         </div>
     </div>
 </div>
@@ -402,7 +402,7 @@
                                     mật</a></li>
                                 <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="PhuongThucThanhToan.html"
+                                <li><a href="PhuongThucThanhToan.jsp"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
 
                             </ul>
