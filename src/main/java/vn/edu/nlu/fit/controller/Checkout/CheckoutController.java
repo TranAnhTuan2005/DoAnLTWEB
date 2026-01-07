@@ -4,8 +4,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.Cart.Cart;
+import vn.edu.nlu.fit.dao.PaymentMethodDao;
+import vn.edu.nlu.fit.model.PaymentMethods;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "CheckoutController", value = "/Checkout-infor")
 public class CheckoutController extends HttpServlet {
@@ -18,6 +21,13 @@ public class CheckoutController extends HttpServlet {
             response.sendRedirect("SanPham-TatCa.jsp");
             return;
         }
+
+        //Lấy ds pttt lên
+        PaymentMethodDao paymentDAO = new PaymentMethodDao();
+        List<PaymentMethods> listPaymentMethods = paymentDAO.getAllPaymentMethods();
+        request.setAttribute("listPaymentMethods", listPaymentMethods);
+
+
         request.getRequestDispatcher("ThongTinGiaoHang.jsp").forward(request,response);
 
     }

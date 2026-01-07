@@ -298,17 +298,17 @@
             <h2>Phương thức thanh toán</h2>
 
             <div class="payment-method">
-                <label class="pay-card">
-                    <input type="radio" name="payment" checked>
-                    <img src="image/paymentMethod/cod.svg" class="icon">
-                    <span>Thanh toán khi giao hàng (COD)</span>
-                </label>
+                <c:if test="${empty listPaymentMethods}">
+                    <p style="padding:10px; color:red">Hệ thống thanh toán đang bảo trì.</p>
+                </c:if>
 
+                <c:forEach items="${listPaymentMethods}" var="pay" varStatus="status">
                 <label class="pay-card">
-                    <input type="radio" name="payment">
-                    <img src="image/paymentMethod/cash.svg" class="icon">
-                    <span>Chuyển khoản qua ngân hàng</span>
+                    <input type="radio" name="payment" value="${pay.id}" ${status.index == 0 ? 'checked' : ''} checked>
+                    <img src="${pay.iconUrl}" class="icon" alt="${pay.methodName}">
+                    <span>${pay.methodName}</span>
                 </label>
+                </c:forEach>
             </div>
 
             <div class="form-footer">
@@ -374,42 +374,6 @@
 
         </div>
     </div>
-
-
-    <!--Xử lí import tỉnh/ thành phố, quận/ huyện-->
-    <script>
-        const provinceSelect = document.getElementById('province');
-        const districtSelect = document.getElementById('district');
-
-        // Load tỉnh/thành
-        fetch("https://provinces.open-api.vn/api/p/")
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(p => {
-                    const opt = document.createElement("option");
-                    opt.value = p.code;
-                    opt.textContent = p.name;
-                    provinceSelect.appendChild(opt);
-                });
-            });
-
-        // Khi chọn tỉnh thì load huyện
-        provinceSelect.addEventListener("change", function () {
-            districtSelect.innerHTML = '<option value="">Quận/ huyện</option>';
-            var url = "https://provinces.open-api.vn/api/p/" + this.value + "?depth=2";
-
-            fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    data.districts.forEach(d => {
-                        const opt = document.createElement("option");
-                        opt.value = d.code;
-                        opt.textContent = d.name;
-                        districtSelect.appendChild(opt);
-                    });
-                });
-        });
-    </script>
 
 </body>
 

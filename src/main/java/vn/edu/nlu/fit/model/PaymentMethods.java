@@ -4,14 +4,17 @@ public class PaymentMethods {
     private int id;
     private String methodName;
     private int isActived;
+    private String iconUrl;
 
     public PaymentMethods() {
     }
 
-    public PaymentMethods(int id, String methodName, int isActived) {
+
+    public PaymentMethods(int id, String methodName, int isActived, String iconUrl) {
         this.id = id;
         this.methodName = methodName;
         this.isActived = isActived;
+        this.iconUrl = iconUrl;
     }
 
     public int getId() {
@@ -38,12 +41,22 @@ public class PaymentMethods {
         this.isActived = isActived;
     }
 
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
     @Override
     public String toString() {
         return "PaymentMethods{" +
                 "id=" + id +
                 ", methodName='" + methodName + '\'' +
-                ", isActived=" + isActived +
+                ", isActived=" + isActived + '\'' +
+                ", iconURL=" + iconUrl +
                 '}';
     }
 }
