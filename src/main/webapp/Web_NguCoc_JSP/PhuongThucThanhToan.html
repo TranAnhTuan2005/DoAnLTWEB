@@ -356,39 +356,6 @@
     </div>
 
 
-    <!--Xử lí import tỉnh/ thành phố, quận/ huyện-->
-    <script>
-        const provinceSelect = document.getElementById('province');
-        const districtSelect = document.getElementById('district');
-
-        // Load tỉnh/thành
-        fetch("https://provinces.open-api.vn/api/p/")
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(p => {
-                    const opt = document.createElement("option");
-                    opt.value = p.code;
-                    opt.textContent = p.name;
-                    provinceSelect.appendChild(opt);
-                });
-            });
-
-        // Khi chọn tỉnh thì load huyện
-        provinceSelect.addEventListener("change", function () {
-            districtSelect.innerHTML = '<option value="">Quận/ huyện</option>';
-
-            fetch(`https://provinces.open-api.vn/api/p/${this.value}?depth=2`)
-                .then(res => res.json())
-                .then(data => {
-                    data.districts.forEach(d => {
-                        const opt = document.createElement("option");
-                        opt.value = d.code;
-                        opt.textContent = d.name;
-                        districtSelect.appendChild(opt);
-                    });
-                });
-        });
-    </script>
 
 </body>
 
