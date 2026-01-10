@@ -507,8 +507,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="SanPham-TatCa.jsp">Danh mục</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tất cả sản phẩm</li>
+                    <li class="breadcrumb-item active" aria-current="page">Danh mục</li>
                 </ol>
             </nav>
         </div>
