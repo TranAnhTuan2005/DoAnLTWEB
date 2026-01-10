@@ -4,6 +4,7 @@ public class Categories {
     private int id;
     private String categoryName;
     private int isActived;
+    private int totalProducts;
 
     public Categories() {
     }
@@ -38,6 +39,14 @@ public class Categories {
         this.isActived = isActived;
     }
 
+    public int getTotalProducts() {
+        return totalProducts;
+    }
+
+    public void setTotalProducts(int totalProducts) {
+        this.totalProducts = totalProducts;
+    }
+
     @Override
     public String toString() {
         return "Categories{" +
@@ -45,5 +54,9 @@ public class Categories {
                 ", categoryName='" + categoryName + '\'' +
                 ", isActived=" + isActived +
                 '}';
+    }
+
+    public String getStatus() {
+        return this.isActived == 1 ? "Hiển thị" : "Ẩn";
     }
 }

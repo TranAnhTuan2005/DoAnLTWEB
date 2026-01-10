@@ -1,6 +1,8 @@
 package vn.edu.nlu.fit.model;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Products implements Serializable { //dung javaBean
 
@@ -17,6 +19,7 @@ public class Products implements Serializable { //dung javaBean
     private String instruction;
     private String attention;
     private String uses;
+    private String categoryName;
 
     public Products() {
     }
@@ -37,6 +40,15 @@ public class Products implements Serializable { //dung javaBean
         this.uses = uses;
     }
 
+    public Products(int id, String productName, double price, String imageURL, int quantity, String categoryName) {
+        this.id = id;
+        this.productName = productName;
+        this.price = price;
+        this.imageURL = imageURL;
+        this.quantity = quantity;
+        this.categoryName = categoryName;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,7 +66,9 @@ public class Products implements Serializable { //dung javaBean
     }
 
     public double getPrice() {
-        return price;
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+        return Double.parseDouble(currencyVN.format(this.price));
     }
 
     public void setPrice(double price) {

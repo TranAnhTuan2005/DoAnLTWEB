@@ -1,12 +1,12 @@
 package vn.edu.nlu.fit.services;
 
 import vn.edu.nlu.fit.controller.admin.ChartData;
-import vn.edu.nlu.fit.dao.DashboardDAO;
+import vn.edu.nlu.fit.dao.AdminDashboardDAO;
 
 import java.util.List;
 
-public class DashboardService {
-    DashboardDAO dao = new DashboardDAO();
+public class AdminDashboardService {
+    AdminDashboardDAO dao = new AdminDashboardDAO();
 
     public int getCount(String tableName) {
         return dao.getCount(tableName);
