@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -506,70 +508,20 @@
                     <li class="cate-item">Hành động</li>
                 </ul>
 
+                <c:forEach items="${listProduct}" var="p" varStatus="loop">
                 <ul class="cate thin">
-                    <li class="cate-stt">1</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-tre-em.png" alt="Ngũ cốc trẻ em"></li>
-                    <li class="cate-item">Ngũ cốc trẻ em</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">24</li>
+                    <li class="cate-stt">${loop.index + 1}</li>
+                    <li class="cate-item"><img src="${p.imageURL}" alt="${p.productName}"></li>
+                    <li class="cate-item">${p.productName}</li>
+                    <li class="cate-item">${p.categoryName}</li>
+                    <li class="cate-item">${p.price}</li>
+                    <li class="cate-item">${p.quantity}</li>
                     <li class="cate-item">
                         <i class="fa-solid fa-pen"></i>
                         <i class="fa-solid fa-trash"></i>
                     </li>
                 </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">2</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-me-bau.png" alt="Ngũ cốc mẹ bầu"></li>
-                    <li class="cate-item">Ngũ cốc mẹ bầu</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">15</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">3</li>
-                    <li class="cate-item"><img src="image/collection/bot-ngu-coc-tang-can.png" alt="Bột ngũ cốc tăng cân"></li>
-                    <li class="cate-item">Bột ngũ cốc tăng cân</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">209,000đ</li>
-                    <li class="cate-item">41</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">4</li>
-                    <li class="cate-item"><img src="image/collection/banh-hat-dinh-duong-20x15g.jpg" alt="Bánh hạt dinh dưỡng 20x15g"></li>
-                    <li class="cate-item">Bánh hạt dinh dưỡng</li>
-                    <li class="cate-item">Bánh dinh dưỡng</li>
-                    <li class="cate-item">159,000đ</li>
-                    <li class="cate-item">6</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">5</li>
-                    <li class="cate-item"><img src="image/collection/ngu-coc-dinh-duong-cao-cap.png" alt="Ngũ cốc dinh dưỡng cao cấp"></li>
-                    <li class="cate-item">Ngũ cốc dinh dưỡng</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">239,000đ</li>
-                    <li class="cate-item">67</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+                </c:forEach>
 
             </div>
         </section>
