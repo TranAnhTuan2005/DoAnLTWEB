@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,6 +8,7 @@
     <title>Bảng điều khiển - Quản lý bán hàng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -387,6 +390,15 @@
         }
     }
 
+    .border-dashboard {
+        margin-top: 20px;
+    }
+
+    .border-dashboard canvas {
+        width: 100%;
+        height: 300px;
+    }
+
 
 </style>
 <body>
@@ -465,45 +477,52 @@
             <span>Bảng điều khiển</span>
         </div>
 
-        <section class="dashboard">
-            <div class="border-dashboard">
-                <h3>Dữ liệu website</h3>
-                <hr>
-                <div class="cards">
-                    <div class="card danh-muc">
-                        <div class="icon"><i class="fa-solid fa-list"></i></div>
-                        <div class="info">
-                            <h3>Số danh mục sản phẩm</h3>
-                            <p>4</p>
+            <section class="dashboard">
+                <div class="border-dashboard">
+                    <h3>Dữ liệu website</h3>
+                    <hr>
+                    <div class="cards">
+                        <div class="card danh-muc">
+                            <div class="icon"><i class="fa-solid fa-list"></i></div>
+                            <div class="info">
+                                <h3>Số danh mục sản phẩm</h3>
+                                <p>${soLuongDanhMuc}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="card san-pham">
-                        <div class="icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        <div class="info">
-                            <h3>Sản phẩm</h3>
-                            <p>7</p>
+                        <div class="card san-pham">
+                            <div class="icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                            <div class="info">
+                                <h3>Sản phẩm</h3>
+                                <p>${soLuongSanPham}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="card thanh-vien">
-                        <div class="icon"><i class="fa-solid fa-users"></i></div>
-                        <div class="info">
-                            <h3>Thành viên</h3>
-                            <p>2</p>
+                        <div class="card thanh-vien">
+                            <div class="icon"><i class="fa-solid fa-users"></i></div>
+                            <div class="info">
+                                <h3>Thành viên</h3>
+                                <p>${soLuongThanhVien}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="card bai-viet">
-                        <div class="icon"><i class="fa-solid fa-file-word"></i></div>
-                        <div class="info">
-                            <h3>Số lượng bài viết</h3>
-                            <p>0</p>
+                        <div class="card bai-viet">
+                            <div class="icon"><i class="fa-solid fa-file-word"></i></div>
+                            <div class="info">
+                                <h3>Số lượng bài viết</h3>
+                                <p>${soLuongBaiViet}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+
+                <div class="border-dashboard">
+                    <h3>Biểu đồ doanh thu 7 ngày gần nhất</h3>
+                    <hr>
+                    <div> <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </section>
     </main>
 </div>
 
@@ -554,6 +573,36 @@
             }
         });
     })();
+</script>
+
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+
+    const labels = ${chartLabels};
+    const dataRevenue = ${chartData};
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh thu (VNĐ)',
+                data: dataRevenue,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
 
 
