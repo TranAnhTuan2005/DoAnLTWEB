@@ -3,7 +3,7 @@ package vn.edu.nlu.fit.controller.admin;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.services.DashboardService;
+import vn.edu.nlu.fit.services.AdminDashboardService;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 public class DashboardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DashboardService service = new DashboardService();
+        AdminDashboardService service = new AdminDashboardService();
 
         request.setAttribute("soLuongDanhMuc", service.getCount("categories"));
         request.setAttribute("soLuongSanPham", service.getCount("products"));

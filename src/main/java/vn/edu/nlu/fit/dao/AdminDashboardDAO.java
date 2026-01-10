@@ -4,7 +4,7 @@ import vn.edu.nlu.fit.controller.admin.ChartData;
 
 import java.util.List;
 
-public class DashboardDAO extends BaseDao{
+public class AdminDashboardDAO extends BaseDao{
     public int getCount(String tableName) {
         return getJdbi().withHandle(handle ->
                 handle.createQuery("SELECT COUNT(*) FROM " + tableName)

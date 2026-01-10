@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -504,49 +506,19 @@
                     <li class="cate-item">Hành động</li>
                 </ul>
 
+                <c:forEach items="${listCategory}" var="c" varStatus="loop">
                 <ul class="cate thin">
-                    <li class="cate-stt">1</li>
-                    <li class="cate-item">Ngũ cốc</li>
-                    <li class="cate-item">147</li>
-                    <li class="cate-item">Hiển thị</li>
+                    <li class="cate-stt">${loop.index + 1}</li>
+                    <li class="cate-item">${c.categoryName}</li>
+                    <li class="cate-item">${c.totalProducts}</li>
+                    <li class="cate-item">${c.status}</li>
                     <li class="cate-item">
                         <i class="fa-solid fa-pen"></i>
                         <i class="fa-solid fa-trash"></i>
                     </li>
                 </ul>
+                </c:forEach>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">2</li>
-                    <li class="cate-item">Hạt dinh dưỡng</li>
-                    <li class="cate-item">21</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">3</li>
-                    <li class="cate-item">Bánh dinh dưỡng</li>
-                    <li class="cate-item">58</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
-                <ul class="cate thin">
-                    <li class="cate-stt">4</li>
-                    <li class="cate-item">Trà gạo lứt</li>
-                    <li class="cate-item">9</li>
-                    <li class="cate-item">Hiển thị</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
             </div>
         </section>
     </main>
