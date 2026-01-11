@@ -514,7 +514,7 @@
                     <li class="cate-item"><img src="${p.imageURL}" alt="${p.productName}"></li>
                     <li class="cate-item">${p.productName}</li>
                     <li class="cate-item">${p.categoryName}</li>
-                    <li class="cate-item">${p.price}</li>
+                    <li class="cate-item">${p.priceFormat}</li>
                     <li class="cate-item">${p.quantity}</li>
                     <li class="cate-item">
                         <i class="fa-solid fa-pen"></i>
