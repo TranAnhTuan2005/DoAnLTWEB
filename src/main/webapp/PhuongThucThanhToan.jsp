@@ -279,7 +279,7 @@
 <body>
     <div class="checkout-container">
         <!--Cột form bên trái-->
-        <div class="shipping-form">
+        <form action="Order" method="post" class="shipping-form">
             <h1>Ngũ cốc Ngon</h1>
             <nav>
                 <a href="GioHang.jsp">Giỏ hàng</a> >
@@ -323,11 +323,10 @@
 
             <div class="form-footer">
                 <a href="GioHang.jsp" class="cart-link">Giỏ hàng</a>
-                <button class="submit-btn" onclick="window.location.href='DatHangThanhCong.html'">Hoàn tất đơn
+                <button type="submit" class="submit-btn" >Hoàn tất đơn
                     hàng</button>
             </div>
-        </div>
-
+        </form>
         <!--Đường ngăn cách-->
         <div class="divider"></div>
 
