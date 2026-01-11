@@ -3,7 +3,9 @@ package vn.edu.nlu.fit.controller.Checkout;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.nlu.fit.dao.DeliveryMethodDao;
 import vn.edu.nlu.fit.dao.PaymentMethodDao;
+import vn.edu.nlu.fit.model.DeliveryMethods;
 import vn.edu.nlu.fit.model.PaymentMethods;
 
 import java.io.IOException;
@@ -17,6 +19,13 @@ public class PaymentMethodController extends HttpServlet {
         PaymentMethodDao paymentDAO = new PaymentMethodDao();
         List<PaymentMethods> listPaymentMethods = paymentDAO.getAllPaymentMethods();
         request.setAttribute("listPaymentMethods", listPaymentMethods);
+
+        //lấy ds ptvc
+        DeliveryMethodDao deliveryDAO = new DeliveryMethodDao();
+        List<DeliveryMethods> listDeliveryMethods = deliveryDAO.getAllDeliveryMethods();
+        request.setAttribute("listDeliveryMethods", listDeliveryMethods);
+
+
         request.getRequestDispatcher("PhuongThucThanhToan.jsp").forward(request,response);
     }
 

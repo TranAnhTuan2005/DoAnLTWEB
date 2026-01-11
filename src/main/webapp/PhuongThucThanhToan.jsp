@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Thông tin giao hàng</title>
+    <title>Phương thức thanh toán</title>
     <style>
         body {
             font-family: 'Tahoma', Arial, sans-serif;
@@ -69,6 +69,7 @@
             display: flex;
             justify-content: space-between;
             gap: 10px;
+            margin-bottom: 10px;
         }
 
         .method-item span {
@@ -288,11 +289,20 @@
 
             <h2>Phương thức vận chuyển</h2>
             <div class="shipping-method">
+                <c:if test="${empty listDeliveryMethods}">
+                    <p>Đang cập nhật phí vận chuyển...</p>
+                </c:if>
+                <c:forEach items="${listDeliveryMethods}" var="ship" varStatus="status">
                 <label class="method-item">
-                    <input type="radio" name="ship" checked>
-                    <span>Giao hàng tận nơi</span>
-                    <strong id="delivery-price">20,000đ</strong>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                    <input type="radio" name="delivery" value="${ship.id}" ${status.first ? 'checked' : ''}>
+                    <span>${ship.methodName}</span>
+                    </div>
+                    <strong id="delivery-price">
+                        <fmt:formatNumber value="${ship.price}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                    </strong>
                 </label>
+                </c:forEach>
             </div>
 
             <h2>Phương thức thanh toán</h2>
