@@ -66,9 +66,13 @@ public class Products implements Serializable { //dung javaBean
     }
 
     public double getPrice() {
+        return this.price;
+    }
+
+    public String getPriceFormat() {
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
-        return Double.parseDouble(currencyVN.format(this.price));
+        return currencyVN.format(this.price);
     }
 
     public void setPrice(double price) {
@@ -153,6 +157,14 @@ public class Products implements Serializable { //dung javaBean
 
     public void setUses(String uses) {
         this.uses = uses;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
