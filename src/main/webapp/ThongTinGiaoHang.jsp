@@ -260,7 +260,7 @@
 
             <h2>Thông tin giao hàng</h2>
             <p>Bạn đã có tài khoản? <a href="TrangChu.jsp">Đăng nhập</a></p>
-            <form action="#" method="post"><!--Form thông tin đơn hàng-->
+            <form action="Checkout-infor" method="post"><!--Form thông tin đơn hàng-->
 
                 <div class="form-group"><!--Họ và tên-->
                     <input type="text" placeholder="Họ và tên" name="fullname" required>
@@ -275,20 +275,26 @@
                     <input type="text" placeholder="Địa chỉ" name="dc" required>
                 </div>
 
+                <%-- hai cái này để nhận tt từ thẻ select--%>
+                <input type="hidden" name="province_name" id="province_name_hidden">
+                <input type="hidden" name="district_name" id="district_name_hidden">
+
                 <div class="form-row"> <!--Thông tin quận/ huyện/ thành phố-->
                     <select name="province" id="province" required>
                         <option value="">Tỉnh/ thành phố</option>
                     </select>
 
+
                     <select name="district" id="district">
                         <option value="">Quận/ huyện</option>
                     </select>
+
                 </div>
 
                 <div class="form-footer">
                     <a href="GioHang.jsp" class="cart-link">Giỏ hàng</a>
                     <button type="submit" class="submit-btn"
-                        onclick="window.location.href='PhuongThucThanhToan.jsp'">Tiếp tục đến phương thức thanh
+                        onclick="window.location.href='PaymentMethod'">Tiếp tục đến phương thức thanh
                         toán</button>
                 </div>
             </form>
@@ -356,6 +362,8 @@
     <script>
         const provinceSelect = document.getElementById('province');
         const districtSelect = document.getElementById('district');
+        const provinceHidden = document.getElementById('province_name_hidden');
+        const districtHidden = document.getElementById('district_name_hidden');
 
         // Load tỉnh/thành
         fetch("https://provinces.open-api.vn/api/p/")
@@ -371,10 +379,12 @@
 
         // Khi chọn tỉnh thì load huyện
         provinceSelect.addEventListener("change", function () {
+            const selectedOption = this.options[this.selectedIndex];
+            provinceHidden.value = selectedOption.text; // lưu vào input ẩn
             districtSelect.innerHTML = '<option value="">Quận/ huyện</option>';
-            var url = "https://provinces.open-api.vn/api/p/" + this.value + "?depth=2";
+            districtHidden.value = ""; // Reset huyện
 
-            fetch(url)
+            fetch('https://provinces.open-api.vn/api/p/' + this.value + '?depth=2')
                 .then(res => res.json())
                 .then(data => {
                     data.districts.forEach(d => {
@@ -384,6 +394,11 @@
                         districtSelect.appendChild(opt);
                     });
                 });
+        });
+        //chọn huyện thì lưu huyện xuống
+        districtSelect.addEventListener("change", function() {
+            const selectedOption = this.options[this.selectedIndex];
+            districtHidden.value = selectedOption.text;
         });
     </script>
 

@@ -13,6 +13,9 @@ public class DeliveryMethods {
         this.isActived = isActived;
         this.price = price;
     }
+    public DeliveryMethods(){
+
+    }
 
     public int getId() {
         return id;

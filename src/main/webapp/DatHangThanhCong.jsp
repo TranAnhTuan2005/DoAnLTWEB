@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -235,7 +238,7 @@
             <div class="order-success">
                 <div class="success-icon">✔</div>
                 <h2>Đặt hàng thành công</h2>
-                <p class="order-id">Mã đơn hàng <strong>#103642</strong></p>
+                <p class="order-id">Mã đơn hàng <strong>${orderId}</strong></p>
                 <p class="thank-you">Cảm ơn bạn đã mua hàng!</p>
             </div>
 
@@ -244,12 +247,10 @@
 
                 <div class="order-section">
                     <p class="section-title">Thông tin giao hàng</p>
-                    <p>Nhóm 18</p>
-                    <p>09261302541</p>
-                    <p>Thành phố Thủ Đức</p>
-                    <p>Khu phố 6, phường Linh Trung</p>
-                    <p>Thành phố Thủ Đức</p>
-                    <p>Việt Nam</p>
+                    <p><strong>Người nhận:</strong> ${customerName}</p>
+                    <p><strong>SĐT:</strong> ${customerPhone}</p>
+                    <p><strong>Email:</strong> ${customerEmail}</p>
+                    <p><strong>Địa chỉ:</strong> ${customerAddress}</p>
                 </div>
 
                 <div class="order-section">
@@ -262,7 +263,7 @@
                 <p class="help">
                     Cần hỗ trợ? <a href="LienHe.html">Liên hệ chúng tôi</a>
                 </p>
-                <button class="continue-btn" onclick="window.location.href='SanPham-TatCa.html'">Tiếp tục mua hàng</button>
+                <button class="continue-btn" onclick="window.location.href='SanPham-TatCa'">Tiếp tục mua hàng</button>
             </div>
         </div>
 
@@ -274,19 +275,25 @@
         <div class="order-summary">
             <h2>Đơn hàng của bạn</h2>
 
+            <c:forEach items="${finalCart.item}" var="p">
             <div class="product-item">
                 <div class="product-img">
-                    <img src="image/newProducts/banhhat.jpg" alt="Bánh hạt dinh dưỡng">
-                    <span class="product-qty">1</span>
+                    <img src="${p.product.imageURL}" alt="${p.product.productName}">
+                    <span class="product-qty">${p.quantity}</span>
                 </div>
                 <div class="product-infor">
-                    <p class="product-name">Bánh hạt dinh dưỡng 30 x 15 g</p>
+                    <p class="product-name">${p.product.productName}</p>
                 </div>
-                <div class="product-price">219.000đ</div>
+                <div class="product-price">
+                    <fmt:formatNumber value="${p.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                </div>
             </div>
+            </c:forEach>
             <div class="summary-line">
                 <span>Tạm tính</span>
-                <span>219.000đ</span>
+                <span>
+                    <fmt:formatNumber value="${finalCart.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                </span>
             </div>
 
             <div class="summary-line">
@@ -301,46 +308,13 @@
                     <strong>Tổng cộng</strong>
                     <small>VND</small>
                 </div>
-                <strong class="total-price">239.000đ</strong>
+                <strong class="total-price">
+                    <fmt:formatNumber value="${finalCart.total + 20000}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                </strong>
             </div>
 
         </div>
     </div>
-
-
-    <!--Xử lí import tỉnh/ thành phố, quận/ huyện-->
-    <script>
-        const provinceSelect = document.getElementById('province');
-        const districtSelect = document.getElementById('district');
-
-        // Load tỉnh/thành
-        fetch("https://provinces.open-api.vn/api/p/")
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(p => {
-                    const opt = document.createElement("option");
-                    opt.value = p.code;
-                    opt.textContent = p.name;
-                    provinceSelect.appendChild(opt);
-                });
-            });
-
-        // Khi chọn tỉnh thì load huyện
-        provinceSelect.addEventListener("change", function () {
-            districtSelect.innerHTML = '<option value="">Quận/ huyện</option>';
-
-            fetch(`https://provinces.open-api.vn/api/p/${this.value}?depth=2`)
-                .then(res => res.json())
-                .then(data => {
-                    data.districts.forEach(d => {
-                        const opt = document.createElement("option");
-                        opt.value = d.code;
-                        opt.textContent = d.name;
-                        districtSelect.appendChild(opt);
-                    });
-                });
-        });
-    </script>
 
 </body>
 
