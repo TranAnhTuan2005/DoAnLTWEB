@@ -12,4 +12,19 @@ public class DeliveryMethodDao extends BaseDao{
         return getJdbi().withHandle(handle ->
                 handle.createQuery(sql).mapToBean(DeliveryMethods.class).list());
     }
+
+    public double getShippingPriceById(int id) {
+        String sql = "SELECT price FROM deliverymethods WHERE id = ?";
+        try {
+            return getJdbi().withHandle(handle ->
+                    handle.createQuery(sql).bind(0, id).mapTo(Double.class)
+                            .findOne()
+                            .orElse(0.0)
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
 }

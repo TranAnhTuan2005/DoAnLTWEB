@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.Cart.Cart;
+import vn.edu.nlu.fit.dao.DeliveryMethodDao;
 
 import java.io.IOException;
 import java.util.Random;
@@ -22,7 +23,16 @@ public class OrderController extends HttpServlet {
 
         //lấy pttt và ptvc
         String paymentId = request.getParameter("paymentId");
-        String deliveryId = request.getParameter("shippingId");
+        String deliveryId = request.getParameter("delivery");
+
+        int shipId = Integer.parseInt(deliveryId);
+
+        // Gọi DAO để lấy giá tiền chính xác từ DB
+        DeliveryMethodDao deliveryDao = new DeliveryMethodDao();
+        double shippingFee = deliveryDao.getShippingPriceById(shipId);
+
+        // Tính tổng tiền cuối cùng
+        double finalTotal = cart.getTotal() + shippingFee;
 
         // lấy từ hàm dopost đã vết bên checkoutcontroller
         String name = (String) session.getAttribute("order_name");
@@ -43,6 +53,9 @@ public class OrderController extends HttpServlet {
 
         //gửi giỏ hàng sang request để jsp hiển thị lần cuối
         request.setAttribute("finalCart", cart);
+        //gửi qua dathangthnagcong
+        request.setAttribute("shippingFee", shippingFee);
+        request.setAttribute("totalMoney", finalTotal);
         //mua xong xóa đi
         session.removeAttribute("cart");
 

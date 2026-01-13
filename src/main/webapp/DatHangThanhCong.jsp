@@ -298,7 +298,9 @@
 
             <div class="summary-line">
                 <span>Phí vận chuyển</span>
-                <span>20.000đ</span>
+                <span>
+                    <span><fmt:formatNumber value="${shippingFee}" type="currency" currencySymbol="đ" maxFractionDigits="0"/></span>
+                </span>
             </div>
 
             <hr>
@@ -309,7 +311,7 @@
                     <small>VND</small>
                 </div>
                 <strong class="total-price">
-                    <fmt:formatNumber value="${finalCart.total + 20000}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                    <fmt:formatNumber value="${totalMoney}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
                 </strong>
             </div>
 
