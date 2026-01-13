@@ -36,7 +36,7 @@ public class RegisterController extends HttpServlet {
             request.getSession().setAttribute("user", user);
 
         // quay về trang chủ
-            response.sendRedirect(request.getContextPath() + "/TrangChu.jsp");
+            response.sendRedirect(request.getContextPath() + "/TrangChu");
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());

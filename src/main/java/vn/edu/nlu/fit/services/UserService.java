@@ -91,12 +91,28 @@ public class UserService {
     }
 
     public void resetPasswordByToken(String token, String newPassword) {
+        // check token
         Users user = userDAO.findByResetToken(token);
         if (user == null) {
             throw new IllegalArgumentException("Token không hợp lệ hoặc đã hết hạn");
         }
-        // hash mật khẩu mới
+
+        // check mật khẩu trống
+        if (newPassword == null || newPassword.isEmpty()) {
+            throw new IllegalArgumentException("Vui lòng nhập mật khẩu mới");
+        }
+
+        // check mật khẩu mạnh
+        if (!newPassword.matches(password_regrex)) {
+            throw new IllegalArgumentException(
+                    "Mật khẩu phải ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt"
+            );
+        }
+
+        // hash mật khẩu
         String hashedPassword = HashMD5.md5(newPassword);
+
+        // cập nhật mật khẩu
         userDAO.updatePasswordByToken(token, hashedPassword);
         // xoá token sau khi dùng
         userDAO.clearResetToken(token);

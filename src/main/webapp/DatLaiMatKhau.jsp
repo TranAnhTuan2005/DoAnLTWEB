@@ -24,8 +24,12 @@
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 14px;
         }
 
         button {
@@ -63,6 +67,11 @@
         <input type="password"
                name="password"
                placeholder="Mật khẩu mới"
+               required>
+
+        <input type="password"
+               name="confirmPassword"
+               placeholder="Nhập lại mật khẩu mới"
                required>
 
         <small>

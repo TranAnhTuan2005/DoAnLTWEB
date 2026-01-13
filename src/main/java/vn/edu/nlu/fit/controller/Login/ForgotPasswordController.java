@@ -15,7 +15,7 @@ public class ForgotPasswordController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("QuenMatKhau.jsp").forward(request, response);
+        request.getRequestDispatcher("QuenMatKhau.jsp").forward(request, response);//hiern thị form nhập email
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ForgotPasswordController extends HttpServlet {
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
         }
-        request.getRequestDispatcher("QuenMatKhau.jsp").forward(request, response);
+        request.getRequestDispatcher("/QuenMatKhau.jsp").forward(request, response);
 
 
     }
