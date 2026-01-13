@@ -32,6 +32,6 @@ public class ResetPasswordController extends HttpServlet {
         String newPassword = request.getParameter("password");
 
         userService.resetPasswordByToken(token, newPassword);
-        response.sendRedirect("TrangChu.jsp");
+        response.sendRedirect("/TrangChu");
     }
 }

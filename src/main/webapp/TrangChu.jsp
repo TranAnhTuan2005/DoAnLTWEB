@@ -33,7 +33,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu-daDNTK.html">
+            <a href="<c:url value='/TrangChu'/>">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -53,8 +53,8 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu-daDNTK.html">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
                     <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
@@ -116,7 +116,7 @@
 
 
                 <c:otherwise>
-                    <a href="<c:url value='/TrangDangNhapTK.jsp'/>"
+                    <a href="<c:url value='/DangNhapTaiKhoan'/>"
                        class="account-btn" aria-label="Tài khoản">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                              xmlns="http://www.w3.org/2000/svg">

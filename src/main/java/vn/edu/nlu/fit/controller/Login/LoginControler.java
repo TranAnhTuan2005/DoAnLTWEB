@@ -8,14 +8,14 @@ import vn.edu.nlu.fit.services.UserService;
 
 import java.io.IOException;
 
-@WebServlet(name = "LoginControler", value = "/Trangchu-login")
+@WebServlet(name = "LoginControler", value = "/DangNhapTaiKhoan")
 public class LoginControler extends HttpServlet {
     private UserService userService = new UserService();
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
+        request.getRequestDispatcher("/TrangDangNhapTK.jsp").forward(request, response);
     }
 
     //    @Override

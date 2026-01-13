@@ -29,7 +29,7 @@ public class ForgotPasswordController extends HttpServlet {
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
         }
-        request.getRequestDispatcher("QuenMatKhau.jsp").forward(request, response);
+        request.getRequestDispatcher("/QuenMatKhau").forward(request, response);
 
 
     }
