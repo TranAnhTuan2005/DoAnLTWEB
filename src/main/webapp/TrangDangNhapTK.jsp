@@ -175,14 +175,14 @@
 </head>
 <body>
 <div class="login-container">
-    <a href="TrangChu.jsp" class="close-btn" title="Đóng">&times;</a>
+    <a href="<c:url value='/TrangChu'/>" class="close-btn" title="Đóng">&times;</a>
 
     <div class="login-header">
         <h2>Đăng Nhập Tài Khoản</h2>
         <p>Nhập Email và mật khẩu của bạn</p>
     </div>
 
-    <form action="<c:url value='/Trangchu-login'/>" method="post" class="login-form">
+    <form action="<c:url value='/DangNhapTaiKhoan'/>" method="post" class="login-form">
 
     <c:if test="${not empty error}">
             <div class="error-message">
@@ -211,8 +211,8 @@
         <div class="divider"></div>
 
         <div class="login-links">
-            <a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a>
-            <a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a>
+            <a href="<c:url value='/TaoTaiKhoan'/>">Khách hàng mới? Tạo tài khoản</a>
+            <a href="<c:url value='/QuenMatKhau'/>">Quên mật khẩu? Khôi phục mật khẩu</a>
         </div>
     </form>
 </div>
