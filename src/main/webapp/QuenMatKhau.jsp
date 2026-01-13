@@ -61,7 +61,7 @@
 
         <h2>Khôi phục mật khẩu</h2>
 
-        <!-- hiển thị lỗi tk ko tồn tại -->
+        <!-- hiển thị lỗi tk eamil ko tồn tại -->
         <c:if test="${not empty error}">
             <div class="alert alert-danger">${error}</div>
         </c:if>
@@ -77,27 +77,6 @@
             </form>
         </c:if>
 
-        <!-- nhập mk mới  -->
-        <c:if test="${step == 'reset'}">
-            <form action="<c:url value='/QuenMatKhau'/>" method="post">
-
-                <!-- giữ username để submit tiếp -->
-                <input type="hidden" name="username" value="${username}">
-
-                <input type="password" name="newPassword"
-                       placeholder="Nhập mật khẩu mới" required>
-
-                <small>
-                    Mật khẩu ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt
-                </small>
-
-                <button type="submit">Đặt lại mật khẩu</button>
-
-                <p>
-                    <a href="TrangChu.jsp">Quay lại đăng nhập</a>
-                </p>
-            </form>
-        </c:if>
 
         <!--thông báo thành công -->
         <c:if test="${not empty success}">

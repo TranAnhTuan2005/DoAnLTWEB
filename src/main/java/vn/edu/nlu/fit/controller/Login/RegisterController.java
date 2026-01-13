@@ -40,7 +40,7 @@ public class RegisterController extends HttpServlet {
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/TaoTaiKhoan")
+            request.getRequestDispatcher("/TaoTaiKhoan.jsp")
                     .forward(request, response);
         }
     }
