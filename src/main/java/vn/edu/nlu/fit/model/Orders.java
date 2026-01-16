@@ -1,11 +1,13 @@
 package vn.edu.nlu.fit.model;
 
+import java.time.LocalDateTime;
+
 public class Orders {
     private int id;
     private double total;
-    private Date orderDate;
+    private LocalDateTime orderDate;
     private String orderAddress;
-    private int orderStatus;
+    private String  orderStatus;
     private int userID;
     private int deliveryMethodID;
     private int discountID;
@@ -14,7 +16,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(int discountID, int deliveryMethodID, int userID, int orderStatus, String orderAddress, Date orderDate, double total, int id) {
+    public Orders(int discountID, int deliveryMethodID, int userID, String  orderStatus, String orderAddress, LocalDateTime  orderDate, double total, int id) {
         this.discountID = discountID;
         this.deliveryMethodID = deliveryMethodID;
         this.userID = userID;
@@ -41,11 +43,11 @@ public class Orders {
         this.total = total;
     }
 
-    public Date getOrderDate() {
+    public LocalDateTime  getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDateTime  orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -57,11 +59,11 @@ public class Orders {
         this.orderAddress = orderAddress;
     }
 
-    public int isOrderStatus() {
+    public String  getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(int orderStatus) {
+    public void setOrderStatus(String  orderStatus) {
         this.orderStatus = orderStatus;
     }
 

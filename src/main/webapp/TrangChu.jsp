@@ -108,7 +108,7 @@
                                 Xin chào, <strong>${sessionScope.user.fullName}</strong>
                             </p>
                             <hr>
-                            <a href="#" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
                             <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
                         </div>
                     </div>

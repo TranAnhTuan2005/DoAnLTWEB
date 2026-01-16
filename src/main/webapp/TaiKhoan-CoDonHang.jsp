@@ -363,9 +363,9 @@
                     <div class="AccountContent">
                         <div class="AccountList">
                             <ul class="list-unstyled">
-                                <li class="current"><a href="TaiKhoan.jsp">Thông tin tài khoản</a></li>
+                                <li class="current"><a href="<c:url value='/TaiKhoanCuaBan'/>">Thông tin tài khoản</a></li>
                                 <li><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
-                                <li class="last"><a href="TrangChu.jsp">Đăng xuất</a></li>
+                                <li class="last"><a href="<c:url value='/DangXuat'/>">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -380,14 +380,14 @@
             <div class="col-xs-12" id="customer_sidebar">
                 <p class="title-detail">Thông tin tài khoản</p>
 
-                <p class="name_account"><span>Họ tên: </span>Nguyễn Văn C</p>
+                <p class="name_account"><span>Họ tên: </span>${sessionScope.user.fullName}</p>
 
-                <p class="email "><span>Email: </span>abcd@gmail.com</p>
+                <p class="email "><span>Email: </span>${sessionScope.user.email}</p>
                 <div class="address ">
 
-                    <p><span>Địa chỉ: </span></p>
+                    <p><span>Địa chỉ: </span>${sessionScope.user.userAddress}</p>
 
-                    <p><span>SĐT: </span></p>
+                    <p><span>SĐT: </span>${sessionScope.user.phoneNumber}</p>
 
                     <div class="account-address-box">
                         <label class="address-label">Địa chỉ giao hàng</label>
@@ -423,27 +423,18 @@
                                 </thead>
                                 <tbody>
                                 <!-- demo dữ liệu -->
+                                <c:forEach var="o" items="${orders}">
                                 <tr>
-                                    <td>#103642</td>
-                                    <td>12/11/2025</td>
-                                    <td>139,000đ</td>
-                                    <td>Chờ xử lý</td>
-                                    <td>Chưa giao hàng</td>
+                                    <td>#${o.id}</td>
+                                    <td>${o.orderDate}</td>
+                                    <td>${o.total} đ</td>
+                                    <td>${o.orderStatus}</td>
+                                    <td>Đang xử lý</td>
                                 </tr>
-                                <tr>
-                                    <td>#103521</td>
-                                    <td>05/11/2025</td>
-                                    <td>249,000đ</td>
-                                    <td>Đã thanh toán</td>
-                                    <td>Đang giao</td>
-                                </tr>
-                                <tr>
-                                    <td>#103488</td>
-                                    <td>30/10/2025</td>
-                                    <td>89,000đ</td>
-                                    <td>Thanh toán khi nhận</td>
-                                    <td>Đã giao</td>
-                                </tr>
+                                </c:forEach>
+
+
+
                                 </tbody>
                             </table>
                         </div>
