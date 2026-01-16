@@ -295,7 +295,8 @@
                 <c:forEach items="${listDeliveryMethods}" var="ship" varStatus="status">
                 <label class="method-item">
                     <div style="display: flex; align-items: center; gap: 10px;">
-                    <input type="radio" name="delivery" value="${ship.id}" ${status.first ? 'checked' : ''}>
+                    <input type="radio" name="delivery" value="${ship.id}"
+                           data-price="${ship.price}" onchange="updateTotal(this)"  ${status.first ? 'checked' : ''}>
                     <span>${ship.methodName}</span>
                     </div>
                     <strong id="delivery-price">
@@ -366,7 +367,7 @@
 
             <div class="summary-line">
                 <span>Phí vận chuyển</span>
-                <span>20.000đ</span>
+                <span id="ship-fee-display">20.000đ</span>
             </div>
 
             <hr>
@@ -376,7 +377,7 @@
                     <strong>Tổng cộng</strong>
                     <small>VND</small>
                 </div>
-                <strong class="total-price">
+                <strong class="total-price" id="total-price-display">
                     <fmt:formatNumber value="${sessionScope.cart.total + 20000}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
                 </strong>
             </div>
@@ -385,6 +386,32 @@
     </div>
 
 </body>
+
+<script>
+    const cartTotal = ${sessionScope.cart.total};
+
+    // Hàm chạy khi click chọn ship
+    function updateTotal(radioInput) {
+        // lấy giá ship từ cái thẻ vừa bấm
+        const shippingFee = parseFloat(radioInput.getAttribute('data-price'));
+
+        // tính tổng mới
+        const finalTotal = cartTotal + shippingFee;
+
+        document.getElementById('ship-fee-display').innerText = formatVND(shippingFee);
+        document.getElementById('total-price-display').innerText = formatVND(finalTotal);
+    }
+
+    // Hàm format
+    function formatVND(amount) {
+        return amount.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace('₫', 'đ');
+    }
+
+    window.onload = function() {
+        const checkedRadio = document.querySelector('input[name="delivery"]:checked');
+        if(checkedRadio) updateTotal(checkedRadio);
+    }
+</script>
 
 
 </html>
