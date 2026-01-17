@@ -315,7 +315,7 @@
 
                 <c:forEach items="${listPaymentMethods}" var="pay" varStatus="status">
                 <label class="pay-card">
-                    <input type="radio" name="payment" value="${pay.id}" ${status.index == 0 ? 'checked' : ''} checked>
+                    <input type="radio" name="paymentId" value="${pay.id}" ${status.index == 0 ? 'checked' : ''}>
                     <img src="${pay.iconUrl}" class="icon" alt="${pay.methodName}">
                     <span>${pay.methodName}</span>
                 </label>

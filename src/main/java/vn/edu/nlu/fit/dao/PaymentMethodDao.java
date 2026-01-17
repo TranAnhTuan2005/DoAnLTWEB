@@ -5,7 +5,8 @@ import vn.edu.nlu.fit.model.PaymentMethods;
 import java.util.List;
 public class PaymentMethodDao {
 
-    public List<PaymentMethods> getAllPaymentMethods() {
+    //Viết lại JDBI dùng chung cho cả class
+    public Jdbi getJdbi() {
         String host = DBProperties.getDbHost();
         String port = DBProperties.getDbPort();
         String dbName = DBProperties.getDbName();
@@ -21,11 +22,26 @@ public class PaymentMethodDao {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Chưa nạp driver", e);
         }
+        return Jdbi.create(url, username, password);
+    }
 
-        Jdbi jdbi = Jdbi.create(url, username, password);
-    String sql = "SELECT id, method_name as methodName, is_actived as isActived, iconURL as iconUrl FROM paymentmethods WHERE is_actived = 1";
+    public List<PaymentMethods> getAllPaymentMethods() {
+        String sql = "SELECT id, method_name as methodName, is_actived as isActived, iconURL as iconUrl FROM paymentmethods WHERE is_actived = 1";
 
-        return jdbi.withHandle(handle ->
+        return getJdbi().withHandle(handle ->
                 handle.createQuery(sql).mapToBean(PaymentMethods.class).list());
+    }
+
+    public String getPaymentMehthodNameById(int id) {
+        String sql = "SELECT method_name FROM paymentmethods WHERE id = ?";
+        try{
+            return  getJdbi().withHandle(handle ->
+                    handle.createQuery(sql).bind(0,id).mapTo(String.class)
+                            .findOne().orElse("Ko xac dinh"));
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return "Loi lay du lieu";
+        }
     }
 }

@@ -72,7 +72,7 @@
                 <input type="email" name="email" placeholder="Nhập email của bạn" required>
                 <button type="submit">Khôi phục</button>
                 <p>
-                    <a href="TrangChu.jsp">Bạn đã nhớ mật khẩu? Quay lại đăng nhập</a>
+                    <a href="<c:url value='/TrangChu'/>">Bạn đã nhớ mật khẩu? Quay lại đăng nhập</a>
                 </p>
             </form>
         </c:if>

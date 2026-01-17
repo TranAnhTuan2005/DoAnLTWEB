@@ -5,6 +5,10 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.Cart.Cart;
 import vn.edu.nlu.fit.dao.DeliveryMethodDao;
+import vn.edu.nlu.fit.dao.OrdersDAO;
+import vn.edu.nlu.fit.dao.OrdersDAO;
+import vn.edu.nlu.fit.dao.PaymentMethodDao;
+import vn.edu.nlu.fit.model.Users;
 
 import java.io.IOException;
 import java.util.Random;
@@ -13,13 +17,19 @@ import java.util.Random;
 public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.sendRedirect("GioHang.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+
+        //kiểm giỏ trc khi đi
+        if (cart == null || cart.getTotalQuantity() == 0) {
+            response.sendRedirect("GioHang.jsp");
+            return;
+        }
 
         //lấy pttt và ptvc
         String paymentId = request.getParameter("paymentId");
@@ -40,26 +50,46 @@ public class OrderController extends HttpServlet {
         String address = (String) session.getAttribute("order_address");
         String email = (String) session.getAttribute("order_email");
 
-        //guwirr dl đi
-        request.setAttribute("customerName", name);
-        request.setAttribute("customerPhone", phone);
-        request.setAttribute("customerEmail", email);
-        request.setAttribute("customerAddress", address);
+        // Kiểm tra lưu user trong session tên là "auth" hay "user"
+        Users user = (Users) session.getAttribute("auth");
+        Integer userId = (user != null) ? user.getId() : null;
 
-        //tạm thời xài mã random
-        Random rand = new Random();
-        int orderId = 100000 + rand.nextInt(900000);
-        request.setAttribute("orderId", "#" + orderId);
+        OrdersDAO orderDAO = new OrdersDAO();
+        int orderId = orderDAO.createOrder(name, phone, email, address,
+                Integer.parseInt(deliveryId), Integer.parseInt(paymentId), finalTotal, userId, cart);
 
-        //gửi giỏ hàng sang request để jsp hiển thị lần cuối
-        request.setAttribute("finalCart", cart);
-        //gửi qua dathangthnagcong
-        request.setAttribute("shippingFee", shippingFee);
-        request.setAttribute("totalMoney", finalTotal);
-        //mua xong xóa đi
-        session.removeAttribute("cart");
+        if (orderId != -1) {
+            PaymentMethodDao paymentDao = new PaymentMethodDao();
+            String paymentName = paymentDao.getPaymentMehthodNameById(Integer.parseInt(paymentId));
 
-        //chuyển trang
-        request.getRequestDispatcher("DatHangThanhCong.jsp").forward(request, response);
+
+            //guwirr dl đi
+            request.setAttribute("orderId", "#" + orderId);
+            request.setAttribute("customerName", name);
+            request.setAttribute("customerPhone", phone);
+            request.setAttribute("customerEmail", email);
+            request.setAttribute("customerAddress", address);
+
+
+            //gửi giỏ hàng sang request để jsp hiển thị lần cuối
+            request.setAttribute("finalCart", cart);
+            //gửi qua dathangthnagcong
+            request.setAttribute("shippingFee", shippingFee);
+            request.setAttribute("totalMoney", finalTotal);
+
+            //pttt
+            request.setAttribute("paymentMethodName", paymentName);
+            //mua xong xóa đi
+            session.removeAttribute("cart");
+            session.removeAttribute("order_name");
+            session.removeAttribute("order_phone");
+            session.removeAttribute("order_address");
+            session.removeAttribute("order_email");
+
+            //chuyển trang
+            request.getRequestDispatcher("DatHangThanhCong.jsp").forward(request, response);
+        } else {
+            response.getWriter().println("Lỗi hệ thống! Không thể tạo đơn hàng.");
+        }
     }
 }
