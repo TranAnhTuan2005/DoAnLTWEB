@@ -5,7 +5,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.Cart.Cart;
 import vn.edu.nlu.fit.dao.DeliveryMethodDao;
-import vn.edu.nlu.fit.dao.OrderDAO;
+import vn.edu.nlu.fit.dao.OrdersDAO;
+import vn.edu.nlu.fit.dao.OrdersDAO;
 import vn.edu.nlu.fit.dao.PaymentMethodDao;
 import vn.edu.nlu.fit.model.Users;
 
@@ -53,7 +54,7 @@ public class OrderController extends HttpServlet {
         Users user = (Users) session.getAttribute("auth");
         Integer userId = (user != null) ? user.getId() : null;
 
-        OrderDAO orderDAO = new OrderDAO();
+        OrdersDAO orderDAO = new OrdersDAO();
         int orderId = orderDAO.createOrder(name, phone, email, address,
                 Integer.parseInt(deliveryId), Integer.parseInt(paymentId), finalTotal, userId, cart);
 
