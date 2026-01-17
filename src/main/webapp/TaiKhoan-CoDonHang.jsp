@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -11,7 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-
 
 
     /* Khối bao của trang phần body */
@@ -163,9 +164,8 @@
     }
 
 
-
     /* ====== Đơn hàng của bạn ====== */
-    .orders-title{
+    .orders-title {
         font-size: 15px;
         font-weight: 700;
         text-transform: uppercase;
@@ -176,33 +176,33 @@
         letter-spacing: .4px;
     }
 
-    .orders-table{
+    .orders-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        background:#fff;
+        background: #fff;
         border: 1px solid #eee;
     }
 
-    .orders-table thead th{
+    .orders-table thead th {
         font-size: 14px;
         font-weight: 700;
-        color:#333;
-        background:#fafafa;
+        color: #333;
+        background: #fafafa;
         padding: 12px 14px;
         border-bottom: 1px solid #eee;
         white-space: nowrap;
     }
 
-    .orders-table tbody td{
+    .orders-table tbody td {
         padding: 12px 14px;
         border-top: 1px solid #f2f2f2;
-        color:#555;
+        color: #555;
         vertical-align: middle;
     }
 
-    .orders-table tbody tr:hover{
-        background:#fcfcfc;
+    .orders-table tbody tr:hover {
+        background: #fcfcfc;
     }
 
 
@@ -228,7 +228,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.jsp">
+            <a href="<c:url value='/TrangChu'/>">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -248,10 +248,10 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
@@ -279,67 +279,73 @@
 
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
-            <a href="#" class="account-btn" aria-label="Tài khoản">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
-                            fill="#333"/>
-                </svg>
-            </a>
-            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+            <c:choose>
+
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="javascript:void(0)" class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+
+                    <div id="accountMenu" class="account-menu">
+                        <div class="account-menu_arrow"></div>
+                        <div class="account-menu_inner">
+                            <p class="account-menu_hello">
+                                Xin chào, <strong>${sessionScope.user.fullName}</strong>
+                            </p>
+                            <hr>
+                            <a href="#" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
+                        </div>
+                    </div>
+                </c:when>
+
+
+                <c:otherwise>
+                    <a href="<c:url value='/DangNhapTaiKhoan'/>"
+                       class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+                </c:otherwise>
+
+            </c:choose>
+
+            <!-- CART -->
+            <a href="<c:url value='/GioHang'/>" class="cart-btn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
+                     a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
             </a>
+
         </div>
+
     </div>
 
 </header>
-
-
-<!-- Modal cho Giỏ hàng -->
-<div id="cart-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Giỏ Hàng</h2>
-        <p>Hiện chưa có sản phẩm</p>
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-        </svg>
-
-        <p>Tổng tiền: 0đ</p>
-        <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal cho Đăng nhập Tài khoản -->
-<div id="account-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a
-                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
-                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-            <button type="submit">Đăng Nhập</button>
-            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
-        </form>
-    </div>
-</div>
 
 
 <!--Body trang tài khoản của banj-->
@@ -357,9 +363,9 @@
                     <div class="AccountContent">
                         <div class="AccountList">
                             <ul class="list-unstyled">
-                                <li class="current"><a href="TaiKhoan.html">Thông tin tài khoản</a></li>
+                                <li class="current"><a href="<c:url value='/TaiKhoanCuaBan'/>">Thông tin tài khoản</a></li>
                                 <li><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
-                                <li class="last"><a href="TrangChu.jsp">Đăng xuất</a></li>
+                                <li class="last"><a href="<c:url value='/DangXuat'/>">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -374,14 +380,14 @@
             <div class="col-xs-12" id="customer_sidebar">
                 <p class="title-detail">Thông tin tài khoản</p>
 
-                <p class="name_account"><span>Họ tên: </span>Nguyễn Văn C</p>
+                <p class="name_account"><span>Họ tên: </span>${sessionScope.user.fullName}</p>
 
-                <p class="email "><span>Email: </span>abcd@gmail.com</p>
+                <p class="email "><span>Email: </span>${sessionScope.user.email}</p>
                 <div class="address ">
 
-                    <p><span>Địa chỉ: </span></p>
+                    <p><span>Địa chỉ: </span>${sessionScope.user.userAddress}</p>
 
-                    <p><span>SĐT: </span></p>
+                    <p><span>SĐT: </span>${sessionScope.user.phoneNumber}</p>
 
                     <div class="account-address-box">
                         <label class="address-label">Địa chỉ giao hàng</label>
@@ -417,31 +423,22 @@
                                 </thead>
                                 <tbody>
                                 <!-- demo dữ liệu -->
+                                <c:forEach var="o" items="${orders}">
                                 <tr>
-                                    <td>#103642</td>
-                                    <td>12/11/2025</td>
-                                    <td>139,000đ</td>
-                                    <td>Chờ xử lý</td>
-                                    <td>Chưa giao hàng</td>
+                                    <td>#${o.id}</td>
+                                    <td>${o.orderDate}</td>
+                                    <td>${o.total} đ</td>
+                                    <td>${o.orderStatus}</td>
+                                    <td>Đang xử lý</td>
                                 </tr>
-                                <tr>
-                                    <td>#103521</td>
-                                    <td>05/11/2025</td>
-                                    <td>249,000đ</td>
-                                    <td>Đã thanh toán</td>
-                                    <td>Đang giao</td>
-                                </tr>
-                                <tr>
-                                    <td>#103488</td>
-                                    <td>30/10/2025</td>
-                                    <td>89,000đ</td>
-                                    <td>Thanh toán khi nhận</td>
-                                    <td>Đã giao</td>
-                                </tr>
+                                </c:forEach>
+
+
+
                                 </tbody>
                             </table>
                         </div>
-                    <!---->
+                        <!---->
                     </div>
                 </div>
             </div>

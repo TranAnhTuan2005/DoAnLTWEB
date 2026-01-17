@@ -1,21 +1,23 @@
 package vn.edu.nlu.fit.model;
 
+import java.time.LocalDateTime;
+
 public class Orders {
     private int id;
     private String fullName;
     private String phone;
     private String email;
     private double total;
-    private Date orderDate;
+    private LocalDateTime orderDate;
     private String orderAddress;
-    private int orderStatus;
+    private int  orderStatus;
     private int userID;
     private int deliveryMethodID;
     private int paymentMethodID;
     private int discountID;
 
 
-    public Orders(int id, String fullName, double total, String email, String phone, Date orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, int paymentMethodID, int discountID) {
+    public Orders(int id, String fullName, double total, String email, String phone, LocalDateTime orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, int paymentMethodID, int discountID) {
         this.id = id;
         this.fullName = fullName;
         this.total = total;
@@ -34,7 +36,6 @@ public class Orders {
     }
 
 
-
     public int getId() {
         return id;
     }
@@ -51,11 +52,11 @@ public class Orders {
         this.total = total;
     }
 
-    public Date getOrderDate() {
+    public LocalDateTime  getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDateTime  orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -67,11 +68,11 @@ public class Orders {
         this.orderAddress = orderAddress;
     }
 
-    public int isOrderStatus() {
+    public int  getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(int orderStatus) {
+    public void setOrderStatus(int  orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -125,10 +126,6 @@ public class Orders {
 
     public void setPaymentMethodID(int paymentMethodID) {
         this.paymentMethodID = paymentMethodID;
-    }
-
-    public int getOrderStatus() {
-        return orderStatus;
     }
 
     public void setDiscountID(int discountID) {
