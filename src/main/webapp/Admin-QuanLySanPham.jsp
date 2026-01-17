@@ -433,8 +433,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategoryManage">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProductManage">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -495,7 +495,7 @@
         <section class="dashboard">
             <div class="border-dashboard">
                 <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLySanPham-TaoMoi.html'">+Tạo
+                    <button class="new-post" onclick="window.location.href='${pageContext.request.contextPath}/AdminProductCreate'">+Tạo
                         mới</button>
                 </div>
                 <ul class="cate">
@@ -517,8 +517,14 @@
                     <li class="cate-item">${p.priceFormat}</li>
                     <li class="cate-item">${p.quantity}</li>
                     <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
+                        <a href="${pageContext.request.contextPath}/AdminProductEdit?id=${p.id}">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/AdminProductDelete?id=${p.id}"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');"
+                           style="text-decoration: none;">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
                     </li>
                 </ul>
                 </c:forEach>

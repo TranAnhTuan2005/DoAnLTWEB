@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.dao.AdminCategoryDAO;
 import vn.edu.nlu.fit.model.Categories;
+import vn.edu.nlu.fit.services.AdminCategoryService;
 
 import java.io.IOException;
 
@@ -15,8 +16,8 @@ public class AdminCategoryEdit extends HttpServlet {
         String idStr = request.getParameter("id");
         int id = Integer.parseInt(idStr);
 
-        AdminCategoryDAO dao = new AdminCategoryDAO();
-        Categories c = dao.getCategoryById(id);
+        AdminCategoryService service = new AdminCategoryService();
+        Categories c = service.getCategoryById(id);
 
         request.setAttribute("cate", c);
 
@@ -31,8 +32,8 @@ public class AdminCategoryEdit extends HttpServlet {
         String name = request.getParameter("categoryName");
         int status = Integer.parseInt(request.getParameter("status"));
 
-        AdminCategoryDAO dao = new AdminCategoryDAO();
-        dao.updateCategory(id, name, status);
+        AdminCategoryService service = new AdminCategoryService();
+        service.update(id, name, status);
 
         response.sendRedirect(request.getContextPath() + "/AdminCategory");
     }

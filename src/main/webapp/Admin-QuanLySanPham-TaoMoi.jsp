@@ -1,5 +1,5 @@
-<!--<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>-->
-<!--<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>-->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -451,7 +451,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -461,8 +461,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -516,51 +516,65 @@
             <span class="current">Tạo mới</span>
         </div>
 
-        <section class="post-editor">
-            <!-- CỘT TRÁI -->
-            <div class="post-left">
-                <label>Tên danh mục <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+        <section>
+            <form class="post-editor" action="${pageContext.request.contextPath}/AdminProductCreate" method="post">
+                <div class="post-left">
+                    <label>Tên sản phẩm <p class="compulsory">(*)</p></label>
+                    <input type="text" name="name" required style="width:100%; padding: 10px; margin: 8px 0;">
 
-                <div style="display: flex; gap: 20px;">
-                    <div style="flex:1;">
-                        <label>Danh mục</label>
-                        <select style="width:100%; padding: 10px; margin-top: 8px;">
-                            <option>Ngũ cốc</option>
-                            <option>Bánh dinh dưỡng</option>
-                            <option>Hạt dinh dưỡng</option>
-                            <option>Trà gạo lứt</option>
-                        </select>
+                    <label>Danh mục <p class="compulsory">(*)</p></label>
+                    <select name="categoryId"
+                            style="width:100%; padding: 10px; margin: 8px 0; background-color: #ffffff; color: #000000; border: 1px solid #ccc;">
+                        <option value="">-- Chọn danh mục --</option>
+                        <c:forEach items="${listCate}" var="c">
+                            <option value="${c.id}">${c.categoryName}</option>
+                        </c:forEach>
+                    </select>
+
+                    <label>Giá sản phẩm <p class="compulsory">(*)</p></label>
+                    <input type="number" name="price" required >
+
+                    <label>Số lượng sản phẩm <p class="compulsory">(*)</p></label>
+                    <input type="number" name="quantity" required >
+
+                    <label>Hạn sử dụng <p class="compulsory">(*)</p></label>
+                    <input type="text" name="expiry" >
+
+                    <label style="margin-top:15px; display:block;">Mô tả</label>
+                    <textarea name="description" ></textarea>
+
+                    <label style="margin-top:15px; display:block;">Thành phần</label>
+                    <textarea name="ingredient" ></textarea>
+
+                    <label style="margin-top:15px; display:block;">Hướng dẫn sử dụng</label>
+                    <textarea name="instruction" ></textarea>
+
+                    <label style="margin-top:15px; display:block;">Lưu ý</label>
+                    <textarea name="attention" ></textarea>
+
+                    <label style="margin-top:15px; display:block;">Tác dụng</label>
+                    <textarea name="uses" ></textarea>
+                </div>
+
+                <div class="post-right">
+                    <h3>Xuất bản</h3>
+                    <div class="btn-box">
+                        <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu</button>
+                        <button type="reset" class="btn-reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                    </div>
+
+                    <h3>Ảnh</h3>
+                    <div class="thumbnail-box">
+                        <input type="text" name="image" placeholder="Nhập link ảnh..." style="width:100%; padding:5px;">
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <a href="${pageContext.request.contextPath}/AdminProduct" style="text-decoration: none; color: gray;">
+                            <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                        </a>
                     </div>
                 </div>
-
-                <label>Giá sản phẩm </label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
-
-                <label>Số lượng sản phẩm</label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
-
-                <label style="margin-top:15px; display:block;">Mô tả ngắn</label>
-                <textarea style="width:100%; height:120px; padding:10px;"></textarea>
-            </div>
-
-            <!-- CỘT PHẢI -->
-            <div class="post-right">
-                <h3>Xuất bản</h3>
-
-                <div class="btn-box">
-                    <button class="btn-save" onclick="window.location.href='Admin-QuanLySanPham.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
-                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
-                </div>
-
-                <h3>Ảnh</h3>
-                <div class="thumbnail-box">
-                    <input type="file" id="choose">
-                    <div class="thumbnail-preview">
-                        <i class="fa-regular fa-image" style="font-size:50px;"></i>
-                    </div>
-                </div>
-            </div>
+            </form>
         </section>
 
 

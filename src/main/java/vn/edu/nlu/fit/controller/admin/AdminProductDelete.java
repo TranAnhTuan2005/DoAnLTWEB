@@ -3,25 +3,20 @@ package vn.edu.nlu.fit.controller.admin;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.dao.AdminCategoryDAO;
-import vn.edu.nlu.fit.services.AdminCategoryService;
+import vn.edu.nlu.fit.services.AdminProductService;
 
 import java.io.IOException;
 
-@WebServlet(name = "AdminCategoryDelete", value = "/AdminCategoryDelete")
-public class AdminCategoryDelete extends HttpServlet {
+@WebServlet(name = "AdminProductDelete", value = "/AdminProductDelete")
+public class AdminProductDelete extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idStr = request.getParameter("id");
-
-        if (idStr != null) {
-            int id = Integer.parseInt(idStr);
-
-            AdminCategoryService service = new AdminCategoryService();
-            service.delete(id);
+        if(idStr != null) {
+            AdminProductService service = new AdminProductService();
+            service.delete(Integer.parseInt(idStr));
         }
-
-        response.sendRedirect(request.getContextPath() + "/AdminCategory");
+        response.sendRedirect(request.getContextPath() + "/AdminProduct");
     }
 
     @Override
