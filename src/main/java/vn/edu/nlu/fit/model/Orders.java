@@ -2,28 +2,38 @@ package vn.edu.nlu.fit.model;
 
 public class Orders {
     private int id;
+    private String fullName;
+    private String phone;
+    private String email;
     private double total;
     private Date orderDate;
     private String orderAddress;
     private int orderStatus;
     private int userID;
     private int deliveryMethodID;
+    private int paymentMethodID;
     private int discountID;
 
+
+    public Orders(int id, String fullName, double total, String email, String phone, Date orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, int paymentMethodID, int discountID) {
+        this.id = id;
+        this.fullName = fullName;
+        this.total = total;
+        this.email = email;
+        this.phone = phone;
+        this.orderDate = orderDate;
+        this.orderAddress = orderAddress;
+        this.orderStatus = orderStatus;
+        this.userID = userID;
+        this.deliveryMethodID = deliveryMethodID;
+        this.paymentMethodID = paymentMethodID;
+        this.discountID = discountID;
+    }
 
     public Orders() {
     }
 
-    public Orders(int discountID, int deliveryMethodID, int userID, int orderStatus, String orderAddress, Date orderDate, double total, int id) {
-        this.discountID = discountID;
-        this.deliveryMethodID = deliveryMethodID;
-        this.userID = userID;
-        this.orderStatus = orderStatus;
-        this.orderAddress = orderAddress;
-        this.orderDate = orderDate;
-        this.total = total;
-        this.id = id;
-    }
+
 
     public int getId() {
         return id;
@@ -85,20 +95,61 @@ public class Orders {
         return discountID;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPaymentMethodID() {
+        return paymentMethodID;
+    }
+
+    public void setPaymentMethodID(int paymentMethodID) {
+        this.paymentMethodID = paymentMethodID;
+    }
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
     public void setDiscountID(int discountID) {
         this.discountID = discountID;
     }
+
 
     @Override
     public String toString() {
         return "Orders{" +
                 "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", total=" + total +
                 ", orderDate=" + orderDate +
                 ", orderAddress='" + orderAddress + '\'' +
                 ", orderStatus=" + orderStatus +
                 ", userID=" + userID +
                 ", deliveryMethodID=" + deliveryMethodID +
+                ", paymentMethodID=" + paymentMethodID +
                 ", discountID=" + discountID +
                 '}';
     }

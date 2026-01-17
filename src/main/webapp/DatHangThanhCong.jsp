@@ -255,7 +255,7 @@
 
                 <div class="order-section">
                     <p class="section-title">Phương thức thanh toán</p>
-                    <p>Thanh toán khi giao hàng (COD)</p>
+                    <p>${paymentMethodName}</p>
                 </div>
             </div>
 
