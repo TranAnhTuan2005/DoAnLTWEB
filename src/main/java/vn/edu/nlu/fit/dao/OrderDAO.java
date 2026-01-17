@@ -4,9 +4,8 @@ import vn.edu.nlu.fit.model.Orders;
 
 import java.util.List;
 
-public class OrderDAO extends BaseDao {
-
-       //tìm user id tướng ứng vs  order_date hiện sp đã đặt
+public class OrderDAO extends BaseDao{
+    //tìm user id tướng ứng vs  order_date hiện sp đã đặt
     public List<Orders> findByUserId(int userId) {
         String sql = """
                     SELECT *
