@@ -445,7 +445,7 @@
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>

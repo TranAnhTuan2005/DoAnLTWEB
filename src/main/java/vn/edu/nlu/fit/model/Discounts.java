@@ -4,15 +4,17 @@ public class Discounts {
     private int id;
     private String discountName;
     private double percentDiscount;
+    private int quantity;
     private int discountStatus;
 
     public Discounts() {
     }
 
-    public Discounts(int id, String discountName, double percentDiscount, int discountStatus) {
+    public Discounts(int id, String discountName, double percentDiscount,int quantity, int discountStatus) {
         this.id = id;
         this.discountName = discountName;
         this.percentDiscount = percentDiscount;
+        this.quantity = quantity;
         this.discountStatus = discountStatus;
     }
 
@@ -48,12 +50,21 @@ public class Discounts {
         this.discountStatus = discountStatus;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Discounts{" +
                 "id=" + id +
                 ", discountName='" + discountName + '\'' +
                 ", percentDiscount=" + percentDiscount +
+                ", quantity=" + quantity +
                 ", discountStatus=" + discountStatus +
                 '}';
     }

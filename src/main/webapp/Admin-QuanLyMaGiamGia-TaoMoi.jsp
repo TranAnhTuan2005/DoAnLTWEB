@@ -451,7 +451,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -461,8 +461,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -473,7 +473,7 @@
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
-            <li> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -516,46 +516,42 @@
             <span class="current">Tạo mới</span>
         </div>
 
-        <section class="post-editor">
-            <!-- CỘT TRÁI -->
-            <div class="post-left">
-                <label>Mã giảm giá <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+        <section>
+            <form class="post-editor" action="${pageContext.request.contextPath}/AdminDiscountCreate" method="post">
+                <div class="post-left">
+                    <label>Tên mã giảm giá (*)</label>
+                    <input type="text" name="name" required>
 
-                <label>Mức giảm <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+                    <label>Mức giảm (%) (*)</label>
+                    <input type="number" step="0.1" name="percent" required>
 
-                <label>Điều kiện </label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+                    <label>Số lượng (*)</label>
+                    <input type="number" name="quantity" required>
 
-                <label>Giới hạn</label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
-
-                <label>Số lượng</label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
-
-                <div style="display: flex; gap: 20px;">
-                    <div style="flex:1;">
-                        <label>Trạng thái</label>
-                        <select style="width:100%; padding: 10px; margin-top: 8px;">
-                            <option style="color: limegreen">Còn hạn</option>
-                            <option style="color: red">Hết hạn</option>
-                        </select>
-                    </div>
+                    <label>Trạng thái</label>
+                    <select name="status">
+                        <option value="1">Hiển thị</option>
+                        <option value="0">Ẩn</option>
+                    </select>
                 </div>
-
-            </div>
 
             <!-- CỘT PHẢI -->
             <div class="post-right">
                 <h3>Xuất bản</h3>
 
                 <div class="btn-box">
-                    <button class="btn-save" onclick="window.location.href='Admin-QuanLyMaGiamGia.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
-                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+                    <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
+                    <button type="reset" class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <a href="${pageContext.request.contextPath}/AdminDiscount" style="text-decoration: none; color: gray;">
+                        <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                    </a>
                 </div>
 
             </div>
+            </form>
         </section>
 
 

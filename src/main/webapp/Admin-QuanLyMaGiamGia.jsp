@@ -370,7 +370,7 @@
     }
 
     .cate-item {
-        width: 160px;
+        width: 215px;
         text-align: center;
         font-weight: bold;
         overflow: hidden;
@@ -423,7 +423,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu" style="opacity: 0.6">
@@ -433,8 +433,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -445,7 +445,7 @@
             <hr>
             <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
             <hr>
-            <li> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.html">Mã giảm giá</a></li>
+            <li> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -495,34 +495,38 @@
         <section class="dashboard">
             <div class="border-dashboard">
                 <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLyMaGiamGia-TaoMoi.jsp'">+Tạo
+                    <button class="new-post" onclick="window.location.href='${pageContext.request.contextPath}/AdminDiscountCreate'">+Tạo
                         mới</button>
                 </div>
                 <ul class="cate">
                     <li class="cate-stt">STT</li>
                     <li class="cate-item">Mã giảm giá</li>
                     <li class="cate-item">Mức giảm</li>
-                    <li class="cate-item">Điều kiện</li>
-                    <li class="cate-item">Giới hạn</li>
                     <li class="cate-item">Số lượng</li>
                     <li class="cate-item">Trạng thái</li>
                     <li class="cate-item">Hành động</li>
                 </ul>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">1</li>
-                    <li class="cate-item">NGUCOCNGON</li>
-                    <li class="cate-item">10%</li>
-                    <li class="cate-item">Đơn > 300.000đ</li>
-                    <li class="cate-item">Tối đa 50k</li>
-                    <li class="cate-item">68</li>
-                    <li class="cate-item">Còn hạn</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
-
+                <c:forEach items="${listDiscount}" var="d" varStatus="loop">
+                    <ul class="cate thin">
+                        <li class="cate-stt">${loop.index + 1}</li>
+                        <li class="cate-item"><b>${d.discountName}</b></li>
+                        <li class="cate-item" style="color: red;">${d.percentDiscount}%</li>
+                        <li class="cate-item">${d.quantity}</li>
+                        <li class="cate-item">
+                                ${d.discountStatus == 1 ? '<span style="color:green">Hiển thị</span>' : '<span style="color:gray">Ẩn</span>'}
+                        </li>
+                        <li class="cate-item">
+                            <a href="${pageContext.request.contextPath}/AdminDiscountEdit?id=${d.id}">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="${pageContext.request.contextPath}/AdminDiscountDelete?id=${d.id}"
+                               onclick="return confirm('Xóa mã giảm giá này?');">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </c:forEach>
             </div>
         </section>
     </main>
