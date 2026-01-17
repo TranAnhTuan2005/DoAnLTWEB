@@ -8,8 +8,8 @@ import vn.edu.nlu.fit.services.AdminDashboardService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "DashboardController", value = "/DashboardController")
-public class DashboardController extends HttpServlet {
+@WebServlet(name = "AdminDashboard", value = "/AdminDashboard")
+public class AdminDashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AdminDashboardService service = new AdminDashboardService();

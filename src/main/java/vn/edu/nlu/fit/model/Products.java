@@ -10,7 +10,6 @@ public class Products implements Serializable { //dung javaBean
     private String productName;
     private double price;
     private String imageURL;
-    private double rating;
     private int productStatus;
     private int quantity;
     private String productDescription;
@@ -24,12 +23,11 @@ public class Products implements Serializable { //dung javaBean
     public Products() {
     }
 
-    public Products(int id, String productName, double price, String imageURL, double rating, int productStatus, int quantity, String productDescription, String productExpiryDate, String ingredient, String instruction, String attention, String uses) {
+    public Products(int id, String productName, double price, String imageURL, int productStatus, int quantity, String productDescription, String productExpiryDate, String ingredient, String instruction, String attention, String uses) {
         this.id = id;
         this.productName = productName;
         this.price = price;
         this.imageURL = imageURL;
-        this.rating = rating;
         this.productStatus = productStatus;
         this.quantity = quantity;
         this.productDescription = productDescription;
@@ -85,14 +83,6 @@ public class Products implements Serializable { //dung javaBean
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
     }
 
     public int getProductStatus() {
@@ -174,7 +164,6 @@ public class Products implements Serializable { //dung javaBean
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 ", imageURL='" + imageURL + '\'' +
-                ", rating=" + rating +
                 ", productStatus=" + productStatus +
                 ", quantity=" + quantity +
                 ", productDescription='" + productDescription + '\'' +

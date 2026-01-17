@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.services;
 
 import vn.edu.nlu.fit.dao.AdminCategoryDAO;
 import vn.edu.nlu.fit.model.Categories;
+import vn.edu.nlu.fit.model.Products;
 
 import java.util.List;
 
@@ -17,5 +18,22 @@ public class AdminCategoryService {
         }
 
         return list;
+    }
+
+    public boolean createCategory(String name, int status) {
+        int row = dao.insertCategory(name, status);
+        return row > 0;
+    }
+
+    public void update(int id, String newName, int newStatus) {
+        dao.updateCategory(id, newName, newStatus);
+    }
+
+    public void delete(int id) {
+        dao.deleteCategory(id);
+    }
+
+    public Categories getCategoryById(int id) {
+        return dao.getCategoryById(id);
     }
 }

@@ -5,10 +5,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bảng điều khiển - Quản lý bán hàng</title>
+    <title>Quản lý sản phẩm - chỉnh sửa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -82,7 +81,6 @@
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        opacity: 0.6;
     }
 
     .submenu-toggle {
@@ -118,6 +116,7 @@
         padding: 10px 40px;
         display: flex;
         align-items: center;
+        color:#fff;
         gap: 8px;
     }
 
@@ -165,87 +164,8 @@
         color: #007bff;
     }
 
-    /* Dashboard */
-    .dashboard {
-        padding: 20px;
-    }
-
-    .dashboard h2 {
-        margin-bottom: 15px;
-        font-size: 20px;
-        color: #333;
-    }
-
-    .dashboard h3 {
-        margin-bottom: 15px;
-        margin-top: -10px;
-        font-size: 20px;
-        color: #333;
-    }
-
-    .border-dashboard {
-        background: white;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .cards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 15px;
-    }
-
-    .card {
-        flex: 1 1 220px;
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card .icon {
-        font-size: 30px;
-        color: #555;
-    }
-
-    .card h3 {
-        font-size: 16px;
-        color: #333;
-    }
-
-    .card p {
-        margin-top: 5px;
-        font-size: 14px;
-    }
-
-    .card a {
-        color: #03a9f4;
-        text-decoration: none;
-    }
-
-    .danh-muc {
-        border-left: 5px solid #03a9f4;
-    }
-
-    .san-pham {
-        border-left: 5px solid #4caf50;
-    }
-
-    .thanh-vien {
-        border-left: 5px solid #f44336;
-    }
-
-    .bai-viet {
-        border-left: 5px solid #00bcd4;
-    }
-
-    hr {
-        opacity: 0.5;
+    .breadcrumb .current{
+        color: #777;
     }
 
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
@@ -390,15 +310,133 @@
         }
     }
 
+    /* Dashboard */
+    .dashboard {
+        padding: 20px;
+    }
+
+    .dashboard h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .dashboard h3 {
+        margin-bottom: 15px;
+        margin-top: -10px;
+        font-size: 20px;
+        color: #333;
+    }
+
     .border-dashboard {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Khung 2 cột chính*/
+    .post-editor {
+        display: flex;
+        gap: 25px;
         margin-top: 20px;
     }
 
-    .border-dashboard canvas {
-        width: 100%;
-        height: 300px;
+    /* CỘT TRÁI */
+    .post-left {
+        flex: 1;
+        background: #fff;
+        padding: 25px; /* PADDING CHỐNG DÍNH LỀ */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
+    /* FORM INPUT CHUNG */
+    .post-left input,
+    .post-left select,
+    .post-left textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .compulsory{
+        display: inline;
+        color: red;
+    }
+    .fa-floppy-disk{
+        margin-right: 5px;
+    }
+    .fa-rotate-left{
+        margin-right: 5px;
+    }
+
+    /* CỘT PHẢI */
+    .post-right {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Title mỗi box */
+    .post-right h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    /* Nút */
+    .btn-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn-save {
+        flex: 1;
+        padding: 10px;
+        background: #03a9f4;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .btn-reset {
+        flex: 1;
+        padding: 10px;
+        background: #e53935;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #choose{
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    /* Thumbnail preview */
+    .thumbnail-box {
+        margin-top: 15px;
+    }
+
+    .thumbnail-preview {
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #999;
+        border-radius: 6px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+    }
 
 </style>
 <body>
@@ -413,17 +451,17 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard" >Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
-            <li class="has-submenu" style="opacity: 0.6">
+            <li class="has-submenu">
                 <div class="submenu-toggle">
                     <i class="fa-solid fa-box"></i>
-                    <span>Sản phẩm </span>
+                    <span>Sản phẩm</span>
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
                     <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
@@ -474,71 +512,107 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Bảng điều khiển</span>
+            <span>Sản phẩm</span> /
+            <span class="current">Chỉnh sửa</span>
         </div>
 
-            <section class="dashboard">
-                <div class="border-dashboard">
-                    <h3>Dữ liệu website</h3>
-                    <hr>
-                    <div class="cards">
-                        <div class="card danh-muc">
-                            <div class="icon"><i class="fa-solid fa-list"></i></div>
-                            <div class="info">
-                                <h3>Số danh mục sản phẩm</h3>
-                                <p>${soLuongDanhMuc}</p>
-                            </div>
-                        </div>
+        <section>
+            <!-- CỘT TRÁI -->
+            <form class="post-editor" action="${pageContext.request.contextPath}/AdminProductEdit" method="post">
+                <input type="hidden" name="id" value="${p.id}">
 
-                        <div class="card san-pham">
-                            <div class="icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                            <div class="info">
-                                <h3>Sản phẩm</h3>
-                                <p>${soLuongSanPham}</p>
-                            </div>
-                        </div>
+                <div class="post-left">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" name="name" value="${p.productName}" required ...>
 
-                        <div class="card thanh-vien">
-                            <div class="icon"><i class="fa-solid fa-users"></i></div>
-                            <div class="info">
-                                <h3>Thành viên</h3>
-                                <p>${soLuongThanhVien}</p>
-                            </div>
-                        </div>
+                    <label>Danh mục</label>
+                    <select name="categoryId" ...>
+                        <c:forEach items="${listCate}" var="c">
+                            <option value="${c.id}" ${c.id == p.categoryName ? 'selected' : ''}>${c.categoryName}</option>
+                        </c:forEach>
+                    </select>
 
-                        <div class="card bai-viet">
-                            <div class="icon"><i class="fa-solid fa-file-word"></i></div>
-                            <div class="info">
-                                <h3>Số lượng bài viết</h3>
-                                <p>${soLuongBaiViet}</p>
-                            </div>
-                        </div>
-                    </div>
+                    <label>Giá</label>
+                    <input type="number" name="price" value="${p.price}" ...>
+
+                    <label>Số lượng sản phẩm <p class="compulsory">(*)</p></label>
+                    <input type="number" name="quantity" value="${p.quantity}" required >
+
+                    <label>Hạn sử dụng <p class="compulsory">(*)</p></label>
+                    <input type="text" name="expiry" value="${p.productExpiryDate}">
+
+                    <label style="margin-top:15px; display:block;">Mô tả</label>
+                    <textarea name="description" >${p.productDescription}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Thành phần</label>
+                    <textarea name="ingredient" >${p.ingredient}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Hướng dẫn sử dụng</label>
+                    <textarea name="instruction" >${p.instruction}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Lưu ý</label>
+                    <textarea name="attention" >${p.attention}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Tác dụng</label>
+                    <textarea name="uses" >${p.uses}</textarea>
                 </div>
 
-                <div class="border-dashboard">
-                    <h3>Biểu đồ doanh thu 7 ngày gần nhất</h3>
-                    <hr>
-                    <div> <canvas id="revenueChart"></canvas>
-                    </div>
+            <!-- CỘT PHẢI -->
+            <div class="post-right">
+                <h3>Xuất bản</h3>
+
+                <div class="btn-box">
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu
+                    </button>
+
+                    <button type="reset" class="btn-reset">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
                 </div>
-            </section>
+
+                <h3>Ảnh</h3>
+                <div class="thumbnail-box">
+                    <input type="text" name="image" value="${p.imageURL}"  style="width:100%; padding:5px;">
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <a href="${pageContext.request.contextPath}/AdminProduct" style="text-decoration: none; color: gray;">
+                        <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
     </main>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const submenuToggles = document.querySelectorAll(".submenu-toggle");
+    document.addEventListener("DOMContentLoaded", () => {
 
-        submenuToggles.forEach((toggle) => {
-            toggle.addEventListener("click", function () {
-                const parent = this.closest(".has-submenu");
-                parent.classList.toggle("open");
-            });
-        });
+        const menu = document.querySelector(".has-submenu");
+        const arrow = document.querySelector(".has-submenu .arrow");
+
+        // Nhấn để mở/đóng submenu
+        document.querySelector(".submenu-toggle").onclick = () => {
+            menu.classList.toggle("open");
+
+            // Lưu trạng thái submenu
+            localStorage.setItem("menu-open", menu.classList.contains("open"));
+        };
+
+        // Khi load trang: mở submenu
+        if (localStorage.getItem("menu-open") === "true") {
+            menu.classList.add("open");
+
+            // Ngăn mũi tên xoay khi load lại trang
+            arrow.style.transform = "none";
+        }
     });
-
 </script>
+
+
 
 <script>
     (function () {
@@ -573,36 +647,6 @@
             }
         });
     })();
-</script>
-
-<script>
-    const ctx = document.getElementById('revenueChart').getContext('2d');
-
-    const labels = ${chartLabels};
-    const dataRevenue = ${chartData};
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Doanh thu (VNĐ)',
-                data: dataRevenue,
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 </script>
 
 

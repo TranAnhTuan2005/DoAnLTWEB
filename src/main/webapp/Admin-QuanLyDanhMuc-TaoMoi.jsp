@@ -1,9 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý sản phẩm - tạo mới</title>
+    <title>Quản lý danh mục - tạo mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -414,27 +416,6 @@
         border-radius: 3px;
         cursor: pointer;
     }
-    #choose{
-        padding: 10px;
-        border-radius: 3px;
-    }
-
-    /* Thumbnail preview */
-    .thumbnail-box {
-        margin-top: 15px;
-    }
-
-    .thumbnail-preview {
-        width: 100%;
-        height: 160px;
-        border: 1px dashed #999;
-        border-radius: 6px;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #777;
-    }
 
 </style>
 <body>
@@ -449,7 +430,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -459,8 +440,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -510,36 +491,27 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Sản phẩm</span> /
+            <span>Danh mục</span> /
             <span class="current">Tạo mới</span>
         </div>
 
-        <section class="post-editor">
+        <section>
+            <form class="post-editor" action="${pageContext.request.contextPath}/AdminCategoryCreate" method="post">
             <!-- CỘT TRÁI -->
             <div class="post-left">
                 <label>Tên danh mục <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+                <input type="text" name="categoryName" required
+                       style="width:100%; padding: 10px; margin: 8px 0;" placeholder="Nhập tên danh mục...">
 
                 <div style="display: flex; gap: 20px;">
                     <div style="flex:1;">
-                        <label>Danh mục</label>
-                        <select style="width:100%; padding: 10px; margin-top: 8px;">
-                            <option>Ngũ cốc</option>
-                            <option>Bánh dinh dưỡng</option>
-                            <option>Hạt dinh dưỡng</option>
-                            <option>Trà gạo lứt</option>
+                        <label>Trạng thái</label>
+                        <select name="status" style="width:100%; padding: 10px; margin-top: 8px;">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option>
                         </select>
                     </div>
                 </div>
-
-                <label>Giá sản phẩm </label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
-
-                <label>Số lượng sản phẩm</label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
-
-                <label style="margin-top:15px; display:block;">Mô tả ngắn</label>
-                <textarea style="width:100%; height:120px; padding:10px;"></textarea>
             </div>
 
             <!-- CỘT PHẢI -->
@@ -547,18 +519,22 @@
                 <h3>Xuất bản</h3>
 
                 <div class="btn-box">
-                    <button class="btn-save" onclick="window.location.href='Admin-QuanLySanPham.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
-                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu
+                    </button>
+
+                    <button type="reset" class="btn-reset">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
                 </div>
 
-                <h3>Thumbnail</h3>
-                <div class="thumbnail-box">
-                    <input type="file" id="choose">
-                    <div class="thumbnail-preview">
-                        <i class="fa-regular fa-image" style="font-size:50px;"></i>
-                    </div>
+                <div style="margin-top: 10px;">
+                    <a href="${pageContext.request.contextPath}/AdminCategory" style="text-decoration: none; color: gray;">
+                        <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                    </a>
                 </div>
             </div>
+            </form>
         </section>
 
 
