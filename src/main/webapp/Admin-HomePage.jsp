@@ -413,7 +413,7 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.html" >Bảng điều khiển</a></li>
+            <li><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard" >Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu" style="opacity: 0.6">
@@ -423,8 +423,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategoryManage">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProductManage">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>

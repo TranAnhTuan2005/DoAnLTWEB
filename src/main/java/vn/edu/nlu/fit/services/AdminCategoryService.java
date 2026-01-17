@@ -18,4 +18,9 @@ public class AdminCategoryService {
 
         return list;
     }
+
+    public boolean createCategory(String name, int status) {
+        int row = dao.insertCategory(name, status);
+        return row > 0;
+    }
 }

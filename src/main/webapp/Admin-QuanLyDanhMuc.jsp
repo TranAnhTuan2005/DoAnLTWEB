@@ -423,7 +423,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -433,8 +433,8 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.html">Danh mục</a></li>
-                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategoryManage">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProductManage">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
@@ -495,7 +495,7 @@
         <section class="dashboard">
             <div class="border-dashboard">
                 <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLyDanhMuc-TaoMoi.jsp'">+Tạo
+                    <button class="new-post" onclick="window.location.href='${pageContext.request.contextPath}/AdminCategoryCreate'">+Tạo
                         mới</button>
                 </div>
                 <ul class="cate">
@@ -513,8 +513,14 @@
                     <li class="cate-item">${c.totalProducts}</li>
                     <li class="cate-item">${c.status}</li>
                     <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
+                        <a href="${pageContext.request.contextPath}/AdminCategoryEdit?id=${c.id}" style="text-decoration: none;">
+                            <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/AdminCategoryDelete?id=${c.id}"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này không?');"
+                           style="text-decoration: none;">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
                     </li>
                 </ul>
                 </c:forEach>

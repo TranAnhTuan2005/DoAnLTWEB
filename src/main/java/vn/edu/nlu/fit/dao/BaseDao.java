@@ -6,9 +6,7 @@ import org.jdbi.v3.core.Jdbi;
 import java.sql.SQLException;
 
 public abstract class BaseDao {
-
-
-    private Jdbi jdbi;
+    private static Jdbi jdbi;
 
     protected Jdbi getJdbi(){
         if(jdbi==null) makeConnect();
