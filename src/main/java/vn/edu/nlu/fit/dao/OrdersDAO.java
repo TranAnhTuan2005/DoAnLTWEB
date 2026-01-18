@@ -2,8 +2,10 @@ package vn.edu.nlu.fit.dao;
 
 import vn.edu.nlu.fit.Cart.Cart;
 import vn.edu.nlu.fit.Cart.CartItem;
+import vn.edu.nlu.fit.model.News;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class OrdersDAO extends BaseDao{
     public int createOrder(String name, String phone, String email, String address,
@@ -32,14 +34,15 @@ public class OrdersDAO extends BaseDao{
                         .one();
 
                 String sqlDetail = "INSERT INTO products_orders " +
-                        "(order_id, product_id, quantity, price_at_time) " +
+                        "(order_id, product_id, product_name, quantity, price_at_time) " +
                         "VALUES " +
-                        "(:orderId, :productId, :quantity, :price)";
+                        "(:orderId, :productId, :productName, :quantity, :price)";
 
                 for (CartItem item : cart.getItem()) {
                     handle.createUpdate(sqlDetail)
                             .bind("orderId", orderId)
                             .bind("productId", item.getProduct().getId())
+                            .bind("productName",item.getProduct().getProductName())
                             .bind("quantity", item.getQuantity())
                             .bind("price", item.getProduct().getPrice())
                             .execute();

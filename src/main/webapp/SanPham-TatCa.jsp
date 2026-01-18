@@ -515,6 +515,11 @@
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
                      a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
 
         </div>
