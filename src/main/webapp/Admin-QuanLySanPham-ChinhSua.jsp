@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý sản phẩm</title>
+    <title>Quản lý sản phẩm - chỉnh sửa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -164,6 +164,10 @@
         color: #007bff;
     }
 
+    .breadcrumb .current{
+        color: #777;
+    }
+
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
     .account {
         margin-left: auto;
@@ -309,7 +313,6 @@
     /* Dashboard */
     .dashboard {
         padding: 20px;
-        margin-top: -20px;
     }
 
     .dashboard h2 {
@@ -332,83 +335,108 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .button-wrap {
+    /* Khung 2 cột chính*/
+    .post-editor {
         display: flex;
-        justify-content: right;
+        gap: 25px;
+        margin-top: 20px;
     }
 
-    .new-post {
-        background-color: #03a9f4;
-        font-size: 15px;
-        color: white;
+    /* CỘT TRÁI */
+    .post-left {
+        flex: 1;
+        background: #fff;
+        padding: 25px; /* PADDING CHỐNG DÍNH LỀ */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* FORM INPUT CHUNG */
+    .post-left input,
+    .post-left select,
+    .post-left textarea {
+        width: 100%;
         padding: 10px;
-        border: none;
-        border-radius: 3px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .compulsory{
+        display: inline;
+        color: red;
+    }
+    .fa-floppy-disk{
+        margin-right: 5px;
+    }
+    .fa-rotate-left{
+        margin-right: 5px;
+    }
+
+    /* CỘT PHẢI */
+    .post-right {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Title mỗi box */
+    .post-right h3 {
         margin-bottom: 10px;
+        font-size: 18px;
     }
 
-    .new-post:hover {
-        background-color: #007bff;
-        cursor: pointer;
-    }
-
-    .cate {
+    /* Nút */
+    .btn-box {
         display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
-    .cate li {
-        list-style-type: none;
-        border: 1px solid #888;
-        padding: 15px 0;
-    }
-
-    /* Chiều rộng từng cột */
-    .cate-stt {
-        width: 60px;
-        text-align: center;
+    .btn-save {
+        flex: 1;
+        padding: 10px;
+        background: #03a9f4;
+        border: none;
+        color: #fff;
         font-weight: bold;
-    }
-
-    .cate-item {
-        width: 180px;
-        text-align: center;
-        font-weight: bold;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    /* Thumbnail */
-    .cate-item img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-    }
-
-    .thin li {
-        font-weight: lighter;
-    }
-
-    .fa-pen {
-        border: 1px solid #007bff;
-        padding: 5px;
-        color: white;
-        background-color: #007bff;
         border-radius: 3px;
-    }
-
-    .fa-trash {
-        border: 1px solid red;
-        padding: 5px;
-        color: white;
-        background-color: red;
-        border-radius: 3px;
-    }
-
-    .fa-solid {
         cursor: pointer;
     }
 
+    .btn-reset {
+        flex: 1;
+        padding: 10px;
+        background: #e53935;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #choose{
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    /* Thumbnail preview */
+    .thumbnail-box {
+        margin-top: 15px;
+    }
+
+    .thumbnail-preview {
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #999;
+        border-radius: 6px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+    }
 
 </style>
 <body>
@@ -484,53 +512,79 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <span>Trang chủ</span> /
-            <span>Sản phẩm</span>
+            <span>Sản phẩm</span> /
+            <span class="current">Chỉnh sửa</span>
         </div>
 
-        <section class="dashboard">
+        <section>
+            <!-- CỘT TRÁI -->
+            <form class="post-editor" action="${pageContext.request.contextPath}/AdminProductEdit" method="post">
+                <input type="hidden" name="id" value="${p.id}">
 
-        </section>
+                <div class="post-left">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" name="name" value="${p.productName}" required ...>
 
-        <!--Dashboard-->
-        <section class="dashboard">
-            <div class="border-dashboard">
-                <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='${pageContext.request.contextPath}/AdminProductCreate'">+Tạo
-                        mới</button>
+                    <label>Danh mục</label>
+                    <select name="categoryId" ...>
+                        <c:forEach items="${listCate}" var="c">
+                            <option value="${c.id}" ${c.id == p.categoryName ? 'selected' : ''}>${c.categoryName}</option>
+                        </c:forEach>
+                    </select>
+
+                    <label>Giá</label>
+                    <input type="number" name="price" value="${p.price}" ...>
+
+                    <label>Số lượng sản phẩm <p class="compulsory">(*)</p></label>
+                    <input type="number" name="quantity" value="${p.quantity}" required >
+
+                    <label>Hạn sử dụng <p class="compulsory">(*)</p></label>
+                    <input type="text" name="expiry" value="${p.productExpiryDate}">
+
+                    <label style="margin-top:15px; display:block;">Mô tả</label>
+                    <textarea name="description" >${p.productDescription}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Thành phần</label>
+                    <textarea name="ingredient" >${p.ingredient}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Hướng dẫn sử dụng</label>
+                    <textarea name="instruction" >${p.instruction}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Lưu ý</label>
+                    <textarea name="attention" >${p.attention}</textarea>
+
+                    <label style="margin-top:15px; display:block;">Tác dụng</label>
+                    <textarea name="uses" >${p.uses}</textarea>
                 </div>
-                <ul class="cate">
-                    <li class="cate-stt">STT</li>
-                    <li class="cate-item">Ảnh</li>
-                    <li class="cate-item">Tên sản phẩm</li>
-                    <li class="cate-item">Danh mục</li>
-                    <li class="cate-item">Giá</li>
-                    <li class="cate-item">Số lượng</li>
-                    <li class="cate-item">Hành động</li>
-                </ul>
 
-                <c:forEach items="${listProduct}" var="p" varStatus="loop">
-                <ul class="cate thin">
-                    <li class="cate-stt">${loop.index + 1}</li>
-                    <li class="cate-item"><img src="${p.imageURL}" alt="${p.productName}"></li>
-                    <li class="cate-item">${p.productName}</li>
-                    <li class="cate-item">${p.categoryName}</li>
-                    <li class="cate-item">${p.priceFormat}</li>
-                    <li class="cate-item">${p.quantity}</li>
-                    <li class="cate-item">
-                        <a href="${pageContext.request.contextPath}/AdminProductEdit?id=${p.id}">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="${pageContext.request.contextPath}/AdminProductDelete?id=${p.id}"
-                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');"
-                           style="text-decoration: none;">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </li>
-                </ul>
-                </c:forEach>
+            <!-- CỘT PHẢI -->
+            <div class="post-right">
+                <h3>Xuất bản</h3>
 
+                <div class="btn-box">
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu
+                    </button>
+
+                    <button type="reset" class="btn-reset">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                </div>
+
+                <h3>Ảnh</h3>
+                <div class="thumbnail-box">
+                    <input type="text" name="image" value="${p.imageURL}"  style="width:100%; padding:5px;">
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <a href="${pageContext.request.contextPath}/AdminProduct" style="text-decoration: none; color: gray;">
+                        <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                    </a>
+                </div>
             </div>
         </section>
+
+
     </main>
 </div>
 
