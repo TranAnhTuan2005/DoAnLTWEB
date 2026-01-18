@@ -243,6 +243,72 @@
             overflow-y: auto;
             padding-right: 5px;
         }
+
+        .user-profile-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 12px;
+            background-color: #fafafa;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+        }
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+        }
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Bo tròn ảnh */
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .default-avatar {
+            width: 100%;
+            height: 100%;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+        .user-email {
+            font-size: 13px;
+            color: #737373;
+        }
+        .logout-btn {
+            font-size: 13px;
+            color: #e45a5a;
+            text-decoration: none;
+            margin-top: 4px;
+            display: inline-block;
+        }
+        .logout-btn:hover {
+            text-decoration: underline;
+        }
+
+        .login-prompt {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .login-prompt a { color: #338dbc;
+            text-decoration: none;
+        }
     </style>
 
 </head>
@@ -258,8 +324,43 @@
                 <span>Phương thức thanh toán</span>
             </nav> <!--Đường dẫn hiện tại-->
 
-            <h2>Thông tin giao hàng</h2>
-            <p>Bạn đã có tài khoản? <a href="TrangChu.jsp">Đăng nhập</a></p>
+            <c:choose>
+                <%-- TH đã đăng nhập --%>
+                <c:when test="${not empty sessionScope.user}">
+                    <div class="user-profile-box">
+                        <div class="user-avatar">
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user.imageURL}">
+                                    <img src="${sessionScope.user.imageURL}" alt="Avatar">
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="default-avatar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+
+                        <div class="user-info">
+                <span class="user-name">
+                        ${sessionScope.user.fullName}
+                </span>
+                            <span class="user-email">
+                                    ${sessionScope.user.email}
+                            </span>
+                            <a href="Logout" class="logout-btn">Đăng xuất</a>
+                        </div>
+                    </div>
+                </c:when>
+
+                <%-- TH khách vãng lai --%>
+                <c:otherwise>
+                    <div class="login-prompt">
+                        Bạn đã có tài khoản? <a href="Login.jsp">Đăng nhập</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
             <form action="Checkout-infor" method="post"><!--Form thông tin đơn hàng-->
 
                 <div class="form-group"><!--Họ và tên-->

@@ -458,7 +458,7 @@
                             </div>
                         </div>
                         <div class="right-infor">
-                           <a href="Del-product?id=${p.product.id}"><i class="fa-solid fa-trash"></i></a>
+                           <a href="Del-product?id=${p.product.id}"><i class="fa-solid fa-trash" style="color: red"></i></a>
                             <p class="total">Thành tiền: <strong id="item-total-${p.product.id}">${p.total}đ</strong></p>
                         </div>
                     </div>
@@ -651,26 +651,31 @@
     </div>
 
     <!-- Tăng giảm số lượng js -->
+<%--    <script>--%>
+<%--    &lt;%&ndash;    let detailProductQty = 1;&ndash;%&gt;--%>
+<%--    &lt;%&ndash;    const detailProductQtyDisplay = document.getElementById('detail-product-qty');&ndash;%&gt;--%>
+<%--    &lt;%&ndash;    const detailProductPlus = document.getElementById('detail-product-plus');&ndash;%&gt;--%>
+<%--    &lt;%&ndash;    const detailProductMinus = document.getElementById('detail-product-minus');&ndash;%&gt;--%>
+
+<%--    &lt;%&ndash;    detailProductPlus.addEventListener('click', () => {&ndash;%&gt;--%>
+<%--    &lt;%&ndash;        detailProductQty++;&ndash;%&gt;--%>
+<%--    &lt;%&ndash;        detailProductQtyDisplay.textContent = detailProductQty;&ndash;%&gt;--%>
+<%--    &lt;%&ndash;    });&ndash;%&gt;--%>
+
+<%--    &lt;%&ndash;    detailProductMinus.addEventListener('click', () => {&ndash;%&gt;--%>
+<%--    &lt;%&ndash;        if (detailProductQty > 1) detailProductQty--;&ndash;%&gt;--%>
+<%--    &lt;%&ndash;        detailProductQtyDisplay.textContent = detailProductQty;&ndash;%&gt;--%>
+<%--    &lt;%&ndash;    });&ndash;%&gt;--%>
+
+<%--    &lt;%&ndash;</script>&ndash;%&gt;--%>
+
+<%--    <!--back to top (bootstrap) js-->--%>
+<%--    <script>--%>
+
+<%--    </script>--%>
+
     <script>
-    <%--    let detailProductQty = 1;--%>
-    <%--    const detailProductQtyDisplay = document.getElementById('detail-product-qty');--%>
-    <%--    const detailProductPlus = document.getElementById('detail-product-plus');--%>
-    <%--    const detailProductMinus = document.getElementById('detail-product-minus');--%>
-
-    <%--    detailProductPlus.addEventListener('click', () => {--%>
-    <%--        detailProductQty++;--%>
-    <%--        detailProductQtyDisplay.textContent = detailProductQty;--%>
-    <%--    });--%>
-
-    <%--    detailProductMinus.addEventListener('click', () => {--%>
-    <%--        if (detailProductQty > 1) detailProductQty--;--%>
-    <%--        detailProductQtyDisplay.textContent = detailProductQty;--%>
-    <%--    });--%>
-
-    <%--</script>--%>
-
-    <!--back to top (bootstrap) js-->
-    <script>
+        // hàm back to top
         const backToTopBtn = document.getElementById("btn-back-to-top");
 
         window.addEventListener("scroll", function () {
@@ -680,9 +685,6 @@
                 backToTopBtn.style.display = "none";
             }
         });
-    </script>
-
-    <script>
         // Hàm định dạng tiền tệ
         function formatCurrency(amount) {
             return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })

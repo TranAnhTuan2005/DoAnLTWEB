@@ -51,7 +51,7 @@ public class OrderController extends HttpServlet {
         String email = (String) session.getAttribute("order_email");
 
         // Kiểm tra lưu user trong session tên là "auth" hay "user"
-        Users user = (Users) session.getAttribute("auth");
+        Users user = (Users) session.getAttribute("user");
         Integer userId = (user != null) ? user.getId() : null;
 
         OrdersDAO orderDAO = new OrdersDAO();
