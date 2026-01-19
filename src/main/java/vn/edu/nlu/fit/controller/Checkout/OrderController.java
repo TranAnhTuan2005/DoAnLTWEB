@@ -5,13 +5,11 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.nlu.fit.Cart.Cart;
 import vn.edu.nlu.fit.dao.DeliveryMethodDao;
-import vn.edu.nlu.fit.dao.OrdersDAO;
-import vn.edu.nlu.fit.dao.OrdersDAO;
+import vn.edu.nlu.fit.dao.OrderDAO;
 import vn.edu.nlu.fit.dao.PaymentMethodDao;
 import vn.edu.nlu.fit.model.Users;
 
 import java.io.IOException;
-import java.util.Random;
 
 @WebServlet(name = "OrderController", value = "/Order")
 public class OrderController extends HttpServlet {
@@ -54,7 +52,7 @@ public class OrderController extends HttpServlet {
         Users user = (Users) session.getAttribute("user");
         Integer userId = (user != null) ? user.getId() : null;
 
-        OrdersDAO orderDAO = new OrdersDAO();
+        OrderDAO orderDAO = new OrderDAO();
         int orderId = orderDAO.createOrder(name, phone, email, address,
                 Integer.parseInt(deliveryId), Integer.parseInt(paymentId), finalTotal, userId, cart);
 

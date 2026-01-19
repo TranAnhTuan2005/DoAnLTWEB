@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -405,11 +406,7 @@
             <div class="col-xs-12" id="customer_orders">
                 <div class="customer-table-wrap">
                     <div class="customer_order customer-table-bg">
-
-                        <!-- Tiêu đề nhỏ trên bảng -->
                         <div class="orders-title">DANH SÁCH ĐƠN HÀNG MỚI NHẤT</div>
-
-                        <!-- Bảng đơn hàng -->
                         <div class="table-responsive">
                             <table class="orders-table">
                                 <thead>
@@ -417,34 +414,56 @@
                                     <th>Mã đơn hàng</th>
                                     <th>Ngày đặt</th>
                                     <th>Thành tiền</th>
-                                    <th>Trạng thái thanh toán</th>
+                                    <th>Trạng thái</th>
                                     <th>Vận chuyển</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!-- demo dữ liệu -->
-                                <c:forEach var="o" items="${orders}">
-                                <tr>
-                                    <td>#${o.id}</td>
-                                    <td>${o.orderDate}</td>
-                                    <td>${o.total} đ</td>
-                                    <td>${o.orderStatus}</td>
-                                    <td>Đang xử lý</td>
-                                </tr>
-                                </c:forEach>
-
-
-
+                                <c:choose>
+                                    <%-- Nếu có đơn hàng --%>
+                                    <c:when test="${not empty orders}">
+                                        <c:forEach var="o" items="${orders}">
+                                            <tr>
+                                                <td>
+                                                    <a href="#" style="font-weight: bold; color: #007bff;">
+                                                        #${o.id}
+                                                    </a>
+                                                </td>
+                                                <td><fmt:formatDate value="${o.orderDateAsDate}" pattern="HH:mm dd-MM-yyyy"/>
+                                                </td>
+                                                <td>
+                                                    <span style="color: #d9534f; font-weight: bold;">
+                                                        <fmt:formatNumber value="${o.total}" type="currency" currencySymbol="₫"/>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="status-badge ${o.orderStatus == 1 ? 'status-new' : ''}
+                                                            ${o.orderStatus == 2 ? 'status-shipping' : ''}
+                                                            ${o.orderStatus == 3 ? 'status-done' : ''}
+                                                            ${o.orderStatus == 4 ? 'status-cancel' : ''}">
+                                                                ${o.statusDescription}
+                                                        </span>
+                                                </td>
+                                                <td>Giao hàng tiêu chuẩn</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:when>
+                                    <%--chưa có đơn hàng nào --%>
+                                    <c:otherwise>
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; padding: 30px; font-style: italic; color: #777;">
+                                                Bạn chưa có đơn hàng nào. <a href="${pageContext.request.contextPath}/SanPham-TatCa.jsp" style="color: #839b4c; font-weight: bold;">Mua sắm ngay</a>
+                                            </td>
+                                        </tr>
+                                    </c:otherwise>
+                                </c:choose>
                                 </tbody>
                             </table>
                         </div>
-                        <!---->
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 </main>
 
