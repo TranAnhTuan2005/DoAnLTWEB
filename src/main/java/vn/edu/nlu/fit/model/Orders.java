@@ -150,4 +150,18 @@ public class Orders {
                 ", discountID=" + discountID +
                 '}';
     }
+    public String getStatusDescription() {
+        switch (this.orderStatus) {
+            case 1: return "Chờ xác nhận";
+            case 2: return "Đang vận chuyển";
+            case 3: return "Đã giao hàng";
+            case 4: return "Đã hủy";
+            default: return "Đang xử lý";
+        }
+    }
+
+    public java.util.Date getOrderDateAsDate() {
+        if (orderDate == null) return null;
+        return java.sql.Timestamp.valueOf(orderDate);
+    }
 }
