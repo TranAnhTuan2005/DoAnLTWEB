@@ -186,7 +186,25 @@
     .category-list .category-item a.active {
         color: #fff;
     }
+    /* Style cho cái con số bay lên (Badge) */
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
 
+        background-color: #c52314;
+        color: white;
+
+        font-size: 11px;
+        font-weight: bold;
+
+        padding: 2px 6px;
+        border-radius: 50%;
+        min-width: 18px;
+        text-align: center;
+        line-height: 14px;
+        border: 2px solid #fff;
+    }
 
 
 
@@ -324,6 +342,11 @@
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
                      a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
 
         </div>

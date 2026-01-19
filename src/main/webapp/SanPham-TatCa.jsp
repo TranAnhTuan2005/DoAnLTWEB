@@ -630,7 +630,7 @@
                                 </a>
 
                                 <button class="collection-view-btn"
-                                        onclick="openModal('${p.imageURL}','${p.productName}', '${p.price}đ', '${detailUrl_byID}')">👁
+                                        onclick="openModal('${p.id}','${p.imageURL}','${p.productName}', '${p.price}đ', '${detailUrl_byID}')">👁
                                     XEM NHANH
                                 </button>
                             </div>
@@ -666,7 +666,7 @@
                         <input type="text" id="product-qty" value="1" min="1">
                         <button class="qty-btn" id="qty-increase">+</button>
                     </div>
-                    <button class="add">🛒 THÊM VÀO GIỎ</button>
+                    <button class="add" id="modal-add-to-cart-btn">🛒 THÊM VÀO GIỎ</button>
                     <p><a href="#" id="modal-detail-link">Xem chi tiết sản phẩm</a></p>
                 </div>
             </div>
@@ -932,17 +932,38 @@
 
 <!--hàm mở, đóng modal lấy ra id cho link trang chi tiết sp-->
 <script>
-    function openModal(imageURL, productName, price, detailUrl_byID) {
+    let currentProductId = null;
+    function openModal(id, imageURL, productName, price, detailUrl_byID) {
+        currentProductId = id;
         document.getElementById('modal-img').src = imageURL;
         document.getElementById('modal-name').innerText = productName;
         document.getElementById('modal-price').innerText = price;
         document.getElementById('modal-detail-link').href = detailUrl_byID;
+
+        document.getElementById('product-qty').value = 1;
         document.getElementById('productModal').style.display = 'flex';
     }
 
     function closeModal() {
         document.getElementById('productModal').style.display = 'none';
     }
+        document.getElementById('modal-add-to-cart-btn').addEventListener('click', function() {
+        const qtyInput = document.getElementById('product-qty');
+
+        if (currentProductId) {
+        let quantity = qtyInput.value;
+        if (quantity < 1 || isNaN(quantity)) {
+        alert("Số lượng không hợp lệ!");
+        return;
+    }
+
+        const contextPath = '${pageContext.request.contextPath}';
+        window.location.href = contextPath + "/addCart?id=" + currentProductId + "&quantity=" + quantity;
+    } else {
+        alert("Lỗi: Không tìm thấy sản phẩm!");
+    }
+    });
+
 
 </script>
 

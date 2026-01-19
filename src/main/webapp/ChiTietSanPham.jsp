@@ -412,7 +412,8 @@
                     <button id="detail-product-plus" class="detail-product-btn">+</button>
                 </div>
 
-                <button class="detail-product-add-cart">Thêm vào giỏ</button>
+                <button class="detail-product-add-cart" id="btn-add-to-cart" data-id="${product.id}">
+                    🛒 Thêm vào giỏ</button>
             </div>
 
             <ul class="detail-product-policy">
@@ -626,15 +627,32 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const qtyInput = document.getElementById('detail-product-qty');
-        document.getElementById('detail-product-plus').onclick = () => {
-            qtyInput.value = Number(qtyInput.value) + 1;
-        };
-        document.getElementById('detail-product-minus').onclick = () => {
-            if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
-        };
+        const btnPlus = document.getElementById('detail-product-plus');
+        const btnMinus = document.getElementById('detail-product-minus');
+        const btnAddToCart = document.getElementById('btn-add-to-cart');
+        if (btnPlus && btnMinus && qtyInput) {
+            btnPlus.onclick = () => {
+                qtyInput.value = Number(qtyInput.value) + 1;
+            };
+            btnMinus.onclick = () => {
+                if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
+            };
+        }
+        if (btnAddToCart) {
+            btnAddToCart.addEventListener('click', function() {
+                const productId = this.getAttribute('data-id');
+                const quantity = qtyInput.value;
+                if (quantity < 1 || isNaN(quantity)) {
+                    alert("Số lượng không hợp lệ!");
+                    return;
+                }
 
+                // Chuyển hướng
+                const contextPath = '${pageContext.request.contextPath}';
+                window.location.href = contextPath + "/addCart?id=" + productId + "&quantity=" + quantity;
+            });
+        }
     });
-
 </script>
 
 <!--back to top (bootstrap) js-->
