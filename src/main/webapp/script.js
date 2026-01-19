@@ -43,10 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
 /*Modal chi tiết sản phẩm*/
 
 /*gọi các thẻ trong chi tiết sản phẩm ra để gán giá trị đầu vào cho nó*/
-function openModal(imgSrc, name, price) {
+let currentProductId = null;
+
+function openModal(id, imgSrc, name, price) {
+    currentProductId = id;
     document.getElementById('modal-img').src = imgSrc;
     document.getElementById('modal-name').innerText = name;
     document.getElementById('modal-price').innerText = price;
+
+    document.getElementById('product-qty').value = 1;
     document.getElementById('productModal').style.display = 'flex';
 }
 /*đóng thông tin chi tiết*/
@@ -61,12 +66,18 @@ window.onclick = function (e) {
 //bao no lai de dam bao doan code chay duoc.
 document.addEventListener('DOMContentLoaded', () => {
     const qtyInput = document.getElementById('product-qty');
-    document.getElementById('qty-increase').onclick = () => {
-        qtyInput.value = Number(qtyInput.value) + 1;
-    };
-    document.getElementById('qty-decrease').onclick = () => {
-        if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
-    };
+    const btnIncrease = document.getElementById('qty-increase');
+    if(btnIncrease) {
+        btnIncrease.onclick = () => {
+            qtyInput.value = Number(qtyInput.value) + 1;
+        };
+    }
+    const btnDecrease = document.getElementById('qty-decrease');
+    if(btnDecrease) {
+        btnDecrease.onclick = () => {
+            if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
+        };
+    }
 
 });
 
