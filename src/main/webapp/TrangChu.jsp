@@ -75,7 +75,7 @@
 
                 </li>
 
-                <li><a href="TinTuc1.html">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
                 <li><a href="CongTacVien.html">Cộng tác viên</a></li>
                 <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
@@ -865,7 +865,7 @@
                                 <li><a href="TrangChu-daDNTK.html" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
+                                <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
                                 <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
                                 <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                             </ul>

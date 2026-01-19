@@ -1,25 +1,29 @@
 package vn.edu.nlu.fit.model;
 
+import java.sql.Timestamp;
+
 public class News {
     private int id;
     private String title;
     private String content;
+    private String shortDescription;
     private String imageURL;
     private int userID;
-    private Date datePost;
+    private Timestamp datePost;
     private int isPublished;
 
     public News() {
     }
 
-    public News(int id, String title, String content, String imageURL, int userID, Date datePost, int isPublished) {
+    public News(int id, String content, String title, String imageURL, String shortDescription, int userID, int isPublished, Timestamp datePost) {
         this.id = id;
-        this.title = title;
         this.content = content;
+        this.title = title;
         this.imageURL = imageURL;
+        this.shortDescription = shortDescription;
         this.userID = userID;
-        this.datePost = datePost;
         this.isPublished = isPublished;
+        this.datePost = datePost;
     }
 
     public int getId() {
@@ -62,11 +66,11 @@ public class News {
         this.userID = userID;
     }
 
-    public Date getDatePost() {
+    public Timestamp getDatePost() {
         return datePost;
     }
 
-    public void setDatePost(Date datePost) {
+    public void setDatePost(Timestamp datePost) {
         this.datePost = datePost;
     }
 
@@ -78,12 +82,22 @@ public class News {
         isPublished = published;
     }
 
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
     @Override
     public String toString() {
         return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
                 ", imageURL='" + imageURL + '\'' +
                 ", userID=" + userID +
                 ", datePost=" + datePost +

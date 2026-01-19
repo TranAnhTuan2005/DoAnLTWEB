@@ -1,11 +1,13 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <title>Tin tức</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <script src="${pageContext.request.contextPath}/script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -459,118 +461,54 @@
             <h2>Tin Tức</h2>
 
             <div class="news-grid">
-
+                <c:forEach var="n" items="${newsList}">
                 <div class="news-item">
                     <div class="news-img">
-                        <img src="image/news/tin-tuc-cacloaihat.png" alt="5 loại hạt dinh dưỡng">
+                        <img src="${n.imageURL}" alt="${n.title}">
                     </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>+5 LOẠI HẠT DINH DƯỠNG CẦN THIẾT CHO MẸ BẦU</h3>
+                    <a href="chi-tiet-tin-tuc?id=${n.id}" class="title">
+                        <h3>${n.title}</h3>
                     </a>
-                    <p class="news-date">27-10-2025 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Bài viết này chúng tôi sẽ bật mí 5 loại hạt siêu dinh dưỡng...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
+                    <p class="news-date">${n.datePost} / NGƯỜI VIẾT: ADMIN</p>
+                    <p class="sub-paragraph">${n.shortDescription}</p>
+                    <a href="chi-tiet-tin-tuc?id=${n.id}" class="more">Xem thêm</a>
                 </div>
-
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/tin-tuc-ncdd.webp" alt=" Ngũ cốc cao cấp">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>NGŨ CỐC CAO CẤP CÓ THỰC SỰ HỖ TRỢ NGƯỜI ỐM PHỤC HỒI NHANH</h3>
-                    </a>
-                    <p class="news-date">25-01-2025 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Sau một đợt ốm kéo dài, cơ thể cần chế độ dinh dưỡng đặc biệt...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/tao-do.jpg" alt="Táo đỏ Tân Cương">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>TÁO ĐỎ TÂN CƯƠNG CHẤT LƯỢNG, GIÁ TỐT TẠI HUẾ</h3>
-                    </a>
-                    <p class="news-date">10-01-2025 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Táo đỏ Tân Cương, đặc sản nổi tiếng của vùng Trung Quốc...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-img">
-                        <img src="image/news/xoai-say-deo-muoi-ot.png" alt="Xoài xấy dẻo ngon">
-                    </div>
-                    <a href="BaiViet.html" class="title">
-                        <h3>XOÀI SẤY DẺO NGON, GIÁ TỐT TẠI HUẾ</h3>
-                    </a>
-                    <p class="news-date">31-12-2024 / NGƯỜI VIẾT: ADMIN</p>
-                    <p class="sub-paragraph">Xoài sấy dẻo là một trong những đặc sản được yêu thích nhất bở̀i hương vị
-                        tự nhiên, dễ dàng bảo quản và giàu dưỡng...</p>
-                    <a href="BaiViet.html" class="more">Xem thêm</a>
-                </div>
+                </c:forEach>
             </div>
+
             <div class="pagination">
-                <a href="TinTuc1.html" class="page active">1</a>
-                <a href="TinTuc2.html" class="page">2</a>
-                <a href="TinTuc2.html" class="page next">»</a>
+                <c:if test="${currentPage > 1}">
+                    <a href="${pageContext.request.contextPath}/News?page=${currentPage - 1}" class="page">«</a>
+                </c:if>
+
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <a href="${pageContext.request.contextPath}/News?page=${i}"
+                       class="page ${currentPage == i ? 'active' : ''}">
+                            ${i}
+                    </a>
+                </c:forEach>
+
+                <c:if test="${currentPage < totalPages}">
+                    <a href="${pageContext.request.contextPath}/News?page=${currentPage + 1}" class="page next">»</a>
+                </c:if>
             </div>
-
         </div>
+                <!-- Cột phải: Bài viết mới nhất -->
+                <aside class="recent-posts">
+                    <h2>BÀI VIẾT MỚI NHẤT</h2>
 
-        <!-- Cột phải: Bài viết mới nhất -->
-        <aside class="recent-posts">
-            <h2>BÀI VIẾT MỚI NHẤT</h2>
-
-            <ul class="post-list">
-                <li>
-                    <span class="post-index">1</span>
-                    <div>
-                        <span class="post-category">TIN TỨC</span>
-                       <a href="BaiViet.html" class="post-title">+5 loại siêu hạt dinh dưỡng cần thiết cho mẹ bầu</a>
-                    </div>
-                </li>
-
-                <li>
-                    <span class="post-index">2</span>
-                    <div >
-                        <span class="post-category">TIN TỨC</span>
-                         <a href="BaiViet.html" class="post-title">Ngũ cốc cao cấp có thực sự hỗ trợ người ốm phục hồi nhanh?</a>
-                    </div>
-                </li>
-
-                <li>
-                    <span class="post-index">3</span>
-                    <div>
-                        <span class="post-category">TIN TỨC</span>
-                         <a href="BaiViet.html" class="post-title">Táo đỏ Tân Cương chất lượng, giá tốt tại Huế</a>
-                    </div>
-                </li>
-
-                <li>
-                    <span class="post-index">4</span>
-                    <div >
-                        <span class="post-category">TIN TỨC</span>
-                        <a href="BaiViet.html" class="post-title">Xoài sấy dẻo ngon, giá tốt tại Huế</a>
-                    </div>
-                </li>
-
-                <li>
-                    <span class="post-index">5 </span>
-                    <div >
-                        <span class="post-category">TIN TỨC</span>
-                        <a href="BaiViet.html" class="post-title">Chà là khô nguyên cành, Siêu thực phẩm tốt cho sức khỏe</a>
-                    </div>
-                </li>
-
-                <li>
-                    <span class="post-index">6</span>
-                    <div>
-                        <span class="post-category">TIN TỨC</span>
-                        <a href="BaiViet.html" class="post-title">10 loại mứt hạt bánh tết không thể thiếu trong ngày xuân</a>
-                    </div>
-                </li>
-            </ul>
-        </aside>
+                    <ul class="post-list">
+                        <c:forEach var="r" items="${recentNewsList}" varStatus="status">
+                        <li>
+                            <span class="post-index">${status.index + 1}</span>
+                            <div>
+                                <span class="post-category">TIN TỨC</span>
+                               <a href="chi-tiet-tin-tuc?id=${r.id}" class="post-title">${r.title}</a>
+                            </div>
+                        </li>
+                        </c:forEach>
+                        </ul>
+                    </aside>
     </section>
 
     <!------------------------------------------------------------------------------>
