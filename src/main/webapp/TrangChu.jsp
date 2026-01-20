@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -278,7 +279,7 @@
 <!------------------------------------------------------------------------------>
 <section class="new-products"> <!-- section hiển thị sản phẩm mới nhất -->
 
-    <div class="products-container"> <!-- chứa các component -->
+    <div class="products-container" > <!-- chứa các component -->
         <!--Label-->
         <h2>SẢN PHẨM MỚI NHẤT</h2>
         <p class="subtitle">Cập nhật những sản phẩm mới nhất</p>
@@ -287,318 +288,29 @@
         <div class="product-grid">
 
             <!-- Sản phẩm -->
+            <c:forEach var="p" items="${newestProducts}">
+                <c:url var="detailUrl_byID" value="/Chi-tiet-san-pham">
+                    <c:param name="id" value="${p.id}"/>
+                </c:url>
+            <fmt:formatNumber var="formattedPrice" value="${p.price}" type="number" groupingUsed="true"/>
             <div class="product-item">
                 <div class="product-image">
-                    <img src="image/newProducts/banhhat.jpg"
-                         alt="Bánh hạt dinh dưỡng cao cấp"><!-- hình ảnh minh họa -->
+                    <a href="${detailUrl_byID}">
+                        <img src="${p.imageURL}" alt="${p.productName}">
+                    </a><!-- hình ảnh minh họa -->
                     <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
+                        <button class="add-to-cart" onclick="window.location.href='addCart?id=${p.id}&quantity=1'">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
-                                onclick="openModal('./image/newProducts/banhhat.jpg','Bánh hạt dinh dưỡng 30 x 15g', '219,000đ')">
+                                onclick="openModal('${p.imageURL}', '${p.productName}', '${formattedPrice}đ')">
                             👁
                             XEM NHANH
                         </button>
                     </div>
                 </div>
-                <h3>Bánh hạt dinh dưỡng 30 x 15g</h3>
-                <p class="price">219,000đ</p>
+                <h3> ${p.productName}</h3>
+                <p class="price">${formattedPrice}đ</p>
             </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/botgaolut.png"
-                         alt="Bột gạo lứt mè đen hỗ trợ giảm cân"><!-- hình ảnh minh họa -->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/botgaolut.png', 'Bột gạo lứt mè đen hỗ trợ giảm cân', '179,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Bột gạo lứt mè đen hỗ trợ giảm cân</h3>
-                <p class="price">179,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/botngucoc.png"
-                         alt="Bột ngũ cốc tăng cân"><!-- hình ảnh minh họa -->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/botngucoc.png', 'Bột ngũ cốc tăng cân', '209,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Bột ngũ cốc tăng cân</h3>
-                <p class="price">209,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/chaohat.png"
-                         alt="Cháo hạt vỡ cho trẻ em"><!-- hình ảnh minh họa -->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/chaohat.png','Cháo hạt vỡ cho trẻ em','169,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Cháo hạt vỡ cho trẻ em</h3>
-                <p class="price">169,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/combohatsen.jpg"
-                         alt="Combo hat sen 100g"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/combohatsen.jpg', 'Combo hạt sen nấu sữa 14 gói 100g', '329,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Combo hạt sen nấu sữa 14 gói 100g</h3>
-                <p class="price">329,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/combohatsen50g.jpg"
-                         alt="Combo hat sen 50g"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/combohatsen50g.jpg', 'Combo hạt sen nấu sữa 14 gói 50g', '189,000đ')">
-                            👁 XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Combo hạt sen nấu sữa 14 gói 50g</h3>
-                <p class="price">189,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/granola.png" alt="Granola"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/granola.png','Granola', '179,000đ')">👁 XEM
-                            NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Granola</h3>
-                <p class="price">179,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/hanhnhantachvo.jpg"
-                         alt="Hạnh nhân tách vỏ"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/hanhnhantachvo.jpg','Hạnh nhân tách vỏ', '195,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Hạnh nhân tách vỏ</h3>
-                <p class="price">195,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/hatbixanh.jpg" alt="Hạt bí xanh"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/hatbixanh.jpg', 'Hạt bí xanh', '135,000đ')">👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Hạt bí xanh</h3>
-                <p class="price">135,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/hatdieusay.jpg"
-                         alt="Hạt điều sấy tự nhiên"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/hatdieusay.jpg', 'Hạt điều sấy tự nhiên', '195,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Hạt điều sấy tự nhiên</h3>
-                <p class="price">195,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/mixhat.png" alt="Mix hạt"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/mixhat.png', 'Mix hạt', '239,000đ')">👁 XEM
-                            NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Mix hạt</h3>
-                <p class="price">239,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/mixtraicay.png" alt="Mix trái cây"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/mixtraicay.png', 'Mix trái cây', '179,000đ')">👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Mix trái cây</h3>
-                <p class="price">179,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/ngucocdd10goi.jpg"
-                         alt="Ngũ cốc dinh dưỡng 10 gói"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/ngucocdd10goi.jpg', 'Ngũ cốc dinh dưỡng 10 gói', '239,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc dinh dưỡng 10 gói</h3>
-                <p class="price">239,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/ngucocdd15goi.jpg"
-                         alt="Ngũ cốc dinh dưỡng 15 gói"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/ngucocdd15goi.jpg','Ngũ cốc dinh dưỡng 15 gói','159,000đ'  )">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc dinh dưỡng 15 gói</h3>
-                <p class="price">159,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/ngucocddcaocap.jpg"
-                         alt="Ngũ cốc dinh dưỡng cao cấp"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/ngucocddcaocap.jpg','Ngũ cốc dinh dưỡng cao cấp', '239,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc dinh dưỡng cao cấp</h3>
-                <p class="price">239,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/ngucocloisua.png" alt="Ngũ cốc lợi sữa"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/ngucocloisua.png', 'Ngũ cốc lợi sữa', '199,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc lợi sữa</h3>
-                <p class="price">199,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/ngucocmebau.png" alt="Ngũ cốc mẹ bầu"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/ngucocmebau.png','Ngũ cốc mẹ bầu','239,000đ' )">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc mẹ bầu</h3>
-                <p class="price">239,000đ</p>
-            </div>
-
-            <!-- Sản phẩm -->
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="image/newProducts/ngucocnggia.png"
-                         alt="Ngũ cốc cho người lớn tuổi"><!-- Hình ảnh minh họa-->
-                    <div class="overlay"><!-- Hover để hiển thị-->
-                        <button class="add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="view-btn"
-                                onclick="openModal('./image/newProducts/ngucocnggia.png', 'Ngũ cốc cho người lớn tuổi', '219,000đ')">
-                            👁
-                            XEM NHANH
-                        </button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc cho người lớn tuổi</h3>
-                <p class="price">219,000đ</p>
-            </div>
-
+            </c:forEach>
         </div>
     </div>
 </section>
@@ -617,7 +329,7 @@
                 <input type="text" id="product-qty" value="1" min="1">
                 <button class="qty-btn" id="qty-increase">+</button>
             </div>
-            <button class="add">🛒 THÊM VÀO GIỎ</button>
+            <button class="add" id="modal-add-to-cart-btn">🛒 THÊM VÀO GIỎ</button>
             <p><a href="ChiTietSanPham.html">Xem chi tiết sản phẩm</a></p>
         </div>
     </div>

@@ -101,4 +101,19 @@ public class ProductDAO extends BaseDao {
         });
     }
 
+    public List<Products> getTopNewestProducts(int limit) {
+        String sql = "SELECT id, product_name AS productName, price, " +
+                "image_url AS imageURL "+
+                "FROM products " +
+                "ORDER BY id DESC " +
+                "LIMIT :limit";
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", limit)
+                        .mapToBean(Products.class)
+                        .list()
+        );
+    }
+
 }
