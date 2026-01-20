@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -385,7 +388,7 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.jsp">
+            <a href="<c:url value='/TrangChu'/>">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
@@ -405,10 +408,10 @@
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
@@ -427,7 +430,7 @@
 
                 </li>
 
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
                 <li><a href="CongTacVien.html">Cộng tác viên</a></li>
                 <li><a href="LienHe.html">Liên hệ</a></li>
             </ul>
@@ -436,68 +439,78 @@
 
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
-            <a href="#" class="account-btn" aria-label="Tài khoản">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
-                            fill="#333"/>
-                </svg>
-            </a>
-            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+            <c:choose>
+
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="javascript:void(0)" class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+
+                    <div id="accountMenu" class="account-menu">
+                        <div class="account-menu_arrow"></div>
+                        <div class="account-menu_inner">
+                            <p class="account-menu_hello">
+                                Xin chào, <strong>${sessionScope.user.fullName}</strong>
+                            </p>
+                            <hr>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
+                        </div>
+                    </div>
+                </c:when>
+
+
+                <c:otherwise>
+                    <a href="<c:url value='/DangNhapTaiKhoan'/>"
+                       class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+                </c:otherwise>
+
+            </c:choose>
+
+            <!-- CART -->
+            <a href="<c:url value='/GioHang'/>" class="cart-btn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
+                     a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
+
         </div>
+
     </div>
 
 </header>
-
-
-<!-- Modal cho Giỏ hàng -->
-<div id="cart-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Giỏ Hàng</h2>
-        <p>Hiện chưa có sản phẩm</p>
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-        </svg>
-
-        <p>Tổng tiền: 0đ</p>
-        <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal cho Đăng nhập Tài khoản -->
-<div id="account-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a
-                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
-                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-            <button type="submit">Đăng Nhập</button>
-            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
-        </form>
-    </div>
-</div>
-
 
 <!--Body trang------------------------------------------------------->
 
@@ -517,9 +530,9 @@
                     <div class="AccountContent">
                         <div class="AccountList">
                             <ul class="list-unstyled">
-                                <li><a href="TaiKhoan.jsp">Thông tin tài khoản</a></li>
+                                <li><a href="<c:url value='/TaiKhoanCuaBan'/>">Thông tin tài khoản</a></li>
                                 <li class="current"><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
-                                <li class="last"><a href="TrangChu.jsp">Đăng xuất</a></li>
+                                <li class="last"><a href="<c:url value='/DangXuat'/>">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -531,56 +544,60 @@
                 <div class="address-list-wrap">
                     <p class="title-detail d-md-none">Danh sách địa chỉ</p>
 
-                    <!-- ITEM địa chỉ (mặc định) -->
-                    <article class="address-item default">
-                        <div class="address-item-head">
-                            <strong class="name">Người nhận: <span>Nguyễn Văn C</span></strong>
-                            <div class="actions">
-                                <button class="btn-icon edit" aria-label="Sửa địa chỉ">
-                                    <svg width="16" height="16" viewBox="0 0 24 24">
-                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 000-1.42l-2.34-2.34a1.003 1.003 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/>
-                                    </svg>
-                                </button>
-                                <button class="btn-icon delete" aria-label="Xóa địa chỉ">
-                                    <svg width="14" height="14" viewBox="0 0 24 24">
-                                        <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.41 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29 10.59 10.59 16.88 4.29z"/>
-                                    </svg>
-                                </button>
+                    <c:forEach var="a" items="${addresses}">
+                        <article class="address-item ${a.isDefault == 1 ? 'default' : ''}">
+                            <div class="address-item-head">
+                                <strong class="name">
+                                    Người nhận: <span>${a.recipientName}</span>
+                                </strong>
+
+                                <div class="actions">
+                                    <!-- SỬA -->
+                                    <button class="btn-icon edit"
+                                            data-id="${a.id}"
+                                            data-name="${a.recipientName}"
+                                            data-phone="${a.phoneNumber}"
+                                            data-street="${a.street}"
+                                            data-province="${a.province}"
+                                            data-district="${a.district}"
+                                            data-ward="${a.ward}"
+                                            data-default="${a.isDefault}">
+                                        ✏
+                                    </button>
+
+                                    <!-- XÓA -->
+                                    <form action="XoaDiaChi" method="post" style="display:inline">
+                                        <input type="hidden" name="id" value="${a.id}">
+                                        <button class="btn-icon delete" onclick="return confirm('Bạn muốn xóa địa chỉ này?')">
+                                            ✖
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="address-item-body">
-                            <p><strong>Địa chỉ:</strong> Số 1, Đường A, Phường B, Quận C, Thành phố D, Vietnam</p>
-                            <p><strong>Số điện thoại:</strong> 0123 456 789</p>
-                            <p class="tag-default">(Địa chỉ mặc định)</p>
-                        </div>
-                    </article>
+                            <div class="address-item-body">
+                                <p>
+                                    <strong>Địa chỉ:</strong>
+                                        ${a.street}, ${a.ward}, ${a.district}, ${a.province}
+                                </p>
+                                <p>
+                                    <strong>Số điện thoại:</strong> ${a.phoneNumber}
+                                </p>
 
-                    <!-- ITEM địa chỉ thứ 2 -->
-                    <article class="address-item">
-                        <div class="address-item-head">
-                            <strong class="name">Người nhận: <span>Trần Thị B</span></strong>
-                            <div class="actions">
-                                <button class="btn-icon edit" aria-label="Sửa địa chỉ">
-                                    <svg width="16" height="16" viewBox="0 0 24 24">
-                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 000-1.42l-2.34-2.34a1.003 1.003 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/>
-                                    </svg>
-                                </button>
-                                <button class="btn-icon delete" aria-label="Xóa địa chỉ">
-                                    <svg width="14" height="14" viewBox="0 0 24 24">
-                                        <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.41 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29 10.59 10.59 16.88 4.29z"/>
-                                    </svg>
-                                </button>
+                                <c:if test="${a.isDefault == 1}">
+                                    <p class="tag-default">(Địa chỉ mặc định)</p>
+                                </c:if>
                             </div>
-                        </div>
-                        <div class="address-item-body">
-                            <p><strong>Địa chỉ:</strong> Số 45, Ngõ Z, Phường Y, Quận X, Vietnam</p>
-                            <p><strong>Số điện thoại:</strong> 0987 654 321</p>
-                        </div>
-                    </article>
+                        </article>
+                    </c:forEach>
 
+                    <!-- KHÔNG CÓ ĐỊA CHỈ -->
+                    <c:if test="${empty addresses}">
+                        <p>Chưa có địa chỉ nào.</p>
+                    </c:if>
                 </div>
             </section>
+
 
             <!-- NÚT NHẬP ĐỊA CHỈ MỚI (col-right) -->
             <aside class="col-12 col-md-3 d-flex align-items-start justify-content-center">
@@ -609,52 +626,61 @@
         </header>
 
         <div class="address-modal-body">
-            <form class="address-form" id="editAddressForm" novalidate>
+            <form class="address-form"
+                  id="editAddressForm"
+                  action="CapNhatDiaChi"
+                  method="post">
+
+                <!-- ID địa chỉ (ẩn) -->
+                <input type="hidden" name="id" id="edit_id">
+
                 <div class="row">
                     <div class="col-12 col-md-6 form-group">
                         <label>Họ tên</label>
-                        <input type="text" name="edit_name" id="edit_name" placeholder="Nguyễn Văn A" />
+                        <input type="text" name="recipientName" id="edit_name" required />
                     </div>
+
                     <div class="col-12 col-md-6 form-group">
                         <label>Số điện thoại</label>
-                        <input type="text" name="edit_phone" id="edit_phone" placeholder="0123 456 789" />
+                        <input type="text" name="phoneNumber" id="edit_phone" required />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Địa chỉ (số nhà, đường)</label>
-                    <input type="text" name="edit_address" id="edit_address" placeholder="Số nhà, đường..." />
+                    <input type="text" name="street" id="edit_address" required />
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-md-4 form-group">
                         <label>Tỉnh/Thành</label>
-                        <input type="text" name="edit_province" id="edit_province" placeholder="TP.HCM" />
+                        <input type="text" name="province" id="edit_province" required />
                     </div>
+
                     <div class="col-12 col-md-4 form-group">
                         <label>Quận/Huyện</label>
-                        <input type="text" name="edit_district" id="edit_district" placeholder="Quận..." />
+                        <input type="text" name="district" id="edit_district" required />
                     </div>
+
                     <div class="col-12 col-md-4 form-group">
                         <label>Phường/Xã</label>
-                        <input type="text" name="edit_ward" id="edit_ward" placeholder="Phường..." />
+                        <input type="text" name="ward" id="edit_ward" required />
                     </div>
                 </div>
 
-                <!-- Checkbox mặc định (tái sử dụng style cũ nếu có) -->
                 <div class="form-group default-checkbox">
-                    <label class="checkbox-label">
-                        <input class="checkbox" type="checkbox" name="edit_is_default" id="edit_is_default" />
-                        <span class="checkbox-custom" aria-hidden="true"></span>
-                        <span class="checkbox-text">Đặt làm địa chỉ mặc định</span>
+                    <label>
+                        <input type="checkbox" name="is_default" id="edit_is_default" value="1">
+                        Đặt làm địa chỉ mặc định
                     </label>
                 </div>
 
                 <div class="form-actions">
                     <button type="button" class="btn-secondary" data-close="true">Hủy</button>
-                    <button type="button" class="btn-primary" id="save-edit-btn">Lưu (demo)</button>
+                    <button type="submit" class="btn-primary">Cập Nhật</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
@@ -677,51 +703,85 @@
         </header>
 
         <div class="address-modal-body">
-            <form class="address-form" novalidate>
+            <!--Form thêm địa chỉ mới-->
+            <form class="address-form"
+                  action="ThemDiaChi"
+                  method="post">
+
                 <div class="row">
                     <div class="col-12 col-md-6 form-group">
                         <label>Họ tên</label>
-                        <input type="text" placeholder="Nguyễn Văn A"/>
+                        <input type="text"
+                               name="recipientName"
+                               placeholder="Nguyễn Văn A"
+                               required />
                     </div>
+
                     <div class="col-12 col-md-6 form-group">
                         <label>Số điện thoại</label>
-                        <input type="text" placeholder="0123 456 789"/>
+                        <input type="text"
+                               name="phoneNumber"
+                               placeholder="0123 456 789"
+                               required />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Địa chỉ (số nhà, đường)</label>
-                    <input type="text" placeholder="Số nhà, đường..."/>
+                    <input type="text"
+                           name="street"
+                           placeholder="Số nhà, đường..."
+                           required />
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-md-4 form-group">
                         <label>Tỉnh/Thành</label>
-                        <input type="text" placeholder="TP.HCM"/>
+                        <input type="text"
+                               name="province"
+                               placeholder="TP.HCM"
+                               required />
                     </div>
+
                     <div class="col-12 col-md-4 form-group">
                         <label>Quận/Huyện</label>
-                        <input type="text" placeholder="Quận..."/>
+                        <input type="text"
+                               name="district"
+                               placeholder="Quận..."
+                               required />
                     </div>
+
                     <div class="col-12 col-md-4 form-group">
                         <label>Phường/Xã</label>
-                        <input type="text" placeholder="Phường..."/>
+                        <input type="text"
+                               name="ward"
+                               placeholder="Phường..."
+                               required />
                     </div>
                 </div>
 
-                <!-- Thêm: Đặt làm địa chỉ mặc định -->
+                <!-- Đặt làm địa chỉ mặc định -->
                 <div class="form-group default-checkbox">
                     <label class="checkbox-label">
-                        <input class="checkbox" type="checkbox" name="is_default" id="is_default" />
+                        <input class="checkbox"
+                               type="checkbox"
+                               name="is_default"
+                               value="1" />
                         <span class="checkbox-text">Đặt làm địa chỉ mặc định</span>
                     </label>
                 </div>
 
                 <div class="form-actions">
-                    <button type="button" class="btn-secondary" data-close="true">Hủy</button>
-                    <button type="button" class="btn-primary">Lưu</button>
+                    <button type="button" class="btn-secondary" data-close="true">
+                        Hủy
+                    </button>
+                    <!-- PHẢI là submit -->
+                    <button type="submit" class="btn-primary">
+                        Lưu
+                    </button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
@@ -967,6 +1027,56 @@
 
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const accountBtn = document.querySelector('.account-btn');
+        const accountMenu = document.getElementById('accountMenu');
+
+        if (!accountBtn || !accountMenu) return;
+
+        // Click icon → toggle dropdown
+        accountBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            accountMenu.classList.toggle('show');
+        });
+
+        // Click ra ngoài → đóng
+        document.addEventListener('click', (e) => {
+            if (
+                accountMenu.classList.contains('show') &&
+                !accountMenu.contains(e.target) &&
+                !accountBtn.contains(e.target)
+            ) {
+                accountMenu.classList.remove('show');
+            }
+        });
+    });
+
+</script>
+<script>
+    document.querySelectorAll('.btn-icon.edit').forEach(btn => {
+        btn.addEventListener('click', () => {
+
+            document.getElementById('edit_id').value = btn.dataset.id;
+
+            document.getElementById('edit_name').value = btn.dataset.name;
+            document.getElementById('edit_phone').value = btn.dataset.phone;
+            document.getElementById('edit_address').value = btn.dataset.street;
+            document.getElementById('edit_province').value = btn.dataset.province;
+            document.getElementById('edit_district').value = btn.dataset.district;
+            document.getElementById('edit_ward').value = btn.dataset.ward;
+
+            document.getElementById('edit_is_default').checked =
+                btn.dataset.default === "1";
+
+            document.getElementById('edit-address-modal')
+                .setAttribute('aria-hidden', 'false');
+        });
+    });
+</script>
+
 
 
 </body>

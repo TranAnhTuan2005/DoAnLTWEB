@@ -321,7 +321,7 @@
                         <div class="AccountList">
                             <ul class="list-unstyled">
                                 <li class="current"><a href="TaiKhoan.html">Thông tin tài khoản</a></li>
-                                <li><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
+                                <li><a href="DanhSachDiaChi.jsp">Danh sách địa chỉ</a></li>
                                 <li class="last"><a href="TrangChu.jsp">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -351,7 +351,7 @@
 
                         <!-- Hiển thị link xem địa chỉ -->
                         <p class="address-view">
-                            <a href="DanhSachDiaChi.html" class="address-view-link">Xem địa chỉ</a>
+                            <a href="DanhSachDiaChi.jsp" class="address-view-link">Xem địa chỉ</a>
                         </p>
                     </div>
 
