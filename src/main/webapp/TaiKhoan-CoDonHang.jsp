@@ -304,7 +304,7 @@
                                 Xin chào, <strong>${sessionScope.user.fullName}</strong>
                             </p>
                             <hr>
-                            <a href="#" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
                             <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
                         <div class="AccountList">
                             <ul class="list-unstyled">
                                 <li class="current"><a href="<c:url value='/TaiKhoanCuaBan'/>">Thông tin tài khoản</a></li>
-                                <li><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
+                                <li><a href="<c:url value='/DanhSachDiaChi'/>">Danh sách địa chỉ</a></li>
                                 <li class="last"><a href="<c:url value='/DangXuat'/>">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -386,8 +386,6 @@
                 <p class="email "><span>Email: </span>${sessionScope.user.email}</p>
                 <div class="address ">
 
-                    <p><span>Địa chỉ: </span>${sessionScope.user.userAddress}</p>
-
                     <p><span>SĐT: </span>${sessionScope.user.phoneNumber}</p>
 
                     <div class="account-address-box">
@@ -395,7 +393,7 @@
 
                         <!-- Hiển thị link xem địa chỉ -->
                         <p class="address-view">
-                            <a href="DanhSachDiaChi.html" class="address-view-link">Xem địa chỉ</a>
+                            <a href="<c:url value='/DanhSachDiaChi'/>" class="address-view-link">Xem địa chỉ</a>
                         </p>
                     </div>
 
@@ -452,7 +450,7 @@
                                     <c:otherwise>
                                         <tr>
                                             <td colspan="5" style="text-align: center; padding: 30px; font-style: italic; color: #777;">
-                                                Bạn chưa có đơn hàng nào. <a href="${pageContext.request.contextPath}/SanPham-TatCa.jsp" style="color: #839b4c; font-weight: bold;">Mua sắm ngay</a>
+                                                Bạn chưa có đơn hàng nào. <a href="<c:url value='/SanPham-TatCa'/>" style="color: #839b4c; font-weight: bold;">Mua sắm ngay</a>
                                             </td>
                                         </tr>
                                     </c:otherwise>
@@ -638,6 +636,32 @@
         }
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const accountBtn = document.querySelector('.account-btn');
+        const accountMenu = document.getElementById('accountMenu');
 
+        if (!accountBtn || !accountMenu) return;
+
+        // Click icon → toggle dropdown
+        accountBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            accountMenu.classList.toggle('show');
+        });
+
+        // Click ra ngoài → đóng
+        document.addEventListener('click', (e) => {
+            if (
+                accountMenu.classList.contains('show') &&
+                !accountMenu.contains(e.target) &&
+                !accountBtn.contains(e.target)
+            ) {
+                accountMenu.classList.remove('show');
+            }
+        });
+    });
+
+</script>
 </body>
 </html>
