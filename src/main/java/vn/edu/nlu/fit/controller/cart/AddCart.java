@@ -29,7 +29,13 @@ public class AddCart extends HttpServlet {
         }
         cart.addItem(product,quantity);
         session.setAttribute("cart", cart);
-        response.sendRedirect( request.getContextPath() +"/SanPham-TatCa");
+        // lấy trang đang đứng
+        String previousPage = request.getHeader("referer");
+        if (previousPage != null) {
+            response.sendRedirect(previousPage);
+        } else {
+            response.sendRedirect("/TrangChu");
+        }
     }
 
     @Override
