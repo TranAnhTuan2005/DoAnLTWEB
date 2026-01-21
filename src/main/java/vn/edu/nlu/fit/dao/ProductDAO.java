@@ -140,4 +140,20 @@ public class ProductDAO extends BaseDao {
         return list;
     }
 
+
+    public List<Products> searchByName(String keyword) {
+        String sql = """
+                    SELECT *
+                    FROM products
+                    WHERE product_name LIKE :kw
+                """;
+
+        return getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .bind("kw", "%" + keyword + "%")
+                        .mapToBean(Products.class)
+                        .list()
+        );
+    }
+
 }
