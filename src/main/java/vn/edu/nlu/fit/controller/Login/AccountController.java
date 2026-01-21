@@ -13,7 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "AccountController", value = "/TaiKhoanCuaBan")
 public class AccountController extends HttpServlet {
-    private OrderService orderService = new OrderService();
+    //private OrderService orderService = new OrderService();
 
 
     @Override

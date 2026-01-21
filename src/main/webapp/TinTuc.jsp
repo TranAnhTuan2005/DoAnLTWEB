@@ -355,10 +355,10 @@
             <!-- Menu điều hướng -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                    <li><a href="TrangChu">Trang chủ</a></li>
+                    <li><a href="VeNgon">Về Ngon</a></li>
                     <li class="menu-sp">
-                        <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                        <a href="SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
@@ -380,9 +380,9 @@
 
 
 
-                    <li><a href="TinTuc1.html">Tin tức</a></li>
-                    <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                    <li><a href="LienHe.html">Liên hệ</a></li>
+                    <li><a href="News">Tin tức</a></li>
+                    <li><a href="CongTacVien">Cộng tác viên</a></li>
+                    <li><a href="LienHe">Liên hệ</a></li>
                 </ul>
             </nav>
 
@@ -397,60 +397,23 @@
                             fill="#333" />
                     </svg>
                 </a>
-                <a href="#" class="cart-btn" aria-label="Giỏ hàng">
+                <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1"></circle>
                         <circle cx="20" cy="21" r="1"></circle>
                         <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                     </svg>
+                    <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                    </c:if>
                 </a>
             </div>
         </div>
 
     </header>
-
-
-    <!-- Modal cho Giỏ hàng -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Giỏ Hàng</h2>
-            <p>Hiện chưa có sản phẩm</p>
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-            </svg>
-
-            <p>Tổng tiền: 0đ</p>
-            <div class="modal-buttons">
-                <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
-                <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal cho Đăng nhập Tài khoản -->
-    <div id="account-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Đăng Nhập Tài Khoản</h2>
-            <p>Nhập email và mật khẩu của bạn:</p>
-            <form>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Mật khẩu" required>
-                <p>This site is protected by reCAPTCHA and the Google <a
-                        href="https://policies.google.com/privacy">Privacy Policy</a> and <a
-                        href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-                <button type="submit" onclick="window.location.href='TrangChu-daDNTK.html'">Đăng Nhập</button>
-                <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-                <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
-            </form>
-        </div>
-    </div>
 
     <!------------------------------------------------------------------------------------>
     <!--Body-->
@@ -597,7 +560,7 @@
                                 <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                                 <ul>
                                     <li><a href="TimKiem-KetQua.html" title="Tìm kiếm">Tìm kiếm</a></li>
-                                    <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                    <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                             trả</a></li>
                                     <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                             mật</a></li>
@@ -612,12 +575,12 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">KẾT NỐI NHANH</h3>
                                 <ul>
-                                    <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                    <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                    <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="TinTuc1.html" title="Tin tức">Tin tức</a></li>
-                                    <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                    <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                    <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                    <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                    <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                    <li><a href="News" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                    <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                                 </ul>
                             </div>
 

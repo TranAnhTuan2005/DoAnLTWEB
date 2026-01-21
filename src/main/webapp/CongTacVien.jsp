@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Liên hệ</title>
+    <title>Cộng tác viên</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,15 +11,18 @@
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
+<body>
 
+<style>
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
         padding-bottom: 5px;
-        background: #f6efe3; /*tạo màu nền từ trên xuống dưới gồm 2 màu*/
+        background: #f6efe3;
         border-bottom: 1px solid rgba(0,0,0,0.04);
     }
+
+
 
     /* Mỗi item không có margin dày (tránh làm nội dung tràn xuống dưới)*/
     .breadcrumb-bar .breadcrumb .breadcrumb-item {
@@ -49,62 +53,186 @@
 
 
 
-    /* ====== Contact cards ====== */
-    .contact-cards-section { padding: 36px 0; }
-    .contact-card {
-        background: #F5F5F5;
-        border-radius: 6px;
-        padding: 28px 18px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        transition: transform .18s ease, box-shadow .18s ease;
-        border: 1px solid rgba(0,0,0,0.03);
-    }
-    .contact-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-    .contact-icon {
-        margin-bottom: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .contact-icon svg { display:block; }
 
-    /* Title  */
-    .contact-title {
+    /*Tiêu đề*/
+    .congtacvien-section .content h3 {
+        font-size: 20px; /* tiêu đề mục */
+    }
+
+
+    /* Sidebar */
+    .sidebar-box h4 {
+        font-size: 20px;
+    }
+
+
+    .congtacvien-section {
+        padding: 48px 0;
+        color: #222;
+    }
+    .congtacvien-section .container {
+        max-width: 1200px;
+    }
+
+    /* Tiêu đề trang */
+    .congtacvien-section .page-title {
+        font-size: 30px;
+        font-weight: 800;
+        color: #2c1c12;
+        margin-bottom: .5rem;
+        margin-left: -48px;
+
+    }
+
+    /* Nội dung chính */
+    .congtacvien-section .content {
+        font-size: 16px;
+        line-height: 1.9;
+        color: #333;
+    }
+    .congtacvien-section .content h3 {
         font-size: 20px;
         font-weight: 700;
-        color: #2c1c12;
-        margin: 8px 0 6px;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        color: #222;
     }
-    .contact-sub {
-        font-size: 14px;
-        color: #9b8f88;
-        margin: 0;
-        line-height: 1.6;
-        word-break: break-word;
+    .congtacvien-section .content p {
+        margin: 10px 0;
+        text-align: justify;
+        font-size: 17px;
     }
 
-    /* Links */
-    .contact-sub a {
-        color: #9b8f88;
+    /* Liệt kê (nếu muốn dùng bullet) */
+    .congtacvien-section .content ul {
+        margin-left: 0;
+        padding-left: 18px;
+    }
+    .congtacvien-section .content ul li {
+        margin-bottom: 10px;
+    }
+
+    /* Sidebar */
+    .congtacvien-section .sidebar {
+        padding-left: 50px;
+    }
+    .sidebar-box {
+        border: 1px solid #e6e6e6;
+        background: #fff;
+        padding: 18px 20px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    }
+    .sidebar-box h4 {
+        margin: 0 0 12px 0;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+    }
+    .sidebar-box .divider {
+        height: 2px;
+        width: 80%;
+        margin: 14px auto;
+        background: #111;
+        opacity: 0.15;
+    }
+    .sidebar-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .sidebar-box ul li {
+        padding: 8px 0;
+        border-bottom: none;
+    }
+    .sidebar-box ul li a {
+        color: #555;
         text-decoration: none;
     }
-    .contact-sub a:hover {
-        text-decoration: underline; color: #7a5a36; }
+    .sidebar-box ul li a:hover {
+        color: #222;
+    }
+
+
+    /* Liên hệ (phần cuối nội dung) */
+    .congtacvien-section .contact-list {
+        margin-top: 20px;
+        margin-left: -48px; /* đẩy phần Liên hệ ra ngoài trái */
+
+    }
+    .congtacvien-section .contact-list p {
+        margin: 6px 0;
+        color: #4b2c14;
+        font-weight: 600;
+    }
+
+
+
+
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .category-list .category-item {
+        padding: 7px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
+        text-decoration: none;
+        padding: 4px 6px;
+    }
+
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
+    }
+
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
+        }
+    }
 
 
 
 
 </style>
 
-<body>
+
+
+
 <!-- Thanh thông tin trên cùng -->
 <div class="top-info-bar">
     <div class="header-container">
@@ -166,7 +294,7 @@
 
                 <li><a href="TinTuc.jsp">Tin tức</a></li>
                 <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="LienHe.html">Liên hệ</a></li>
+                <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -231,76 +359,97 @@
                     href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <button type="submit">Đăng Nhập</button>
             <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
+            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
         </form>
     </div>
 </div>
 
-<!--Body-->
+<!--Body cộng tác viên-->
+
+
 <section class="breadcrumb-bar py-2">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-2 rounded-3">
                 <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
+                <li class="breadcrumb-item active" aria-current="page">Cộng tác viên</li>
             </ol>
         </nav>
     </div>
 </section>
 
 
-
-<section class="contact-cards-section">
+<section class="congtacvien-section">
     <div class="container">
-        <div class="row g-4 text-center">
-            <div class="col-6 col-md-3">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <!-- icon location (SVG) -->
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#a46b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <h4 class="contact-title">Địa chỉ chúng tôi</h4>
-                    <p class="contact-sub">Dĩ An, TP HCM</p>
-                </div>
-            </div>
+        <div class="row">
+            <!-- Nội dung chính (cột trái) -->
+            <main class="col-12 col-md-8">
+                <h1 class="page-title">Cộng tác viên</h1>
 
-            <div class="col-6 col-md-3">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <!-- icon email -->
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#a46b2c" stroke-width="1.5"/><path d="M3 7l9 6 9-6" stroke="#a46b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <h4 class="contact-title">Email chúng tôi</h4>
-                    <p class="contact-sub"><a href="mailto:ngucocNgon@gmail.com">ngucocNgon@gmail.com</a></p>
-                </div>
-            </div>
+                <div class="content">
+                    <h3>Quy định</h3>
+                    <p>Thành viên tham gia bán hàng có tuổi từ 20 trở lên, mang Quốc tịch Việt Nam, đủ năng lực hành vi dân sự.</p>
+                    <p>Sử dụng hình ảnh, nội dung Shop cung cấp đúng mục đích kinh doanh.</p>
+                    <p>CTV chỉ được bán các sản phẩm thuộc lĩnh vực của Shop.</p>
+                    <p>Không có thái độ khiếm nhã với khách hàng gây ảnh hưởng tới hình ảnh, thương hiệu của Shop.</p>
 
-            <div class="col-6 col-md-3">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <!-- icon phone -->
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12 1.05.36 2.07.72 3.03a2 2 0 0 1-.45 2.11L8.91 10.91a16 16 0 0 0 6 6l1.05-1.05a2 2 0 0 1 2.11-.45c.96.36 1.98.6 3.03.72A2 2 0 0 1 22 16.92z" stroke="#a46b2c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <h4 class="contact-title">Điện thoại</h4>
-                    <p class="contact-sub"><a href="tel:0357250466">0357 250 466</a></p>
-                </div>
-            </div>
+                    <h3>Quyền lợi của cộng tác viên</h3>
+                    <p>CTV không mất tiền đầu tư ban đầu, lợi nhuận nhận được theo quy định của Shop.</p>
+                    <p>Được sử dụng hồ sơ Shop, tài liệu quảng bá, Catalog sản phẩm, kỹ thuật, giải pháp để phục vụ công tác bán hàng.</p>
+                    <p>Được thông tin về giá cả, chính sách, chương trình khuyến mãi có liên quan.</p>
 
-            <div class="col-6 col-md-3">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <!-- icon facebook -->
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 12.07C22 6.59 17.52 2 12 2S2 6.59 2 12.07C2 17.11 5.66 21.25 10.44 22v-7.03H8.08V12h2.36V9.79c0-2.33 1.39-3.61 3.52-3.61 1.02 0 2.09.18 2.09.18v2.3h-1.17c-1.16 0-1.52.72-1.52 1.46V12h2.6l-.42 2.97h-2.18V22C18.34 21.25 22 17.11 22 12.07z" stroke="#a46b2c" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <h4 class="contact-title">Fanpage</h4>
-                    <p class="contact-sub"><a href="#" target="_blank" rel="noreferrer">facebook.com/NgucocNgon</a></p>
+                    <h3>Nghĩa vụ của cộng tác viên</h3>
+                    <p>Chủ động quảng bá thương hiệu, tiếp thị sản phẩm, tìm kiếm và khai thác nguồn khách hàng tiềm năng.</p>
+                    <p>Sử dụng đúng thông tin Shop cung cấp để tư vấn cho khách hàng.</p>
+                    <p>Nghiêm cấm CTV lợi dụng danh nghĩa Shop để thực hiện các hành vi vi phạm pháp luật hoặc gây ảnh hưởng xấu đến uy tín Shop.</p>
                 </div>
-            </div>
+
+                <div class="contact-list">
+                    <h3>Liên hệ</h3>
+                    <p>- Địa chỉ: Dĩ An, TP.HCM</p>
+                    <p>- Email: ngucocNgon@gmail.com</p>
+                    <p>- Điện thoại: 0357 250 466</p>
+                    <p>- Fanpage: <a href="#" target="_blank">Ngũ cốc Ngon</a></p>
+                </div>
+            </main>
+
+
+            <!-- SIDEBAR DANH MỤC TRANG-->
+
+            <!--thẻ div gồm các class sử dụng bootstrap chia làm 2 cột 1 ảnh và 1 nội dung xen kẽ nhau-->
+
+            <aside class="col-12 col-md-4 sidebar">
+                <div class="category-sidebar p-3 bg-white rounded shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">Danh mục trang</h4>
+
+                        <!--dùng bootstrap tạo danh mục trang-->
+                        <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
+                        <button class="btn btn-outline-secondary d-md-none btn-sm"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#categoryList"
+                                aria-expanded="false"
+                                aria-controls="categoryList">
+                            Danh mục ▾
+                        </button>
+                    </div>
+
+                    <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
+                        <li class="category-item"><a href="VeNgon.jsp">Giới thiệu</a></li>
+                        <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
+                        <li class="category-item"><a href="DieuKhoanDichVu.html">Điều khoản dịch vụ</a></li>
+                        <li class="category-item"><a href="PhuongThucThanhToan.jsp">Phương thức thanh toán</a></li>
+                        <li class="category-item"><a href="ChinhSachDoiTra.jsp">Chính sách đổi trả</a></li>
+
+                    </ul>
+                </div>
+            </aside>
+
+
+
         </div>
     </div>
 </section>
-
-
 
 
 <!------------------------------------------------------------------------------>
@@ -377,8 +526,8 @@
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
 
-                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                     height="70px" width="150px" alt="Bộ Công Thương">
+                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                         height="70px" width="150px" alt="Bộ Công Thương">
 
                             </div>
                         </div>
@@ -388,7 +537,7 @@
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
                                 <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
@@ -408,7 +557,7 @@
                                 <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
                                 <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -473,7 +622,5 @@
         }
     });
 </script>
-
-
 </body>
 </html>

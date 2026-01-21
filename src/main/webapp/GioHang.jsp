@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -338,10 +339,10 @@
             <!-- Menu điều hướng -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                    <li><a href="TrangChu">Trang chủ</a></li>
+                    <li><a href="VeNgon">Về Ngon</a></li>
                     <li class="menu-sp">
-                        <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                        <a href="SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
@@ -363,9 +364,9 @@
 
 
 
-                    <li><a href="TinTuc.jsp">Tin tức</a></li>
-                    <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                    <li><a href="LienHe.html">Liên hệ</a></li>
+                    <li><a href="News">Tin tức</a></li>
+                    <li><a href="CongTacVien">Cộng tác viên</a></li>
+                    <li><a href="LienHe">Liên hệ</a></li>
                 </ul>
             </nav>
 
@@ -398,25 +399,6 @@
 
     </header>
 
-    <!-- Modal cho Đăng nhập Tài khoản -->
-    <div id="account-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Đăng Nhập Tài Khoản</h2>
-            <p>Nhập email và mật khẩu của bạn:</p>
-            <form>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Mật khẩu" required>
-                <p>This site is protected by reCAPTCHA and the Google <a
-                        href="https://policies.google.com/privacy">Privacy Policy</a> and <a
-                        href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-                <button type="submit" onclick="window.location.href='TrangChu.jsp'">Đăng Nhập</button>
-                <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-                <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
-            </form>
-        </div>
-    </div>
-
     <!------------------------------------------------------------------------------------>
     <!--Body-->
     <main class="main-detailProduct">
@@ -444,12 +426,13 @@
                     </div>
 
                     <c:forEach items="${sessionScope.cart.item}" var="p">
+                        <fmt:formatNumber var="formattedPrice" value="${p.price}" type="number" groupingUsed="true"/>
                     <div class="cart-items">
                         <div class="item">
                             <img src="${p.product.imageURL}" alt="Banh hat dinh duong">
                             <div class="item-infor">
                                 <h3>${p.product.productName}</h3>
-                                <p class="price">${p.price}đ</p>
+                                <p class="price">${formattedPrice}đ</p>
                                 <div class="quantity-box">
                                     <button class="qty-btn"  onclick="updateQuantity(${p.product.id}, -1)">-</button>
                                     <input type="number" name="qty-product" id="qty-${p.product.id}" value="${p.quantity}" min="1" readonly>
@@ -474,7 +457,7 @@
                     <h2>Thông tin đơn hàng</h2>
                     <div class="order-total">
                         <span>Tổng tiền:</span>
-                        <strong id="cart-grand-total">${sessionScope.cart.total}đ</strong>
+                        <strong id="cart-grand-total"> ${sessionScope.cart.total}đ</strong>
                     </div>
                     <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
@@ -578,7 +561,7 @@
                                 <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                                 <ul>
                                     <li><a href="TimKiem-KetQua.html" title="Tìm kiếm">Tìm kiếm</a></li>
-                                    <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                    <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                             trả</a></li>
                                     <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                             mật</a></li>
@@ -593,12 +576,12 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">KẾT NỐI NHANH</h3>
                                 <ul>
-                                    <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                    <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                    <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                    <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                    <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                    <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                    <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                    <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                    <li><a href="News" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                    <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                                 </ul>
                             </div>
 

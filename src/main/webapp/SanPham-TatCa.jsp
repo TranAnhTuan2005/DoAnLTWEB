@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page isELIgnored="false" %> <!--ép hiện dữ liệu lên-->
 <!DOCTYPE html>
 <html lang="vi">
@@ -447,8 +448,8 @@
                 </li>
 
                 <li><a href="TinTuc.jsp">Tin tức</a></li>
-                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="LienHe.html">Liên hệ</a></li>
+                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
+                <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -614,7 +615,7 @@
                     <c:url var="detailUrl_byID" value="/Chi-tiet-san-pham">
                         <c:param name="id" value="${p.id}"/>
                     </c:url>
-
+                    <fmt:formatNumber var="formattedPrice" value="${p.price}" type="number" groupingUsed="true"/>
 
                     <div class="collection-product-item">
                         <div class="collection-product-image">
@@ -630,13 +631,13 @@
                                 </a>
 
                                 <button class="collection-view-btn"
-                                        onclick="openModal('${p.id}','${p.imageURL}','${p.productName}', '${p.price}đ', '${detailUrl_byID}')">👁
+                                        onclick="openModal('${p.id}','${p.imageURL}','${p.productName}', '${formattedPrice}đ', '${detailUrl_byID}')">👁
                                     XEM NHANH
                                 </button>
                             </div>
                         </div>
                         <h3>${p.productName}</h3>
-                        <p class="price">${p.price}đ</p>
+                        <p class="price">${formattedPrice}đ</p>
                     </div>
                 </c:forEach>
 
@@ -764,7 +765,7 @@
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
                                 <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách
+                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách
                                     đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách
@@ -786,9 +787,9 @@
                                 <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a>
+                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a>
                                 </li>
-                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
