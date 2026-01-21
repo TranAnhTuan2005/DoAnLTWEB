@@ -1010,13 +1010,6 @@ body {
     gap: 30px;
 }
 
-/* Cột chứa sản phẩm */
-.favorite-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 /* Một sản phẩm */
 .fav-item {
     display: flex;
