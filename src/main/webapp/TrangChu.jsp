@@ -343,132 +343,45 @@
 
         <div class="favorite-grid">
             <!-- Cột 1 -->
-            <div class="favorite-column">
+            <c:forEach var="p" items="${favouriteProducts}">
+            <c:url var="detailUrl_byID" value="/Chi-tiet-san-pham">
+                <c:param name="id" value="${p.id}"/>
+            </c:url>
+            <fmt:formatNumber var="formattedPrice" value="${p.price}" type="number" groupingUsed="true"/>
                 <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/banhhat.jpg" alt="Bánh hạt"></a>
+                    <a href="${detailUrl_byID}"><img src="${p.imageURL}" alt="${p.productName}"></a>
                     <div class="fav-info">
-                        <a href="">Bánh hạt dinh dưỡng 30 x 15 g</a>
-                        <p class="price">219,000₫</p>
+                        <a href="">${p.productName}</a>
+                        <p class="price">${formattedPrice}</p>
                     </div>
                 </div>
-
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/botgaolut.png" alt="Bột gạo lứt"></a>
-                    <div class="fav-info">
-                        <a href="">Bột gạo lứt mè đen hỗ trợ giảm cân</a>
-                        <p class="price">179,000₫</p>
-                    </div>
-                </div>
-
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/botngucoc.png" alt="Bột ngũ cốc"></a>
-                    <div class="fav-info">
-                        <a href="">Bột ngũ cốc tăng cân</a>
-                        <p class="price">209,000₫</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cột 2 -->
-            <div class="favorite-column">
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/chaohat.png" alt="Cháo hạt vỡ"></a>
-                    <div class="fav-info">
-                        <a href="">Cháo hạt vỡ cho trẻ em</a>
-                        <p class="price">169,000₫</p>
-                    </div>
-                </div>
-
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/combohatsen.jpg" alt="Combo 100g"></a>
-                    <div class="fav-info">
-                        <a href="">Combo set hạt nấu sữa 14 gói 100g</a>
-                        <p class="price">329,000₫</p>
-                    </div>
-                </div>
-
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/combohatsen50g.jpg" alt="Combo 50g"></a>
-                    <div class="fav-info">
-                        <a href="">Combo set hạt nấu sữa 14 gói 50g</a>
-                        <p class="price">189,000₫</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cột 3 -->
-            <div class="favorite-column">
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/granola.png" alt="Granola"></a>
-                    <div class="fav-info">
-                        <a href="">Granola</a>
-                        <p class="price">179,000₫</p>
-                    </div>
-                </div>
-
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/hatdieusay.jpg" alt="Hạt điều sấy"></a>
-                    <div class="fav-info">
-                        <a href="">Hạt điều sấy tự nhiên</a>
-                        <p class="price">195,000₫</p>
-                    </div>
-                </div>
-
-                <div class="fav-item">
-                    <a href=""><img src="image/favouriteProduct/mixhat.png" alt="Mix hạt"></a>
-                    <div class="fav-info">
-                        <a href="">Mix hạt</a>
-                        <p class="price">239,000₫</p>
-                    </div>
-                </div>
+            </c:forEach>
             </div>
         </div>
-    </div>
+
 </section>
 
 
 <!------------------------------TIN TỨC-------------------------------------------------->
 <section class="news-section">
-    <div class="container"></div>
+    <div class="container">
     <h2>TIN TỨC</h2>
     <p class="subtitle">Cập nhật những bài viết hữu ích dành cho khách hàng</p>
     <div class="news-grid">
-
+        <c:forEach var="n" items="${recentNews}">
         <div class="news-item">
             <div class="news-img">
-                <img src="image/news/tin-tuc-cacloaihat.png" alt="Tin tức chính về các loại">
+                <img src="${n.imageURL}" alt="${n.title}">
             </div>
             <a href="" class="title">
-                <h3>+5 LOẠI HẠT DINH DƯỠNG CẦN THIẾT CHO MẸ BẦU</h3>
+                <h3>${n.title}</h3>
             </a>
-            <p class="sub-paragraph">Bài viết này chúng tôi sẽ bật mí 5 loại hạt siêu dinh dưỡng không thể thiếu
-                trong thực đơn...</p>
+            <p class="sub-paragraph">${n.shortDescription}</p>
             <a href="#" class="more">Xem thêm</a>
         </div>
+        </c:forEach>
 
-        <div class="news-item">
-            <div class="news-img">
-                <img src="image/news/tin-tuc-ncdd.webp" alt="Tin tức chính về các loại">
-            </div>
-            <a href="" class="title">
-                <h3>NGŨ CỐC CAO CẤP CÓ THỰC SỰ HỖ TRỢ NGƯỜI ỐM PHỤC HỒI NHANH</h3>
-            </a>
-            <p class="sub-paragraph">Sau một đợt ốm kéo dài, cơ thể chúng ta cần một chế độ dinh dưỡng đặc biêt để
-                hồi...</p>
-            <a href="#" class="more">Xem thêm</a>
-        </div>
-
-        <div class="news-item">
-            <div class="news-img">
-                <img src="image/news/tao-do.jpg" alt="Tin tức chính về các loại">
-            </div>
-            <a href="" class="title">
-                <h3>TÁO ĐỎ TÂN CƯƠNG CHẤT LƯỢNG, GIÁ TỐT TẠI HUẾ</h3>
-            </a>
-            <p class="sub-paragraph">Táo đỏ Tân Cương, một trong những đặc sản nổi tiếng của vùng đất này(Trung
-                Quốc), được nhiều người...</p>
-            <a href="#" class="more">Xem thêm</a>
-        </div>
+    </div>
     </div>
 </section>
 

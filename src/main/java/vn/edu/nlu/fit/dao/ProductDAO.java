@@ -112,8 +112,32 @@ public class ProductDAO extends BaseDao {
                 handle.createQuery(sql)
                         .bind("limit", limit)
                         .mapToBean(Products.class)
-                        .list()
-        );
+                        .list());
+    }
+    public List<Products> getTopFvouriteProduct(int limit){
+        String sql = "Select p.id, p.product_name as productName, " +
+                "p.price, p.image_url as imageURL " +
+                "FROM products p join products_orders po " +
+                "on p.id = po.product_id " +
+                "GROUP BY p.id, p.product_name, p.price, p.image_url " +
+                "ORDER BY sum(po.quantity) DESC " +
+                "LIMIT :limit";
+
+        List<Products> list= getJdbi().withHandle(handle ->
+                        handle.createQuery(sql).bind("limit", limit).mapToBean(Products.class)
+                        .list());
+
+        //Trường hợp chưa có người mua hàng
+        if (list.isEmpty()) {
+            String sqlFallback = "select id, product_name AS productName, " +
+                    "price, image_url AS imageURL " +
+                    "FROM products ORDER BY RAND() LIMIT :limit";
+            return getJdbi().withHandle(handle ->
+                    handle.createQuery(sqlFallback).bind("limit", limit)
+                            .mapToBean(Products.class)
+                            .list());
+        }
+        return list;
     }
 
 }
