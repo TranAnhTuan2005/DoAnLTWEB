@@ -352,7 +352,7 @@
                     <a href="${detailUrl_byID}"><img src="${p.imageURL}" alt="${p.productName}"></a>
                     <div class="fav-info">
                         <a href="">${p.productName}</a>
-                        <p class="price">${formattedPrice}</p>
+                        <p class="price">${formattedPrice}đ</p>
                     </div>
                 </div>
             </c:forEach>

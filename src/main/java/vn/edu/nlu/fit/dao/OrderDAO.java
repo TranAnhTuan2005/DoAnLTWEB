@@ -72,17 +72,26 @@ public class OrderDAO extends BaseDao{
         });
     }
 
+    //DS đơn hàng
     public List<Orders> getOrdersByUserId(int userId) {
-        String sql = "SELECT id, user_id AS userID, total_money AS total, status AS orderStatus, " +
-                "created_at AS orderDate, " +
-                "address AS orderAddress, " +
-                "full_name AS fullName, phone, email " +
-                "FROM orders " +
+        String sql = "SELECT o.id, o.user_id AS userID, o.total AS total, o.order_status AS orderStatus, " +
+                "o.order_date AS orderDate, " +
+                "o.order_address AS orderAddress, " +
+                "o.fullName AS fullName, o.phone, o.email, d.method_name as deliveryMethod " +
+                "FROM orders o left join deliverymethods d on o.delivery_method_id = d.id  " +
                 "WHERE user_id = :userId " +
-                "ORDER BY created_at DESC";
+                "ORDER BY order_date DESC";
         return getJdbi().withHandle(handle ->
                 handle.createQuery(sql).bind("userId", userId).mapToBean(Orders.class).list()
         );
+    }
+
+    //Hủy đơn
+    public boolean cancelOrder(int orderId) {
+        String sql = "update orders SET order_status = 4 WHERE id = :orderId AND order_status = 1";
+        int rowsAffected = getJdbi().withHandle(handle ->
+                handle.createUpdate(sql).bind("orderId", orderId).execute());
+        return rowsAffected > 0;
     }
 
 }
