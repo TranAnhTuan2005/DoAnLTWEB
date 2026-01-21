@@ -77,8 +77,8 @@
                 </li>
 
                 <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
-                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="LienHe.html">Liên hệ</a></li>
+                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
+                <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -135,7 +135,7 @@
             </c:choose>
 
             <!-- CART -->
-            <a href="<c:url value='/GioHang'/>" class="cart-btn" aria-label="Giỏ hàng">
+            <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      viewBox="0 0 24 24" fill="none"
                      stroke="black" stroke-width="2"
@@ -471,7 +471,7 @@
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
                                 <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
@@ -491,8 +491,8 @@
                                 <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 

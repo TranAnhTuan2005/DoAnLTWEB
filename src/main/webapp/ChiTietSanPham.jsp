@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -300,8 +301,8 @@
                 </li>
 
                 <li><a href="TinTuc.jsp">Tin tức</a></li>
-                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="LienHe.html">Liên hệ</a></li>
+                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
+                <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -368,6 +369,11 @@
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
                      a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
 
         </div>
@@ -394,7 +400,7 @@
 
     <!-- Detail product -->
     <section class="detail-product-page">
-
+        <fmt:formatNumber var="formattedPrice" value="${product.price}" type="number" groupingUsed="true"/>
         <!-- Hình ảnh sản phẩm -->
         <div class="detail-product-gallery">
             <img id="detail-product-image" src="${product.imageURL}" alt="Ngũ cốc trẻ em" class="detail-product-image">
@@ -403,7 +409,7 @@
         <!-- Thông tin sản phẩm -->
         <div class="detail-product-info">
             <h1 class="detail-product-title">${product.productName}</h1>
-            <p class="detail-product-price">${product.price}₫</p>
+            <p class="detail-product-price">${formattedPrice}₫</p>
 
             <div class="detail-product-action-row">
                 <div class="detail-product-quantity">
@@ -550,7 +556,7 @@
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
                                 <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
@@ -569,8 +575,8 @@
                                 <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 

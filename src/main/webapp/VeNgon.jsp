@@ -274,8 +274,8 @@
                 </li>
 
                 <li><a href="TinTuc.jsp">Tin tức</a></li>
-                <li><a href="CongTacVien.html">Cộng tác viên</a></li>
-                <li><a href="LienHe.html">Liên hệ</a></li>
+                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
+                <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -426,7 +426,7 @@
                     <!--  có thể thêm 1-2 link nhanh hoặc featured ở đây -->
                     <div class="mt-3">
                         <a href="SanPham-TatCa.jsp" class="btn btn-outline-success me-2">Xem tất cả sản phẩm</a>
-                        <a href="ChinhSachDoiTra.html" class="btn btn-outline-secondary">Chính sách đổi trả</a>
+                        <a href="ChinhSachDoiTra.jsp" class="btn btn-outline-secondary">Chính sách đổi trả</a>
                     </div>
                 </div>
             </div>
@@ -607,7 +607,7 @@
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
                                 <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.html" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
                                 <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
@@ -627,8 +627,8 @@
                                 <li><a href="VeNgon.html" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
                                 <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.html" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
