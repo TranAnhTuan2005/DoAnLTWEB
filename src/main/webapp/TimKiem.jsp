@@ -297,7 +297,7 @@
 
         <div class="search-inner">
             <!-- Search form -->
-            <form id="site-search" class="search-row" role="search" action="TimKiem-KetQua.html" method="GET" onsubmit="return handleSearch(event)">
+            <form id="site-search" class="search-row" role="search" action="TimKiem-KetQua.jsp" method="GET" onsubmit="return handleSearch(event)">
                 <input class="search-input" type="search" name="q" placeholder="Tìm kiếm" aria-label="Tìm kiếm" autocomplete="off" required />
 
                 <button type="submit" class="search-button" aria-label="Tìm kiếm">

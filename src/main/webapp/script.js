@@ -1,4 +1,3 @@
-
 /////////////////////////////////////////////////////////////
 // Trình chiếu ảnh
 document.addEventListener("DOMContentLoaded", function () {
@@ -54,10 +53,12 @@ function openModal(id, imgSrc, name, price) {
     document.getElementById('product-qty').value = 1;
     document.getElementById('productModal').style.display = 'flex';
 }
+
 /*đóng thông tin chi tiết*/
 function closeModal() {
     document.getElementById('productModal').style.display = 'none';
 }
+
 window.onclick = function (e) {
     const modal = document.getElementById('productModal');
     if (e.target === modal) closeModal();
@@ -67,13 +68,13 @@ window.onclick = function (e) {
 document.addEventListener('DOMContentLoaded', () => {
     const qtyInput = document.getElementById('product-qty');
     const btnIncrease = document.getElementById('qty-increase');
-    if(btnIncrease) {
+    if (btnIncrease) {
         btnIncrease.onclick = () => {
             qtyInput.value = Number(qtyInput.value) + 1;
         };
     }
     const btnDecrease = document.getElementById('qty-decrease');
-    if(btnDecrease) {
+    if (btnDecrease) {
         btnDecrease.onclick = () => {
             if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
         };
@@ -105,7 +106,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
-
-

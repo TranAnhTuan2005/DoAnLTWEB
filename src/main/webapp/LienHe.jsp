@@ -107,47 +107,38 @@
 </style>
 
 <body>
-<!-- Thanh thông tin trên cùng -->
-<div class="top-info-bar">
-    <div class="header-container">
-        <span>Ngũ cốc Ngon xin chào!</span>
-        <div class="contact-info">
-            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
-            <a href="tel:0357250466">Hotline: 0357 250 466</a>
-        </div>
-    </div>
-</div>
-
-
 <!-- Header chính -->
 <header class="main-header">
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.jsp">
+            <a href="<c:url value='/TrangChu'/>">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
@@ -166,77 +157,87 @@
 
                 </li>
 
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
                 <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.html">Liên hệ</a></li>
+                <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
 
-
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
-            <a href="#" class="account-btn" aria-label="Tài khoản">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z"
-                            fill="#333" />
-                </svg>
-            </a>
-            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+            <c:choose>
+
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="javascript:void(0)" class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+
+                    <div id="accountMenu" class="account-menu">
+                        <div class="account-menu_arrow"></div>
+                        <div class="account-menu_inner">
+                            <p class="account-menu_hello">
+                                Xin chào, <strong>${sessionScope.user.fullName}</strong>
+                            </p>
+                            <hr>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
+                        </div>
+                    </div>
+                </c:when>
+
+
+                <c:otherwise>
+                    <a href="<c:url value='/DangNhapTaiKhoan'/>"
+                       class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+                </c:otherwise>
+
+            </c:choose>
+
+            <!-- CART -->
+            <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
+                     a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
+
         </div>
+
     </div>
 
 </header>
-
-
-<!-- Modal cho Giỏ hàng -->
-<div id="cart-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Giỏ Hàng</h2>
-        <p>Hiện chưa có sản phẩm</p>
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-        </svg>
-
-        <p>Tổng tiền: 0đ</p>
-        <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal cho Đăng nhập Tài khoản -->
-<div id="account-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a
-                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
-                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-            <button type="submit">Đăng Nhập</button>
-            <p><a href="TaoTaiKhoan.jsp">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="QuenMatKhau.jsp">Quên mật khẩu? Khôi phục mật khẩu</a></p>
-        </form>
-    </div>
-</div>
 
 <!--Body-->
 <section class="breadcrumb-bar py-2">
@@ -476,6 +477,28 @@
     });
 </script>
 
+<script>
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
 
+        const keyword = document.getElementById("searchInput").value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        // redirect sang servlet / trang tìm kiếm
+        window.location.href = "TimKiem?q=" + encodeURIComponent(keyword);
+    });
+
+    // nhấn Enter cũng tìm
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
+</script>
 </body>
 </html>

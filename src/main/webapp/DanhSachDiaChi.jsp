@@ -371,18 +371,6 @@
 
 
 <body>
-<!-- Thanh thông tin trên cùng -->
-<div class="top-info-bar">
-    <div class="header-container">
-        <span>Ngũ cốc Ngon xin chào!</span>
-        <div class="contact-info">
-            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
-            <a href="tel:0357250466">Hotline: 0357 250 466</a>
-        </div>
-    </div>
-</div>
-
-
 <!-- Header chính -->
 <header class="main-header">
     <div class="header-container">
@@ -395,15 +383,18 @@
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
@@ -489,7 +480,7 @@
             </c:choose>
 
             <!-- CART -->
-            <a href="<c:url value='/GioHang'/>" class="cart-btn" aria-label="Giỏ hàng">
+            <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      viewBox="0 0 24 24" fill="none"
                      stroke="black" stroke-width="2"
@@ -1077,7 +1068,29 @@
     });
 </script>
 
+<script>
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
 
+        const keyword = document.getElementById("searchInput").value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        // redirect sang servlet / trang tìm kiếm
+        window.location.href = "TimKiem?q=" + encodeURIComponent(keyword);
+    });
+
+    // nhấn Enter cũng tìm
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
+</script>
 
 </body>
 

@@ -41,15 +41,18 @@
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
@@ -587,6 +590,29 @@
 
 </script>
 
+<script>
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const keyword = document.getElementById("searchInput").value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        // redirect sang servlet / trang tìm kiếm
+        window.location.href = "TimKiem?q=" + encodeURIComponent(keyword);
+    });
+
+    // nhấn Enter cũng tìm
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
+</script>
 
 
 

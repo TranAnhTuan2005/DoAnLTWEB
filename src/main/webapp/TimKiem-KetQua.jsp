@@ -1,3 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page isELIgnored="false" %> <!--ép hiện dữ liệu lên-->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -214,50 +218,48 @@
         margin-bottom: 6px;
         color: #333;
     }
+
+    .collection-add-to-cart {
+        background-color: #c52314;
+        text-decoration: none;
+    }
 </style>
 
 
 <body>
-
-<!-- Thanh thông tin trên cùng -->
-<div class="top-info-bar">
-    <div class="header-container">
-        <span>Ngũ cốc Ngon xin chào!</span>
-        <div class="contact-info">
-            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
-            <a href="tel:0357250466">Hotline: 0357 250 466</a>
-        </div>
-    </div>
-</div>
-
 
 <!-- Header chính -->
 <header class="main-header">
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            <a href="<c:url value='/TrangChu'/>">
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
@@ -276,71 +278,90 @@
 
                 </li>
 
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
                 <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
                 <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
         </nav>
 
 
-
         <!-- Biểu tượng tài khoản và giỏ hàng -->
         <div class="user-actions">
-            <a href="#" class="account-btn" aria-label="Tài khoản">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 13C8.68629 13 4 14.5714 4 17V19H20V17C20 14.5714 15.3137 13 12 13Z" fill="#333"/>
-                </svg>
-            </a>
-            <a href="#" class="cart-btn" aria-label="Giỏ hàng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+            <c:choose>
+
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="javascript:void(0)" class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+
+                    <div id="accountMenu" class="account-menu">
+                        <div class="account-menu_arrow"></div>
+                        <div class="account-menu_inner">
+                            <p class="account-menu_hello">
+                                Xin chào, <strong>${sessionScope.user.fullName}</strong>
+                            </p>
+                            <hr>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
+                        </div>
+                    </div>
+                </c:when>
+
+
+                <c:otherwise>
+                    <a href="<c:url value='/DangNhapTaiKhoan'/>"
+                       class="account-btn" aria-label="Tài khoản">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7
+                             C16 4.79086 14.2091 3 12 3
+                             C9.79086 3 8 4.79086 8 7
+                             C8 9.20914 9.79086 11 12 11ZM12 13
+                             C8.68629 13 4 14.5714 4 17V19H20V17
+                             C20 14.5714 15.3137 13 12 13Z"
+                                  fill="#333"/>
+                        </svg>
+                    </a>
+                </c:otherwise>
+
+            </c:choose>
+
+            <!-- CART -->
+            <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="black" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
+                    <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
+                     a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
+
         </div>
+
     </div>
 
 </header>
 
 
-<!-- Modal cho Giỏ hàng -->
-<div id="cart-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Giỏ Hàng</h2>
-        <p>Hiện chưa có sản phẩm</p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
-        </svg>
-
-        <p>Tổng tiền: 0đ</p>
-        <div class="modal-buttons">
-            <button class="view-cart-btn" onclick="window.location.href='GioHang.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal cho Đăng nhập Tài khoản -->
-<div id="account-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Đăng Nhập Tài Khoản</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Mật khẩu" required>
-            <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-            <button type="submit">Đăng Nhập</button>
-            <p><a href="#">Khách hàng mới? Tạo tài khoản</a></p>
-            <p><a href="#">Quên mật khẩu? Khôi phục mật khẩu</a></p>
-        </form>
-    </div>
-</div>
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
@@ -360,159 +381,74 @@
     <!-- Main -->
     <section class="search-section" aria-labelledby="search-heading">
         <h1 id="search-heading" class="search-title">Tìm kiếm</h1>
-        <p class="search-p"> Có 11 kết quả tìm kiếm</p>
+        <p class="search-p">
+            Có <strong>${fn:length(products)}</strong> kết quả tìm kiếm
+        </p>
         <div class="title-underline" aria-hidden="true"></div>
     </section>
 
-    <p id="result-text"></p>
+    <c:if test="${not empty keyword}">
+        <p id="result-text">
+            Kết quả tìm kiếm cho "<strong>${keyword}</strong>"
+        </p>
+    </c:if>
+
+
 
     <section class="result-section">
         <div class="collection-product-grid">
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-tre-em.png"
-                         alt="Ngũ cốc trẻ em"><!-- hình ảnh minh họa -->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-tre-em.png','Ngũ cốc trẻ em', '239,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc trẻ em</h3>
-                <p class="price">239,000đ</p>
-            </div>
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-dinh-duong-15goi.jpg"
-                         alt="Ngũ cốc dinh dưỡng 15 gói"><!-- hình ảnh minh họa -->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-dinh-duong-15goi.jpg', 'Ngũ cốc dinh dưỡng 15 gói', '159,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc dinh dưỡng 15 gói</h3>
-                <p class="price">159,000đ</p>
-            </div>
+            <c:choose>
+                <c:when test="${empty products}">
+                    <p class="text-center">
+                        Không tìm thấy sản phẩm phù hợp.
+                    </p>
+                </c:when>
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-dinh-duong-10goi.jpg"
-                         alt="Ngũ cốc dinh dưỡng 10 gói"><!-- hình ảnh minh họa -->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-dinh-duong-10goi.jpg', 'Ngũ cốc dinh dưỡng 10 gói', '119,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc dinh dưỡng 10 gói</h3>
-                <p class="price">119,000đ</p>
-            </div>
+                <c:otherwise>
+                    <c:forEach var="p" items="${products}">
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/bot-ngu-coc-tang-can.png" alt="Bột ngũ cốc tăng cân"><!-- Hình ảnh minh họa-->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/bot-ngu-coc-tang-can.png', 'Bột ngũ cốc tăng cân', '209,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Bột ngũ cốc tăng cân</h3>
-                <p class="price">209,000đ</p>
-            </div>
+                        <c:url var="detailUrl_byID" value="/Chi-tiet-san-pham">
+                            <c:param name="id" value="${p.id}"/>
+                        </c:url>
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-cho-nguoi-lon-tuoi.png"
-                         alt="Ngũ cốc cho người lớn tuổi"><!-- Hình ảnh minh họa-->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-cho-nguoi-lon-tuoi.png', 'Ngũ cốc cho người lớn tuổi', '219,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc cho người lớn tuổi</h3>
-                <p class="price">219,000đ</p>
-            </div>
+                        <div class="collection-product-item">
+                            <div class="collection-product-image">
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-dinh-duong-cao-cap.png"
-                         alt="Ngũ cốc dinh dưỡng cao cấp"><!-- Hình ảnh minh họa-->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-dinh-duong-cao-cap.png', 'Ngũ cốc dinh dưỡng cao cấp', '239,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc dinh dưỡng cao cấp</h3>
-                <p class="price">239,000đ</p>
-            </div>
+                                <!-- Click ảnh → chi tiết -->
+                                <a href="${detailUrl_byID}">
+                                    <img src="${p.imageURL}" alt="${p.productName}">
+                                </a>
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-me-bau.png"
-                         alt="Ngũ cốc mẹ bầu"><!-- Hình ảnh minh họa-->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-me-bau.png', 'Ngũ cốc mẹ bầu', '239,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc mẹ bầu</h3>
-                <p class="price">239,000đ</p>
-            </div>
+                                <div class="collection-overlay">
 
-            <!-- Sản phẩm -->
-            <div class="collection-product-item">
-                <div class="collection-product-image">
-                    <img src="image/collection/ngu-coc-loi-sua.png"
-                         alt="Ngũ cốc lợi sữa"><!-- Hình ảnh minh họa-->
-                    <div class="collection-overlay"><!-- Hover để hiển thị-->
-                        <button class="collection-add-to-cart">🛒 THÊM VÀO GIỎ</button>
-                        <button class="collection-view-btn"
-                                onclick="openModal('./image/collection/ngu-coc-loi-sua.png', 'Ngũ cốc lợi sữa', '199,000đ')">👁
-                            XEM NHANH</button>
-                    </div>
-                </div>
-                <h3>Ngũ cốc lợi sữa</h3>
-                <p class="price">199,000đ</p>
-            </div>
+                                    <!-- Thêm vào giỏ -->
+                                    <a href="${pageContext.request.contextPath}/addCart?id=${p.id}&quantity=1"
+                                       class="collection-add-to-cart" >
+                                        🛒 THÊM VÀO GIỎ
+                                    </a>
+                                    <!-- Xem nhanh -->
+                                    <button class="collection-view-btn"
+                                            onclick="openModal(
+                                                    '${p.id}',
+                                                    '${p.imageURL}',
+                                                    '${p.productName}',
+                                                    '${p.priceFormat}',
+                                                    '${detailUrl_byID}'
+                                                    )">
+                                        👁 XEM NHANH
+                                    </button>
+                                </div>
+                            </div>
 
-            <!-- Modal hiển thị chi tiết sản phẩm-->
-            <div class="product-modal" id="productModal">
-                <div class="product-modal-content">
-                    <button class="close-modal" onclick="closeModal()">&times;</button>
-                    <img id="modal-img" src="" alt="">
-                    <div class="infor">
-                        <h3 id="modal-name"></h3>
-                        <p class="price" id="modal-price"></p>
-                        <div class="quantity-box">
-                            <button class="qty-btn" id="qty-decrease">-</button>
-                            <input type="text" id="product-qty" value="1" min="1">
-                            <button class="qty-btn" id="qty-increase">+</button>
+                            <h3>${p.productName}</h3>
+                            <p class="price">${p.priceFormat}</p>
                         </div>
-                        <button class="add">🛒 THÊM VÀO GIỎ</button>
-                        <p><a href="ChiTietSanPham.html">Xem chi tiết sản phẩm</a></p>
-                    </div>
-                </div>
-            </div>
+
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+
         </div>
     </section>
 
@@ -704,5 +640,66 @@
     }
 </script>
 
+
+<!--hàm mở, đóng modal lấy ra id cho link trang chi tiết sp-->
+<script>
+    let currentProductId = null;
+    function openModal(id, imageURL, productName, price, detailUrl_byID) {
+        currentProductId = id;
+        document.getElementById('modal-img').src = imageURL;
+        document.getElementById('modal-name').innerText = productName;
+        document.getElementById('modal-price').innerText = price;
+        document.getElementById('modal-detail-link').href = detailUrl_byID;
+
+        document.getElementById('product-qty').value = 1;
+        document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+    document.getElementById('modal-add-to-cart-btn').addEventListener('click', function() {
+        const qtyInput = document.getElementById('product-qty');
+
+        if (currentProductId) {
+            let quantity = qtyInput.value;
+            if (quantity < 1 || isNaN(quantity)) {
+                alert("Số lượng không hợp lệ!");
+                return;
+            }
+
+            const contextPath = '${pageContext.request.contextPath}';
+            window.location.href = contextPath + "/addCart?id=" + currentProductId + "&quantity=" + quantity;
+        } else {
+            alert("Lỗi: Không tìm thấy sản phẩm!");
+        }
+    });
+
+
+</script>
+
+<script>
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const keyword = document.getElementById("searchInput").value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        // redirect sang servlet / trang tìm kiếm
+        window.location.href = "TimKiem?q=" + encodeURIComponent(keyword);
+    });
+
+    // nhấn Enter cũng tìm
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
+</script>
 </body>
 </html>

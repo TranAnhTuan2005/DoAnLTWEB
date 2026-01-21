@@ -168,18 +168,6 @@
 
 <body>
 
-<!-- Thanh thông tin trên cùng -->
-<div class="top-info-bar">
-    <div class="header-container">
-        <span>Ngũ cốc Ngon xin chào!</span>
-        <div class="contact-info">
-            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
-            <a href="tel:0357250466">Hotline: 0357 250 466</a>
-        </div>
-    </div>
-</div>
-
-
 <!-- Header chính -->
 <header class="main-header">
     <div class="header-container">
@@ -192,15 +180,18 @@
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
@@ -227,7 +218,7 @@
 
                 </li>
 
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
                 <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
                 <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
@@ -260,7 +251,7 @@
                                 Xin chào, <strong>${sessionScope.user.fullName}</strong>
                             </p>
                             <hr>
-                            <a href="#" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
                             <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
                         </div>
                     </div>
@@ -286,7 +277,7 @@
             </c:choose>
 
             <!-- CART -->
-            <a href="<c:url value='/GioHang'/>" class="cart-btn" aria-label="Giỏ hàng">
+            <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      viewBox="0 0 24 24" fill="none"
                      stroke="black" stroke-width="2"
@@ -296,6 +287,11 @@
                     <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.81h9.66
                      a1 1 0 0 0 .98-.8l1.7-8.2H6"></path>
                 </svg>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span class="cart-count">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
             </a>
 
         </div>
@@ -303,7 +299,6 @@
     </div>
 
 </header>
-
 
 <!--Body trang tài khoản của banj-->
 

@@ -307,7 +307,7 @@
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
                 <button type="submit">
-                    <i class="icon_timkiem" onclick="window.location.href='TimKiem-KetQua.html'">
+                    <i class="icon_timkiem" onclick="window.location.href='TimKiem-KetQua.jsp'">
                         <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
                     </i>
                 </button>
