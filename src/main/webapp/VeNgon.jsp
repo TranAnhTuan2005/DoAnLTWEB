@@ -238,15 +238,18 @@
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
@@ -273,7 +276,7 @@
 
                 </li>
 
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
                 <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
                 <li><a href="LienHe.jsp">Liên hệ</a></li>
             </ul>
@@ -306,7 +309,7 @@
                                 Xin chào, <strong>${sessionScope.user.fullName}</strong>
                             </p>
                             <hr>
-                            <a href="#" class="account-menu_link">Thông tin tài khoản</a>
+                            <a href="<c:url value='/TaiKhoanCuaBan'/>" class="account-menu_link">Thông tin tài khoản</a>
                             <a href="<c:url value='/DangXuat'/>" class="account-menu_link">Đăng xuất</a>
                         </div>
                     </div>
@@ -332,7 +335,7 @@
             </c:choose>
 
             <!-- CART -->
-            <a href="<c:url value='/GioHang'/>" class="cart-btn" aria-label="Giỏ hàng">
+            <a href="GioHang" class="cart-btn" aria-label="Giỏ hàng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      viewBox="0 0 24 24" fill="none"
                      stroke="black" stroke-width="2"
@@ -721,7 +724,29 @@
     });
 
 </script>
+<script>
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
 
+        const keyword = document.getElementById("searchInput").value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        // redirect sang servlet / trang tìm kiếm
+        window.location.href = "TimKiem?q=" + encodeURIComponent(keyword);
+    });
+
+    // nhấn Enter cũng tìm
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
+</script>
 <script src="script.js"></script>
 
 </body>

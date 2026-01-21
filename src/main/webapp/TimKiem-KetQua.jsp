@@ -228,18 +228,6 @@
 
 <body>
 
-<!-- Thanh thông tin trên cùng -->
-<div class="top-info-bar">
-    <div class="header-container">
-        <span>Ngũ cốc Ngon xin chào!</span>
-        <div class="contact-info">
-            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
-            <a href="tel:0357250466">Hotline: 0357 250 466</a>
-        </div>
-    </div>
-</div>
-
-
 <!-- Header chính -->
 <header class="main-header">
     <div class="header-container">
@@ -688,6 +676,30 @@
     });
 
 
+</script>
+
+<script>
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const keyword = document.getElementById("searchInput").value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        // redirect sang servlet / trang tìm kiếm
+        window.location.href = "TimKiem?q=" + encodeURIComponent(keyword);
+    });
+
+    // nhấn Enter cũng tìm
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
 </script>
 </body>
 </html>
