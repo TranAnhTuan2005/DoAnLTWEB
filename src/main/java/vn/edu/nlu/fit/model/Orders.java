@@ -13,21 +13,23 @@ public class Orders {
     private int  orderStatus;
     private int userID;
     private int deliveryMethodID;
+    private String deliveryMethod;
     private int paymentMethodID;
     private int discountID;
 
 
-    public Orders(int id, String fullName, double total, String email, String phone, LocalDateTime orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, int paymentMethodID, int discountID) {
+    public Orders(int id, String fullName, String phone, String email, double total, String orderAddress, LocalDateTime orderDate, int orderStatus, int userID, int deliveryMethodID, String deliveryMethod, int paymentMethodID, int discountID) {
         this.id = id;
         this.fullName = fullName;
-        this.total = total;
-        this.email = email;
         this.phone = phone;
-        this.orderDate = orderDate;
+        this.email = email;
+        this.total = total;
         this.orderAddress = orderAddress;
+        this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.userID = userID;
         this.deliveryMethodID = deliveryMethodID;
+        this.deliveryMethod = deliveryMethod;
         this.paymentMethodID = paymentMethodID;
         this.discountID = discountID;
     }
@@ -132,6 +134,13 @@ public class Orders {
         this.discountID = discountID;
     }
 
+    public String getDeliveryMethod() {
+        return deliveryMethod;
+    }
+
+    public void setDeliveryMethod(String deliveryMethod) {
+        this.deliveryMethod = deliveryMethod;
+    }
 
     @Override
     public String toString() {
@@ -146,10 +155,12 @@ public class Orders {
                 ", orderStatus=" + orderStatus +
                 ", userID=" + userID +
                 ", deliveryMethodID=" + deliveryMethodID +
+                ", deliveryMethod='" + deliveryMethod + '\'' +
                 ", paymentMethodID=" + paymentMethodID +
                 ", discountID=" + discountID +
                 '}';
     }
+
     public String getStatusDescription() {
         switch (this.orderStatus) {
             case 1: return "Chờ xác nhận";

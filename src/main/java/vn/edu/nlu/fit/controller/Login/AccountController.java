@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.controller.Login;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.nlu.fit.dao.OrderDAO;
 import vn.edu.nlu.fit.model.Orders;
 import vn.edu.nlu.fit.model.Users;
 import vn.edu.nlu.fit.services.OrderService;
@@ -20,10 +21,14 @@ public class AccountController extends HttpServlet {
         HttpSession session = request.getSession(false);
         Users user = (Users) session.getAttribute("user");
 
-        // lấy đơn hàng theo user_id
-        List<Orders> orders = orderService.getOrdersByUser(user.getId());
+        if (user == null) {
+            response.sendRedirect("TrangDangNhapTK.jsp");
+            return;
+        }
+        OrderDAO orderDAO = new OrderDAO();
+        List<Orders> listOrders = orderDAO.getOrdersByUserId(user.getId());
 
-        request.setAttribute("orders", orders);
+        request.setAttribute("orders", listOrders);
 
         // đã login → vào trang tài khoản
         request.getRequestDispatcher("/TaiKhoan-CoDonHang.jsp").forward(request, response);

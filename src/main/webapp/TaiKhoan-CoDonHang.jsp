@@ -414,6 +414,7 @@
                                     <th>Thành tiền</th>
                                     <th>Trạng thái</th>
                                     <th>Vận chuyển</th>
+                                    <th>Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -442,7 +443,27 @@
                                                                 ${o.statusDescription}
                                                         </span>
                                                 </td>
-                                                <td>Giao hàng tiêu chuẩn</td>
+                                                <td>${o.deliveryMethod}</td>
+
+                                                <td style="text-align: center;">
+                                                    <c:choose>
+                                                        <%-- chỉ hiện nút hủy khi đang chờ xác nhận --%>
+                                                        <c:when test="${o.orderStatus == 1}">
+                                                            <a href="CancelOrder?id=${o.id}"
+                                                               class="btn btn-danger btn-sm"
+                                                               style="font-size: 12px; padding: 5px 10px;"
+                                                               onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng #${o.id} không? Hành động này không thể hoàn tác.');">
+                                                                Hủy đơn
+                                                            </a>
+                                                        </c:when>
+
+                                                        <%--ko thể hủy khi ở tt khác--%>
+                                                        <c:otherwise>
+                                                            <span style="color: #aaa; font-size: 12px;">--</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+
                                             </tr>
                                         </c:forEach>
                                     </c:when>
