@@ -111,6 +111,14 @@ public class UserService {
         userDAO.deleteUser(id);
     }
 
+    public void createByAdmin(Users user) {
+        // check email trùng
+        if (userDAO.findByEmail(user.getEmail()) != null) {
+            throw new IllegalArgumentException("Email đã tồn tại");
+        }
+        userDAO.insertByAdmin(user);
+    }
+
 
     public void resetPasswordByToken(String token, String newPassword) {
         // check token

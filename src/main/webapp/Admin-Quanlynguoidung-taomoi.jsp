@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -269,12 +271,29 @@
     }
 
     .profile-popup .btn-logout {
-        padding: 8px 82px;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+
+        text-align: center;
+        font-weight: 600;
+
         border-radius: 6px;
         border: 1px solid #d1d9df;
         background: #fff;
+
+        color: #333;
+        text-decoration: none;
         cursor: pointer;
-        font-weight: 600;
+    }
+
+    .profile-popup .btn-logout:visited {
+        color: #333;
+    }
+
+    .profile-popup .btn-logout:hover {
+        background: #f4f6f8;
+        color: #000;
     }
 
     /* caret */
@@ -311,12 +330,6 @@
         margin: 10px 0 40px;
     }
 
-    .create-wrap .row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        align-items: flex-start;
-    }
 
     .create-left {
         flex: 0 0 25%;
@@ -357,7 +370,7 @@
 
     .create-right {
         flex: 1 1 0%;
-        max-width: 75%;
+        max-width: 100%;
         box-sizing: border-box;
         padding-left: 8px;
     }
@@ -396,6 +409,7 @@
         font-size: 14px;
         color: #111;
         margin-top: 10px;
+        margin-bottom: 5px;
     }
 
     /* Radio  */
@@ -440,7 +454,7 @@
         </div>
 
         <ul class="menu">
-            <li><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li><i class="fa-solid fa-home"></i><a href="<c:url value='/AdminDashboard'/>">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -459,7 +473,7 @@
             <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
             <hr>
 
-            <li><i class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.jsp" class="active">Người dùng</a></li>
+            <li><i class="fa-solid fa-user"></i> <a href="<c:url value='/AdminUser'/>" class="active">Người dùng</a></li>
             <hr>
 
             <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
@@ -490,19 +504,32 @@
         </header>
 
         <!-- Profile popup (đặt ngay sau header trong DOM) -->
-        <div id="profilePopup" class="profile-popup" role="dialog" aria-label="Thông tin tài khoản" aria-hidden="true">
-            <div class="top">
-                <div class="avatar-large">
-                    <img src="image/admin/images.jpg" alt="avatar">
+        <c:if test="${not empty sessionScope.user && sessionScope.user.userRole == 'admin'}">
+            <div id="profilePopup" class="profile-popup" role="dialog"
+                 aria-label="Thông tin tài khoản" aria-hidden="true">
+
+                <div class="top">
+                    <div class="avatar-large">
+                        <img src="<c:url value='/image/admin/images.jpg'/>" alt="avatar">
+                    </div>
+
+                    <div class="uname">${sessionScope.user.fullName}
+                    </div>
+
+                    <div class="uemail">${sessionScope.user.email}
+                    </div>
+
+                    <div class="uphone">${sessionScope.user.phoneNumber}
+                    </div>
                 </div>
-                <div class="uname">adminT</div>
-                <div class="uemail">adminT@gmail.com</div>
-                <div class="uphone">0357250466</div>
+
+                <div class="footer">
+                    <a href="<c:url value='/DangXuat'/>" class="btn-logout">
+                        Đăng xuất
+                    </a>
+                </div>
             </div>
-            <div class="footer">
-                <button class="btn-logout" type="button">Đăng xuất</button>
-            </div>
-        </div>
+        </c:if>
 
 
         <div class="breadcrumb">
@@ -517,65 +544,91 @@
         <div class="create-wrap container-fluid">
             <div class="row g-3">
 
-                <div class="col-md-3 create-left">
-                    <div class="card p-3">
-                        <div class="text-center">
-                            <img src="" alt="avatar" class="avatar"/>
-                            <label class="btn-upload btn btn-outline-secondary mt-2 d-inline-flex align-items-center justify-content-center">
-                                <i class="fa fa-upload me-2"></i> Chọn tệp
-                                <input type="file" accept="image/*" style="display:none">
-                            </label>
-                            <div class="small-muted mt-2">Kích thước đề xuất: 300×300px</div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="col-md-9 create-right">
                     <div class="card p-4">
                         <h5>Thông tin người dùng</h5>
 
-                        <form class="row g-3">
+                        <form class="row g-3"
+                              action="<c:url value='/AdminCreateUser'/>"
+                              method="post">
+
                             <div class="col-12">
                                 <label class="form-label">Họ và tên <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="text" placeholder="Họ và tên">
+                                <input class="form-control"
+                                       type="text"
+                                       name="fullName"
+                                       placeholder="Họ và tên"
+                                       required>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">Email <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="email" placeholder="Email">
+                                <input class="form-control"
+                                       type="email"
+                                       name="email"
+                                       placeholder="Email"
+                                       required>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">Mật khẩu <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="password" placeholder="Mật khẩu">
+                                <input class="form-control"
+                                       type="password"
+                                       name="password"
+                                       placeholder="Mật khẩu"
+                                       required
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{8,}$"
+                                       title="Mật khẩu ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt">
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">Phone <span class="text-danger">(*)</span></label>
-                                <input class="form-control" type="tel" placeholder="Phone">
+                                <input class="form-control"
+                                       type="tel"
+                                       name="phone"
+                                       placeholder="Phone"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Vai trò</label>
+                                <select name="role" class="form-control">
+                                    <option value="user" selected>Người dùng</option>
+                                    <option value="admin">Quản trị viên</option>
+                                </select>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label d-block">Trạng thái</label>
+
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="statusActive"
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="status"
+                                           value="active"
                                            checked>
-                                    <label class="form-check-label" for="statusActive">Hoạt động</label>
+                                    <label class="form-check-label">Hoạt động</label>
                                 </div>
+
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="statusLocked">
-                                    <label class="form-check-label" for="statusLocked">Đã khóa</label>
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="status"
+                                           value="blocked">
+                                    <label class="form-check-label">Đã khóa</label>
                                 </div>
                             </div>
 
                             <div class="col-12 mt-2">
-                                <button type="button" class="btn-save btn"><i class="fa fa-floppy-disk me-2"></i> Lưu dữ
-                                    liệu
+                                <button type="submit" class="btn-save btn">
+                                    <i class="fa fa-floppy-disk me-2"></i> Lưu dữ liệu
                                 </button>
                             </div>
 
-
                         </form>
+
 
 
                     </div>

@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Quản lý sản phẩm - chỉnh sửa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
@@ -116,7 +116,7 @@
         padding: 10px 40px;
         display: flex;
         align-items: center;
-        color:#fff;
+        color: #fff;
         gap: 8px;
     }
 
@@ -164,7 +164,7 @@
         color: #007bff;
     }
 
-    .breadcrumb .current{
+    .breadcrumb .current {
         color: #777;
     }
 
@@ -277,12 +277,29 @@
     }
 
     .profile-popup .btn-logout {
-        padding: 8px 82px;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+
+        text-align: center;
+        font-weight: 600;
+
         border-radius: 6px;
         border: 1px solid #d1d9df;
         background: #fff;
+
+        color: #333;
+        text-decoration: none;
         cursor: pointer;
-        font-weight: 600;
+    }
+
+    .profile-popup .btn-logout:visited {
+        color: #333;
+    }
+
+    .profile-popup .btn-logout:hover {
+        background: #f4f6f8;
+        color: #000;
     }
 
     /* caret */
@@ -362,14 +379,17 @@
         border: 1px solid #ccc;
         border-radius: 4px;
     }
-    .compulsory{
+
+    .compulsory {
         display: inline;
         color: red;
     }
-    .fa-floppy-disk{
+
+    .fa-floppy-disk {
         margin-right: 5px;
     }
-    .fa-rotate-left{
+
+    .fa-rotate-left {
         margin-right: 5px;
     }
 
@@ -416,7 +436,8 @@
         border-radius: 3px;
         cursor: pointer;
     }
-    #choose{
+
+    #choose {
         padding: 10px;
         border-radius: 3px;
     }
@@ -451,7 +472,8 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a
+                    href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -461,19 +483,25 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a
+                            href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a
+                            href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.jsp">Bài viết</a>
+            </li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a>
+            </li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn
+                hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-tag"></i><a
+                    href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -495,19 +523,32 @@
         </header>
 
         <!-- Profile popup (đặt ngay sau header trong DOM) -->
-        <div id="profilePopup" class="profile-popup" role="dialog" aria-label="Thông tin tài khoản" aria-hidden="true">
-            <div class="top">
-                <div class="avatar-large">
-                    <img src="image/admin/images.jpg" alt="avatar">
+        <c:if test="${not empty sessionScope.user && sessionScope.user.userRole == 'admin'}">
+            <div id="profilePopup" class="profile-popup" role="dialog"
+                 aria-label="Thông tin tài khoản" aria-hidden="true">
+
+                <div class="top">
+                    <div class="avatar-large">
+                        <img src="<c:url value='/image/admin/images.jpg'/>" alt="avatar">
+                    </div>
+
+                    <div class="uname">${sessionScope.user.fullName}
+                    </div>
+
+                    <div class="uemail">${sessionScope.user.email}
+                    </div>
+
+                    <div class="uphone">${sessionScope.user.phoneNumber}
+                    </div>
                 </div>
-                <div class="uname">adminT</div>
-                <div class="uemail">adminT@gmail.com</div>
-                <div class="uphone">0357250466</div>
+
+                <div class="footer">
+                    <a href="<c:url value='/DangXuat'/>" class="btn-logout">
+                        Đăng xuất
+                    </a>
+                </div>
             </div>
-            <div class="footer">
-                <button class="btn-logout" type="button">Đăng xuất</button>
-            </div>
-        </div>
+        </c:if>
 
         <!-- Breadcrumb -->
         <div class="breadcrumb">
@@ -536,52 +577,54 @@
                     <input type="number" name="price" value="${p.price}" ...>
 
                     <label>Số lượng sản phẩm <p class="compulsory">(*)</p></label>
-                    <input type="number" name="quantity" value="${p.quantity}" required >
+                    <input type="number" name="quantity" value="${p.quantity}" required>
 
                     <label>Hạn sử dụng <p class="compulsory">(*)</p></label>
                     <input type="text" name="expiry" value="${p.productExpiryDate}">
 
                     <label style="margin-top:15px; display:block;">Mô tả</label>
-                    <textarea name="description" >${p.productDescription}</textarea>
+                    <textarea name="description">${p.productDescription}</textarea>
 
                     <label style="margin-top:15px; display:block;">Thành phần</label>
-                    <textarea name="ingredient" >${p.ingredient}</textarea>
+                    <textarea name="ingredient">${p.ingredient}</textarea>
 
                     <label style="margin-top:15px; display:block;">Hướng dẫn sử dụng</label>
-                    <textarea name="instruction" >${p.instruction}</textarea>
+                    <textarea name="instruction">${p.instruction}</textarea>
 
                     <label style="margin-top:15px; display:block;">Lưu ý</label>
-                    <textarea name="attention" >${p.attention}</textarea>
+                    <textarea name="attention">${p.attention}</textarea>
 
                     <label style="margin-top:15px; display:block;">Tác dụng</label>
-                    <textarea name="uses" >${p.uses}</textarea>
+                    <textarea name="uses">${p.uses}</textarea>
                 </div>
 
-            <!-- CỘT PHẢI -->
-            <div class="post-right">
-                <h3>Xuất bản</h3>
+                <!-- CỘT PHẢI -->
+                <div class="post-right">
+                    <h3>Xuất bản</h3>
 
-                <div class="btn-box">
-                    <button type="submit" class="btn-save">
-                        <i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu
-                    </button>
+                    <div class="btn-box">
+                        <button type="submit" class="btn-save">
+                            <i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu
+                        </button>
 
-                    <button type="reset" class="btn-reset">
-                        <i class="fa-solid fa-rotate-left"></i> Reset
-                    </button>
+                        <button type="reset" class="btn-reset">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                    </div>
+
+                    <h3>Ảnh</h3>
+                    <div class="thumbnail-box">
+                        <input type="text" name="image" value="${p.imageURL}" style="width:100%; padding:5px;">
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <a href="${pageContext.request.contextPath}/AdminProduct"
+                           style="text-decoration: none; color: gray;">
+                            <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                        </a>
+                    </div>
                 </div>
-
-                <h3>Ảnh</h3>
-                <div class="thumbnail-box">
-                    <input type="text" name="image" value="${p.imageURL}"  style="width:100%; padding:5px;">
-                </div>
-
-                <div style="margin-top: 10px;">
-                    <a href="${pageContext.request.contextPath}/AdminProduct" style="text-decoration: none; color: gray;">
-                        <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
-                    </a>
-                </div>
-            </div>
+            </form>
         </section>
 
 
@@ -611,7 +654,6 @@
         }
     });
 </script>
-
 
 
 <script>
