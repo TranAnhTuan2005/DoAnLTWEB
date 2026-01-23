@@ -5,6 +5,7 @@ import vn.edu.nlu.fit.model.Users;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
@@ -20,12 +21,20 @@ public class UserService {
     //login
     public Users login(String email, String password) {
         Users user = userDAO.findByEmail(email);
-        String hashPass = HashMD5.md5(password);
 
-        if (user != null && user.getPassword_hash().equals(hashPass)) {
-            return user;
+        if (user == null) {
+            return null;
         }
-        return null;
+        String hashPass = HashMD5.md5(password);
+        // sai mật khẩu
+        if (!user.getPassword_hash().equals(hashPass)) {
+            return null;
+        }
+        // tài khoản bị khóa
+        if (!user.isActive()) {
+            throw new IllegalArgumentException("Tài khoản đã bị khóa");
+        }
+        return user; // OK
     }
 
     //đk tk
@@ -69,6 +78,7 @@ public class UserService {
         user.setBirthday(birthDate);
 
         user.setUserRole("user");
+        user.setActive(true);
         userDAO.insert(user);
         return true;
     }
@@ -89,6 +99,18 @@ public class UserService {
     public Users findByResetToken(String token) {
         return userDAO.findByResetToken(token);
     }
+
+    public List<Users> findAll() {
+        return userDAO.findAll();
+    }
+    public void updateUser(int id, String fullName, String phone, boolean active) {
+        userDAO.updateUser(id, fullName, phone, active);
+    }
+
+    public void deleteUser(int id) {
+        userDAO.deleteUser(id);
+    }
+
 
     public void resetPasswordByToken(String token, String newPassword) {
         // check token

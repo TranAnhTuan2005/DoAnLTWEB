@@ -13,11 +13,12 @@ public class Users {
     private String username;
     private String password_hash;
     private String userRole;
+    private boolean active;
 
     public Users() {
     }
 
-    public Users(int id, String fullName, String userAddress, LocalDate birthday, String email, String phoneNumber, String imageURL, String username, String password_hash, String userRole) {
+    public Users(int id, String fullName, String userAddress, LocalDate birthday, String email, String phoneNumber, String imageURL, String username, String password_hash, String userRole, boolean active) {
         this.id = id;
         this.fullName = fullName;
         this.userAddress = userAddress;
@@ -28,6 +29,7 @@ public class Users {
         this.username = username;
         this.password_hash = password_hash;
         this.userRole = userRole;
+        this.active = active;
     }
 
     public int getId() {
@@ -96,6 +98,14 @@ public class Users {
 
     public String getPassword_hash() {
         return password_hash;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setPassword_hash(String password_hash) {
