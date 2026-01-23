@@ -18,11 +18,12 @@ public class LoginControler extends HttpServlet {
         request.getRequestDispatcher("/TrangDangNhapTK.jsp").forward(request, response);
     }
 
-    //    @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String username = request.getParameter("email");
         String password = request.getParameter("password");
+
 
         Users user = userService.login(username, password);
 
@@ -30,13 +31,14 @@ public class LoginControler extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
 
-            // redirect về sevlet trang chủ
-            response.sendRedirect(request.getContextPath() + "/TrangChu");
+            if ("admin".equals(user.getUserRole())) {
+                response.sendRedirect(request.getContextPath() + "/AdminDashboard");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/TrangChu");
+            }
 
         } else {
             request.setAttribute("error", "Sai email hoặc mật khẩu");
-
-            // quay lại TRANG ĐĂNG NHẬP
             request.getRequestDispatcher("/TrangDangNhapTK.jsp")
                     .forward(request, response);
         }
