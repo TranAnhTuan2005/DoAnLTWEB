@@ -594,7 +594,7 @@
         <section class="user-section">
             <div class="user-card">
                 <h3>Danh sách người dùng</h3>
-                <a href="Admin-Quanlynguoidung-taomoi.jsp">
+                <a href="<c:url value='/AdminCreateUser'/>">
                     <button class="btn-create"><i class="fa fa-plus"></i> Tạo mới</button>
                 </a>
                 <table>
@@ -688,6 +688,7 @@
                     <option value="blocked">Đã khóa</option>
                 </select>
             </div>
+
 
             <div class="modal__footer">
                 <button type="button" class="btn btn--light" data-cancel>Hủy</button>

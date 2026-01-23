@@ -277,13 +277,31 @@
     }
 
     .profile-popup .btn-logout {
-        padding: 8px 82px;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+
+        text-align: center;
+        font-weight: 600;
+
         border-radius: 6px;
         border: 1px solid #d1d9df;
         background: #fff;
+
+        color: #333;
+        text-decoration: none;
         cursor: pointer;
-        font-weight: 600;
     }
+
+    .profile-popup .btn-logout:visited {
+        color: #333;
+    }
+
+    .profile-popup .btn-logout:hover {
+        background: #f4f6f8;
+        color: #000;
+    }
+
 
     /* caret */
     .profile-popup:before {
@@ -495,19 +513,32 @@
         </header>
 
         <!-- Profile popup (đặt ngay sau header trong DOM) -->
-        <div id="profilePopup" class="profile-popup" role="dialog" aria-label="Thông tin tài khoản" aria-hidden="true">
-            <div class="top">
-                <div class="avatar-large">
-                    <img src="image/admin/images.jpg" alt="avatar">
+        <c:if test="${not empty sessionScope.user && sessionScope.user.userRole == 'admin'}">
+            <div id="profilePopup" class="profile-popup" role="dialog"
+                 aria-label="Thông tin tài khoản" aria-hidden="true">
+
+                <div class="top">
+                    <div class="avatar-large">
+                        <img src="<c:url value='/image/admin/images.jpg'/>" alt="avatar">
+                    </div>
+
+                    <div class="uname">${sessionScope.user.fullName}
+                    </div>
+
+                    <div class="uemail">${sessionScope.user.email}
+                    </div>
+
+                    <div class="uphone">${sessionScope.user.phoneNumber}
+                    </div>
                 </div>
-                <div class="uname">adminT</div>
-                <div class="uemail">adminT@gmail.com</div>
-                <div class="uphone">0357250466</div>
+
+                <div class="footer">
+                    <a href="<c:url value='/DangXuat'/>" class="btn-logout">
+                        Đăng xuất
+                    </a>
+                </div>
             </div>
-            <div class="footer">
-                <button class="btn-logout" type="button">Đăng xuất</button>
-            </div>
-        </div>
+        </c:if>
 
         <!-- Breadcrumb -->
         <div class="breadcrumb">
