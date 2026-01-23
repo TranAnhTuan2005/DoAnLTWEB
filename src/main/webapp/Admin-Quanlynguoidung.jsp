@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -441,12 +443,29 @@
     }
 
     .profile-popup .btn-logout {
-        padding: 8px 82px;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+
+        text-align: center;
+        font-weight: 600;
+
         border-radius: 6px;
         border: 1px solid #d1d9df;
         background: #fff;
+
+        color: #333;
+        text-decoration: none;
         cursor: pointer;
-        font-weight: 600;
+    }
+
+    .profile-popup .btn-logout:visited {
+        color: #333;
+    }
+
+    .profile-popup .btn-logout:hover {
+        background: #f4f6f8;
+        color: #000;
     }
 
     /* caret */
@@ -511,9 +530,11 @@
 
             <li><i class="fa-solid fa-user"></i> <a href="Admin-Quanlynguoidung.html" class="active">Người dùng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn
+                hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a>
+            </li>
             <hr>
         </ul>
     </aside>
@@ -537,19 +558,32 @@
         </header>
 
         <!-- Profile popup (đặt ngay sau header trong DOM) -->
-        <div id="profilePopup" class="profile-popup" role="dialog" aria-label="Thông tin tài khoản" aria-hidden="true">
-            <div class="top">
-                <div class="avatar-large">
-                    <img src="image/admin/images.jpg" alt="avatar">
+        <c:if test="${not empty sessionScope.user && sessionScope.user.userRole == 'admin'}">
+            <div id="profilePopup" class="profile-popup" role="dialog"
+                 aria-label="Thông tin tài khoản" aria-hidden="true">
+
+                <div class="top">
+                    <div class="avatar-large">
+                        <img src="<c:url value='/image/admin/images.jpg'/>" alt="avatar">
+                    </div>
+
+                    <div class="uname">${sessionScope.user.fullName}
+                    </div>
+
+                    <div class="uemail">${sessionScope.user.email}
+                    </div>
+
+                    <div class="uphone">${sessionScope.user.phoneNumber}
+                    </div>
                 </div>
-                <div class="uname">adminT</div>
-                <div class="uemail">adminT@gmail.com</div>
-                <div class="uphone">0357250466</div>
+
+                <div class="footer">
+                    <a href="<c:url value='/DangXuat'/>" class="btn-logout">
+                        Đăng xuất
+                    </a>
+                </div>
             </div>
-            <div class="footer">
-                <button class="btn-logout" type="button">Đăng xuất</button>
-            </div>
-        </div>
+        </c:if>
 
 
         <div class="breadcrumb">
@@ -576,33 +610,40 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>adm</td>
-                        <td>admin@gmail.com</td>
-                        <td>113</td>
-                        <td>Đã khóa</td>
-                        <td>
-                            <button class="action-btn edit-btn"><i class="fa fa-pen"></i></button>
-
-                            <button class="action-btn delete-btn"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>adminT</td>
-                        <td>adminTuan@gmail.com</td>
-                        <td>0357250466</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <button class="action-btn edit-btn"><i class="fa fa-pen"></i></button>
-
-                            <button class="action-btn delete-btn"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
-
+                    <c:forEach var="u" items="${users}" varStatus="st">
+                        <tr data-id="${u.id}">
+                            <td>${st.count}</td>
+                            <td>${u.fullName}</td>
+                            <td>${u.email}</td>
+                            <td>${u.phoneNumber}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${u.active}">
+                                        Hoạt động
+                                    </c:when>
+                                    <c:otherwise>
+                                        Đã khóa
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <button class="action-btn edit-btn"
+                                        data-id="${u.id}"
+                                        data-fullname="${u.fullName}"
+                                        data-email="${u.email}"
+                                        data-phone="${u.phoneNumber}"
+                                        data-active="${u.active}">
+                                    <i class="fa fa-pen"></i>
+                                </button>
+                                <button class="action-btn delete-btn"
+                                        data-id="${u.id}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
+
                 </table>
             </div>
         </section>
@@ -618,19 +659,28 @@
             <button class="modal__close" type="button" aria-label="Đóng">&times;</button>
         </div>
 
-        <form id="editUserForm" class="modal__body">
+        <form id="editUserForm"
+              action="${pageContext.request.contextPath}/AdminUpdateUser"
+              method="post"
+              class="modal__body">
+
+            <input type="hidden" name="id"/>
+
             <div class="form-row">
                 <label>Họ tên</label>
                 <input type="text" name="fullname" required/>
             </div>
+
             <div class="form-row">
                 <label>Email</label>
-                <input type="email" name="email" required/>
+                <input type="email" name="email" readonly/>
             </div>
+
             <div class="form-row">
                 <label>Phone</label>
                 <input type="text" name="phone"/>
             </div>
+
             <div class="form-row">
                 <label>Trạng thái</label>
                 <select name="status">
@@ -660,6 +710,7 @@
             });
         });
     });
+
 </script>
 
 <!--hiển thị box tk đăng nhập-->
@@ -698,56 +749,84 @@
     })();
 </script>
 
-  <!--Demo hiện modal cập nhật thông tin người dùng-->
+<!-- hiện modal cập nhật thông tin người dùng-->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('editUserModal');
         const form = document.getElementById('editUserForm');
         const btnClose = modal.querySelector('.modal__close');
         const btnCancel = modal.querySelector('[data-cancel]');
+        const tbody = document.querySelector('table tbody');
 
-        // hàm open/close
+        /*  open / close modal */
         const openModal = () => modal.classList.add('show');
         const closeModal = () => modal.classList.remove('show');
 
-        // 1) Lắng nghe click nút pen trong bảng (ủy quyền sự kiện)
-        document.querySelector('table tbody').addEventListener('click', function (e) {
+        /* EDIT USER*/
+        tbody.addEventListener('click', function (e) {
             const btn = e.target.closest('.edit-btn');
             if (!btn) return;
 
-            const tr = btn.closest('tr');
-            // LẤY DỮ LIỆU TỪ CÁC CỘT (theo thứ tự họ tên, email, phone, trạng thái)
-            const fullname = tr.children[1].textContent.trim();
-            const email = tr.children[2].textContent.trim();
-            const phone = tr.children[3].textContent.trim();
-            const statusText = tr.children[4].textContent.trim(); // "Hoạt động" | "Đã khóa"
-            const statusVal = statusText === 'Hoạt động' ? 'active' : 'blocked';
+            // lấy data từ button
+            const {id, fullname, email, phone, active} = btn.dataset;
 
-            // ĐỔ VÀO FORM
-            form.fullname.value = fullname;
-            form.email.value = email;
-            form.phone.value = phone;
-            form.status.value = statusVal;
+            // đổ vào form
+            form.dataset.userId = id;
+            form.fullname.value = fullname || '';
+            form.email.value = email || '';
+            form.phone.value = phone || '';
+            form.status.value = active === 'true' ? 'active' : 'blocked';
 
             openModal();
         });
 
-        // 2) Đóng modal
+        /*  CLOSE MODAL */
         btnClose.addEventListener('click', closeModal);
         btnCancel.addEventListener('click', closeModal);
+
         modal.addEventListener('click', function (e) {
-            if (e.target === modal) closeModal(); // click nền
+            if (e.target === modal) closeModal();
         });
+
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeModal();
         });
 
-        // 3) Submit form (demo)
+        /* SUBMIT UPDATE USER*/
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            //
-            closeModal();
-            alert('Cập nhật thành công');
+
+            const id = form.dataset.userId;
+
+            const data = new URLSearchParams({
+                id: id,
+                fullname: form.fullname.value,
+                phone: form.phone.value,
+                status: form.status.value
+            });
+
+            fetch('${pageContext.request.contextPath}/AdminUpdateUser', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: data.toString()
+            }).then(() => location.reload());
+        });
+
+        /* DELETE USER  */
+        tbody.addEventListener('click', function (e) {
+            const btn = e.target.closest('.delete-btn');
+            if (!btn) return;
+
+            if (!confirm('Bạn chắc chắn muốn xóa người dùng này?')) return;
+
+            const id = btn.dataset.id;
+
+            fetch('${pageContext.request.contextPath}/AdminDeleteUser', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: 'id=' + id
+            })
+                .then(() => location.reload());
         });
     });
 </script>

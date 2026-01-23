@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.dao;
 import vn.edu.nlu.fit.model.Users;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UserDAO extends BaseDao {
 
@@ -21,8 +22,8 @@ public class UserDAO extends BaseDao {
 
     public void insert(Users user) {
         String sql = """
-                    INSERT INTO users(full_name, email, phone_number, password_hash, birthday, user_role)
-                    VALUES (:fullName, :email, :phoneNumber, :password_hash, :birthday, :userRole)
+                    INSERT INTO users(full_name, email, phone_number, password_hash, birthday, user_role, active)
+                    VALUES (:fullName, :email, :phoneNumber, :password_hash, :birthday, :userRole, :active)
                 """;
 
         getJdbi().withHandle(h ->
@@ -92,6 +93,45 @@ public class UserDAO extends BaseDao {
         getJdbi().withHandle(h -> h.createUpdate(sql)
                 .bind("token", token)
                 .execute()
+        );
+    }
+
+    public List<Users> findAll() {
+        String sql = "SELECT * FROM users ORDER BY id DESC";
+
+        return getJdbi().withHandle(h ->
+                h.createQuery(sql)
+                        .mapToBean(Users.class)
+                        .list()
+        );
+    }
+
+    public void updateUser(int id, String fullName, String phone, boolean active) {
+        String sql = """
+        UPDATE users
+        SET full_name = :fullName,
+            phone_number = :phone,
+            active = :active
+        WHERE id = :id
+    """;
+
+        getJdbi().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", id)
+                        .bind("fullName", fullName)
+                        .bind("phone", phone)
+                        .bind("active", active)
+                        .execute()
+        );
+    }
+
+    public void deleteUser(int id) {
+        String sql = "DELETE FROM users WHERE id = :id";
+
+        getJdbi().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", id)
+                        .execute()
         );
     }
 
