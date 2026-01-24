@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -414,11 +417,29 @@
                 <!-- Thông tin đầu trang đơn -->
                 <div class="order-head">
                     <div>
-                        <strong>ĐƠN HÀNG: #103642</strong>,
-                        Đặt lúc — <span>12/11/2025</span>
-
+                        <strong>ĐƠN HÀNG: #${order.id}</strong>,
+                        Đặt lúc — <span><fmt:formatDate value="${order.orderDate}" pattern="HH:mm dd/MM/yyyy"/></span>
+                        <br>
+                        Trạng thái:
+                        <span style="font-weight: bold; font-size: 16px;">
+                             <c:choose>
+                                 <c:when test="${order.orderStatus == 1}">
+                                     <span class="text-warning" style="color: #ffc107;">Chờ xác nhận</span>
+                                 </c:when>
+                                 <c:when test="${order.orderStatus == 2}">
+                                     <span class="text-primary" style="color: #0d6efd;">Đang giao hàng</span>
+                                 </c:when>
+                                 <c:when test="${order.orderStatus == 3}">
+                                     <span class="text-success" style="color: #198754;">Giao thành công</span>
+                                 </c:when>
+                                 <c:when test="${order.orderStatus == 4}">
+                                     <span class="text-danger" style="color: #dc3545;">Đã hủy</span>
+                                 </c:when>
+                                 <c:otherwise>Không xác định</c:otherwise>
+                             </c:choose>
+                        </span>
                     </div>
-                    <a href="TaiKhoan-CoDonHang.jsp" style="color:#0067c7;text-decoration:none">Quay lại trang tài
+                    <a href="TaiKhoanCuaBan" style="color:#0067c7;text-decoration:none">Quay lại trang tài
                         khoản - Danh sách đơn hàng</a>
 
                 </div>
@@ -437,53 +458,82 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="item" items="${details}">
                         <tr>
                             <td>
                                 <div class="order-product">
-                                    <img src="image/newProducts/ngucocdd10goi.jpg" alt="Ngũ cốc dinh dưỡng 10 gói">
-                                    <div>Ngũ cốc dinh dưỡng 10 gói</div>
+                                    <img src="${item.productImg}" alt="${item.productName}">
+                                    <div>${item.productName}</div>
                                 </div>
                             </td>
-                            <td>NC10</td>
-                            <td>119,000đ</td>
-                            <td>1</td>
-                            <td><strong>119,000đ</strong></td>
+                            <td>${item.productID}</td>
+                            <td>
+                                <fmt:formatNumber value="${item.priceAtTime}" type="currency" currencySymbol="₫"/>
+                            </td>
+                            <td>${item.quantity}</td>
+                            <td><strong>
+                                <fmt:formatNumber value="${item.totalPrice}" type="currency" currencySymbol="₫"/>
+                            </strong>
+                            </td>
                         </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
 
                     <!-- Tổng cộng -->
+                    <c:set var="subTotal" value="${order.total - order.shippingFee}" />
+
+                    <c:if test="${order.shippingFee == null}">
+                        <c:set var="subTotal" value="${order.total}" />
+                    </c:if>
+
                     <div class="order-totals">
-                        <div class="row-line"><span class="label">Giá sản phẩm: </span><span
-                                class="value">119,000đ</span></div>
-                        <div class="row-line"><span class="label">Giao hàng tận nơi: </span><span
-                                class="value">20,000đ</span></div>
-                        <div class="row-line"><span class="label">Tổng tiền: </span><span class="value">139,000đ</span>
+                        <div class="row-line">
+                            <span class="label">Giá sản phẩm: </span>
+                            <span class="value">
+                                <fmt:formatNumber value="${subTotal}" type="currency" currencySymbol="₫"/>
+                            </span>
+                        </div>
+
+                        <div class="row-line">
+                            <span class="label">Phí vận chuyển: </span>
+                            <span class="value">
+                                <c:choose>
+                                    <c:when test="${order.shippingFee > 0}">
+                                        <fmt:formatNumber value="${order.shippingFee}" type="currency" currencySymbol="₫"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span style="color: green;">Miễn phí</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
+                        </div>
+
+                        <div class="row-line">
+                            <span class="label">Tổng tiền: </span>
+                            <span class="value" style="color: #d9534f; font-size: 18px; font-weight: bold;">
+                                <fmt:formatNumber value="${order.total}" type="currency" currencySymbol="₫"/>
+                            </span>
                         </div>
                     </div>
-                </div>
 
                 <!-- Địa chỉ nhận thanh toán + gửi hàng  (DEMO)-->
                 <div class="address-grid">
                     <div class="address-card">
-                        <div class="card-head">Tình trạng thanh toán: Chờ xử lý</div>
+                        <div class="card-head">Thông tin người nhận</div>
                         <div class="card-body">
-                            Nguyễn Văn C<br>
-                            TH.HCM<br>
-                            Cà Mau<br>
-                            Vietnam<br>
-                            099704554
+                            <strong>${order.fullName}</strong><br>
+                            Email: ${order.email}<br>
+                            SĐT: ${order.phone}<br>
                         </div>
                     </div>
 
                     <div class="address-card">
-                        <div class="card-head">Vận chuyển: Chưa giao hàng</div>
+                        <div class="card-head">Địa chỉ giao hàng</div>
                         <div class="card-body">
-                            Nguyễn Văn C<br>
-                            TH.HCM<br>
-                            Cà Mau<br>
-                            Vietnam<br>
-                            099704554
+                            Vận chuyển: <strong>${order.deliveryMethod != null ? order.deliveryMethod : 'Tiêu chuẩn'}</strong>
+                            <br>
+                           <strong>Địa chỉ: ${order.orderAddress}</strong
                         </div>
                     </div>
                 </div>

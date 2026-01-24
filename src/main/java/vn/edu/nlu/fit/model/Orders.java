@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Orders {
@@ -8,7 +9,7 @@ public class Orders {
     private String phone;
     private String email;
     private double total;
-    private LocalDateTime orderDate;
+    private Timestamp orderDate;
     private String orderAddress;
     private int  orderStatus;
     private int userID;
@@ -16,22 +17,24 @@ public class Orders {
     private String deliveryMethod;
     private int paymentMethodID;
     private int discountID;
+    private double shippingFee;
 
 
-    public Orders(int id, String fullName, String phone, String email, double total, String orderAddress, LocalDateTime orderDate, int orderStatus, int userID, int deliveryMethodID, String deliveryMethod, int paymentMethodID, int discountID) {
+    public Orders(int id, String fullName, String phone, String email, double total, Timestamp orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, String deliveryMethod, int paymentMethodID, int discountID, double shippingFee) {
         this.id = id;
         this.fullName = fullName;
         this.phone = phone;
         this.email = email;
         this.total = total;
-        this.orderAddress = orderAddress;
         this.orderDate = orderDate;
+        this.orderAddress = orderAddress;
         this.orderStatus = orderStatus;
         this.userID = userID;
         this.deliveryMethodID = deliveryMethodID;
         this.deliveryMethod = deliveryMethod;
         this.paymentMethodID = paymentMethodID;
         this.discountID = discountID;
+        this.shippingFee = shippingFee;
     }
 
     public Orders() {
@@ -54,11 +57,11 @@ public class Orders {
         this.total = total;
     }
 
-    public LocalDateTime  getOrderDate() {
+    public Timestamp  getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDateTime  orderDate) {
+    public void setOrderDate(Timestamp  orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -142,6 +145,14 @@ public class Orders {
         this.deliveryMethod = deliveryMethod;
     }
 
+    public double getShippingFee() {
+        return shippingFee;
+    }
+
+    public void setShippingFee(double shippingFee) {
+        this.shippingFee = shippingFee;
+    }
+
     @Override
     public String toString() {
         return "Orders{" +
@@ -171,8 +182,8 @@ public class Orders {
         }
     }
 
-    public java.util.Date getOrderDateAsDate() {
+    public Timestamp getOrderDateAsDate() {
         if (orderDate == null) return null;
-        return java.sql.Timestamp.valueOf(orderDate);
+        return Timestamp.valueOf(String.valueOf(orderDate));
     }
 }

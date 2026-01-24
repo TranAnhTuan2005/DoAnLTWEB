@@ -319,7 +319,7 @@
         <div class="shipping-form">
             <h1>Ngũ cốc Ngon</h1>
             <nav>
-                <a href="GioHangTrong.html">Giỏ hàng</a> >
+                <a href="GioHang">Giỏ hàng</a> >
                 <span>Thông tin giao hàng</span> >
                 <span>Phương thức thanh toán</span>
             </nav> <!--Đường dẫn hiện tại-->
@@ -356,7 +356,7 @@
                 <%-- TH khách vãng lai --%>
                 <c:otherwise>
                     <div class="login-prompt">
-                        Bạn đã có tài khoản? <a href="Login.jsp">Đăng nhập</a>
+                        Bạn đã có tài khoản? <a href="DangNhapTaiKhoan">Đăng nhập</a>
                     </div>
                 </c:otherwise>
             </c:choose>

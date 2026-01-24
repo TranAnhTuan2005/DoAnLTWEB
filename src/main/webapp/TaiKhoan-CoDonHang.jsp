@@ -420,7 +420,8 @@
                                         <c:forEach var="o" items="${orders}">
                                             <tr>
                                                 <td>
-                                                    <a href="#" style="font-weight: bold; color: #007bff;">
+                                                    <a href="OrderDetail?id=${o.id}"
+                                                       style="font-weight: bold; color: #007bff;">
                                                         #${o.id}
                                                     </a>
                                                 </td>
