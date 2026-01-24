@@ -104,4 +104,16 @@ public class News {
                 ", isPublished=" + isPublished +
                 '}';
     }
+
+    public String getStatusText() {
+        return this.isPublished == 1 ? "Hiển thị" : "Ẩn";
+    }
+
+    public int getIsPublished() {
+        return isPublished;
+    }
+
+    public void setIsPublished(int isPublished) {
+        this.isPublished = isPublished;
+    }
 }

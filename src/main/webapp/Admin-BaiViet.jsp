@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -224,13 +227,13 @@
 
     /* Chiều rộng từng cột */
     .cate-stt {
-        width: 60px;
+        width: 120px;
         text-align: center;
         font-weight: bold;
     }
 
     .cate-item {
-        width: 180px;
+        width: 260px;
         text-align: center;
         font-weight: bold;
         overflow: hidden;
@@ -428,7 +431,7 @@
             </div>
 
             <ul class="menu">
-                <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều
+                <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều
                         khiển</a></li>
                 <hr>
 
@@ -439,20 +442,20 @@
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </div>
                     <ul class="submenu">
-                        <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                        <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                        <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                        <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                     </ul>
                 </li>
                 <hr>
 
-                <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
+                <li><i class="fa-solid fa-file-lines"></i> <a href="${pageContext.request.contextPath}/AdminNews">Bài viết</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người
+                <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="${pageContext.request.contextPath}/AdminUser">Người
                         dùng</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="${pageContext.request.contextPath}/AdminOrder">Đơn hàng</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
                 <hr>
             </ul>
         </aside>
@@ -501,30 +504,43 @@
             <section class="dashboard">
                 <div class="border-dashboard">
                     <div class="button-wrap">
-                        <button class="new-post" onclick="window.location.href='Admin-BaiViet-TaoMoi.jsp'">+Tạo
-                            mới</button>
+                        <button class="new-post" onclick="window.location.href='${pageContext.request.contextPath}/AdminNewsCreate'">
+                            + Tạo mới
+                        </button>
                     </div>
                     <ul class="cate">
                         <li class="cate-stt">STT</li>
                         <li class="cate-item">Tiêu đề</li>
-                        <li class="cate-item">Thumbnail</li>
-                        <li class="cate-item">Danh mục</li>
-                        <li class="cate-item">Trạng thái</li>
                         <li class="cate-item">Ngày đăng</li>
+                        <li class="cate-item">Trạng thái</li>
                         <li class="cate-item">Hành động</li>
                     </ul>
-                    <ul class="cate thin">
-                        <li class="cate-stt">1</li>
-                        <li class="cate-item">+5 loại hạt dinh dưỡng</li>
-                        <li class="cate-item"><img src="image/newProducts/banhhat.jpg" alt="Bánh hạt dinh dưỡng"></li>
-                        <li class="cate-item">Tin tức mới</li>
-                        <li class="cate-item">Xuất bản</li>
-                        <li class="cate-item">2024-10-24 15:30:47</li>
-                        <li class="cate-item">
-                            <i class="fa-solid fa-pen"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </li>
-                    </ul>
+
+                    <c:forEach items="${listNews}" var="n" varStatus="loop">
+                        <ul class="cate thin">
+                            <li class="cate-stt">${loop.index + 1}</li>
+                            <li class="cate-item" style="text-align:left; padding-left:10px;">
+                                    ${n.title}
+                            </li>
+                            <li class="cate-item">
+                                <fmt:formatDate value="${n.datePost}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                            </li>
+                            <li class="cate-item">
+                    <span style="color: ${n.isPublished == 1 ? 'green' : 'gray'};">
+                            ${n.statusText}
+                    </span>
+                            </li>
+                            <li class="cate-item">
+                                <a href="${pageContext.request.contextPath}/AdminNewsEdit?id=${n.id}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="${pageContext.request.contextPath}/AdminNewsDelete?id=${n.id}"
+                                   onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </c:forEach>
                 </div>
             </section>
         </main>
