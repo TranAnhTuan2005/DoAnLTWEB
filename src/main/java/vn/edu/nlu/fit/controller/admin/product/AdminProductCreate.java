@@ -1,12 +1,10 @@
-package vn.edu.nlu.fit.controller.admin;
+package vn.edu.nlu.fit.controller.admin.product;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.dao.AdminProductDAO;
 import vn.edu.nlu.fit.model.Categories;
 import vn.edu.nlu.fit.model.Products;
-import vn.edu.nlu.fit.services.AdminCategoryService;
 import vn.edu.nlu.fit.services.AdminProductService;
 
 import java.io.IOException;

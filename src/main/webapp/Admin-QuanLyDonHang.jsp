@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -326,7 +327,7 @@
     /* Dashboard */
     .dashboard {
         padding: 20px;
-        margin-top: -20px;
+        margin-top: 20px;
     }
 
     .dashboard h2 {
@@ -381,13 +382,13 @@
 
     /* Chiều rộng từng cột */
     .cate-stt {
-        width: 40px;
+        width: 60px;
         text-align: center;
         font-weight: bold;
     }
 
     .cate-item {
-        width: 140px;
+        width: 160px;
         text-align: center;
         font-weight: bold;
         overflow: hidden;
@@ -440,7 +441,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu" style="opacity: 0.6">
@@ -450,19 +451,19 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="${pageContext.request.contextPath}/AdminNews">Bài viết</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="${pageContext.request.contextPath}/AdminUser">Người dùng</a></li>
             <hr>
-            <li> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.html">Đơn hàng</a></li>
+            <li> <i class="fa-solid fa-shopping-cart"></i><a href="${pageContext.request.contextPath}/AdminOrder">Đơn hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -517,17 +518,9 @@
             <span>Đơn hàng</span>
         </div>
 
-        <section class="dashboard">
-
-        </section>
-
         <!--Dashboard-->
         <section class="dashboard">
             <div class="border-dashboard">
-                <div class="button-wrap">
-                    <button class="new-post" onclick="window.location.href='Admin-QuanLyDonHang-TaoMoi.jsp'">+Tạo
-                        mới</button>
-                </div>
                 <ul class="cate">
                     <li class="cate-stt">STT</li>
                     <li class="cate-item">Mã đơn hàng</li>
@@ -536,28 +529,42 @@
                     <li class="cate-item">Tổng tiền</li>
                     <li class="cate-item">Ngày đặt</li>
                     <li class="cate-item">Trạng thái</li>
-<!--                    Màu vàng: Chờ xác nhận (Cần xử lý ngay).-->
-<!--                    Màu xanh dương: Đang giao.-->
-<!--                    Màu xanh lá: Thành công.-->
-<!--                    Màu đỏ: Đã hủy.-->
-                    <li class="cate-item">Thanh toán</li>
+                    <!--Chờ xác nhận-->
+                    <!--Đang vận chuyển-->
+                    <!--Đã giao hàng-->
+                    <!--Đã hủy-->
                     <li class="cate-item">Hành động</li>
                 </ul>
 
-                <ul class="cate thin">
-                    <li class="cate-stt">1</li>
-                    <li class="cate-item">001</li>
-                    <li class="cate-item">Nguyễn Văn Bảo</li>
-                    <li class="cate-item">0987272381</li>
-                    <li class="cate-item">547,000đ</li>
-                    <li class="cate-item">14/12/2025</li>
-                    <li class="cate-item">Chờ xác nhận</li>
-                    <li class="cate-item">Đã thanh toán</li>
-                    <li class="cate-item">
-                        <i class="fa-solid fa-pen"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </li>
-                </ul>
+                <c:forEach items="${listOrder}" var="o" varStatus="loop">
+                    <ul class="cate thin">
+                        <li class="cate-stt">${loop.index + 1}</li>
+                        <li class="cate-item">#${o.id}</li>
+                        <li class="cate-item">${o.fullName}</li>
+                        <li class="cate-item">${o.phone}</li>
+                        <li class="cate-item">
+                            <fmt:formatNumber value="${o.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                        </li>
+                        <li class="cate-item">
+                            <fmt:formatDate value="${o.orderDate}" pattern="dd/MM/yyyy HH:mm"/>
+                        </li>
+
+                        <li class="cate-item">
+                            <c:choose>
+                                <c:when test="${o.orderStatus == 1}"><span style="color: orange;">Chờ xác nhận</span></c:when>
+                                <c:when test="${o.orderStatus == 2}"><span style="color: blue;">Đang vận chuyển</span></c:when>
+                                <c:when test="${o.orderStatus == 3}"><span style="color: green;">Đã giao hàng</span></c:when>
+                                <c:when test="${o.orderStatus == 4}"><span style="color: red;">Đã hủy</span></c:when>
+                            </c:choose>
+                        </li>
+
+                        <li class="cate-item">
+                            <a href="${pageContext.request.contextPath}/AdminOrderEdit?id=${o.id}">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </c:forEach>
 
             </div>
         </section>

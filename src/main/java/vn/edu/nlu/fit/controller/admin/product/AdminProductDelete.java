@@ -1,22 +1,22 @@
-package vn.edu.nlu.fit.controller.admin;
+package vn.edu.nlu.fit.controller.admin.product;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.services.AdminDiscountService;
+import vn.edu.nlu.fit.services.AdminProductService;
 
 import java.io.IOException;
 
-@WebServlet(name = "AdminDiscountDelete", value = "/AdminDiscountDelete")
-public class AdminDiscountDelete extends HttpServlet {
+@WebServlet(name = "AdminProductDelete", value = "/AdminProductDelete")
+public class AdminProductDelete extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idStr = request.getParameter("id");
         if(idStr != null) {
-            AdminDiscountService service = new AdminDiscountService();
+            AdminProductService service = new AdminProductService();
             service.delete(Integer.parseInt(idStr));
         }
-        response.sendRedirect(request.getContextPath() + "/AdminDiscount");
+        response.sendRedirect(request.getContextPath() + "/AdminProduct");
     }
 
     @Override

@@ -491,13 +491,13 @@
             </li>
             <hr>
 
-            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.jsp">Bài viết</a>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines"></i> <a href="${pageContext.request.contextPath}/AdminNews">Bài viết</a>
             </li>
             <hr>
-            <li style="opacity: 0.6"><i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a>
+            <li style="opacity: 0.6"><i class="fa-solid fa-user"></i><a href="${pageContext.request.contextPath}/AdminUser">Người dùng</a>
             </li>
             <hr>
-            <li style="opacity: 0.6"><i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn
+            <li style="opacity: 0.6"><i class="fa-solid fa-shopping-cart"></i><a href="${pageContext.request.contextPath}/AdminOrder">Đơn
                 hàng</a></li>
             <hr>
             <li style="opacity: 0.6"><i class="fa-solid fa-tag"></i><a

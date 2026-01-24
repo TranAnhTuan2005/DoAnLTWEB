@@ -18,6 +18,7 @@ public class Orders {
     private int paymentMethodID;
     private int discountID;
     private double shippingFee;
+    private String discountName;
 
 
     public Orders(int id, String fullName, String phone, String email, double total, Timestamp orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, String deliveryMethod, int paymentMethodID, int discountID, double shippingFee) {
@@ -185,5 +186,20 @@ public class Orders {
     public Timestamp getOrderDateAsDate() {
         if (orderDate == null) return null;
         return Timestamp.valueOf(String.valueOf(orderDate));
+    }
+
+    public String getDiscountName() { return discountName; }
+    public void setDiscountName(String discountName) { this.discountName = discountName; }
+
+    public String getPaymentMethodName() {
+        if (this.paymentMethodID == 1) return "Thanh toán khi giao hàng (COD)";
+        if (this.paymentMethodID == 2) return "Chuyển khoản qua ngân hàng";
+        return "Chưa xác nhận";
+    }
+
+    public String getDeliveryMethodName() {
+        if (this.deliveryMethodID == 1) return "Giao hàng tận nơi";
+        if (this.deliveryMethodID == 2) return "Hỏa tốc";
+        return "Vận chuyển thường";
     }
 }
