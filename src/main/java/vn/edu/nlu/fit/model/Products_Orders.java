@@ -7,17 +7,19 @@ public class Products_Orders {
     private String productName;
     private int quantity;
     private double priceAtTime;
+    private String productImg;
 
     public Products_Orders() {
     }
 
-    public Products_Orders(int id, int orderID, int productID, int quantity, String productName, double priceAtTime) {
+    public Products_Orders(int id, int orderID, int productID, String productName, int quantity, double priceAtTime, String productImg) {
         this.id = id;
         this.orderID = orderID;
         this.productID = productID;
-        this.quantity = quantity;
         this.productName = productName;
+        this.quantity = quantity;
         this.priceAtTime = priceAtTime;
+        this.productImg = productImg;
     }
 
     public int getId() {
@@ -68,6 +70,18 @@ public class Products_Orders {
         this.productName = productName;
     }
 
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
+    }
+
+    public double getTotalPrice() {
+        return this.priceAtTime * this.quantity;
+    }
+
     @Override
     public String toString() {
         return "Products_Orders{" +
@@ -77,6 +91,7 @@ public class Products_Orders {
                 ", productName='" + productName + '\'' +
                 ", quantity=" + quantity +
                 ", priceAtTime=" + priceAtTime +
+                ", productImg='" + productImg + '\'' +
                 '}';
     }
 }

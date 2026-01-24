@@ -243,10 +243,9 @@
             </div>
 
             <div class="order-info-box">
-                <h3>Thông tin đơn hàng</h3>
+                <h3>THÔNG TIN ĐƠN HÀNG !</h3>
 
                 <div class="order-section">
-                    <p class="section-title">Thông tin giao hàng</p>
                     <p><strong>Người nhận:</strong> ${customerName}</p>
                     <p><strong>SĐT:</strong> ${customerPhone}</p>
                     <p><strong>Email:</strong> ${customerEmail}</p>

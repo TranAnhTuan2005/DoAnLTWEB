@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.dao;
 import vn.edu.nlu.fit.Cart.Cart;
 import vn.edu.nlu.fit.Cart.CartItem;
 import vn.edu.nlu.fit.model.Orders;
+import vn.edu.nlu.fit.model.Products_Orders;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -72,7 +73,7 @@ public class OrderDAO extends BaseDao{
         });
     }
 
-    //DS đơn hàng
+    //DS đơn hàng của người mua đã đăng nhập
     public List<Orders> getOrdersByUserId(int userId) {
         String sql = "SELECT o.id, o.user_id AS userID, o.total AS total, o.order_status AS orderStatus, " +
                 "o.order_date AS orderDate, " +
@@ -82,8 +83,24 @@ public class OrderDAO extends BaseDao{
                 "WHERE user_id = :userId " +
                 "ORDER BY order_date DESC";
         return getJdbi().withHandle(handle ->
-                handle.createQuery(sql).bind("userId", userId).mapToBean(Orders.class).list()
-        );
+                handle.createQuery(sql).bind("userId", userId).mapToBean(Orders.class).list());
+    }
+
+    //Lấy 1 đơn làm chi tiết đơn hàng
+    public Orders getOrdersById(int orderId) {
+        String sql = "SELECT o.id, o.user_id AS userID, o.total AS total, o.order_status AS orderStatus, " +
+                "o.order_date AS orderDate, " +
+                "o.order_address AS orderAddress, " +
+                "o.fullName AS fullName, o.phone, o.email, d.method_name as deliveryMethod, d.price AS shippingFee " +
+                "FROM orders o left join deliverymethods d on o.delivery_method_id = d.id  " +
+                "WHERE o.id = :orderId";
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("orderId", orderId)
+                        .mapToBean(Orders.class)
+                        .findOne()
+                        .orElse(null));
     }
 
     //Hủy đơn
@@ -92,6 +109,21 @@ public class OrderDAO extends BaseDao{
         int rowsAffected = getJdbi().withHandle(handle ->
                 handle.createUpdate(sql).bind("orderId", orderId).execute());
         return rowsAffected > 0;
+    }
+
+    // Lấy danh sách sản phẩm trong đơn
+    public List<Products_Orders> getOrderDetails(int orderId) {
+        String sql = "SELECT " +
+                "od.order_id AS orderID, od.product_id AS productID, od.quantity, " +
+                "od.price_at_time AS priceAtTime, p.product_name AS productName, p.image_url AS productImg " +
+                "FROM products_orders od JOIN products p ON od.product_id = p.id " +
+                "WHERE od.order_id = :orderId";
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("orderId", orderId)
+                        .mapToBean(Products_Orders.class)
+                        .list());
     }
 
 }
