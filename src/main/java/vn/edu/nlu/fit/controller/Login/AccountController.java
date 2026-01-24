@@ -27,7 +27,7 @@ public class AccountController extends HttpServlet {
         }
         OrderDAO orderDAO = new OrderDAO();
         List<Orders> listOrders = orderDAO.getOrdersByUserId(user.getId());
-
+        listOrders.removeIf(order -> order.getOrderStatus() == 4);
         request.setAttribute("orders", listOrders);
 
         // đã login → vào trang tài khoản
