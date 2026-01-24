@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý đơn hàng - tạo mới</title>
+    <title>Quản lý mã đơn hàng - chỉnh sửa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -297,6 +298,12 @@
         color: #333;
     }
 
+    .profile-popup .btn-logout:hover {
+        background: #f4f6f8;
+        color: #000;
+    }
+
+
     /* caret */
     .profile-popup:before {
         content: '';
@@ -428,26 +435,125 @@
         border-radius: 3px;
         cursor: pointer;
     }
-    #choose{
-        padding: 10px;
-        border-radius: 3px;
+    .order-grid-container {
+        display: grid;
+        grid-template-columns: 7fr 3fr; /* Cột trái 7 phần, phải 3 phần */
+        gap: 30px; /* Khoảng cách giữa 2 cột */
+        align-items: start;
+        font-family: Arial, sans-serif;
     }
 
-    /* Thumbnail preview */
-    .thumbnail-box {
-        margin-top: 15px;
+    .info-card {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
-    .thumbnail-preview {
+    .action-card {
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: sticky; /* Giữ khung này trôi theo khi cuộn chuột */
+        top: 20px;
+    }
+
+    .info-group {
+        margin-bottom: 25px; /* Giãn cách giữa các dòng */
+        border-bottom: 1px dashed #eee; /* Đường kẻ mờ ngăn cách */
+        padding-bottom: 10px;
+    }
+
+    .info-group:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        display: block;
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .info-value {
+        display: block;
+        color: #333;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .total-money-section {
+        background-color: #fdf2f2; /* Nền đỏ nhạt */
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #fadbd8;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .total-money-value {
+        color: #d32f2f;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .status-select {
         width: 100%;
-        height: 160px;
-        border: 1px dashed #999;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #3498db;
         border-radius: 6px;
-        margin-top: 10px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .btn-stack {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #777;
+        flex-direction: column; /* Xếp dọc */
+        gap: 15px; /* Khoảng cách giữa 2 nút */
+    }
+
+    .btn-submit {
+        background-color: #28a745;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background 0.3s;
+    }
+    .btn-submit:hover { background-color: #218838; }
+
+    .btn-back {
+        display: block;
+        text-align: center;
+        background-color: #6c757d;
+        color: white;
+        padding: 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background 0.3s;
+    }
+    .btn-back:hover { background-color: #5a6268; }
+
+    .section-title {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        font-size: 1.3rem;
+        text-transform: uppercase;
     }
 
 </style>
@@ -463,7 +569,7 @@
         </div>
 
         <ul class="menu">
-            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
             <li class="has-submenu">
@@ -473,19 +579,19 @@
                     <i class="fa-solid fa-chevron-down arrow"></i>
                 </div>
                 <ul class="submenu">
-                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                    <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>
 
-            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
+            <li style="opacity: 0.6"><i class="fa-solid fa-file-lines" ></i> <a href="${pageContext.request.contextPath}/AdminNews">Bài viết</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người dùng</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="${pageContext.request.contextPath}/AdminUser">Người dùng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
+            <li> <i class="fa-solid fa-shopping-cart"></i><a href="${pageContext.request.contextPath}/AdminOrder">Đơn hàng</a></li>
             <hr>
-            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+            <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
             <hr>
         </ul>
     </aside>
@@ -538,63 +644,103 @@
         <div class="breadcrumb">
             <span>Trang chủ</span> /
             <span>Đơn hàng</span> /
-            <span class="current">Tạo mới</span>
+            <span class="current">Chi tiết & chỉnh sửa trạng thái</span>
         </div>
 
-        <section class="post-editor">
-            <!-- CỘT TRÁI -->
-            <div class="post-left">
-                <label>Mã đơn hàng <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+        <section style="padding: 20px; background-color: #f4f6f9;">
 
-                <label>Tên người dùng <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+            <form action="${pageContext.request.contextPath}/AdminOrderEdit" method="post" class="order-grid-container">
 
-                <label>Số điện thoại <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+                <input type="hidden" name="id" value="${order.id}">
 
-                <label>Tổng tiền <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+                <div class="info-card">
+                    <h3 class="section-title">Chi tiết đơn hàng #${order.id}</h3>
 
-                <label>Ngày đặt <p class="compulsory">(*)</p></label>
-                <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="info-group">
+                            <span class="info-label">Mã tài khoản (User ID)</span>
+                            <h4 class="info-value">${order.userID}</h4>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Tên người nhận</span>
+                            <h4 class="info-value">${order.fullName}</h4>
+                        </div>
+                    </div>
 
-                <div style="display: flex; gap: 20px;">
-                    <div style="flex:1;">
-                        <label>Trạng thái</label>
-                        <select style="width:100%; padding: 10px; margin-top: 8px;">
-                            <option style="color: yellow">Chờ xác nhận</option>
-                            <option style="color: dodgerblue">Đang giao</option>
-                            <option style="color: limegreen">Đã giao</option>
-                            <option style="color: red">Đã huỷ</option>
-                        </select>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="info-group">
+                            <span class="info-label">Số điện thoại</span>
+                            <h4 class="info-value">${order.phone}</h4>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Email</span>
+                            <h4 class="info-value">${order.email}</h4>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <span class="info-label">Địa chỉ giao hàng</span>
+                        <h4 class="info-value">${order.orderAddress}</h4>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="info-group">
+                            <span class="info-label">Ngày đặt hàng</span>
+                            <h4 class="info-value">
+                                <fmt:formatDate value="${order.orderDate}" pattern="dd/MM/yyyy HH:mm:ss"/>
+                            </h4>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Phương thức vận chuyển</span>
+                            <h4 class="info-value">${order.deliveryMethodName}</h4>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="info-group">
+                            <span class="info-label">Phương thức thanh toán</span>
+                            <h4 class="info-value">${order.paymentMethodName}</h4>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Mã giảm giá áp dụng</span>
+                            <h4 class="info-value" style="color: #007bff;">
+                                ${order.discountName != null ? order.discountName : 'Không có'}
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="total-money-section">
+                        <span class="info-label" style="margin-bottom: 0;">TỔNG TIỀN ĐƠN HÀNG</span>
+                        <div class="total-money-value">
+                            <fmt:formatNumber value="${order.total}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                        </div>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 20px;">
-                    <div style="flex:1;">
-                        <label>Thanh toán</label>
-                        <select style="width:100%; padding: 10px; margin-top: 8px;">
-                            <option>Chưa thanh toán</option>
-                            <option>Đã thanh toán</option>
-                        </select>
+                <div class="action-card">
+                    <h3 class="section-title" style="font-size: 1.1rem;">Cập nhật trạng thái</h3>
+
+                    <label class="info-label" style="color: #333; font-weight: bold;">Trạng thái xử lý (*)</label>
+
+                    <select name="status" class="status-select">
+                        <option value="1" ${order.orderStatus == 1 ? 'selected' : ''}>Chờ xác nhận</option>
+                        <option value="2" ${order.orderStatus == 2 ? 'selected' : ''}>Đang vận chuyển</option>
+                        <option value="3" ${order.orderStatus == 3 ? 'selected' : ''}>Đã giao hàng</option>
+                        <option value="4" ${order.orderStatus == 4 ? 'selected' : ''}>Đã hủy</option>
+                    </select>
+
+                    <div class="btn-stack">
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-floppy-disk"></i> Lưu cập nhật
+                        </button>
+
+                        <a href="${pageContext.request.contextPath}/AdminOrder" class="btn-back">
+                            <i class="fa-solid fa-arrow-left"></i> Quay lại
+                        </a>
                     </div>
                 </div>
 
-                <label style="margin-top:15px; display:block;">Lưu ý</label>
-                <textarea style="width:100%; height:120px; padding:10px;"></textarea>
-            </div>
-
-            <!-- CỘT PHẢI -->
-            <div class="post-right">
-                <h3>Xuất bản</h3>
-
-                <div class="btn-box">
-                    <button class="btn-save" onclick="window.location.href='Admin-QuanLyDonHang.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
-                    <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
-                </div>
-
-            </div>
+            </form>
         </section>
 
 

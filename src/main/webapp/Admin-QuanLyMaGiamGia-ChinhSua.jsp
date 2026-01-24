@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý mã giảm giá - tạo mới</title>
+    <title>Quản lý mã giảm giá - chỉnh sửa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -433,27 +433,6 @@
         font-weight: bold;
         border-radius: 3px;
         cursor: pointer;
-    }
-    #choose{
-        padding: 10px;
-        border-radius: 3px;
-    }
-
-    /* Thumbnail preview */
-    .thumbnail-box {
-        margin-top: 15px;
-    }
-
-    .thumbnail-preview {
-        width: 100%;
-        height: 160px;
-        border: 1px dashed #999;
-        border-radius: 6px;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #777;
     }
 
 </style>

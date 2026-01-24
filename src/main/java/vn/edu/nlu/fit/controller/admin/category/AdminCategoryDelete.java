@@ -1,9 +1,8 @@
-package vn.edu.nlu.fit.controller.admin;
+package vn.edu.nlu.fit.controller.admin.category;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.nlu.fit.dao.AdminCategoryDAO;
 import vn.edu.nlu.fit.services.AdminCategoryService;
 
 import java.io.IOException;
