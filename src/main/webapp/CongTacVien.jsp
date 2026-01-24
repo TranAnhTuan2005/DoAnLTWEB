@@ -230,7 +230,16 @@
 
 </style>
 
-
+<!-- Thanh thông tin trên cùng -->
+<div class="top-info-bar">
+    <div class="header-container">
+        <span>Ngũ cốc Ngon xin chào!</span>
+        <div class="contact-info">
+            <a href="mailto:ngucocNgon2025@gmail.com">Email: ngucocNgon2025@gmail.com</a>
+            <a href="tel:0357250466">Hotline: 0357 250 466</a>
+        </div>
+    </div>
+</div>
 
 
 <!-- Header chính -->
