@@ -1,10 +1,13 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý bán hàng</title>
+    <title>Quản lý bài viết - chỉnh sửa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -162,6 +165,9 @@
         margin: 0 5px;
         color: #007bff;
     }
+    .breadcrumb .current{
+        color: #777;
+    }
 
     /* Dashboard */
     .dashboard {
@@ -188,51 +194,110 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .button-wrap {
+    /* Khung 2 cột chính*/
+    .post-editor {
         display: flex;
-        justify-content: right;
+        gap: 25px;
+        margin-top: 20px;
     }
 
-    .new-post {
-        background-color: #03a9f4;
-        font-size: 15px;
-        color: white;
+    /* CỘT TRÁI */
+    .post-left {
+        flex: 1;
+        background: #fff;
+        padding: 25px; /* PADDING CHỐNG DÍNH LỀ */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* FORM INPUT CHUNG */
+    .post-left input,
+    .post-left select,
+    .post-left textarea {
+        width: 100%;
         padding: 10px;
-        border: none;
-        border-radius: 3px;
-        margin-bottom: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .compulsory{
+        display: inline;
+        color: red;
+    }
+    .fa-floppy-disk{
+        margin-right: 5px;
+    }
+    .fa-rotate-left{
+        margin-right: 5px;
     }
 
-    .new-post:hover {
-        background-color: #007bff;
+    /* CỘT PHẢI */
+    .post-right {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Title mỗi box */
+    .post-right h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    /* Nút */
+    .btn-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn-save {
+        flex: 1;
+        padding: 10px;
+        background: #03a9f4;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
         cursor: pointer;
     }
 
-    .cate {
+    .btn-reset {
+        flex: 1;
+        padding: 10px;
+        background: #e53935;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #choose{
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    /* Thumbnail preview */
+    .thumbnail-box {
+        margin-top: 15px;
+    }
+
+    .thumbnail-preview {
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #999;
+        border-radius: 6px;
+        margin-top: 10px;
         display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
     }
 
-    .cate li {
-        list-style-type: none;
-        border: 1px solid #888;
-        padding: 15px 0;
-    }
 
-    /* Chiều rộng từng cột */
-    .cate-stt {
-        width: 60px;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    .cate-item {
-        width: 180px;
-        text-align: center;
-        font-weight: bold;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
 
 
     /* ACCOUNT (avatar + tên ở góc phải header)============================================= */
@@ -380,6 +445,56 @@
             opacity: 1
         }
     }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 20px;
+        background: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .form-input, .form-textarea, .form-select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .form-textarea { height: 150px; resize: vertical; }
+    .btn-save {
+        width: 100%;
+        padding: 12px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .btn-back {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #666;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: white;
+        box-sizing: border-box;
+    }
+
+
 </style>
 
 <body>
@@ -394,7 +509,8 @@
             </div>
 
             <ul class="menu">
-                <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều khiển</a></li>
+                <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều
+                    khiển</a></li>
                 <hr>
 
                 <li class="has-submenu" style="opacity: 0.6">
@@ -404,20 +520,20 @@
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </div>
                     <ul class="submenu">
-                        <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                        <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                        <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                        <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                     </ul>
                 </li>
                 <hr>
 
-                <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.html">Bài viết</a></li>
+                <li><i class="fa-solid fa-file-lines"></i> <a href="${pageContext.request.contextPath}/AdminNews">Bài viết</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người
-                        dùng</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="${pageContext.request.contextPath}/AdminUser">Người
+                    dùng</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="${pageContext.request.contextPath}/AdminOrder">Đơn hàng</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
                 <hr>
             </ul>
         </aside>
@@ -459,24 +575,63 @@
                 <span>Trang chủ</span>
                 <span>/</span>
                 <span>Bài viết</span>
+                <span class="current">/</span>
+                <span class="current">Chỉnh sửa</span>
             </div>
 
-            <section class="dashboard">
-                <div class="border-dashboard">
-                    <div class="button-wrap">
-                        <button class="new-post" onclick="window.location.href='Admin-BaiViet-TaoMoi.jsp'">+Tạo mới</button>
+            <section>
+                <form action="${pageContext.request.contextPath}/AdminNewsEdit" method="post" class="form-container">
+                    <input type="hidden" name="id" value="${news.id}">
+
+                    <div class="left-col">
+                        <div class="form-group">
+                            <label class="form-label">Tiêu đề bài viết (*)</label>
+                            <input type="text" name="title" value="${news.title}" required class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mô tả ngắn</label>
+                            <textarea name="shortDescription" class="form-textarea" style="height: 80px;">${news.shortDescription}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Nội dung chi tiết</label>
+                            <textarea name="content" class="form-textarea" style="height: 300px;">${news.content}</textarea>
+                        </div>
                     </div>
-                    <ul class="cate">
-                        <li class="cate-stt">STT</li>
-                        <li class="cate-item">Tiêu đề</li>
-                        <li class="cate-item">Thumbnail</li>
-                        <li class="cate-item">Danh mục</li>
-                        <li class="cate-item">Trạng thái</li>
-                        <li class="cate-item">Ngày đăng</li>
-                        <li class="cate-item">Hành động</li>
-                    </ul>
-                </div>
+
+                    <div class="right-col">
+                        <div class="form-group">
+                            <label class="form-label">Trạng thái</label>
+                            <select name="status" class="form-select">
+                                <option value="1" ${news.isPublished == 1 ? 'selected' : ''}>Hiển thị</option>
+                                <option value="0" ${news.isPublished == 0 ? 'selected' : ''}>Ẩn</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Ngày đăng</label>
+                            <fmt:formatDate value="${news.datePost}" pattern="yyyy-MM-dd'T'HH:mm" var="formattedDate"/>
+                            <input type="datetime-local" name="datePost" value="${formattedDate}" required class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Link ảnh đại diện</label>
+                            <input type="text" name="image" value="${news.imageURL}" class="form-input">
+                            <c:if test="${not empty news.imageURL}">
+                                <img src="${news.imageURL}" style="width: 100%; margin-top: 10px; border-radius: 4px;">
+                            </c:if>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <button type="submit" class="btn-save">Cập nhật</button>
+                            <a href="${pageContext.request.contextPath}/AdminNews" class="btn-back">Quay lại</a>
+                        </div>
+                    </div>
+
+                </form>
             </section>
+
         </main>
     </div>
 

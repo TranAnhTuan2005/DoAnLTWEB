@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý bán hàng</title>
+    <title>Quản lý bài viết - tạo mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://kit.fontawesome.com/a2e0f9a8b5.js" crossorigin="anonymous"></script>
 
@@ -444,6 +444,54 @@
             opacity: 1
         }
     }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 20px;
+        background: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .form-input, .form-textarea, .form-select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .form-textarea { height: 150px; resize: vertical; }
+    .btn-save {
+        width: 100%;
+        padding: 12px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .btn-back {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #666;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: white;
+        box-sizing: border-box;
+    }
 </style>
 
 <body>
@@ -458,8 +506,8 @@
             </div>
 
             <ul class="menu">
-                <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="Admin-HomePage.jsp">Bảng điều
-                        khiển</a></li>
+                <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều
+                    khiển</a></li>
                 <hr>
 
                 <li class="has-submenu" style="opacity: 0.6">
@@ -469,20 +517,20 @@
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </div>
                     <ul class="submenu">
-                        <li><i class="fa-solid fa-list"></i> <a href="Admin-QuanLyDanhMuc.jsp">Danh mục</a></li>
-                        <li><i class="fa-solid fa-boxes-stacked"></i> <a href="Admin-QuanLySanPham.jsp">Sản phẩm</a></li>
+                        <li><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
+                        <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                     </ul>
                 </li>
                 <hr>
 
-                <li><i class="fa-solid fa-file-lines"></i> <a href="Admin-BaiViet.jsp">Bài viết</a></li>
+                <li><i class="fa-solid fa-file-lines"></i> <a href="${pageContext.request.contextPath}/AdminNews">Bài viết</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="Admin-Quanlynguoidung.jsp">Người
-                        dùng</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-user"></i><a href="${pageContext.request.contextPath}/AdminUser">Người
+                    dùng</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="Admin-QuanLyDonHang.jsp">Đơn hàng</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-shopping-cart"></i><a href="${pageContext.request.contextPath}/AdminOrder">Đơn hàng</a></li>
                 <hr>
-                <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="Admin-QuanLyMaGiamGia.jsp">Mã giảm giá</a></li>
+                <li style="opacity: 0.6"> <i class="fa-solid fa-tag"></i><a href="${pageContext.request.contextPath}/AdminDiscount">Mã giảm giá</a></li>
                 <hr>
             </ul>
         </aside>
@@ -528,49 +576,52 @@
                 <span class="current">Tạo mới</span>
             </div>
 
-            <section class="post-editor">
-                <!-- CỘT TRÁI -->
-                <div class="post-left">
-                    <label>Tiêu đề bài viết <p class="compulsory">(*)</p></label>
-                    <input type="text" style="width:100%; padding: 10px; margin: 8px 0;">
+            <section>
+                <form action="${pageContext.request.contextPath}/AdminNewsCreate" method="post" class="form-container">
 
-                    <div style="display: flex; gap: 20px;">
-                        <div style="flex:1;">
-                            <label>Danh mục <p class="compulsory">(*)</p></label>
-                            <select style="width:100%; padding: 10px; margin-top: 8px;">
-                                <option>Tin tức mới</option>
+                    <div class="left-col">
+                        <div class="form-group">
+                            <label class="form-label">Tiêu đề bài viết (*)</label>
+                            <input type="text" name="title" required class="form-input" placeholder="Nhập tiêu đề...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mô tả ngắn (Short Description)</label>
+                            <textarea name="shortDescription" class="form-textarea" style="height: 80px;" placeholder="Tóm tắt nội dung..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Nội dung chi tiết (Content)</label>
+                            <textarea name="content" class="form-textarea" style="height: 300px;" placeholder="Nhập nội dung bài viết..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="right-col">
+                        <div class="form-group">
+                            <label class="form-label">Trạng thái</label>
+                            <select name="status" class="form-select">
+                                <option value="1">Hiển thị</option>
+                                <option value="0">Ẩn</option>
                             </select>
                         </div>
 
-                        <div style="flex:1;">
-                            <label>Trạng thái</label>
-                            <select style="width:100%; padding: 10px; margin-top: 8px;">
-                                <option>Xuất bản</option>
-                            </select>
+                        <div class="form-group">
+                            <label class="form-label">Ngày đăng</label>
+                            <input type="datetime-local" name="datePost" required class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Link ảnh đại diện (URL)</label>
+                            <input type="text" name="image" class="form-input">
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Lưu bài viết</button>
+                            <a href="${pageContext.request.contextPath}/AdminNews" class="btn-back">Quay lại danh sách</a>
                         </div>
                     </div>
 
-                    <label style="margin-top:15px; display:block;">Mô tả ngắn</label>
-                    <textarea style="width:100%; height:120px; padding:10px;"></textarea>
-                </div>
-
-                <!-- CỘT PHẢI -->
-                <div class="post-right">
-                    <h3>Xuất bản</h3>
-
-                    <div class="btn-box">
-                        <button class="btn-save" onclick="window.location.href='Admin-BaiViet-DanhSach.html'"><i class="fa-solid fa-floppy-disk"></i>Lưu dữ liệu</button>
-                        <button class="btn-reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
-                    </div>
-
-                    <h3>Thumbnail</h3>
-                    <div class="thumbnail-box">
-                        <input type="file" id="choose">
-                        <div class="thumbnail-preview">
-                            <i class="fa-regular fa-image" style="font-size:50px;"></i>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </section>
 
         </main>
