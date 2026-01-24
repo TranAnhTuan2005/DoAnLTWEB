@@ -1,6 +1,6 @@
 package vn.edu.nlu.fit.dao;
 
-import vn.edu.nlu.fit.controller.admin.ChartData;
+import vn.edu.nlu.fit.controller.admin.dashboard.ChartData;
 
 import java.util.List;
 
