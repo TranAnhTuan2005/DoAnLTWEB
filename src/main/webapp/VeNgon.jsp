@@ -368,7 +368,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Về Ngon</li>
                 </ol>
             </nav>
@@ -409,10 +409,10 @@
                         </div>
 
                         <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
-                            <li class="category-item"><a href="VeNgon.html">Giới thiệu</a></li>
-                            <li class="category-item"><a href="ChinhSachBaoMat.jsp">Chính sách bảo mật</a></li>
-                            <li class="category-item"><a href="DieuKhoanDichVu.jsp">Điều khoản dịch vụ</a></li>
-                            <li class="category-item"><a href="PhuongThucThanhToan.jsp">Phương thức thanh toán</a></li>
+                            <li class="category-item"><a href="<c:url value='/VeNgon'/>">Giới thiệu</a></li>
+                            <li class="category-item"><a href="<c:url value='/ChinhSachBaoMat'/>">Chính sách bảo mật</a></li>
+                            <li class="category-item"><a href="<c:url value='/DieuKhoanDichVu'/>">Điều khoản dịch vụ</a></li>
+                            <li class="category-item"><a href="<c:url value='/ChinhSachThanhToan'/>">Chính sách thanh toán</a></li>
                         </ul>
                     </div>
                 </aside>
@@ -428,8 +428,8 @@
 
                     <!--  có thể thêm 1-2 link nhanh hoặc featured ở đây -->
                     <div class="mt-3">
-                        <a href="SanPham-TatCa.jsp" class="btn btn-outline-success me-2">Xem tất cả sản phẩm</a>
-                        <a href="ChinhSachDoiTra.jsp" class="btn btn-outline-secondary">Chính sách đổi trả</a>
+                        <a href="<c:url value='/SanPham-TatCa'/>" class="btn btn-outline-success me-2">Xem tất cả sản phẩm</a>
+                        <a href="<c:url value='/ChinhSachDoiTra'/>" class="btn btn-outline-secondary">Chính sách đổi trả</a>
                     </div>
                 </div>
             </div>
@@ -516,7 +516,7 @@
             <p class="mb-4">
                 Chúng tôi tin rằng sức khỏe là nền tảng của hạnh phúc, và hạnh phúc bắt đầu từ những điều giản dị nhất – từ bữa sáng lành mạnh mỗi ngày.
             </p>
-            <a href="SanPham-TatCa.jsp" class="btn btn-success px-4 py-2 rounded-pill">Khám phá sản phẩm</a>
+            <a href="<c:url value='/SanPham-TatCa'/>" class="btn btn-success px-4 py-2 rounded-pill">Khám phá sản phẩm</a>
         </div>
     </section>
 
@@ -618,7 +618,7 @@
                                 <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
                                 <li><a href="ChinhSachThanhToan"
-                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                       title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                             </ul>
                         </div>

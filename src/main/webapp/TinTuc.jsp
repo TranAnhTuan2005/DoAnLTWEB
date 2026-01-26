@@ -617,7 +617,7 @@
                                     <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                         vụ</a></li>
                                     <li><a href="ChinhSachThanhToan"
-                                           title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                           title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                                 </ul>
                             </div>

@@ -371,7 +371,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
-                    <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tìm kiếm</li>
                 </ol>
             </nav>
@@ -452,7 +452,24 @@
         </div>
     </section>
 
-
+    <!-- Modal hiển thị chi tiết sản phẩm-->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <img id="modal-img" src="" alt="">
+            <div class="infor">
+                <h3 id="modal-name"></h3>
+                <p class="price" id="modal-price"></p>
+                <div class="quantity-box">
+                    <button class="qty-btn" id="qty-decrease">-</button>
+                    <input type="text" id="product-qty" value="1" min="1">
+                    <button class="qty-btn" id="qty-increase">+</button>
+                </div>
+                <button class="add" id="modal-add-to-cart-btn" onclick="addToCartAction()">🛒 THÊM VÀO GIỎ</button>
+                <p><a href="#" id="modal-detail-link">Xem chi tiết sản phẩm</a></p>
+            </div>
+        </div>
+    </div>
 
 </main>
 
@@ -547,7 +564,7 @@
                                 <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
                                 <li><a href="ChinhSachThanhToan"
-                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                       title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                             </ul>
                         </div>
@@ -607,7 +624,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="TrangChu">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>
@@ -618,7 +635,7 @@
 <script>
     const backToTopBtn = document.getElementById("btn-back-to-top");
 
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
         if (window.scrollY > 300) {
             backToTopBtn.style.display = "block";
         } else {
@@ -628,52 +645,31 @@
 </script>
 
 
-<!--Lấy nội dung mà người dùng nhập vào-->
 <script>
-    const params = new URLSearchParams(window.location.search);
-    const keyword = params.get("q");  // lấy nội dung người dùng nhập
+    document.addEventListener('DOMContentLoaded', () => {
+        const accountBtn = document.querySelector('.account-btn');
+        const accountMenu = document.getElementById('accountMenu');
 
-    if (keyword) {
-        document.getElementById("result-text").innerHTML =
-            `Kết quả tìm kiếm cho "<strong>${keyword}</strong>".`;
-    }
-</script>
+        if (!accountBtn || !accountMenu) return;
 
+        // Click icon → toggle dropdown
+        accountBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            accountMenu.classList.toggle('show');
+        });
 
-<!--hàm mở, đóng modal lấy ra id cho link trang chi tiết sp-->
-<script>
-    let currentProductId = null;
-    function openModal(id, imageURL, productName, price, detailUrl_byID) {
-        currentProductId = id;
-        document.getElementById('modal-img').src = imageURL;
-        document.getElementById('modal-name').innerText = productName;
-        document.getElementById('modal-price').innerText = price;
-        document.getElementById('modal-detail-link').href = detailUrl_byID;
-
-        document.getElementById('product-qty').value = 1;
-        document.getElementById('productModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('productModal').style.display = 'none';
-    }
-    document.getElementById('modal-add-to-cart-btn').addEventListener('click', function() {
-        const qtyInput = document.getElementById('product-qty');
-
-        if (currentProductId) {
-            let quantity = qtyInput.value;
-            if (quantity < 1 || isNaN(quantity)) {
-                alert("Số lượng không hợp lệ!");
-                return;
+        // Click ra ngoài → đóng
+        document.addEventListener('click', (e) => {
+            if (
+                accountMenu.classList.contains('show') &&
+                !accountMenu.contains(e.target) &&
+                !accountBtn.contains(e.target)
+            ) {
+                accountMenu.classList.remove('show');
             }
-
-            const contextPath = '${pageContext.request.contextPath}';
-            window.location.href = contextPath + "/addCart?id=" + currentProductId + "&quantity=" + quantity;
-        } else {
-            alert("Lỗi: Không tìm thấy sản phẩm!");
-        }
+        });
     });
-
 
 </script>
 
@@ -699,6 +695,85 @@
             document.getElementById("searchBtn").click();
         }
     });
+</script>
+<script>
+    let currentProductId_Fix = null;
+    function openModal(id, imgSrc, name, price, detailUrl) {
+        console.log("OPEN MODAL - ID:", id); // Check log
+        currentProductId_Fix = id;
+
+        // Gán thông tin
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('modal-name').innerText = name;
+        document.getElementById('modal-price').innerText = price;
+
+        // Gán link chi tiết, thay cho #
+        const linkEl = document.getElementById('modal-detail-link');
+        if(linkEl) linkEl.href = detailUrl;
+
+        // Reset số lượng
+        const qtyInput = document.getElementById('product-qty');
+        if(qtyInput) qtyInput.value = 1;
+
+        // Hiện modal
+        document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    function addToCartAction() {
+        console.log("CLICK ADD TO CART - ID:", currentProductId_Fix); // Check log
+
+        // Kiểm tra ID
+        if (!currentProductId_Fix) {
+            alert("Lỗi: Chưa chọn sản phẩm (ID null). Hãy tải lại trang!");
+            return;
+        }
+
+        // Lấy số lượng
+        const qtyInput = document.getElementById('product-qty');
+        let quantity = 1;
+        if(qtyInput) {
+            let val = parseInt(qtyInput.value);
+            if(val > 0) quantity = val;
+        }
+
+        // Tạo link
+        const finalUrl = "addCart?id=" + currentProductId_Fix + "&quantity=" + quantity;
+
+        console.log("Go to URL:", finalUrl);
+
+        // Chuyển trang
+        window.location.href = finalUrl;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const qtyInput = document.getElementById('product-qty');
+        const btnIncrease = document.getElementById('qty-increase');
+        const btnDecrease = document.getElementById('qty-decrease');
+
+        if(btnIncrease) {
+            btnIncrease.onclick = function() {
+                if(qtyInput) qtyInput.value = parseInt(qtyInput.value) + 1;
+            }
+        }
+
+        if(btnDecrease) {
+            btnDecrease.onclick = function() {
+                if(qtyInput && qtyInput.value > 1) {
+                    qtyInput.value = parseInt(qtyInput.value) - 1;
+                }
+            }
+        }
+
+        // Click ra ngoài thì đóng
+        window.onclick = function(e) {
+            const modal = document.getElementById('productModal');
+            if (e.target === modal) closeModal();
+        }
+    });
+
 </script>
 </body>
 </html>

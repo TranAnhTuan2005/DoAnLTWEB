@@ -255,7 +255,7 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-2 rounded-3">
-                <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
             </ol>
         </nav>
@@ -409,7 +409,7 @@
                                 <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
                                 <li><a href="ChinhSachThanhToan"
-                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                       title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                             </ul>
                         </div>
@@ -469,7 +469,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="<c:url value='/TrangChu'/>">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>

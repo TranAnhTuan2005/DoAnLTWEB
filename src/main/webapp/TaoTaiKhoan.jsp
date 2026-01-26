@@ -296,7 +296,7 @@
                     </div>
 
                     <div class="mb-5">
-                        <a href="TrangChu.jsp" class="text-muted link-back">
+                        <a href="<c:url value='/TrangChu'/>" class="text-muted link-back">
                             ← Quay lại trang chủ
                         </a>
                     </div>
@@ -405,7 +405,7 @@
                                 <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
                                 <li><a href="ChinhSachThanhToan"
-                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                       title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                             </ul>
                         </div>
@@ -465,7 +465,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="<c:url value='/TrangChu'/>">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>
