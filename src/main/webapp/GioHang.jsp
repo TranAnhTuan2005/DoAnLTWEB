@@ -349,24 +349,24 @@
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
                 <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -584,8 +584,7 @@
                             <!-- Cột 1: Giới thiệu -->
                             <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                                 <div class="logo-footer">
-
-                                    <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                         <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                              alt="Ngũ cốc Ngon">
                                     </a>
@@ -598,7 +597,7 @@
                                 <div class="logo-footer-bct">
 
                                     <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                        height="70px" width="150px" alt="Bộ Công Thương">
+                                         height="70px" width="150px" alt="Bộ Công Thương">
 
                                 </div>
                             </div>
@@ -607,15 +606,16 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                                 <ul>
-                                    <li><a href="TimKiem-KetQua.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
+                                    <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
                                     <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
-                                            trả</a></li>
-                                    <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
-                                            mật</a></li>
-                                    <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
-                                            vụ</a></li>
-                                    <li><a href="ChinhSachThanhToan.html"
-                                            title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                        trả</a></li>
+                                    <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
+                                        mật</a></li>
+                                    <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
+                                        vụ</a></li>
+                                    <li><a href="ChinhSachThanhToan"
+                                           title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                                 </ul>
                             </div>
 
@@ -626,7 +626,7 @@
                                     <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
                                     <li><a href="VeNgon" title="Ngon">Ngon</a></li>
                                     <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="News" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
                                     <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
                                     <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                                 </ul>
@@ -639,26 +639,6 @@
                                     <a href="tel:0357250466" rel="nofollow">0357 250 466</a>
                                 </p>
                                 <h3 class="footer-title">THEO DÕI CHÚNG TÔI</h3>
-                                <ul class="shop_social">
-                                    <li class="facebook_social">
-                                        <a href="#" target="_blank" rel="noreferrer" title="Facebook"
-                                            aria-label="Facebook">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li class="instagram_social">
-                                        <a href="#" target="_blank" rel="noreferrer" title="Instagram"
-                                            aria-label="Instagram">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li class="youtube_social">
-                                        <a href="#" target="_blank" rel="noreferrer" title="Youtube"
-                                            aria-label="Youtube">
-                                            <i class="fa fa-youtube-play"></i>
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>

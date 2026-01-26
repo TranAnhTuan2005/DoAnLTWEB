@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -47,13 +49,13 @@
 
 
     /*----------NỘI DUNG CHÍNH---------- */
-    .main-termsOfService {
+    .main-privacy {
         font-family: 'Tahoma', Arial, sans-serif;
         color: #444;
         background-color: #fff;
     }
     /* Dàn 2 cột: nội dung bên trái, sidebar bên phải */
-    .termsOfService-container {
+    .privacy-container {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -63,7 +65,7 @@
     }
 
     /* Nội dung chính bên trái */
-    .termsOfService-content {
+    .privacy-content {
         flex: 1 1 68%;
         background-color: #fff;
         padding: 30px;
@@ -75,7 +77,7 @@
     }
 
     /* Tiêu đề chính */
-    .termsOfService-title {
+    .privacy-title {
         font-size: 26px;
         font-weight: 700;
         margin-bottom: 20px;
@@ -83,7 +85,7 @@
     }
 
     /* Tiêu đề mục */
-    .section-termsOfService-title{
+    .section-privacy-title {
         font-size: 18px;
         margin-top: 25px;
         margin-bottom: 10px;
@@ -93,7 +95,7 @@
     }
 
     /* Văn bản */
-    .termsOfService-content p {
+    .privacy-content p {
         font-size: 17px;
     }
 
@@ -112,11 +114,11 @@
 
     /* RESPONSIVE: Khi màn nhỏ, xếp dọc */
     @media (max-width: 992px) {
-        .termsOfService-container {
+        .privacy-container {
             flex-direction: column;
         }
 
-        .termsOfService-content,
+        .privacy-content,
         aside {
             flex: 1 1 100%;
         }
@@ -170,7 +172,14 @@
         color: #fff;
     }
 
-
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
+        }
+    }
 
 </style>
 
@@ -194,50 +203,54 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            <a href="<c:url value='/TrangChu'/>">
+                <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
+            </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
-
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -303,41 +316,52 @@
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
-<main class="main-termsOfService">
+<main class="main-privacy">
     <!-- Breadcrumb -->
     <section class="breadcrumb-bar py-2">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Điều khoản dịch vụ</li>
+                    <li class="breadcrumb-item active" aria-current="page">Chính sách bảo mật</li>
                 </ol>
             </nav>
         </div>
     </section>
 
     <!-- Nội dung chính sách -->
-    <div class="termsOfService-container">
-        <section class="termsOfService-content">
-            <h1 class="termsOfService-title">Điều khoản dịch vụ</h1>
+    <div class="privacy-container">
+        <section class="privacy-content">
+            <h1 class="privacy-title">Chính sách bảo mật</h1>
 
-            <h2 class="section-termsOfService-title">1. Giới thiệu</h2>
-            <p>Chào mừng quý khách hàng đến với website của Mộc An. Khi quý khách hàng truy cập vào trang website này nghĩa là quý khách đồng ý với các điều khoản. Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản mua bán hàng hóa này, vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay khi được đăng trên trang web mà không cần thông báo trước. Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Điều khoản này được đăng tải, có nghĩa là quý khách chấp nhận với những thay đổi đó.</p>
+            <p>Công ty TNHH phát triển nông nghiệp xanh Ngũ cốc Ngon (hoặc “Chúng tôi”, hoặc “Ngũ cốc Ngon”) cam kết bảo vệ quyền riêng tư của khách hàng và đảm bảo rằng thông tin thành viên của khách hàng (như được quy định dưới đây) và các thông tin khác mà có thể dẫn đến việc nhận dạng ra khách hàng (gọi chung là “thông tin cá nhân”) đều được bảo vệ.</p>
+            <p>Chính sách bảo mật này giải thích những loại thông tin cá nhân và cách thức sử dụng, tiết lộ, chuyển giao và bảo vệ thông tin đó. Chính sách về quyền riêng tư này áp dụng đối với bất kỳ thông tin cá nhân nào mà Ngũ cốc Ngon thu thập được thông qua website ngucocngon.com.</p>
+            <p>Chính sách này có thể thay đổi vào thời điểm bằng cách đăng phiên bản được cập nhật trên website hoặc gửi thư điện tử cho các thành viên trực tuyến của Ngũ cốc Ngon.</p>
+            <p>Việc khách hàng tiếp tục truy cập và sử dụng website được xem là khách hàng đã đồng ý và chấp thuận với bất kỳ thay đổi nào của Ngũ cốc Ngon về chính sách quyền riêng tư.</p>
 
-            <h2 class="section-termsOfService-title">2. Hướng dẫn sử dụng website</h2>
-            <p>Khi vào web của chúng tôi, khách hàng phải đảm bảo đủ 18 tuổi, hoặc truy cập dưới sự giám sát của cha mẹ hay người giám hộ hợp pháp. Khách hàng đảm bảo có đầy đủ hành vi dân sự để thực hiện các giao dịch mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.</p>
-            <p>Trong suốt quá trình đăng ký, quý khách đồng ý nhận email quảng cáo từ website. Nếu không muốn tiếp tục nhận mail, quý khách có thể từ chối bằng cách nhấp vào đường link ở dưới cùng trong mọi email quảng cáo.</p>
+            <h2 class="section-privacy-title">1. Thông tin chung</h2>
+            <p>Khách hàng có thể ghé thăm website mà không cần tiết lộ thông tin cá nhân.</p>
+            <p>Chúng tôi không thu thập, sử dụng, chuyển giao hoặc tiết lộ bất kỳ thông tin nào của khách hàng mà không được sự đồng ý của khách hàng.</p>
+            <p>Website này cho phép khách hàng đưa các ý kiến hoặc nhận xét của khách hàng lên mục đánh giá sản phẩm, blog, và các chức năng khác.</p>
+            <p>Bất kỳ thông tin nào mà khách hàng tiết lộ đều trở thành thông tin công cộng và khách hàng nên thận trọng khi quyết định tiết lộ thông tin cá nhân, thông tin tài chính hoặc các thông tin khác.</p>
+            <p>Ngũ cốc Ngon không thể ngăn chặn việc sử dụng những thông tin đó theo cách thức mà có thể vi phạm chính sách bảo mật này, luật pháp hoặc quyền riêng tư và sự an toàn của cá nhân khách hàng và không chịu trách nhiệm đối với các kết quả xảy ra từ việc đăng tải thông tin đó.</p>
+            <p>Khách hàng có trách nhiệm thông báo kịp thời cho website về những hành vi sử dụng trái phép, lạm dụng, vi phạm bảo mật của bên thứ ba để có biện pháp giải quyết phù hợp.</p>
 
-            <h2 class="section-termsOfService-title">3. Thanh toán an toàn và tiện lợi</h2>
-            <p>Khách hàng có thể chọn một trong hai phương thức thanh toán sau đây:</p>
-            <p>(1) Thanh toán tiền mặt khi giao hàng (COD), hoặc</p>
-            <p>(2) Thanh toán chuyển khoản qua ngân hàng theo thông tin sau: </p>
-            <p>STK: <b>1407906666, ngân hàng ACB - Chi nhánh Phú Bài</b></p>
-            <p>Chủ TK: <b>Hoàng Thị Cẩm Nhung</b></p>
-            <p>Nội dung chuyển khoản: <b>Họ và tên người mua-loại sản phẩm-số lượng</b></p>
-            <p>Ví dụ: <b>Hoang Thi Cam Nhung-ngu coc loi sua-3</b></p>
-            <p>Ghi chú: Quý khách vui lòng kiểm tra kĩ thông tin khi chuyển khoản để tránh sai sót.</p>
+            <h2 class="section-privacy-title">2. Phạm vi sử dụng thông tin</h2>
+            <p>Các thông tin thu thập thông qua website sẽ giúp chúng tôi: (1) Hỗ trợ khách hàng khi mua sản phẩm; (2) Tư vấn, giải đáp các thắc mắc của khách hàng một cách tốt nhất.</p>
+            <p>Trong trường hợp hợp có yêu cầu của cơ quan có thẩm quyền, chúng tôi có trách nhiệm hợp tác cung cấp thông tin cá nhân khách hàng khi có yêu cầu từ: Viện kiểm sát, tòa án, cơ quan công an điều tra liên quan đến hành vi vi phạm pháp luật nào đó của khách hàng. Ngoài ra, không ai có quyền xâm phạm vào thông tin cá nhân của khách hàng.</p>
 
+            <h2 class="section-privacy-title">3. Thời gian lưu trữ thông tin</h2>
+            <p>Chúng tôi sẽ lưu trữ thông tin của khách hàng trong 5 năm kể từ ngày đăng ký hoặc nếu có phản hồi gì về việc lưu trữ thông tin, quý khách có thể gửi liên hệ tới chúng tôi.</p>
+            <p>Ngoại trừ các trường hợp về sử dụng thông tin cá nhân như đã nêu trong chính sách này, chúng tôi cam kết sẽ không tiết lộ thông tin cá nhân của khách hàng cho bất cứ trường hợp nào khác.</p>
+
+            <h2 class="section-privacy-title">4. Phương tiện và công cụ để người dùng tiếp cận và chỉnh sửa dữ liệu cá nhân của mình</h2>
+            <p>Tại mục “Thành viên website” khách hàng đã đăng ký có thể truy cập để chỉnh sửa hoặc cập nhật thông tin cá nhân. Nếu không muốn tiết lộ thông tin, khách hàng có thể chấm dứt tư cách thành viên trực tuyến.</p>
+            <p>Khách hàng có quyền gửi khiếu nại đến chúng tôi. Khi tiếp nhận những phản hồi này, chúng tôi sẽ xác nhận lại thông tin, trường hợp đúng như phản ánh của thành viên, tùy theo mức độ, chúng tôi sẽ có những biện pháp xử lý kịp thời theo hướng bảo vệ quyền lợi chính đáng của khách hàng trong khả năng tốt nhất của Ngũ cốc Ngon.</p>
+
+            <h2 class="section-privacy-title">5. Địa chỉ của đơn vị thu thập và quản lý thông tin cá nhân</h2>
+            <p>Công ty TNHH phát triển nông nghiệp xanh Ngũ cốc Ngon</p>
+            <p>Địa chỉ: Hiền Sỹ, Phong Sơn, Phong Điền, Thừa Thiên Huế.</p>
         </section>
 
         <!-- SIDEBAR DANH MỤC TRANG-->
@@ -361,8 +385,8 @@
                 <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
                     <li class="category-item"><a href="VeNgon.jsp">Giới thiệu</a></li>
                     <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
-                    <li class="category-item"><a href="DieuKhoanDichVu.html">Điều khoản dịch vụ</a></li>
-                    <li class="category-item"><a href="PhuongThucThanhToan.jsp">Phương thức thanh toán</a></li>
+                    <li class="category-item"><a href="DieuKhoanDichVu.jsp">Điều khoản dịch vụ</a></li>
+                    <li class="category-item"><a href="ChinhSachThanhToan.jsp">Phương thức thanh toán</a></li>
                 </ul>
             </div>
         </aside>
@@ -433,8 +457,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-
-                                <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -445,11 +468,10 @@
                                 Email: ngucocNgon@gmail.com<br>
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
-                                <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
-                                   rel="noreferrer" aria-label="logo bct">
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                         height="70px" width="150px" alt="Bộ Công Thương">
-                                </a>
+
+                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                     height="70px" width="150px" alt="Bộ Công Thương">
+
                             </div>
                         </div>
 
@@ -457,15 +479,16 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="ChinhSachThanhToan.html"
+                                <li><a href="ChinhSachThanhToan"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                             </ul>
                         </div>
 
@@ -473,12 +496,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 

@@ -38,4 +38,26 @@ public class NewsDAO extends BaseDao{
                             .list()
             );
         }
+
+    public News getNewsById(int id) {
+        String sql = "select * from news where id = :id";
+
+        return getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
+                        .map((rs, ctx) -> {
+                            News n = new News();
+                            n.setId(rs.getInt("id"));
+                            n.setTitle(rs.getString("title"));
+                            n.setContent(rs.getString("content"));
+                            n.setShortDescription(rs.getString("short_description"));
+                            n.setImageURL(rs.getString("image_url"));
+                            n.setDatePost(rs.getTimestamp("date_post"));
+                            n.setUserID(rs.getInt("user_id"));
+                            return n;
+                        })
+                        .findOne()
+                        .orElse(null)
+        );
+    }
 }

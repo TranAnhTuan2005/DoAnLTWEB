@@ -1,8 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chi tiết sản phẩm</title>
+    <title>Chính sách bảo mật</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,13 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    .main-detailProduct {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
-
-    /* --- Breadcrumb --- */
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;   /* giảm khoảng cách trên/dưới của thanh */
@@ -53,183 +48,140 @@
 
 
 
-    /* ===== Layout chính ===== */
-    .detail-product-page {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: start;
-        justify-content: center;
-        max-width: 1300px;
-        margin: 60px auto;
-        padding: 0 40px;
+    /*----------NỘI DUNG CHÍNH---------- */
+    .main-paymentPolicy {
+        font-family: 'Tahoma', Arial, sans-serif;
+        color: #444;
+        background-color: #fff;
     }
-
-    /* ===== Hình ảnh sản phẩm ===== */
-    .detail-product-gallery {
-        max-width: 480px;
-    }
-
-    .detail-product-image {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* ===== Thông tin sản phẩm ===== */
-    .detail-product-info {
+    /* Dàn 2 cột: nội dung bên trái, sidebar bên phải */
+    .paymentPolicy-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
         max-width: 1200px;
-        margin-left: -100px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+        margin-left: 60px;
     }
 
-    .detail-product-title {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        position: relative;
-        display: inline-block;
-        padding-bottom: 8px;
-    }
-
-    .detail-product-title::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: #839b4c;
-        margin-top: 6px;
-    }
-
-    .detail-product-price {
-        font-size: 22px;
-        color: #e63946;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-
-    .detail-product-quantity {
-        display: inline;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-
-    .detail-product-quantity input {
-        width: 50px;
-        text-align: center;
-        padding-top: 5px;
-        font-size: 16px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-    }
-
-    .detail-product-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 20px;
-        border: 1px solid #aaa;
-        background: #eee;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.15s;
-    }
-
-    .detail-product-btn:hover {
-        background: #d6d6d6;
-    }
-
-    .detail-product-add-cart {
-        margin-bottom: 15px;
-        background: #3b5c2f;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
+    /* Nội dung chính bên trái */
+    .paymentPolicy-content {
+        flex: 1 1 68%;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         font-size: 15px;
-        border-radius: 5px;
-        cursor: pointer;
+        line-height: 1.7;
+        color: #333;
     }
 
-    .detail-product-add-cart:hover {
-        background-color: #2d471f;
-    }
-
-    .detail-product-action-row {
-        display: flex;
-        align-items: center;
-        gap: 20px; /* khoảng cách giữa số lượng và nút giỏ */
+    /* Tiêu đề chính */
+    .paymentPolicy-title {
+        font-size: 26px;
+        font-weight: 700;
         margin-bottom: 20px;
+        color: #6d4c41;
     }
 
-    .detail-product-policy {
-        list-style: none;
-        margin-left: -34px;
-    }
-
-    .detail-product-policy img {
-        width: 6%;
-    }
-
-    .detail-product-policy li {
-        margin-bottom: 8px;
-        display: flex;
-    }
-
-    .detail-product-policy li p{
-        margin-top: 10px;
-        margin-left: 10px;
-    }
-
-    /* ===== Mô tả chi tiết ===== */
-    .detail-product-description {
-        max-width: 1300px;
-        margin: 40px auto;
-        padding: 0 40px;
-    }
-
-    .detail-product-section-title {
-        font-size: 22px;
-        font-weight: 600;
+    /* Tiêu đề mục */
+    .section-paymentPolicy-title b{
+        font-size: 18px;
+        margin-top: 25px;
         margin-bottom: 10px;
-        position: relative;
-        padding-bottom: 6px;
+        color: #a46b2c;
+        border-left: 4px solid #a46b2c;
+        padding-left: 10px;
     }
 
-    .detail-product-section-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 1250px;
-        height: 3px;
-        background-color: #839b4c;
+    /* Văn bản */
+    .paymentPolicy-content p {
+        font-size: 17px;
     }
 
-    .detail-product-subtitle {
-        color: #c76d00;
-        margin-top: 20px;
-        margin-bottom: 8px;
+    .bank-content p {
+        color: #4CAF50;
     }
 
-    .detail-product-list {
-        margin-left: 20px;
-        margin-bottom: 15px;
+    /* Sidebar bên phải */
+    aside {
+        flex: 1 1 28%;
+        margin-top: 28px;
+        margin-right: -120px;
     }
 
-    .detail-product-text {
-        margin-bottom: 10px;
+    /* Đặt sidebar cố định khi cuộn */
+    .category-sidebar {
+        position: sticky;
+        top: 100px;
     }
 
-    @media (max-width: 768px) {
-        .detail-product-page {
+    /* RESPONSIVE: Khi màn nhỏ, xếp dọc */
+    @media (max-width: 992px) {
+        .paymentPolicy-container {
             flex-direction: column;
-            align-items: center;
         }
-        .detail-product-gallery,
-        .detail-product-info {
-            max-width: 100%;
+
+        .paymentPolicy-content,
+        aside {
+            flex: 1 1 100%;
+        }
+    }
+
+
+    /* ===== DANH MỤC SIDEBAR ===== */
+    .category-sidebar {
+        border: 1px solid #f0e7df;
+        background: linear-gradient(180deg, #fff, #fff);
+    }
+
+    .category-sidebar h4 {
+        color: #6d4c41;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .category-list .category-item {
+        padding: 10px 8px;
+        border-radius: 6px;
+        transition: background 0.18s ease, transform 0.12s ease;
+        margin-bottom: 6px;
+    }
+
+    .category-list .category-item a {
+        display: block;
+        color: #4b4b4b;
+        text-decoration: none;
+        padding: 4px 6px;
+    }
+
+    .category-list .category-item:hover {
+        background-color: #faf0e5;
+        transform: translateX(4px);
+    }
+
+    .category-list .category-item a .badge {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    /* Trạng thái active (nếu muốn đánh dấu trang hiện tại) */
+    .category-list .category-item.active,
+    .category-list .category-item a.active {
+        background-color: #a46b2c;
+        color: #fff;
+    }
+    .category-list .category-item.active a,
+    .category-list .category-item a.active {
+        color: #fff;
+    }
+
+    /* Ẩn nút toggle trên màn lớn (dùng bootstrap d-md-none) */
+    /* Dạng collapse: trên di động ẩn danh mục theo class .collapsed */
+    @media (max-width: 767.98px) {
+        /* mặc định ẩn category list, bật bằng nút toggle */
+        #categoryList.collapsed {
+            display: none;
         }
     }
 
@@ -255,52 +207,54 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.jsp">
+            <a href="<c:url value='/TrangChu'/>">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
-
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -366,108 +320,75 @@
 
 <!------------------------------------------------------------------------------------>
 <!--Body-->
-<main class="main-detailProduct">
+<main class="main-paymentPolicy">
     <!-- Breadcrumb -->
     <section class="breadcrumb-bar py-2">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-2 rounded-3">
                     <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Ngũ cốc trẻ em</li>
+                    <li class="breadcrumb-item active" aria-current="page">Phương thức thanh toán</li>
                 </ol>
             </nav>
         </div>
     </section>
 
-    <!-- Detail product -->
-    <section class="detail-product-page">
+    <!-- Nội dung chính sách -->
+    <div class="paymentPolicy-container">
+        <section class="paymentPolicy-content">
+            <h1 class="paymentPolicy-title">Phương thức thanh toán</h1>
+            <p class="section-paymentPolicy-title"> <b>Bước 1.</b> Chọn mặt hàng, số lượng cần mua và cung cấp thông tin của người mua</p>
+            <p class="section-paymentPolicy-title"> <b>Bước 2.</b> Chọn phương thức thanh toán</p>
+            <p>Khách hàng vui lòng chọn một trong hai phương thức thanh toán sau:</p>
+            <p>(1) Thanh toán tiền mặt khi giao hàng (COD), hoặc</p>
+            <p>(2) Thanh toán chuyển khoản qua ngân hàng theo thông tin sau:</p>
+            <div class="bank-content">
+                <p>STK: 1407906666, ngân hàng ACB - Chi nhánh Phú Bài</p>
+                <p>Chủ TK: Hoàng Thị Cẩm Nhung</p>
+                <p>Nội dung chuyển khoản: Họ và tên người mua - loại sản phẩm - số lượng</p>
+                <p>Ví dụ: Hoang Thi Cam Nhung - ngu coc loi sua - 3</p>
+            </div>
+            <p>Ghi chú: Quý khách vui lòng kiểm tra kĩ thông tin khi chuyển khoản để tránh sai sót.</p>
+            <p class="section-paymentPolicy-title"> <b>Bước 3.</b> Mộc An liên hệ để xác nhận đơn hàng (mặt hàng, số lượng, thông tin người mua hàng)</p>
+            <p class="section-paymentPolicy-title"> <b>Bước 4.</b> Mộc An lên đơn hàng và chuyển hàng qua đối tác vận chuyển</p>
+            <hr>
+            <p>Mọi thắc mắc vui lòng liên hệ: CÔNG TY TNHH PHÁT TRIỂN NÔNG NGHIỆP XANH MỘC AN</p>
+            <p>Địa chỉ: Hiền Sỹ, Phong Sơn, Phong Điền, Thừa Thiên Huế</p>
+            <p>Hotline: 0974 685 645</p>
+            <p>E-mail: ngucocmocan@gmail.com</p>
 
-        <!-- Hình ảnh sản phẩm -->
-        <div class="detail-product-gallery">
-            <img id="detail-product-image" src="image/collection/ngu-coc-tre-em.png" alt="Ngũ cốc trẻ em" class="detail-product-image">
-        </div>
 
-        <!-- Thông tin sản phẩm -->
-        <div class="detail-product-info">
-            <h1 class="detail-product-title">Ngũ cốc trẻ em</h1>
-            <p class="detail-product-price">239,000₫</p>
+        </section>
 
-            <div class="detail-product-action-row">
-                <div class="detail-product-quantity">
-                    <button id="detail-product-minus" class="detail-product-btn">-</button>
-                    <input type="text" id="detail-product-qty" value="1" min="1">
-                    <button id="detail-product-plus" class="detail-product-btn">+</button>
+        <!-- SIDEBAR DANH MỤC TRANG-->
+
+        <aside class="col-md-4 mb-4 mb-md-0">
+            <div class="category-sidebar p-3 bg-white rounded shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Danh mục trang</h4>
+
+                    <!--dùng bootstrap tạo danh mục trang-->
+                    <!-- nút ▾ chỉ hiện trên mobile, sử dùng bootstrap collapse -->
+                    <button class="btn btn-outline-secondary d-md-none btn-sm"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#categoryList"
+                            aria-expanded="false"
+                            aria-controls="categoryList">
+                        Danh mục ▾
+                    </button>
                 </div>
 
-                <button class="detail-product-add-cart">Thêm vào giỏ</button>
+                <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
+                    <li class="category-item"><a href="VeNgon.jsp">Giới thiệu</a></li>
+                    <li class="category-item"><a href="ChinhSachBaoMat.jsp">Chính sách bảo mật</a></li>
+                    <li class="category-item"><a href="DieuKhoanDichVu.jsp">Điều khoản dịch vụ</a></li>
+                    <li class="category-item"><a href="ChinhSachThanhToan.html">Phương thức thanh toán</a></li>
+                </ul>
             </div>
+        </aside>
+    </div>
 
-            <ul class="detail-product-policy">
-                <li>
-                    <img src="image/icon-detail-product/cam-ket.png" alt="Cam kết">
-                    <p>Cam kết chất lượng sản phẩm 100%</p>
-                </li>
-                <li>
-                    <img src="image/icon-detail-product/kiem-tra.png" alt="Kiểm tra">
-                    <p>Kiểm tra hàng hóa khi nhận hàng</p>
-                </li>
-                <li>
-                    <img src="image/icon-detail-product/doi-tra.png" alt="Đổi trả">
-                    <p>Đổi trả trong 30 ngày nếu sản phẩm hết hạn</p>
-                </li>
-            </ul>
-        </div>
-    </section>
 
-    <!-- Mô tả sản phẩm -->
-    <section class="detail-product-description">
-        <h2 class="detail-product-section-title">Thông tin bạn cần biết</h2>
-
-        <p class="detail-product-text">
-            Ngũ cốc trẻ em được nghiên cứu và phát triển dựa trên nguyên lý khoa học về sinh lý và quá trình hấp thu dinh dưỡng đặc thù của trẻ nhỏ.
-        </p>
-
-        <h3 class="detail-product-subtitle">Thành phần:</h3>
-        <p class="detail-product-text">
-            Ngũ cốc trẻ em chứa hơn 30 loại hạt giàu dưỡng chất gồm: yến mạch, hạt sen, diêm mạch, đậu gà, đậu lăng, hạnh nhân, óc chó, hạt chia, hạt điều...
-        </p>
-        <ul class="detail-product-list">
-            <li>Yến mạch, hạt sen, diêm mạch, đậu gà, đậu lăng, đậu Hà Lan, hạnh nhân, óc chó đỏ, óc chó vàng, mắc ca, hạt chia, hạt điều, bí xanh.</li>
-            <li>Đậu xanh, đậu huyết, đậu đen xanh lòng, đậu tây trắng, đậu tây đỏ, đậu ngự, gạo lứt đỏ, nếp cẩm, mè đen, đậu nành thuần chủng, bắp nếp, bột khoai lang, bột bí ngô...</li>
-        </ul>
-
-        <h3 class="detail-product-subtitle">Công dụng:</h3>
-        <ul class="detail-product-list">
-            <li>Bổ sung canxi, chất xơ, omega-3, vitamin giúp trẻ phát triển thể chất và trí não.</li>
-            <li>Kích thích trẻ ăn ngon miệng.</li>
-            <li>Hỗ trợ tiêu hóa tốt hơn.</li>
-        </ul>
-
-        <h3 class="detail-product-subtitle">Hướng dẫn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>Cho 2 thìa ngũ cốc (20g) vào ly.</li>
-            <li>Thêm 50ml nước sôi nguội, đánh tan để không vón cục.</li>
-            <li>Thêm 100ml nước sôi nóng, khuấy đều và thưởng thức.</li>
-            <li>Uống ngon hơn khi thêm sữa hoặc đường.</li>
-        </ul>
-        <p class="detail-product-text">Trẻ em từ 6 tháng đến 1 tuổi:</p>
-        <ul class="detail-product-list">
-            <li>Cho 1,5 thìa ngũ cốc (khoảng 15g) với 100ml nước sôi nguội, đánh tan để bột không bị vón cục.</li>
-            <li>Đặt lên bếp khuấy đều tay trong khoảng 2 phút.</li>
-            <li>Cho ra chén, để nguội trước khi sử dụng.</li>
-        </ul>
-
-        <h3 class="detail-product-subtitle">Lưu ý:</h3>
-        <p class="detail-product-text">Khi pha bột, cần pha từ loãng sang đặc dần.</p>
-
-        <h3 class="detail-product-subtitle">Hạn sử dụng:</h3>
-        <ul class="detail-product-list">
-            <li>8 tháng, kể từ ngày sản xuất.</li>
-            <li>Dùng tốt nhất trong vòng 02 tháng sau khi mở bao bì.</li>
-            <li>Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp. Nhớ đóng kín bao bì sau khi sử dụng.</li>
-            <li>Không dùng sản phẩm khi hết hạn sử dụng.</li>
-        </ul>
-    </section>
 
 </main>
 
@@ -532,8 +453,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-
-                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -545,8 +465,8 @@
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
 
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                         height="70px" width="150px" alt="Bộ Công Thương">
+                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                     height="70px" width="150px" alt="Bộ Công Thương">
 
                             </div>
                         </div>
@@ -555,15 +475,16 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="ChinhSachThanhToan.html"
+                                <li><a href="ChinhSachThanhToan"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                             </ul>
                         </div>
 
@@ -571,12 +492,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -628,21 +549,6 @@
         </div>
     </footer>
 </div>
-
-<!-- Tăng giảm số lượng js -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const qtyInput = document.getElementById('detail-product-qty');
-        document.getElementById('detail-product-plus').onclick = () => {
-            qtyInput.value = Number(qtyInput.value) + 1;
-        };
-        document.getElementById('detail-product-minus').onclick = () => {
-            if (qtyInput.value > 1) qtyInput.value = Number(qtyInput.value) - 1;
-        };
-
-    });
-
-</script>
 
 <!--back to top (bootstrap) js-->
 <script>

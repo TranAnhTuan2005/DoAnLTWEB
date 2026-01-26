@@ -64,24 +64,24 @@
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
                 <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -195,28 +195,28 @@
             </div>
         </div>
         <div class="si-items">
-            <a href="SanPham-TatCa.jsp" class="si-item">
+            <a href="${pageContext.request.contextPath}/Chi-tiet-san-pham?id=21" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_me_bau.png" alt="Ngũ cốc mẹ bầu">
                 </div>
                 <p>Ngũ cốc mẹ bầu</p>
             </a>
 
-            <a href="SanPham-TatCa.jsp" class="si-item">
+            <a href="${pageContext.request.contextPath}/Chi-tiet-san-pham?id=22" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_loi_sua.png" alt="Ngũ cốc lợi sữa">
                 </div>
                 <p>Ngũ cốc lợi sữa</p>
             </a>
 
-            <a href="SanPham-TatCa.jsp" class="si-item">
+            <a href="${pageContext.request.contextPath}/Chi-tiet-san-pham?id=1" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_tre_em.png" alt="Ngũ cốc trẻ em">
                 </div>
                 <p>Ngũ cốc trẻ em</p>
             </a>
 
-            <a href="SanPham-TatCa.jsp" class="si-item">
+            <a href="${pageContext.request.contextPath}/Chi-tiet-san-pham?id=20" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_dinh_duong_cao_cap.png"
                          alt="Ngũ cốc dinh dưỡng cao cấp">
@@ -224,14 +224,14 @@
                 <p>Ngũ cốc dinh dưỡng<br>cao cấp</p>
             </a>
 
-            <a href="SanPham-TatCa.jsp" class="si-item">
+            <a href="${pageContext.request.contextPath}/Chi-tiet-san-pham?id=201" class="si-item">
                 <div class="si-img">
                     <img src="image/suggest-interest/ngu_coc_nguoi_gia.png" alt="Ngũ cốc người già">
                 </div>
                 <p>Ngũ cốc người già</p>
             </a>
 
-            <a href="SanPham-TatCa.jsp" class="si-item">
+            <a href="${pageContext.request.contextPath}/filter?categoryID=1" class="si-item">
                 <div class="si-img bg-lightgreen">
                     <img src="image/suggest-interest/ngu_coc_khac.png" alt="Ngũ cốc khác">
                 </div>
@@ -247,28 +247,28 @@
     </h2>
 
     <div class="product-list">
-        <a href="SanPham-TatCa.jsp" class="product-card-a">
+        <a href="${pageContext.request.contextPath}/filter?categoryID=1" class="product-card-a">
             <div class="product-card">
                 <img src="image/categoryProduct/ngu_coc.png" alt="Ngũ cốc" class="product-img">
                 <h3 class="product-title">Ngũ cốc</h3>
             </div>
         </a>
 
-        <a href="SanPham-TatCa.jsp" class="product-card-a">
+        <a href="${pageContext.request.contextPath}/filter?categoryID=3" class="product-card-a">
             <div class="product-card">
                 <img src="image/categoryProduct/combohatsen.jpg" alt="Hạt dinh dưỡng" class="product-img">
                 <h3 class="product-title">Hạt dinh dưỡng</h3>
             </div>
         </a>
 
-        <a href="SanPham-TatCa.jsp" class="product-card-a">
+        <a href="${pageContext.request.contextPath}/filter?categoryID=2" class="product-card-a">
             <div class="product-card">
                 <img src="image/categoryProduct/banh_dinh_duong.png" alt="Bánh dinh dưỡng" class="product-img">
                 <h3 class="product-title">Bánh dinh dưỡng</h3>
             </div>
         </a>
 
-        <a href="SanPham-TatCa.jsp" class="product-card-a">
+        <a href="${pageContext.request.contextPath}/filter?categoryID=4" class="product-card-a">
             <div class="product-card">
                 <img src="image/categoryProduct/tra_gao_lut.png" alt="Trà gạo lứt" class="product-img">
                 <h3 class="product-title">Trà gạo lứt</h3>
@@ -374,13 +374,14 @@
         <c:forEach var="n" items="${recentNews}">
         <div class="news-item">
             <div class="news-img">
-                <img src="${n.imageURL}" alt="${n.title}">
+                <a href="${pageContext.request.contextPath}/NewsDetail?id=${n.id}">
+                    <img src="${n.imageURL}" alt="${n.title}">
+                </a>
             </div>
-            <a href="" class="title">
+            <a href="${pageContext.request.contextPath}/NewsDetail?id=${n.id}" class="title">
                 <h3>${n.title}</h3>
             </a>
             <p class="sub-paragraph">${n.shortDescription}</p>
-            <a href="#" class="more">Xem thêm</a>
         </div>
         </c:forEach>
 
@@ -451,7 +452,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-                                <a href="TrangChu-daDNTK.html" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -473,14 +474,14 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="PhuongThucThanhToan.jsp"
+                                <li><a href="ChinhSachThanhToan"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
 
                             </ul>
@@ -490,12 +491,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu-daDNTK.html" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                <li><a href="SanPham-TatCa.html" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -541,7 +542,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.html">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="TrangChu">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                             rel="noreferrer">Team 18</a></p>
             </div>
         </div>
