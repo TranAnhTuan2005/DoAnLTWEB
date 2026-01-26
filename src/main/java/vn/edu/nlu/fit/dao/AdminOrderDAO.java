@@ -14,7 +14,6 @@ public class AdminOrderDAO extends BaseDao{
     }
 
     public Orders getById(int id) {
-        // SQL: Join với bảng discounts để lấy tên mã giảm giá
         String sql = "select o.*, d.discount_name " +
                 "from orders o " +
                 "left join discounts d on o.discount_id = d.id " +
@@ -43,6 +42,7 @@ public class AdminOrderDAO extends BaseDao{
                             o.setDiscountID(rs.getInt("discount_id"));
 
                             o.setDiscountName(rs.getString("discount_name"));
+                            o.setNote(rs.getString("note"));
 
                             return o;
                         }).one()

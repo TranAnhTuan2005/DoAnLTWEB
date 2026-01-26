@@ -369,24 +369,24 @@
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
                 <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -478,14 +478,15 @@
                 <c:forEach var="n" items="${newsList}">
                 <div class="news-item">
                     <div class="news-img">
-                        <img src="${n.imageURL}" alt="${n.title}">
+                        <a href="${pageContext.request.contextPath}/NewsDetail?id=${n.id}">
+                            <img src="${n.imageURL}" alt="${n.title}">
+                        </a>
                     </div>
-                    <a href="chi-tiet-tin-tuc?id=${n.id}" class="title">
+                    <a href="${pageContext.request.contextPath}/NewsDetail?id=${n.id}" class="title">
                         <h3>${n.title}</h3>
                     </a>
                     <p class="news-date">${n.datePost} / NGƯỜI VIẾT: ADMIN</p>
                     <p class="sub-paragraph">${n.shortDescription}</p>
-                    <a href="chi-tiet-tin-tuc?id=${n.id}" class="more">Xem thêm</a>
                 </div>
                 </c:forEach>
             </div>
@@ -517,12 +518,12 @@
                             <span class="post-index">${status.index + 1}</span>
                             <div>
                                 <span class="post-category">TIN TỨC</span>
-                               <a href="chi-tiet-tin-tuc?id=${r.id}" class="post-title">${r.title}</a>
+                               <a href="NewsDetail?id=${r.id}" class="post-title">${r.title}</a>
                             </div>
                         </li>
                         </c:forEach>
                         </ul>
-                    </aside>
+                </aside>
     </section>
 
     <!------------------------------------------------------------------------------>
@@ -586,8 +587,7 @@
                             <!-- Cột 1: Giới thiệu -->
                             <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                                 <div class="logo-footer">
-
-                                    <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                         <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                              alt="Ngũ cốc Ngon">
                                     </a>
@@ -598,11 +598,10 @@
                                     Email: ngucocNgon@gmail.com<br>
                                     Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                                 <div class="logo-footer-bct">
-                                    <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
-                                        rel="noreferrer" aria-label="logo bct">
-                                        <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                            height="70px" width="150px" alt="Bộ Công Thương">
-                                    </a>
+
+                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                         height="70px" width="150px" alt="Bộ Công Thương">
+
                                 </div>
                             </div>
 
@@ -610,15 +609,16 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                                 <ul>
-                                    <li><a href="TimKiem-KetQua.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
+                                    <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
                                     <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
-                                            trả</a></li>
-                                    <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
-                                            mật</a></li>
-                                    <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
-                                            vụ</a></li>
-                                    <li><a href="ChinhSachThanhToan.html"
-                                            title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                        trả</a></li>
+                                    <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
+                                        mật</a></li>
+                                    <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
+                                        vụ</a></li>
+                                    <li><a href="ChinhSachThanhToan"
+                                           title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                                 </ul>
                             </div>
 
@@ -629,7 +629,7 @@
                                     <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
                                     <li><a href="VeNgon" title="Ngon">Ngon</a></li>
                                     <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="News" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
                                     <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
                                     <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                                 </ul>

@@ -221,24 +221,24 @@
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
                 <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -378,9 +378,9 @@
 
                 <ul id="categoryList" class="category-list list-unstyled mb-0 collapse d-md-block">
                     <li class="category-item"><a href="VeNgon.jsp">Giới thiệu</a></li>
-                    <li class="category-item"><a href="ChinhSachBaoMat.html">Chính sách bảo mật</a></li>
-                    <li class="category-item"><a href="DieuKhoanDichVu.html">Điều khoản dịch vụ</a></li>
-                    <li class="category-item"><a href="ChinhSachThanhToan.html">Phương thức thanh toán</a></li>
+                    <li class="category-item"><a href="ChinhSachBaoMat.jsp">Chính sách bảo mật</a></li>
+                    <li class="category-item"><a href="DieuKhoanDichVu.jsp">Điều khoản dịch vụ</a></li>
+                    <li class="category-item"><a href="ChinhSachThanhToan.jsp">Phương thức thanh toán</a></li>
                 </ul>
             </div>
         </aside>
@@ -451,8 +451,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-
-                                <a href="#" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -463,11 +462,10 @@
                                 Email: ngucocNgon@gmail.com<br>
                                 Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                             <div class="logo-footer-bct">
-                                <a href="http://online.gov.vn/Home/WebDetails/109888" target="_blank"
-                                   rel="noreferrer" aria-label="logo bct">
-                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                         height="70px" width="150px" alt="Bộ Công Thương">
-                                </a>
+
+                                <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                     height="70px" width="150px" alt="Bộ Công Thương">
+
                             </div>
                         </div>
 
@@ -475,15 +473,16 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
                                 <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="ChinhSachThanhToan.html"
+                                <li><a href="ChinhSachThanhToan"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                             </ul>
                         </div>
 
@@ -494,7 +493,7 @@
                                 <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
                                 <li><a href="VeNgon" title="Ngon">Ngon</a></li>
                                 <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="News" title="Tin tức">Tin tức</a></li>
+                                <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
                                 <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
                                 <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                             </ul>
