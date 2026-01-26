@@ -272,51 +272,54 @@
     <div class="header-container">
         <!-- Logo -->
         <div class="logo">
-            <a href="TrangChu.jsp">
+            <a href="<c:url value='/TrangChu'/>">
                 <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
             </a>
         </div>
 
         <!-- Thanh tìm kiếm -->
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-            <button type="submit">
-                <a href="TimKiem.jsp">
-                    <i class="icon_timkiem">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
-                    </i>
-                </a>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Tìm kiếm sản phẩm..."
+                   aria-label="Tìm kiếm">
+
+            <button type="submit" id="searchBtn">
+                <i class="icon_timkiem">
+                    <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
+                </i>
             </button>
         </div>
+
 
         <!-- Menu điều hướng -->
         <nav class="main-nav">
             <ul>
-                <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                 <li class="menu-sp">
-                    <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                    <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                            <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                         </li>
                     </ul>
 
                 </li>
 
-                <li><a href="TinTuc.jsp">Tin tức</a></li>
-                <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                <li><a href="LienHe.jsp">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
+                <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
             </ul>
         </nav>
 
@@ -361,7 +364,7 @@
         <p>Tổng tiền: 0đ</p>
         <div class="modal-buttons">
             <button class="view-cart-btn" onclick="window.location.href='GioHangTrong.html'">Xem Giỏ Hàng</button>
-            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'"Thanh Toán</button>
+            <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">Thanh Toán</button>
         </div>
     </div>
 </div>
@@ -543,8 +546,7 @@
 
         </div>
     </div>
-
-
+    </div>
 </main>
 
 
@@ -609,7 +611,7 @@
                         <!-- Cột 1: Giới thiệu -->
                         <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                             <div class="logo-footer">
-                                <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                     <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                          alt="Ngũ cốc Ngon">
                                 </a>
@@ -631,14 +633,14 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                             <ul>
-                                <li><a href="TimKiem.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
+                                <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
+                                <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
                                     trả</a></li>
-                                <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
+                                <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
                                     mật</a></li>
-                                <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
+                                <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
-                                <li><a href="PhuongThucThanhToan.jsp"
+                                <li><a href="ChinhSachThanhToan"
                                        title="Phương thức thanh toán">Phương thức thanh toán</a></li>
 
                             </ul>
@@ -648,12 +650,12 @@
                         <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                             <h3 class="footer-title">KẾT NỐI NHANH</h3>
                             <ul>
-                                <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
-                                <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
-                                <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
+                                <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
+                                <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                             </ul>
                         </div>
 

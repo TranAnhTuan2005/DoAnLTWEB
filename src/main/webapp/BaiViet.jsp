@@ -1,30 +1,27 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ hàng</title>
+    <title>5 LOẠI NGŨ CỐC TỐT CHO SỨC KHỎE MẸ BẦU</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    .main-detailProduct {
-        font-family: 'Tahoma', Arial, sans-serif;
-        color: #444;
-        background-color: #fff;
-    }
-
-    /* --- Breadcrumb --- */
     /* Tối ưu breadcrumb: giảm chiều cao và không xuống dòng */
     .breadcrumb-bar {
         padding-top: 5px;
         /* giảm khoảng cách trên/dưới của thanh */
         padding-bottom: 5px;
-        background: #f6efe3;
+        background: linear-gradient(180deg, #fbf7f3, #f6efe3);
         border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     }
 
@@ -55,113 +52,241 @@
         font-weight: 600;
     }
 
-
-
-    /*--------------------Gio hàng trống-------------------------*/
+    /* Responsive: nếu màn quá nhỏ, cho phép wrap để tránh overflow */
+    @media (max-width: 420px) {
+        .breadcrumb-bar .breadcrumb.p-2.rounded-3 {
+            white-space: normal;
+            /* cho phép xuống dòng trên màn nhỏ */
+            padding: 8px;
+            gap: 6px;
+        }
+    }
 
     body {
         font-family: 'Tahoma', Arial, sans-serif;
-        background-color: #fff;
-        margin: 0;
-        padding: 0;
         color: #333;
+        background-color: #fff;
     }
 
-    .cart-container {
-        max-width: 1000px;
-        margin: 50px auto;
-        text-align: center;
-    }
-
-    h1 {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 40px;
-        border-bottom: 3px solid #000;
-        display: inline-block;
-        padding-bottom: 5px;
-    }
-
-    .cart-content {
+    article.post {
+        margin-top: 30px;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
         gap: 30px;
+        max-width: 1400px;
+        /* tăng chiều rộng tổng */
+        margin: 0 auto;
+        align-items: flex-start;
     }
 
-    .cart-empty {
-        flex: 2;
-        text-align: center;
-        font-size: 22px;
-        color: #555;
+    /* Cột trái: Bài viết chính */
+    article.post .news {
+        width: 72%;
+        /* rộng hơn */
     }
 
-    .order-info {
-        flex: 1;
-        border: 1px solid #ddd;
-        padding: 25px;
-        border-radius: 5px;
-        background-color: #fafafa;
-        text-align: left;
-    }
-
-    .order-info h2 {
-        font-size: 22px;
+    article.post h1 {
+        font-size: 32px;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+        color: #222;
     }
 
-    .order-total {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-
-    .order-total strong {
-        color: red;
-        font-size: 20px;
-    }
-
-    .note {
+    article.post .author {
         font-size: 14px;
-        color: #666;
-        margin-bottom: 25px;
-    }
-
-    .checkout-btn {
-        width: 100%;
-        padding: 12px 0;
-        background-color: red;
-        color: #fff;
-        border: none;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 3px;
-        transition: 0.3s;
-    }
-
-    .checkout-btn:hover {
-        background-color: #cc0000;
-    }
-
-    .continue {
-        margin-top: 15px;
+        color: #888;
         text-align: center;
+        margin-bottom: 20px;
     }
 
-    .continue a {
+    article.post section.post-image {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .cate-infor-post .post-image {
+        display: inline-block;
+        justify-content: center;
+    }
+
+    article.post section.post-image img {
+        text-align: center;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    article.post section.post-image .description {
+        max-width: 600px;
+        text-align: center;
+        color: #adadad;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    article.post section.cate-infor-post {
+        margin-bottom: 30px;
+    }
+
+    article.post section.cate-infor-post h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        display: inline-block;
+        padding-bottom: 3px;
+        font-weight: bold;
+    }
+
+    article.post section.cate-infor-post p {
+        margin-bottom: 10px;
+    }
+
+    article.post section.cate-infor-post img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 10px 0;
+        display: block;
+    }
+
+    /* responsive cho mobile */
+    @media (max-width: 600px) {
+        article.post h1 {
+            font-size: 24px;
+        }
+
+        article.post section.cate-infor-post h2 {
+            font-size: 18px;
+        }
+    }
+
+    /* ========================== */
+    /* CỘT PHẢI — BÀI VIẾT MỚI NHẤT */
+    /* ========================== */
+
+    /* Cột phải: Recent posts */
+    .recent-posts {
+        width: 20%;
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .recent-posts h2 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #000;
+    }
+
+    .post-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .post-list li {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 12px 0;
+        gap: 12px;
+    }
+
+    .post-index {
+        font-size: 26px;
+        font-weight: bold;
+        color: #bbb;
+        width: 28px;
+    }
+
+    .post-category {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .post-title {
+        display: block;
+        text-decoration: none;
+        color: #888;
+        font-size: 15px;
+        margin-top: 3px;
+        cursor: pointer;
+    }
+
+    .post-title:hover {
+        color: #bb7412;
+    }
+
+    .news-detail-container {
+        max-width: 900px; /* Giới hạn chiều rộng cho dễ đọc giống báo điện tử */
+        margin: 0 auto;
+        padding: 40px 20px;
+        background: #fff;
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Tiêu đề bài viết */
+    .news-title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    /* Thông tin ngày đăng, tác giả */
+    .news-meta {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+    .news-meta i { margin-right: 5px; }
+
+    /* Mô tả ngắn (Sapo) - Thường in đậm */
+    .news-sapo {
+        font-weight: bold;
+        font-size: 18px;
+        color: #444;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    /* NỘI DUNG CHÍNH */
+    .news-content {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #222;
+    }
+
+    /* Xử lý ảnh trong nội dung để không bị tràn màn hình */
+    .news-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto; /* Căn giữa ảnh */
+        border-radius: 5px;
+    }
+
+    /* Khoảng cách giữa các đoạn văn */
+    .news-content p {
+        margin-bottom: 20px;
+        text-align: justify; /* Căn đều 2 bên */
+    }
+
+    /* Nút quay lại */
+    .back-btn {
+        display: inline-block;
+        margin-top: 40px;
+        padding: 10px 20px;
+        background: #f1f1f1;
         color: #333;
         text-decoration: none;
-        font-size: 15px;
+        border-radius: 4px;
+        font-weight: bold;
     }
-
-    .continue a:hover {
-        text-decoration: underline;
-        color: #a46b2c;
-    }
+    .back-btn:hover { background: #e0e0e0; }
 </style>
 
 
@@ -184,52 +309,54 @@
         <div class="header-container">
             <!-- Logo -->
             <div class="logo">
-                <a href="TrangChu.jsp">
+                <a href="<c:url value='/TrangChu'/>">
                     <img src="image/Header/logongucocNgon.png" alt="Ngũ cốc Ngon"><img/>
                 </a>
             </div>
 
             <!-- Thanh tìm kiếm -->
             <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
-                <button type="submit">
-                    <i class="icon_timkiem" onclick="window.location.href='TimKiem-KetQua.html'">
-                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm" />
+                <input type="text"
+                       id="searchInput"
+                       placeholder="Tìm kiếm sản phẩm..."
+                       aria-label="Tìm kiếm">
+
+                <button type="submit" id="searchBtn">
+                    <i class="icon_timkiem">
+                        <img src="image/Header/icon_timkiem.png" alt="Tìm kiếm"/>
                     </i>
                 </button>
             </div>
 
+
             <!-- Menu điều hướng -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="TrangChu.jsp">Trang chủ</a></li>
-                    <li><a href="VeNgon.jsp">Về Ngon</a></li>
+                    <li><a href="<c:url value='/TrangChu'/>">Trang chủ</a></li>
+                    <li><a href="<c:url value='/VeNgon'/>">Về Ngon</a></li>
                     <li class="menu-sp">
-                        <a href="SanPham-TatCa.jsp">Sản phẩm <span class="arrow">▾</span></a>
+                        <a href="${pageContext.request.contextPath}/SanPham-TatCa">Sản phẩm <span class="arrow">▾</span></a>
 
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
-                                <a href="SanPham-NguCoc.jsp">Ngũ cốc</a>
+                                <a href="${pageContext.request.contextPath}/filter?categoryID=1">Ngũ cốc</a>
                             </li>
                             <li class="dropdown-item">
-                                <a href="SanPham-HatDinhDuong.jsp">Hạt dinh dưỡng</a>
+                                <a href="${pageContext.request.contextPath}/filter?categoryID=3">Hạt dinh dưỡng</a>
                             </li>
                             <li class="dropdown-item">
-                                <a href="SanPham-BanhDinhDuong.jsp">Bánh dinh dưỡng</a>
+                                <a href="${pageContext.request.contextPath}/filter?categoryID=2">Bánh dinh dưỡng</a>
                             </li>
                             <li class="dropdown-item">
-                                <a href="SanPham-TraGaoLut.jsp">Trà gạo lứt</a>
+                                <a href="${pageContext.request.contextPath}/filter?categoryID=4">Trà gạo lứt</a>
                             </li>
                         </ul>
 
                     </li>
 
-
-
-
-                    <li><a href="TinTuc.jsp">Tin tức</a></li>
-                    <li><a href="CongTacVien.jsp">Cộng tác viên</a></li>
-                    <li><a href="LienHe.jsp">Liên hệ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/News">Tin tức</a></li>
+                    <li><a href="${pageContext.request.contextPath}/CongTacVien">Cộng tác viên</a></li>
+                    <li><a href="${pageContext.request.contextPath}/LienHe">Liên hệ</a></li>
                 </ul>
             </nav>
 
@@ -301,50 +428,34 @@
 
     <!------------------------------------------------------------------------------------>
     <!--Body-->
-    <main class="main-detailProduct">
-        <!-- Breadcrumb -->
-        <section class="breadcrumb-bar py-2">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-2 rounded-3">
-                        <li class="breadcrumb-item"><a href="TrangChu.jsp">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
-                    </ol>
-                </nav>
-            </div>
-        </section>
 
-        <!----------------------------------GIỎ HÀNG TRỐNG----------------------------------------------->
+    <div class="news-detail-container">
 
-        <div class="cart-container">
-            <h1>Giỏ hàng của bạn</h1>
-            <div class="cart-content">
-                <div class="cart-empty">
-                    <p>Giỏ hàng của bạn đang trống</p>
-                </div>
+        <h1 class="news-title">${n.title}</h1>
 
-                <div class="order-info">
-                    <h2>Thông tin đơn hàng</h2>
-                    <div class="order-total">
-                        <span>Tổng tiền:</span>
-                        <strong>0₫</strong>
-                    </div>
-                    <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
-                        Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
-
-                    <button class="checkout-btn" onclick="window.location.href='ThongTinGiaoHang.html'">THANH TOÁN</button>
-
-                    <div class="continue">
-                        <a href="SanPham-TatCa.jsp">Tiếp tục mua hàng</a>
-                    </div>
-                </div>
-            </div>
+        <div class="news-meta">
+            <i class="fa-regular fa-clock"></i>
+            Đăng ngày: <fmt:formatDate value="${n.datePost}" pattern="dd/MM/yyyy - HH:mm"/>
         </div>
 
+        <div class="news-banner" style="margin: 20px 0; text-align: center;">
+            <img src="${n.imageURL}" alt="${n.title}"
+                 style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        </div>
 
-        <!------------------------------------------------------------------------------>
+        <div class="news-sapo">
+            ${n.shortDescription}
+        </div>
 
-    </main>
+        <div class="news-content">
+            <c:out value="${n.content}" escapeXml="false"/>
+        </div>
+
+        <a href="${pageContext.request.contextPath}/News" class="back-btn">
+            &larr; Quay lại danh sách tin tức
+        </a>
+
+    </div>
 
     <!------------------------------------------------------------------------------>
     <!--Footer-->
@@ -407,8 +518,7 @@
                             <!-- Cột 1: Giới thiệu -->
                             <div class="footer-about ft-col col-md-3 col-sm-6 col-xs-12">
                                 <div class="logo-footer">
-
-                                    <a href="TrangChu.jsp" title="Ngũ cốc Ngon" aria-label="logo shop footer">
+                                    <a href="TrangChu" title="Ngũ cốc Ngon" aria-label="logo shop footer">
                                         <img src="image/Header/logongucocNgon.png" height="100px" width="250px"
                                              alt="Ngũ cốc Ngon">
                                     </a>
@@ -420,8 +530,8 @@
                                     Giấy CNĐKKD: 34472346746(23/2/2025)</p>
                                 <div class="logo-footer-bct">
 
-                                        <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
-                                            height="70px" width="150px" alt="Bộ Công Thương">
+                                    <img src="https://theme.hstatic.net/200000759239/1001104497/14/logo_bct.png?v=330"
+                                         height="70px" width="150px" alt="Bộ Công Thương">
 
                                 </div>
                             </div>
@@ -430,15 +540,16 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">HỖ TRỢ KHÁCH HÀNG</h3>
                                 <ul>
-                                    <li><a href="TimKiem-KetQua.jsp" title="Tìm kiếm">Tìm kiếm</a></li>
-                                    <li><a href="ChinhSachDoiTra.jsp" title="Chính sách đổi trả">Chính sách đổi
-                                            trả</a></li>
-                                    <li><a href="ChinhSachBaoMat.html" title="Chính sách bảo mật">Chính sách bảo
-                                            mật</a></li>
-                                    <li><a href="DieuKhoanDichVu.html" title="Điều khoản dịch vụ">Điều khoản dịch
-                                            vụ</a></li>
-                                    <li><a href="ChinhSachThanhToan.html"
-                                            title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                    <li><a href="TimKiem" title="Tìm kiếm">Tìm kiếm</a></li>
+                                    <li><a href="ChinhSachDoiTra" title="Chính sách đổi trả">Chính sách đổi
+                                        trả</a></li>
+                                    <li><a href="ChinhSachBaoMat" title="Chính sách bảo mật">Chính sách bảo
+                                        mật</a></li>
+                                    <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
+                                        vụ</a></li>
+                                    <li><a href="ChinhSachThanhToan"
+                                           title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+
                                 </ul>
                             </div>
 
@@ -446,12 +557,12 @@
                             <div class="boxlink ft-col col-md-3 col-sm-6 col-xs-12">
                                 <h3 class="footer-title">KẾT NỐI NHANH</h3>
                                 <ul>
-                                    <li><a href="TrangChu.jsp" title="Trang chủ">Trang chủ</a></li>
-                                    <li><a href="VeNgon.jsp" title="Ngon">Ngon</a></li>
-                                    <li><a href="SanPham-TatCa.jsp" title="Sản phẩm">Sản phẩm</a></li>
-                                    <li><a href="TinTuc.jsp" title="Tin tức">Tin tức</a></li>
-                                    <li><a href="CongTacVien.jsp" title="Cộng tác viên">Cộng tác viên</a></li>
-                                    <li><a href="LienHe.jsp" title="Liên hệ">Liên hệ</a></li>
+                                    <li><a href="TrangChu" title="Trang chủ">Trang chủ</a></li>
+                                    <li><a href="VeNgon" title="Ngon">Ngon</a></li>
+                                    <li><a href="SanPham-TatCa" title="Sản phẩm">Sản phẩm</a></li>
+                                    <li><a href="TinTuc" title="Tin tức">Tin tức</a></li>
+                                    <li><a href="CongTacVien" title="Cộng tác viên">Cộng tác viên</a></li>
+                                    <li><a href="LienHe" title="Liên hệ">Liên hệ</a></li>
                                 </ul>
                             </div>
 
@@ -502,25 +613,6 @@
             </div>
         </footer>
     </div>
-
-    <!-- Tăng giảm số lượng js -->
-    <script>
-        let detailProductQty = 1;
-        const detailProductQtyDisplay = document.getElementById('detail-product-qty');
-        const detailProductPlus = document.getElementById('detail-product-plus');
-        const detailProductMinus = document.getElementById('detail-product-minus');
-
-        detailProductPlus.addEventListener('click', () => {
-            detailProductQty++;
-            detailProductQtyDisplay.textContent = detailProductQty;
-        });
-
-        detailProductMinus.addEventListener('click', () => {
-            if (detailProductQty > 1) detailProductQty--;
-            detailProductQtyDisplay.textContent = detailProductQty;
-        });
-
-    </script>
 
     <!--back to top (bootstrap) js-->
     <script>

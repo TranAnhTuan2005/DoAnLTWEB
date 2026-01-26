@@ -19,6 +19,7 @@ public class Orders {
     private int discountID;
     private double shippingFee;
     private String discountName;
+    private String note;
 
 
     public Orders(int id, String fullName, String phone, String email, double total, Timestamp orderDate, String orderAddress, int orderStatus, int userID, int deliveryMethodID, String deliveryMethod, int paymentMethodID, int discountID, double shippingFee) {
@@ -201,5 +202,13 @@ public class Orders {
         if (this.deliveryMethodID == 1) return "Giao hàng tận nơi";
         if (this.deliveryMethodID == 2) return "Hỏa tốc";
         return "Vận chuyển thường";
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

@@ -709,6 +709,11 @@
                         </div>
                     </div>
 
+                    <div class="info-group">
+                        <span class="info-label">Ghi chú của đơn hàng</span>
+                        <h4 class="info-value">${order.note}</h4>
+                    </div>
+
                     <div class="total-money-section">
                         <span class="info-label" style="margin-bottom: 0;">TỔNG TIỀN ĐƠN HÀNG</span>
                         <div class="total-money-value">
