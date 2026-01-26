@@ -9,7 +9,6 @@
     <title>Ngũ cốc Ngon | Dinh dưỡng cho mọi nhà</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -304,7 +303,7 @@
                     <div class="overlay"><!-- Hover để hiển thị-->
                         <button class="add-to-cart" onclick="window.location.href='addCart?id=${p.id}&quantity=1'">🛒 THÊM VÀO GIỎ</button>
                         <button class="view-btn"
-                                onclick="openModal('${p.imageURL}', '${p.productName}', '${formattedPrice}đ')">
+                                onclick="openModal('${p.id}','${p.imageURL}','${p.productName}', '${formattedPrice}đ', '${detailUrl_byID}')">
                             👁
                             XEM NHANH
                         </button>
@@ -332,8 +331,8 @@
                 <input type="text" id="product-qty" value="1" min="1">
                 <button class="qty-btn" id="qty-increase">+</button>
             </div>
-            <button class="add" id="modal-add-to-cart-btn">🛒 THÊM VÀO GIỎ</button>
-            <p><a href="ChiTietSanPham.html">Xem chi tiết sản phẩm</a></p>
+            <button class="add" id="modal-add-to-cart-btn" onclick="addToCartAction()">🛒 THÊM VÀO GIỎ</button>
+            <p><a href="#" id="modal-detail-link">Xem chi tiết sản phẩm</a></p>
         </div>
     </div>
 </div>
@@ -613,9 +612,84 @@
         }
     });
 </script>
+<script>
+    let currentProductId_Fix = null;
+    function openModal(id, imgSrc, name, price, detailUrl) {
+        console.log("OPEN MODAL - ID:", id); // Check log
+        currentProductId_Fix = id;
 
+        // Gán thông tin
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('modal-name').innerText = name;
+        document.getElementById('modal-price').innerText = price;
 
+        // Gán link chi tiết, thay cho #
+        const linkEl = document.getElementById('modal-detail-link');
+        if(linkEl) linkEl.href = detailUrl;
 
+        // Reset số lượng
+        const qtyInput = document.getElementById('product-qty');
+        if(qtyInput) qtyInput.value = 1;
 
+        // Hiện modal
+        document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    function addToCartAction() {
+        console.log("CLICK ADD TO CART - ID:", currentProductId_Fix); // Check log
+
+        // Kiểm tra ID
+        if (!currentProductId_Fix) {
+            alert("Lỗi: Chưa chọn sản phẩm (ID null). Hãy tải lại trang!");
+            return;
+        }
+
+        // Lấy số lượng
+        const qtyInput = document.getElementById('product-qty');
+        let quantity = 1;
+        if(qtyInput) {
+            let val = parseInt(qtyInput.value);
+            if(val > 0) quantity = val;
+        }
+
+        // Tạo link
+        const finalUrl = "addCart?id=" + currentProductId_Fix + "&quantity=" + quantity;
+
+        console.log("Go to URL:", finalUrl);
+
+        // Chuyển trang
+        window.location.href = finalUrl;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const qtyInput = document.getElementById('product-qty');
+        const btnIncrease = document.getElementById('qty-increase');
+        const btnDecrease = document.getElementById('qty-decrease');
+
+        if(btnIncrease) {
+            btnIncrease.onclick = function() {
+                if(qtyInput) qtyInput.value = parseInt(qtyInput.value) + 1;
+            }
+        }
+
+        if(btnDecrease) {
+            btnDecrease.onclick = function() {
+                if(qtyInput && qtyInput.value > 1) {
+                    qtyInput.value = parseInt(qtyInput.value) - 1;
+                }
+            }
+        }
+
+        // Click ra ngoài thì đóng
+        window.onclick = function(e) {
+            const modal = document.getElementById('productModal');
+            if (e.target === modal) closeModal();
+        }
+    });
+
+</script>
 </body>
 </html>

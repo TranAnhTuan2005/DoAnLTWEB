@@ -13,6 +13,8 @@ import java.util.List;
 public class CheckoutCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String note = request.getParameter("note");
+
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
 
@@ -20,6 +22,14 @@ public class CheckoutCartController extends HttpServlet {
             response.sendRedirect("SanPham-TatCa.jsp");
             return;
         }
+        if (note != null && !note.isEmpty()) {
+            session.setAttribute("ORDER_NOTE", note);
+        } else {
+            // Nếu không có ghi chú mới thì giữ nguyên hoặc xóa cũ tùy logic
+            // Thường là xóa cũ để tránh lưu nhầm của đơn trước
+            session.removeAttribute("ORDER_NOTE");
+        }
+
         request.getRequestDispatcher("ThongTinGiaoHang.jsp").forward(request,response);
 
     }

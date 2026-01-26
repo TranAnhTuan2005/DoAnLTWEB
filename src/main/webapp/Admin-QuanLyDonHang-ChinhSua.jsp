@@ -572,7 +572,7 @@
             <li style="opacity: 0.6"><i class="fa-solid fa-home"></i><a href="${pageContext.request.contextPath}/AdminDashboard">Bảng điều khiển</a></li>
             <hr>
 
-            <li class="has-submenu">
+            <li style="opacity: 0.6" class="has-submenu">
                 <div class="submenu-toggle">
                     <i class="fa-solid fa-box"></i>
                     <span>Sản phẩm</span>
@@ -580,7 +580,7 @@
                 </div>
                 <ul class="submenu">
                     <li style="opacity: 0.6"><i class="fa-solid fa-list"></i> <a href="${pageContext.request.contextPath}/AdminCategory">Danh mục</a></li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
+                    <li style="opacity: 0.6" ><i class="fa-solid fa-boxes-stacked"></i> <a href="${pageContext.request.contextPath}/AdminProduct">Sản phẩm</a></li>
                 </ul>
             </li>
             <hr>

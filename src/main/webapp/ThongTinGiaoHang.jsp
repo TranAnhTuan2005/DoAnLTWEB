@@ -393,10 +393,9 @@
                 </div>
 
                 <div class="form-footer">
-                    <a href="GioHang.jsp" class="cart-link">Giỏ hàng</a>
-                    <button type="submit" class="submit-btn"
-                        onclick="window.location.href='PaymentMethod'">Tiếp tục đến phương thức thanh
-                        toán</button>
+                    <a href="GioHang" class="cart-link">Giỏ hàng</a>
+                    <button type="submit" class="submit-btn">
+                        Tiếp tục đến phương thức thanh toán</button>
                 </div>
             </form>
         </div>

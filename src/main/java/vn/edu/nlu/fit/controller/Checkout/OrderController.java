@@ -48,13 +48,18 @@ public class OrderController extends HttpServlet {
         String address = (String) session.getAttribute("order_address");
         String email = (String) session.getAttribute("order_email");
 
+        String note = (String) session.getAttribute("ORDER_NOTE");
+        if (note == null) {
+            note = ""; // Tránh bị null khi lưu xuống DB
+        }
+
         // Kiểm tra lưu user trong session tên là "auth" hay "user"
         Users user = (Users) session.getAttribute("user");
         Integer userId = (user != null) ? user.getId() : null;
 
         OrderDAO orderDAO = new OrderDAO();
         int orderId = orderDAO.createOrder(name, phone, email, address,
-                Integer.parseInt(deliveryId), Integer.parseInt(paymentId), finalTotal, userId, cart);
+                Integer.parseInt(deliveryId), Integer.parseInt(paymentId), finalTotal, userId, cart, note);
 
         if (orderId != -1) {
             PaymentMethodDao paymentDao = new PaymentMethodDao();
@@ -83,6 +88,8 @@ public class OrderController extends HttpServlet {
             session.removeAttribute("order_phone");
             session.removeAttribute("order_address");
             session.removeAttribute("order_email");
+            //note
+            session.removeAttribute("ORDER_NOTE");
 
             //chuyển trang
             request.getRequestDispatcher("DatHangThanhCong.jsp").forward(request, response);
