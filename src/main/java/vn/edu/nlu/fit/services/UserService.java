@@ -38,48 +38,37 @@ public class UserService {
     }
 
     //đk tk
-    public boolean register(String fullName, String email, String phoneNumber, String password, String birthday) {
+    public void register(String fullName, String email, String phoneNumber,
+                         String password, String birthday) {
 
-        // check trống
-        if (fullName == null || fullName.isEmpty() || email == null || email.isEmpty() || phoneNumber == null  || phoneNumber.isEmpty()
-                || password == null || password.isEmpty()  || birthday == null || birthday.isEmpty()) {
-
-            throw new IllegalArgumentException("Vui lòng nhập đầy đủ thông tin");
-        }
-
-        // check email / phone
-
-        boolean isEmail = email.matches(email_regrex);
-        boolean isPassword = password.matches(password_regrex);
-
-        //check email
-        if (!isEmail) {
-            throw new IllegalArgumentException("Email không đúng định dạng");
-        }
-
-        // check password mạnh
-        if (!isPassword) {
-            throw new IllegalArgumentException("Mật khẩu phải ≥ 8 ký tự, gồm chữ, số và ký tự đặc biệt");
-        }
-
-        // check trùng email
-        if (userDAO.findByEmail(email) != null) {
-            throw new IllegalArgumentException("Tài khoản đã tồn tại");
-        }
         Users user = new Users();
         user.setFullName(fullName);
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
-
-        String hashPass = HashMD5.md5(password);
-        user.setPassword_hash(hashPass);
-
-        LocalDate birthDate = LocalDate.parse(birthday);
-        user.setBirthday(birthDate);
-
+        user.setPassword_hash(HashMD5.md5(password));
+        user.setBirthday(LocalDate.parse(birthday));
         user.setUserRole("user");
-        user.setActive(true);
+        user.setActive(false);
+
+        //  token xác thực
+        String token = UUID.randomUUID().toString();
+        LocalDateTime expired = LocalDateTime.now().plusMinutes(15);
+
+        user.setResetToken(token);
+        user.setResetExpired(expired);
+
         userDAO.insert(user);
+
+        // gửi mail xác thực
+        String verifyLink = "http://localhost:8080/DoAnLTWEB/VerifyEmail?token=" + token;
+        EmailUtil.sendVerifyEmail(email, verifyLink);
+    }
+
+    public boolean verifyEmail(String token) {
+        Users user = userDAO.findByResetToken(token);
+        if (user == null) return false;
+
+        userDAO.activateUser(user.getId());
         return true;
     }
 

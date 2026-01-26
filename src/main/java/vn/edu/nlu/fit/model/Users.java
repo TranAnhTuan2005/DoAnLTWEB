@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Users {
     private int id;
@@ -14,7 +15,8 @@ public class Users {
     private String password_hash;
     private String userRole;
     private boolean active;
-
+    private String resetToken;
+    private LocalDateTime resetExpired;
     public Users() {
     }
 
@@ -31,7 +33,21 @@ public class Users {
         this.userRole = userRole;
         this.active = active;
     }
+    public String getResetToken() {
+        return resetToken;
+    }
 
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getResetExpired() {
+        return resetExpired;
+    }
+
+    public void setResetExpired(LocalDateTime resetExpired) {
+        this.resetExpired = resetExpired;
+    }
     public int getId() {
         return id;
     }

@@ -284,6 +284,13 @@
                                placeholder="Mật khẩu" required>
                     </div>
 
+                    <!-- Nhập lại mật khẩu -->
+                    <div class="mb-3">
+                        <input name="confirmPassword" type="password"
+                               class="form-control custom-input highlight-input"
+                               placeholder="Nhập lại mật khẩu" required>
+                    </div>
+
                     <small class="text-muted">
                         Mật khẩu tối thiểu 8 ký tự, gồm chữ, số và ký tự đặc biệt
                     </small>
@@ -300,6 +307,8 @@
                             ← Quay lại trang chủ
                         </a>
                     </div>
+
+
 
                 </form>
 
