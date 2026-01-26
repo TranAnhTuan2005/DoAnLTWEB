@@ -299,6 +299,30 @@
         border: 2px solid #fff;
     }
 
+    .buy-now{
+        padding: 12px 0;
+        color: #fff;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        width: 200px;
+        background: #bb7412;
+    }
+    .empty-cart-alert{
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .img-empty-cart{
+        width: 150px;
+        margin-bottom: 20px;
+        opacity: 0.6;
+    }
+
 </style>
 
 
@@ -465,6 +489,23 @@
 
         <div class="cart-container">
             <h1>Giỏ hàng của bạn</h1>
+
+            <c:choose>
+                <%-- Gior hàng trống--%>
+            <c:when test="${sessionScope.cart == null || sessionScope.cart.totalQuantity == 0}">
+                <div class="empty-cart-alert">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.9TNLG7dziWUfxa_gtem_hgHaHa?pid=Api&P=0&h=180"
+                         alt="Giỏ hàng trống" class="img-empty-cart">
+                    <h3 style="color: #666;">Giỏ hàng của bạn đang trống!</h3>
+                    <p style="color: #888; margin-bottom: 30px;">Hãy dạo một vòng và chọn những sản phẩm yêu thích nhé.</p>
+                    <a href="SanPham-TatCa" class="buy-now">
+                        MUA SẮM NGAY
+                    </a>
+                </div>
+            </c:when>
+
+                <%-- Gior hàng có sản phẩm--%>
+            <c:otherwise>
             <div class="cart-content">
 
                 <div class="cart-productlist">
@@ -489,7 +530,7 @@
                         </div>
                         <div class="right-infor">
                            <a href="Del-product?id=${p.product.id}"><i class="fa-solid fa-trash" style="color: red"></i></a>
-                            <p class="total">Thành tiền: <strong id="item-total-${p.product.id}">${p.total}đ</strong></p>
+                            <p class="total">Thành tiền: <strong id="item-total-${p.product.id}"><fmt:formatNumber value="${p.total}" type="number" groupingUsed="true"/>đ</strong></p>
                         </div>
                     </div>
                     </c:forEach>
@@ -504,18 +545,22 @@
                     <h2>Thông tin đơn hàng</h2>
                     <div class="order-total">
                         <span>Tổng tiền:</span>
-                        <strong id="cart-grand-total"> ${sessionScope.cart.total}đ</strong>
+                        <strong id="cart-grand-total">
+                            <fmt:formatNumber value="${sessionScope.cart.total}" type="number" groupingUsed="true"/>đ
+                        </strong>
                     </div>
                     <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
 
-                    <button class="checkout-btn" onclick="window.location.href='Checkout-infor'">THANH TOÁN</button>
+                    <button class="checkout-btn" onclick="proceedToCheckout()">THANH TOÁN</button>
 
                     <div class="continue">
                         <a href="${pageContext.request.contextPath}/SanPham-TatCa">Tiếp tục mua hàng</a>
                     </div>
                 </div>
             </div>
+            </c:otherwise>
+            </c:choose>
         </div>
 
 
@@ -772,6 +817,17 @@
                 document.getElementById("searchBtn").click();
             }
         });
+
+        //lấy ghi chú đn hàng
+        function proceedToCheckout() {
+            const noteElement = document.getElementById('order-note');
+            const noteValue = noteElement ? noteElement.value.trim() : "";
+            // xử lý tiếng việt
+            const url = "Checkout-infor?note=" + encodeURIComponent(noteValue);
+
+            // 3. Chuyển trang
+            window.location.href = url;
+        }
     </script>
 </body>
 

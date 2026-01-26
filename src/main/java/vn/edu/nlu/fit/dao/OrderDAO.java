@@ -27,14 +27,14 @@ public class OrderDAO extends BaseDao{
     }
 
     public int createOrder(String name, String phone, String email, String address,
-                           int deliveryId, int paymentId, double totalMoney, Integer userId, Cart cart) {
+                           int deliveryId, int paymentId, double totalMoney, Integer userId, Cart cart, String note) {
 
         return getJdbi().inTransaction(handle -> {
             try {
                 String sqlOrder = "INSERT INTO orders " +
-                        "(fullname, phone, email, total, order_date, order_address, order_status, user_id, delivery_method_id, payment_method_id) " +
+                        "(fullname, phone, email, total, order_date, order_address, order_status, user_id, delivery_method_id, payment_method_id, note) " +
                         "VALUES " +
-                        "(:name, :phone, :email, :total, :date, :address, :status, :userId, :deliveryId, :paymentId)";
+                        "(:name, :phone, :email, :total, :date, :address, :status, :userId, :deliveryId, :paymentId, :note)";
 
                 int orderId = handle.createUpdate(sqlOrder)
                         .bind("name", name)
@@ -47,6 +47,7 @@ public class OrderDAO extends BaseDao{
                         .bind("userId", userId)
                         .bind("deliveryId", deliveryId)
                         .bind("paymentId", paymentId)
+                        .bind("note", note)
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Integer.class)
                         .one();
