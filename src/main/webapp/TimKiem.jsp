@@ -473,7 +473,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="<c:url value='/TrangChu'/>">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>

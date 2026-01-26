@@ -260,7 +260,7 @@
 
             <div class="footer-actions">
                 <p class="help">
-                    Cần hỗ trợ? <a href="LienHe.jsp">Liên hệ chúng tôi</a>
+                    Cần hỗ trợ? <a href="<c:url value='/LienHe'/>">Liên hệ chúng tôi</a>
                 </p>
                 <button class="continue-btn" onclick="window.location.href='SanPham-TatCa'">Tiếp tục mua hàng</button>
             </div>

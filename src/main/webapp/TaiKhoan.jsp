@@ -315,9 +315,9 @@
                     <div class="AccountContent">
                         <div class="AccountList">
                             <ul class="list-unstyled">
-                                <li class="current"><a href="TaiKhoan.html">Thông tin tài khoản</a></li>
-                                <li><a href="DanhSachDiaChi.jsp">Danh sách địa chỉ</a></li>
-                                <li class="last"><a href="TrangChu.jsp">Đăng xuất</a></li>
+                                <li class="current"><a href="<c:url value='/TaiKhoanCuaBan'/>">Thông tin tài khoản</a></li>
+                                <li><a href="<c:url value='/DanhSachDiaChi'/>">Danh sách địa chỉ</a></li>
+                                <li class="last"><a href="<c:url value='/TrangChu'/>">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -346,7 +346,7 @@
 
                         <!-- Hiển thị link xem địa chỉ -->
                         <p class="address-view">
-                            <a href="DanhSachDiaChi.jsp" class="address-view-link">Xem địa chỉ</a>
+                            <a href="<c:url value='/DanhSachDiaChi'/>" class="address-view-link">Xem địa chỉ</a>
                         </p>
                     </div>
 
@@ -459,7 +459,7 @@
                                 <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
                                 <li><a href="ChinhSachThanhToan"
-                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                       title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                             </ul>
                         </div>
@@ -519,7 +519,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="#">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="<c:url value='/TrangChu'/>">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                 rel="noreferrer">Team 18</a></p>
             </div>
         </div>

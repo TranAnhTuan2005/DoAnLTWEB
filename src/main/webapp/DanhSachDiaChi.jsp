@@ -522,7 +522,7 @@
                         <div class="AccountList">
                             <ul class="list-unstyled">
                                 <li><a href="<c:url value='/TaiKhoanCuaBan'/>">Thông tin tài khoản</a></li>
-                                <li class="current"><a href="DanhSachDiaChi.html">Danh sách địa chỉ</a></li>
+                                <li class="current"><a href="<c:url value='/DanhSachDiaChi'/>">Danh sách địa chỉ</a></li>
                                 <li class="last"><a href="<c:url value='/DangXuat'/>">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -870,7 +870,7 @@
                                 <li><a href="DieuKhoanDichVu" title="Điều khoản dịch vụ">Điều khoản dịch
                                     vụ</a></li>
                                 <li><a href="ChinhSachThanhToan"
-                                       title="Phương thức thanh toán">Phương thức thanh toán</a></li>
+                                       title="Chính sách thanh toán">Chính sách thanh toán</a></li>
 
                             </ul>
                         </div>
@@ -930,7 +930,7 @@
 
         <div class="footer-copyright text-center">
             <div class="container-fluid">
-                <p>Copyright © 2025 <a href="TrangChu.jsp">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
+                <p>Copyright © 2025 <a href="<c:url value='/TrangChu'/>">Ngũ cốc Ngon</a>. Powered by <a href="#" target="_blank"
                                                                                            rel="noreferrer">Team 18</a></p>
             </div>
         </div>
