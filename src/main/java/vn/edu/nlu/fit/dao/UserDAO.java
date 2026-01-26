@@ -22,8 +22,19 @@ public class UserDAO extends BaseDao {
 
     public void insert(Users user) {
         String sql = """
-                    INSERT INTO users(full_name, email, phone_number, password_hash, birthday, user_role, active)
-                    VALUES (:fullName, :email, :phoneNumber, :password_hash, :birthday, :userRole, :active)
+                    INSERT INTO users(
+                     full_name, email, phone_number,
+                     password_hash, birthday,
+                     user_role, active,
+                     reset_token, reset_expired
+                    )
+                    VALUES (
+                     :fullName, :email, :phoneNumber,
+                     :password_hash, :birthday,
+                     :userRole, :active,
+                     :resetToken, :resetExpired
+                    )
+                    
                 """;
 
         getJdbi().withHandle(h ->
@@ -32,6 +43,22 @@ public class UserDAO extends BaseDao {
                         .execute()
         );
     }
+    public void activateUser(int id) {
+        String sql = """
+        UPDATE users
+        SET active = 1,
+            reset_token = NULL,
+            reset_expired = NULL
+        WHERE id = :id
+    """;
+
+        getJdbi().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("id", id)
+                        .execute()
+        );
+    }
+
 
 
     public Users findByEmail(String email) {
